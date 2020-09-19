@@ -4,45 +4,63 @@
 import Apollo
 import Foundation
 
-/// Media type enum, anime or manga.
-public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+/// Activity type enum.
+public enum ActivityType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
-  /// Japanese Anime
-  case anime
-  /// Asian comic
-  case manga
+  /// A text activity
+  case text
+  /// A anime list update activity
+  case animeList
+  /// A manga list update activity
+  case mangaList
+  /// A text message activity sent to another user
+  case message
+  /// Anime & Manga list update, only used in query arguments
+  case mediaList
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
-      case "ANIME": self = .anime
-      case "MANGA": self = .manga
+      case "TEXT": self = .text
+      case "ANIME_LIST": self = .animeList
+      case "MANGA_LIST": self = .mangaList
+      case "MESSAGE": self = .message
+      case "MEDIA_LIST": self = .mediaList
       default: self = .__unknown(rawValue)
     }
   }
 
   public var rawValue: RawValue {
     switch self {
-      case .anime: return "ANIME"
-      case .manga: return "MANGA"
+      case .text: return "TEXT"
+      case .animeList: return "ANIME_LIST"
+      case .mangaList: return "MANGA_LIST"
+      case .message: return "MESSAGE"
+      case .mediaList: return "MEDIA_LIST"
       case .__unknown(let value): return value
     }
   }
 
-  public static func == (lhs: MediaType, rhs: MediaType) -> Bool {
+  public static func == (lhs: ActivityType, rhs: ActivityType) -> Bool {
     switch (lhs, rhs) {
-      case (.anime, .anime): return true
-      case (.manga, .manga): return true
+      case (.text, .text): return true
+      case (.animeList, .animeList): return true
+      case (.mangaList, .mangaList): return true
+      case (.message, .message): return true
+      case (.mediaList, .mediaList): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
   }
 
-  public static var allCases: [MediaType] {
+  public static var allCases: [ActivityType] {
     return [
-      .anime,
-      .manga,
+      .text,
+      .animeList,
+      .mangaList,
+      .message,
+      .mediaList,
     ]
   }
 }
