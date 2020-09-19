@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Link("Sign in with AniList", destination: <#T##URL#>)
+        #if os(iOS)
+        TabNavigationView()
+
+        #endif
     }
 }
 
