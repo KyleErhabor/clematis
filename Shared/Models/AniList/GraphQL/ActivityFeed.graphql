@@ -1,6 +1,6 @@
-query GlobalActivityFeed($page: Int!, $perPage: Int!) {
+query ActivityFeed($page: Int!, $perPage: Int!) {
   Page(page: $page, perPage: $perPage) {
-    activities(sort: ID_DESC) {
+    activities(hasRepliesOrTypeText: true, type_in: [TEXT, ANIME_LIST, MANGA_LIST], sort: ID_DESC) {
       ...textActivityFragment
       ...listActivityFragment
     }
@@ -10,6 +10,7 @@ query GlobalActivityFeed($page: Int!, $perPage: Int!) {
 fragment textActivityFragment on TextActivity {
   id
   type
+  siteUrl
   user {
     name
     avatar {
@@ -20,7 +21,19 @@ fragment textActivityFragment on TextActivity {
 
 fragment listActivityFragment on ListActivity {
   id
-  type
+  status
+  progress
+  createdAt
+  media {
+    isAdult
+    coverImage {
+      extraLarge
+      color
+    }
+    title {
+      userPreferred
+    }
+  }
   user {
     name
     avatar {
