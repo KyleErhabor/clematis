@@ -5,9 +5,9 @@
 //  Created by Kyle Erhabor on 9/19/20.
 //
 
-extension GlobalActivityFeedQuery.Data.Page.Activity.Fragments: Identifiable {
-    // I hate you so much. Curse you, Apollo GraphQL fragments.
+extension ActivityFeedQuery.Data.Page.Activity.Fragments: Identifiable {
+    // I hate you so much.
     public var id: Int {
-        (self.textActivityFragment?.id ?? self.listActivityFragment?.id)!
+        return (textActivityFragment?.id ?? listActivityFragment?.id)!
     }
 }
