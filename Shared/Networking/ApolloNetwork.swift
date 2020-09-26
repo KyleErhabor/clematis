@@ -5,13 +5,21 @@
 //  Created by Kyle Erhabor on 9/4/20.
 //
 
-import Foundation
+import SwiftUI
 import Apollo
 
 class ApolloNetwork {
-    static let shared = ApolloNetwork()
+    @AppStorage(SettingsKeys.accessToken) private var accessToken: String?
 
-    private(set) lazy var anilist = ApolloClient(url: URL(string: "https://graphql.anilist.co/")!)
+    private lazy var networkTransport: HTTPNetworkTransport = {
+        let transport = HTTPNetworkTransport(url: URL(string: "https://graphql.anilist.co/")!)
+        transport.delegate = self
+
+        return transport
+    }()
+
+    static let shared = ApolloNetwork()
+    private(set) lazy var anilist = ApolloClient(networkTransport: networkTransport)
 
     enum ALMetadata {
         static var authURL: URL {
@@ -22,6 +30,21 @@ class ApolloNetwork {
             ]
 
             return components.url!
+        }
+    }
+}
+
+extension ApolloNetwork: HTTPNetworkTransportPreflightDelegate {
+    func networkTransport(_ networkTransport: HTTPNetworkTransport, shouldSend request: URLRequest) -> Bool {
+        return true
+    }
+
+    func networkTransport(_ networkTransport: HTTPNetworkTransport, willSend request: inout URLRequest) {
+        if let token = accessToken {
+            var headers = request.allHTTPHeaderFields ?? [String: String]()
+            
+            headers["Authorization"] = "Bearer \(token)"
+            request.allHTTPHeaderFields = headers
         }
     }
 }
