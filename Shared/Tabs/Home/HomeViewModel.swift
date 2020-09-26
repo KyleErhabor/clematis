@@ -30,3 +30,29 @@ class HomeViewModel: ObservableObject {
         }
     }
 }
+
+class HomeActivityRepliesViewModel: ObservableObject {
+    private var parentID: Int
+
+    @Published private(set) var replies = [ActivityRepliesQuery.Data.Page.ActivityReply]()
+
+    init(activityID: Int) {
+        self.parentID = activityID
+    }
+
+    func loadReplies() {
+        ApolloNetwork.shared.anilist.fetch(query: ActivityRepliesQuery(
+            page: 1,
+            perPage: 50,
+            activityID: parentID
+        )) { result in
+            switch result {
+                case .success(let queryData):
+                    if let replies = queryData.data?.page?.activityReplies {
+                        self.replies.append(contentsOf: replies.compactMap { $0 })
+                    }
+                case .failure(let err): print(err)
+            }
+        }
+    }
+}
