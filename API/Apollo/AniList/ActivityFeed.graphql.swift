@@ -368,17 +368,19 @@ public struct ListActivityFragment: GraphQLFragment {
       status
       progress
       createdAt
+      likeCount
+      replyCount
       media {
         __typename
         isAdult
+        title {
+          __typename
+          userPreferred
+        }
         coverImage {
           __typename
           extraLarge
           color
-        }
-        title {
-          __typename
-          userPreferred
         }
       }
       user {
@@ -401,6 +403,8 @@ public struct ListActivityFragment: GraphQLFragment {
       GraphQLField("status", type: .scalar(String.self)),
       GraphQLField("progress", type: .scalar(String.self)),
       GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("replyCount", type: .nonNull(.scalar(Int.self))),
       GraphQLField("media", type: .object(Medium.selections)),
       GraphQLField("user", type: .object(User.selections)),
     ]
@@ -412,8 +416,8 @@ public struct ListActivityFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: Int, status: String? = nil, progress: String? = nil, createdAt: Int, media: Medium? = nil, user: User? = nil) {
-    self.init(unsafeResultMap: ["__typename": "ListActivity", "id": id, "status": status, "progress": progress, "createdAt": createdAt, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
+  public init(id: Int, status: String? = nil, progress: String? = nil, createdAt: Int, likeCount: Int, replyCount: Int, media: Medium? = nil, user: User? = nil) {
+    self.init(unsafeResultMap: ["__typename": "ListActivity", "id": id, "status": status, "progress": progress, "createdAt": createdAt, "likeCount": likeCount, "replyCount": replyCount, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
   }
 
   public var __typename: String {
@@ -465,6 +469,26 @@ public struct ListActivityFragment: GraphQLFragment {
     }
   }
 
+  /// The amount of likes the activity has
+  public var likeCount: Int {
+    get {
+      return resultMap["likeCount"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "likeCount")
+    }
+  }
+
+  /// The number of activity replies
+  public var replyCount: Int {
+    get {
+      return resultMap["replyCount"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "replyCount")
+    }
+  }
+
   /// The associated media to the activity update
   public var media: Medium? {
     get {
@@ -492,8 +516,8 @@ public struct ListActivityFragment: GraphQLFragment {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("isAdult", type: .scalar(Bool.self)),
-        GraphQLField("coverImage", type: .object(CoverImage.selections)),
         GraphQLField("title", type: .object(Title.selections)),
+        GraphQLField("coverImage", type: .object(CoverImage.selections)),
       ]
     }
 
@@ -503,8 +527,8 @@ public struct ListActivityFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(isAdult: Bool? = nil, coverImage: CoverImage? = nil, title: Title? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Media", "isAdult": isAdult, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }])
+    public init(isAdult: Bool? = nil, title: Title? = nil, coverImage: CoverImage? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Media", "isAdult": isAdult, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }])
     }
 
     public var __typename: String {
@@ -526,6 +550,16 @@ public struct ListActivityFragment: GraphQLFragment {
       }
     }
 
+    /// The official titles of the media in various languages
+    public var title: Title? {
+      get {
+        return (resultMap["title"] as? ResultMap).flatMap { Title(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "title")
+      }
+    }
+
     /// The cover images of the media
     public var coverImage: CoverImage? {
       get {
@@ -536,13 +570,43 @@ public struct ListActivityFragment: GraphQLFragment {
       }
     }
 
-    /// The official titles of the media in various languages
-    public var title: Title? {
-      get {
-        return (resultMap["title"] as? ResultMap).flatMap { Title(unsafeResultMap: $0) }
+    public struct Title: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["MediaTitle"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("userPreferred", type: .scalar(String.self)),
+        ]
       }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "title")
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(userPreferred: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "MediaTitle", "userPreferred": userPreferred])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// The currently authenticated users preferred title language. Default romaji for non-authenticated
+      public var userPreferred: String? {
+        get {
+          return resultMap["userPreferred"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "userPreferred")
+        }
       }
     }
 
@@ -593,46 +657,6 @@ public struct ListActivityFragment: GraphQLFragment {
         }
         set {
           resultMap.updateValue(newValue, forKey: "color")
-        }
-      }
-    }
-
-    public struct Title: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["MediaTitle"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("userPreferred", type: .scalar(String.self)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(userPreferred: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "MediaTitle", "userPreferred": userPreferred])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The currently authenticated users preferred title language. Default romaji for non-authenticated
-      public var userPreferred: String? {
-        get {
-          return resultMap["userPreferred"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "userPreferred")
         }
       }
     }
