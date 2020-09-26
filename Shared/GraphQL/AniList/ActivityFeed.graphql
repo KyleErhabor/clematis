@@ -24,14 +24,16 @@ fragment listActivityFragment on ListActivity {
   status
   progress
   createdAt
+  likeCount
+  replyCount
   media {
     isAdult
+    title {
+      userPreferred
+    }
     coverImage {
       extraLarge
       color
-    }
-    title {
-      userPreferred
     }
   }
   user {
