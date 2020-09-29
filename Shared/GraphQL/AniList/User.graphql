@@ -1,0 +1,11 @@
+query User($id: Int!) {
+  User(id: $id) {
+    id
+    name
+    bannerImage
+    about(asHtml: true)
+    avatar {
+      large
+    }
+  }
+}
