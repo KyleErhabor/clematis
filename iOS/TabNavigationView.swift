@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct TabNavigationView: View {
+    @EnvironmentObject private var currentUser: CurrentUser
+
     var body: some View {
         TabView {
             HomeView().tabItem {
                 Label("Home", systemImage: "house")
             }
 
-            UserView().tabItem {
-                Label("Profile", systemImage: "person")
+            if let id = currentUser.user?.id {
+                UserView(viewModel: UserViewModel(id: id)).tabItem {
+                    Label("Profile", systemImage: "person")
+                }
             }
 
-            Text("TODO").tabItem { // TODO
-                Label("My List", systemImage: "books.vertical")
+            if currentUser.user != nil {
+                Text("TODO").tabItem { // TODO
+                    Label("My List", systemImage: "books.vertical")
+                }
             }
 
             BrowseView().tabItem {

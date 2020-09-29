@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Anime_CatalogApp: App {
+    @StateObject private var currentUser = CurrentUser()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear { currentUser.loadUser() }
+                .environmentObject(currentUser)
         }
     }
 }

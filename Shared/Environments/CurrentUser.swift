@@ -1,5 +1,5 @@
 //
-//  CurrentUserNavigationViewModel.swift
+//  CurrentUser.swift
 //  Anime Catalog
 //
 //  Created by Kyle Erhabor on 9/26/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class CurrentUserNavigationViewModel: ObservableObject {
+class CurrentUser: ObservableObject {
     @Published private(set) var user: SimpleCurrentUserQuery.Data.Viewer?
 
     func loadUser() {
@@ -17,7 +17,9 @@ class CurrentUserNavigationViewModel: ObservableObject {
                     if let viewer = queryData.data?.viewer {
                         self.user = viewer
                     }
-                case .failure(let err): print(err)
+                // We're ignoring the error for now as the user may or may not be logged in. This works, but may be
+                // changed in the future to have proper error handling.
+                case .failure: break
             }
         }
     }
