@@ -10,9 +10,9 @@ import SwiftUI
 extension Color {
     init(hex: Int, alpha: Double = 1) {
         let rgb = (
-            r: Double((hex >> 16) & 0xff) / 255,
-            g: Double((hex >> 08) & 0xff) / 255,
-            b: Double((hex >> 00) & 0xff) / 255
+            r: Double((hex >> 16) & 0xFF) / 255,
+            g: Double((hex >> 08) & 0xFF) / 255,
+            b: Double((hex >> 00) & 0xFF) / 255
         )
 
         self.init(
