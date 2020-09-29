@@ -20,8 +20,6 @@
 		00406C7B2522499A005FC266 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C702522499A005FC266 /* SimpleUser.graphql.swift */; };
 		00406C7C2522499A005FC266 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C702522499A005FC266 /* SimpleUser.graphql.swift */; };
 		00406C7F25224E0F005FC266 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 00406C7E25224E0F005FC266 /* Down */; };
-		00406C872522A4B2005FC266 /* RichTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C862522A4B2005FC266 /* RichTextView.swift */; };
-		00406C882522A4B2005FC266 /* RichTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C862522A4B2005FC266 /* RichTextView.swift */; };
 		006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0E22517C121004992F7 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E12517C121004992F7 /* MediaView.swift */; };
@@ -88,7 +86,6 @@
 		00406C6E2522499A005FC266 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		00406C6F2522499A005FC266 /* MarkdownParse.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParse.graphql.swift; sourceTree = "<group>"; };
 		00406C702522499A005FC266 /* SimpleUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleUser.graphql.swift; sourceTree = "<group>"; };
-		00406C862522A4B2005FC266 /* RichTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextView.swift; sourceTree = "<group>"; };
 		006ED0D72517A80B004992F7 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		006ED0E12517C121004992F7 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
@@ -242,7 +239,6 @@
 				00869F622502CACE00D2DB6F /* Networking */,
 				0073DB7E251EEE2E000C1FA1 /* Settings */,
 				00CAB6ED2519713B00B8C64F /* Tabs */,
-				00406C862522A4B2005FC266 /* RichTextView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -609,7 +605,6 @@
 				0070E5F3250311DA00BC0509 /* HomeView.swift in Sources */,
 				006ED0E22517C121004992F7 /* MediaView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
-				00406C872522A4B2005FC266 /* RichTextView.swift in Sources */,
 				00406C792522499A005FC266 /* MarkdownParse.graphql.swift in Sources */,
 				0070E5F72503128C00BC0509 /* UserView.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
@@ -651,7 +646,6 @@
 				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				0070E5F82503128C00BC0509 /* UserView.swift in Sources */,
-				00406C882522A4B2005FC266 /* RichTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
