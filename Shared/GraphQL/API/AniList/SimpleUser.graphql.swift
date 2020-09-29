@@ -11,6 +11,7 @@ public final class SimpleCurrentUserQuery: GraphQLQuery {
     query SimpleCurrentUser {
       Viewer {
         __typename
+        id
         name
       }
     }
@@ -56,6 +57,7 @@ public final class SimpleCurrentUserQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
         ]
       }
@@ -66,8 +68,8 @@ public final class SimpleCurrentUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name])
+      public init(id: Int, name: String) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name])
       }
 
       public var __typename: String {
@@ -76,6 +78,16 @@ public final class SimpleCurrentUserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// The id of the user
+      public var id: Int {
+        get {
+          return resultMap["id"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
