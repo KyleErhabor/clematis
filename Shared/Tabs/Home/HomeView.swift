@@ -10,8 +10,8 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationView {
-            Text("SwiftUI").navigationBarTitle("Welcome").navigationBarItems(trailing: CurrentUserNavigationView())
-        }
+            Text("SwiftUI").navigationBarTitle("Welcome")//.navigationBarItems(trailing: CurrentUserNavigationView())
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 //struct HomeView: View {
