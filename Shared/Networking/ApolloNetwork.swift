@@ -8,17 +8,11 @@
 import SwiftUI
 import Apollo
 
-class ApolloNetwork {
+class ApolloNetwork: HTTPNetworkTransportPreflightDelegate {
     @AppStorage(SettingsKeys.accessToken) private var accessToken: String?
 
-    private lazy var networkTransport: HTTPNetworkTransport = {
-        let transport = HTTPNetworkTransport(url: URL(string: "https://graphql.anilist.co/")!)
-        transport.delegate = self
-
-        return transport
-    }()
-
     static let shared = ApolloNetwork()
+
     private(set) lazy var anilist = ApolloClient(networkTransport: networkTransport)
 
     enum ALMetadata {
@@ -32,9 +26,14 @@ class ApolloNetwork {
             return components.url!
         }
     }
-}
 
-extension ApolloNetwork: HTTPNetworkTransportPreflightDelegate {
+    private lazy var networkTransport: HTTPNetworkTransport = {
+        let transport = HTTPNetworkTransport(url: URL(string: "https://graphql.anilist.co/")!)
+        transport.delegate = self
+
+        return transport
+    }()
+
     func networkTransport(_ networkTransport: HTTPNetworkTransport, shouldSend request: URLRequest) -> Bool {
         return true
     }
@@ -42,7 +41,7 @@ extension ApolloNetwork: HTTPNetworkTransportPreflightDelegate {
     func networkTransport(_ networkTransport: HTTPNetworkTransport, willSend request: inout URLRequest) {
         if let token = accessToken {
             var headers = request.allHTTPHeaderFields ?? [String: String]()
-            
+
             headers["Authorization"] = "Bearer \(token)"
             request.allHTTPHeaderFields = headers
         }
