@@ -14,7 +14,7 @@ public final class UserQuery: GraphQLQuery {
         id
         name
         bannerImage
-        about(asHtml: false)
+        about(asHtml: true)
         avatar {
           __typename
           large
@@ -73,7 +73,7 @@ public final class UserQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("bannerImage", type: .scalar(String.self)),
-          GraphQLField("about", arguments: ["asHtml": false], type: .scalar(String.self)),
+          GraphQLField("about", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("avatar", type: .object(Avatar.selections)),
         ]
       }
