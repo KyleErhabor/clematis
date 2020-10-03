@@ -11,13 +11,19 @@ public final class UserQuery: GraphQLQuery {
     query User($id: Int!) {
       User(id: $id) {
         __typename
-        id
         name
+        isBlocked
+        isFollower
         bannerImage
+        isFollowing
         about(asHtml: true)
         avatar {
           __typename
           large
+        }
+        options {
+          __typename
+          profileColor
         }
       }
     }
@@ -70,11 +76,14 @@ public final class UserQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("isBlocked", type: .scalar(Bool.self)),
+          GraphQLField("isFollower", type: .scalar(Bool.self)),
           GraphQLField("bannerImage", type: .scalar(String.self)),
+          GraphQLField("isFollowing", type: .scalar(Bool.self)),
           GraphQLField("about", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("avatar", type: .object(Avatar.selections)),
+          GraphQLField("options", type: .object(Option.selections)),
         ]
       }
 
@@ -84,8 +93,8 @@ public final class UserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, name: String, bannerImage: String? = nil, about: String? = nil, avatar: Avatar? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "bannerImage": bannerImage, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }])
+      public init(name: String, isBlocked: Bool? = nil, isFollower: Bool? = nil, bannerImage: String? = nil, isFollowing: Bool? = nil, about: String? = nil, avatar: Avatar? = nil, options: Option? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "name": name, "isBlocked": isBlocked, "isFollower": isFollower, "bannerImage": bannerImage, "isFollowing": isFollowing, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -94,16 +103,6 @@ public final class UserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The id of the user
-      public var id: Int {
-        get {
-          return resultMap["id"]! as! Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
@@ -117,6 +116,26 @@ public final class UserQuery: GraphQLQuery {
         }
       }
 
+      /// If the user is blocked by the authenticated user
+      public var isBlocked: Bool? {
+        get {
+          return resultMap["isBlocked"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "isBlocked")
+        }
+      }
+
+      /// If this user if following the authenticated user
+      public var isFollower: Bool? {
+        get {
+          return resultMap["isFollower"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "isFollower")
+        }
+      }
+
       /// The user's banner images
       public var bannerImage: String? {
         get {
@@ -124,6 +143,16 @@ public final class UserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "bannerImage")
+        }
+      }
+
+      /// If the authenticated user if following this user
+      public var isFollowing: Bool? {
+        get {
+          return resultMap["isFollowing"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "isFollowing")
         }
       }
 
@@ -144,6 +173,16 @@ public final class UserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue?.resultMap, forKey: "avatar")
+        }
+      }
+
+      /// The user's general options
+      public var options: Option? {
+        get {
+          return (resultMap["options"] as? ResultMap).flatMap { Option(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "options")
         }
       }
 
@@ -183,6 +222,46 @@ public final class UserQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "large")
+          }
+        }
+      }
+
+      public struct Option: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["UserOptions"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileColor", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(profileColor: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "UserOptions", "profileColor": profileColor])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Profile highlight color (blue, purple, pink, orange, red, green, gray)
+        public var profileColor: String? {
+          get {
+            return resultMap["profileColor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "profileColor")
           }
         }
       }

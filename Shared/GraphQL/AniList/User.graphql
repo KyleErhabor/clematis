@@ -1,11 +1,16 @@
 query User($id: Int!) {
   User(id: $id) {
-    id
     name
+    isBlocked
+    isFollower
     bannerImage
+    isFollowing
     about(asHtml: true)
     avatar {
       large
+    }
+    options {
+      profileColor
     }
   }
 }
