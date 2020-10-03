@@ -9,9 +9,8 @@ import SwiftUI
 import Down
 
 class UserViewModel: ObservableObject {
-    private(set) var user: UserQuery.Data.User?
-
     let id: Int
+    var user: UserQuery.Data.User?
 
     init(id: Int) {
         self.id = id
