@@ -20,6 +20,12 @@
 		00406C7B2522499A005FC266 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C702522499A005FC266 /* SimpleUser.graphql.swift */; };
 		00406C7C2522499A005FC266 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00406C702522499A005FC266 /* SimpleUser.graphql.swift */; };
 		00406C7F25224E0F005FC266 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 00406C7E25224E0F005FC266 /* Down */; };
+		004B823A25291EB40081F292 /* UserStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B823925291EB40081F292 /* UserStickyView.swift */; };
+		004B823B25291EB40081F292 /* UserStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B823925291EB40081F292 /* UserStickyView.swift */; };
+		004B824E252935DE0081F292 /* UserOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B824D252935DD0081F292 /* UserOverviewView.swift */; };
+		004B824F252935DE0081F292 /* UserOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B824D252935DD0081F292 /* UserOverviewView.swift */; };
+		006091E42523EA47001DA8D4 /* CurrentUserModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006091E32523EA46001DA8D4 /* CurrentUserModifier.swift */; };
+		006091E52523EA47001DA8D4 /* CurrentUserModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006091E32523EA46001DA8D4 /* CurrentUserModifier.swift */; };
 		006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0E22517C121004992F7 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E12517C121004992F7 /* MediaView.swift */; };
@@ -51,14 +57,12 @@
 		00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* ApolloNetwork.swift */; };
 		008CDBF22516A24800B948D4 /* ActivityUnion+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008CDBF12516A24800B948D4 /* ActivityUnion+Identifiable.swift */; };
 		008CDBF32516A24800B948D4 /* ActivityUnion+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008CDBF12516A24800B948D4 /* ActivityUnion+Identifiable.swift */; };
-		009606122503213D00A30572 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009606112503213D00A30572 /* HomeViewModel.swift */; };
-		009606132503213D00A30572 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009606112503213D00A30572 /* HomeViewModel.swift */; };
 		00BB6868251FCB0D00B7DDC9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BB6867251FCB0D00B7DDC9 /* UserViewModel.swift */; };
 		00BB6869251FCB0D00B7DDC9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BB6867251FCB0D00B7DDC9 /* UserViewModel.swift */; };
 		00BB687D251FDB4C00B7DDC9 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BB687C251FDB4C00B7DDC9 /* CurrentUser.swift */; };
 		00BB687E251FDB4D00B7DDC9 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BB687C251FDB4C00B7DDC9 /* CurrentUser.swift */; };
-		00C9B2F0251F80E5000A8139 /* CurrentUserBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9B2EF251F80E5000A8139 /* CurrentUserBarItem.swift */; };
-		00C9B2F1251F80E5000A8139 /* CurrentUserBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9B2EF251F80E5000A8139 /* CurrentUserBarItem.swift */; };
+		00D96C3A2524C94100BA99A0 /* UserAnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D96C392524C94100BA99A0 /* UserAnimeListView.swift */; };
+		00D96C3B2524C94100BA99A0 /* UserAnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D96C392524C94100BA99A0 /* UserAnimeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,9 @@
 		00406C6E2522499A005FC266 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		00406C6F2522499A005FC266 /* MarkdownParse.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParse.graphql.swift; sourceTree = "<group>"; };
 		00406C702522499A005FC266 /* SimpleUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleUser.graphql.swift; sourceTree = "<group>"; };
+		004B823925291EB40081F292 /* UserStickyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStickyView.swift; sourceTree = "<group>"; };
+		004B824D252935DD0081F292 /* UserOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOverviewView.swift; sourceTree = "<group>"; };
+		006091E32523EA46001DA8D4 /* CurrentUserModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserModifier.swift; sourceTree = "<group>"; };
 		006ED0D72517A80B004992F7 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		006ED0E12517C121004992F7 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
@@ -115,14 +122,13 @@
 		00869F672502D79300D2DB6F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		008CDBF12516A24800B948D4 /* ActivityUnion+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityUnion+Identifiable.swift"; sourceTree = "<group>"; };
-		009606112503213D00A30572 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		009606142503239A00A30572 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00BB6867251FCB0D00B7DDC9 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		00BB686A251FCBFC00B7DDC9 /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
 		00BB687C251FDB4C00B7DDC9 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
-		00C9B2EF251F80E5000A8139 /* CurrentUserBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserBarItem.swift; sourceTree = "<group>"; };
 		00C9B2FB251F996F000A8139 /* SimpleUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleUser.graphql; sourceTree = "<group>"; };
 		00CAB6E92519500A00B8C64F /* ActivityReplies.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityReplies.graphql; sourceTree = "<group>"; };
+		00D96C392524C94100BA99A0 /* UserAnimeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnimeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004B824025291EBC0081F292 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				00D96C392524C94100BA99A0 /* UserAnimeListView.swift */,
+				004B824D252935DD0081F292 /* UserOverviewView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		006091E22523E8EA001DA8D4 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				006091E32523EA46001DA8D4 /* CurrentUserModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		006ED0E02517C0FF004992F7 /* Media */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				0070E5F2250311DA00BC0509 /* HomeView.swift */,
-				009606112503213D00A30572 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -182,6 +204,8 @@
 			children = (
 				0070E5F62503128C00BC0509 /* UserView.swift */,
 				00BB6867251FCB0D00B7DDC9 /* UserViewModel.swift */,
+				004B823925291EB40081F292 /* UserStickyView.swift */,
+				004B824025291EBC0081F292 /* Pages */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -235,7 +259,6 @@
 				008CDBF025169A8B00B948D4 /* Extensions */,
 				00CAB6EE251977CA00B8C64F /* Features */,
 				00C9B2F9251F9830000A8139 /* GraphQL */,
-				00C9B2EE251F80A2000A8139 /* Navigation */,
 				00869F622502CACE00D2DB6F /* Networking */,
 				0073DB7E251EEE2E000C1FA1 /* Settings */,
 				00CAB6ED2519713B00B8C64F /* Tabs */,
@@ -304,6 +327,7 @@
 				008CDBF12516A24800B948D4 /* ActivityUnion+Identifiable.swift */,
 				006ED0D72517A80B004992F7 /* String+Capitalize.swift */,
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
+				006091E22523E8EA001DA8D4 /* Modifiers */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,14 +359,6 @@
 				00406C6D2522499A005FC266 /* User.graphql.swift */,
 			);
 			path = AniList;
-			sourceTree = "<group>";
-		};
-		00C9B2EE251F80A2000A8139 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				00C9B2EF251F80E5000A8139 /* CurrentUserBarItem.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		00C9B2F9251F9830000A8139 /* GraphQL */ = {
@@ -597,7 +613,7 @@
 				008CDBF22516A24800B948D4 /* ActivityUnion+Identifiable.swift in Sources */,
 				00406C752522499A005FC266 /* User.graphql.swift in Sources */,
 				00BB687D251FDB4C00B7DDC9 /* CurrentUser.swift in Sources */,
-				009606122503213D00A30572 /* HomeViewModel.swift in Sources */,
+				00D96C3A2524C94100BA99A0 /* UserAnimeListView.swift in Sources */,
 				0070E5FB250312F000BC0509 /* BrowseView.swift in Sources */,
 				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
@@ -606,9 +622,11 @@
 				006ED0E22517C121004992F7 /* MediaView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
 				00406C792522499A005FC266 /* MarkdownParse.graphql.swift in Sources */,
+				004B823A25291EB40081F292 /* UserStickyView.swift in Sources */,
 				0070E5F72503128C00BC0509 /* UserView.swift in Sources */,
+				006091E42523EA47001DA8D4 /* CurrentUserModifier.swift in Sources */,
+				004B824E252935DE0081F292 /* UserOverviewView.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
-				00C9B2F0251F80E5000A8139 /* CurrentUserBarItem.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				00406C7B2522499A005FC266 /* SimpleUser.graphql.swift in Sources */,
 				00406C712522499A005FC266 /* ActivityReplies.graphql.swift in Sources */,
@@ -626,19 +644,21 @@
 			files = (
 				00406C722522499A005FC266 /* ActivityReplies.graphql.swift in Sources */,
 				0070E5FC250312F000BC0509 /* BrowseView.swift in Sources */,
+				004B824F252935DE0081F292 /* UserOverviewView.swift in Sources */,
 				00BB687E251FDB4D00B7DDC9 /* CurrentUser.swift in Sources */,
 				00406C7C2522499A005FC266 /* SimpleUser.graphql.swift in Sources */,
-				00C9B2F1251F80E5000A8139 /* CurrentUserBarItem.swift in Sources */,
 				00406C742522499A005FC266 /* Types.graphql.swift in Sources */,
 				00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
-				009606132503213D00A30572 /* HomeViewModel.swift in Sources */,
 				00406C782522499A005FC266 /* ActivityFeed.graphql.swift in Sources */,
+				004B823B25291EB40081F292 /* UserStickyView.swift in Sources */,
 				00406C7A2522499A005FC266 /* MarkdownParse.graphql.swift in Sources */,
+				00D96C3B2524C94100BA99A0 /* UserAnimeListView.swift in Sources */,
 				0070E5FF2503131000BC0509 /* ForumView.swift in Sources */,
 				008CDBF32516A24800B948D4 /* ActivityUnion+Identifiable.swift in Sources */,
 				0070E5F4250311DA00BC0509 /* HomeView.swift in Sources */,
 				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				006ED0E32517C121004992F7 /* MediaView.swift in Sources */,
+				006091E52523EA47001DA8D4 /* CurrentUserModifier.swift in Sources */,
 				00BB6869251FCB0D00B7DDC9 /* UserViewModel.swift in Sources */,
 				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
