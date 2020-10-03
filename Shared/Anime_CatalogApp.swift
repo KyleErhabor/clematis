@@ -14,8 +14,26 @@ struct Anime_CatalogApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear { currentUser.loadUser() }
                 .environmentObject(currentUser)
+                .onAppear {
+                    currentUser.loadUser()
+                }
+        }.commands {
+            #if DEBUG
+            CommandMenu("Debug") {
+                Button("Log Access Token") {
+                    print(UserDefaults.standard.string(forKey: SettingsKeys.accessToken) ?? "")
+                }
+            }
+
+            #endif
         }
+
+        #if os(macOS)
+        Settings {
+            Text("Hello, world!")
+        }
+
+        #endif
     }
 }
