@@ -22,7 +22,8 @@ struct UserView: View {
                     UserPageView()
                 }
             }.currentUser()
-        }.navigationViewStyle(StackNavigationViewStyle()).onAppear {
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
             viewModel.loadUser()
         }
     }
