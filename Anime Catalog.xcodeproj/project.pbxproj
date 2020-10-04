@@ -169,8 +169,8 @@
 		004B824025291EBC0081F292 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				00D96C392524C94100BA99A0 /* UserAnimeListView.swift */,
 				004B824D252935DD0081F292 /* UserOverviewView.swift */,
+				00D96C392524C94100BA99A0 /* UserAnimeListView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
