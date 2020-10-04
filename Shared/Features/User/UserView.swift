@@ -19,7 +19,7 @@ struct UserView: View {
                     UserStickyView(user: $viewModel.user)
                         .frame(height: geometry.size.height / (sizeClass == .regular ? 4 : 2))
 
-                    UserPageView()
+                    UserPageView(geometry: geometry)
                 }
             }.currentUser()
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -30,9 +30,11 @@ struct UserView: View {
 }
 
 struct UserPageView: View {
+    let geometry: GeometryProxy
+
     var body: some View {
         TabView {
-            UserOverviewView()
+            UserOverviewView(geometry: geometry)
             UserAnimeListView()
         }.tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))

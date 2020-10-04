@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct UserOverviewView: View {
+    let geometry: GeometryProxy
+
     var body: some View {
-        Text("Hello, World!")
+        ScrollView {
+            // FIXME: See issue #1
+            Text("<TODO>").frame(maxWidth: .infinity)
+        }.frame(width: geometry.size.width / 1.1, height: 150)
+        .background(Color.primary.opacity(0.1))
+        .cornerRadius(10)
     }
 }
 
 struct UserOverviewView_Previews: PreviewProvider {
     static var previews: some View {
-        UserOverviewView()
+        GeometryReader { geometry in
+            UserOverviewView(geometry: geometry)
+        }
     }
 }
