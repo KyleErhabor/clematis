@@ -17,9 +17,7 @@ class CurrentUser: ObservableObject {
                     if let viewer = queryData.data?.viewer {
                         self.user = viewer
                     }
-                // We're ignoring the error for now as the user may or may not be logged in. This works, but may be
-                // changed in the future to have proper error handling.
-                case .failure: break
+                case .failure(let err): print(err)
             }
         }
     }
