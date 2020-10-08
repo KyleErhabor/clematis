@@ -12,5 +12,22 @@ query User($id: Int!) {
     options {
       profileColor
     }
+    statistics {
+      anime {
+        ...userStatisticsFragment
+      }
+      manga {
+        ...userStatisticsFragment
+      }
+    }
   }
+}
+
+fragment userStatisticsFragment on UserStatistics {
+  count
+  meanScore
+  volumesRead
+  chaptersRead
+  minutesWatched
+  episodesWatched
 }

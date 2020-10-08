@@ -25,11 +25,24 @@ public final class UserQuery: GraphQLQuery {
           __typename
           profileColor
         }
+        statistics {
+          __typename
+          anime {
+            __typename
+            ...userStatisticsFragment
+          }
+          manga {
+            __typename
+            ...userStatisticsFragment
+          }
+        }
       }
     }
     """
 
   public let operationName: String = "User"
+
+  public var queryDocument: String { return operationDefinition.appending("\n" + UserStatisticsFragment.fragmentDefinition) }
 
   public var id: Int
 
@@ -84,6 +97,7 @@ public final class UserQuery: GraphQLQuery {
           GraphQLField("about", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("avatar", type: .object(Avatar.selections)),
           GraphQLField("options", type: .object(Option.selections)),
+          GraphQLField("statistics", type: .object(Statistic.selections)),
         ]
       }
 
@@ -93,8 +107,8 @@ public final class UserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String, isBlocked: Bool? = nil, isFollower: Bool? = nil, bannerImage: String? = nil, isFollowing: Bool? = nil, about: String? = nil, avatar: Avatar? = nil, options: Option? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name, "isBlocked": isBlocked, "isFollower": isFollower, "bannerImage": bannerImage, "isFollowing": isFollowing, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }])
+      public init(name: String, isBlocked: Bool? = nil, isFollower: Bool? = nil, bannerImage: String? = nil, isFollowing: Bool? = nil, about: String? = nil, avatar: Avatar? = nil, options: Option? = nil, statistics: Statistic? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "name": name, "isBlocked": isBlocked, "isFollower": isFollower, "bannerImage": bannerImage, "isFollowing": isFollowing, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "statistics": statistics.flatMap { (value: Statistic) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -186,6 +200,16 @@ public final class UserQuery: GraphQLQuery {
         }
       }
 
+      /// The users anime & manga list statistics
+      public var statistics: Statistic? {
+        get {
+          return (resultMap["statistics"] as? ResultMap).flatMap { Statistic(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "statistics")
+        }
+      }
+
       public struct Avatar: GraphQLSelectionSet {
         public static let possibleTypes: [String] = ["UserAvatar"]
 
@@ -265,6 +289,270 @@ public final class UserQuery: GraphQLQuery {
           }
         }
       }
+
+      public struct Statistic: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["UserStatisticTypes"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("anime", type: .object(Anime.selections)),
+            GraphQLField("manga", type: .object(Manga.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(anime: Anime? = nil, manga: Manga? = nil) {
+          self.init(unsafeResultMap: ["__typename": "UserStatisticTypes", "anime": anime.flatMap { (value: Anime) -> ResultMap in value.resultMap }, "manga": manga.flatMap { (value: Manga) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var anime: Anime? {
+          get {
+            return (resultMap["anime"] as? ResultMap).flatMap { Anime(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "anime")
+          }
+        }
+
+        public var manga: Manga? {
+          get {
+            return (resultMap["manga"] as? ResultMap).flatMap { Manga(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "manga")
+          }
+        }
+
+        public struct Anime: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["UserStatistics"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(UserStatisticsFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(count: Int, meanScore: Double, volumesRead: Int, chaptersRead: Int, minutesWatched: Int, episodesWatched: Int) {
+            self.init(unsafeResultMap: ["__typename": "UserStatistics", "count": count, "meanScore": meanScore, "volumesRead": volumesRead, "chaptersRead": chaptersRead, "minutesWatched": minutesWatched, "episodesWatched": episodesWatched])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var userStatisticsFragment: UserStatisticsFragment {
+              get {
+                return UserStatisticsFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+
+        public struct Manga: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["UserStatistics"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(UserStatisticsFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(count: Int, meanScore: Double, volumesRead: Int, chaptersRead: Int, minutesWatched: Int, episodesWatched: Int) {
+            self.init(unsafeResultMap: ["__typename": "UserStatistics", "count": count, "meanScore": meanScore, "volumesRead": volumesRead, "chaptersRead": chaptersRead, "minutesWatched": minutesWatched, "episodesWatched": episodesWatched])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var userStatisticsFragment: UserStatisticsFragment {
+              get {
+                return UserStatisticsFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public struct UserStatisticsFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment userStatisticsFragment on UserStatistics {
+      __typename
+      count
+      meanScore
+      volumesRead
+      chaptersRead
+      minutesWatched
+      episodesWatched
+    }
+    """
+
+  public static let possibleTypes: [String] = ["UserStatistics"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("count", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("meanScore", type: .nonNull(.scalar(Double.self))),
+      GraphQLField("volumesRead", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("chaptersRead", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("minutesWatched", type: .nonNull(.scalar(Int.self))),
+      GraphQLField("episodesWatched", type: .nonNull(.scalar(Int.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(count: Int, meanScore: Double, volumesRead: Int, chaptersRead: Int, minutesWatched: Int, episodesWatched: Int) {
+    self.init(unsafeResultMap: ["__typename": "UserStatistics", "count": count, "meanScore": meanScore, "volumesRead": volumesRead, "chaptersRead": chaptersRead, "minutesWatched": minutesWatched, "episodesWatched": episodesWatched])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var count: Int {
+    get {
+      return resultMap["count"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "count")
+    }
+  }
+
+  public var meanScore: Double {
+    get {
+      return resultMap["meanScore"]! as! Double
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "meanScore")
+    }
+  }
+
+  public var volumesRead: Int {
+    get {
+      return resultMap["volumesRead"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "volumesRead")
+    }
+  }
+
+  public var chaptersRead: Int {
+    get {
+      return resultMap["chaptersRead"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "chaptersRead")
+    }
+  }
+
+  public var minutesWatched: Int {
+    get {
+      return resultMap["minutesWatched"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "minutesWatched")
+    }
+  }
+
+  public var episodesWatched: Int {
+    get {
+      return resultMap["episodesWatched"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "episodesWatched")
     }
   }
 }
