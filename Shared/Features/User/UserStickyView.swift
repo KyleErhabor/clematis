@@ -10,13 +10,13 @@ import SwiftUI
 
 struct UserStickyView: View {
     @Environment(\.verticalSizeClass) private var sizeClass
-    @Binding var user: UserQuery.Data.User?
+    @EnvironmentObject private var viewModel: UserViewModel
 
     var body: some View {
-        GeometryReader { geometry in
-            let bannerImageURL = user?.bannerImage == nil
+        GeometryReader { proxy in
+            let bannerImageURL = viewModel.user?.bannerImage == nil
                 ? nil
-                : URL(string: user!.bannerImage!)
+                : URL(string: viewModel.user!.bannerImage!)
 
             // FIXME: The user's banner looks very wide due to the `.tile` option for resizing. This is due to
             // an issue that was causing the banner to look very stretched. These issues only occur when in
@@ -25,38 +25,38 @@ struct UserStickyView: View {
                 .resizable(resizingMode: sizeClass == .regular ? .stretch : .tile)
                 .background(Color.accentColor)
                 .overlay(HStack {
-                    let avatarURL = user?.avatar?.large == nil
+                    let avatarURL = viewModel.user?.avatar?.large == nil
                         ? nil
-                        : URL(string: user!.avatar!.large!)
+                        : URL(string: viewModel.user!.avatar!.large!)
 
                     WebImage(url: avatarURL)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 150, maxHeight: 150)
 
-                    Text("\(user?.name ?? "")")
+                    Text("\(viewModel.user?.name ?? "")")
                         .foregroundColor(.white)
                         .bold()
                         .padding(.top, 80)
                         .shadow(color: .black, radius: 5)
-                }.padding(.trailing, geometry.size.width / 2), alignment: .bottom)
+                }.padding(.trailing, proxy.size.width / 2), alignment: .bottom)
                 .overlay(HStack {
-                    let profileColor = user?.options?.profileColor?.starts(with: "#") == true
-                        ? Color(hex: Int(user!.options!.profileColor!, radix: 16)!)
-                        : Color(user?.options?.profileColor ?? "AccentColor")
+                    let profileColor = viewModel.user?.options?.profileColor?.starts(with: "#") == true
+                        ? Color(hex: Int(viewModel.user!.options!.profileColor!, radix: 16)!)
+                        : Color(viewModel.user?.options?.profileColor ?? "AccentColor")
 
                     // FIXME: The status bubbles should wrap based on the size of the screen. On iPhone portrait mode,
                     // mode, having three of them cuts off the user's username due to the overlay of the username.
 
-                    if user?.isBlocked == true {
+                    if viewModel.user?.isBlocked == true {
                         UserStickyBubbleView(profileColor: profileColor, text: "Blocked")
                     }
 
-                    if user?.isFollower == true {
+                    if viewModel.user?.isFollower == true {
                         UserStickyBubbleView(profileColor: profileColor, text: "Follower")
                     }
 
-                    if user?.isFollowing == true {
+                    if viewModel.user?.isFollowing == true {
                         UserStickyBubbleView(profileColor: profileColor, text: "Following")
                     }
                 }.padding(.all, 12), alignment: .bottomTrailing)

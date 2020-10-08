@@ -14,27 +14,24 @@ struct UserView: View {
 
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
+            GeometryReader { proxy in
                 VStack {
-                    UserStickyView(user: $viewModel.user)
-                        .frame(height: geometry.size.height / (sizeClass == .regular ? 4 : 2))
-
-                    UserPageView(geometry: geometry)
+                    // FIXME: The banner should be scrollable, but it's hoisted for some reason. At first, this was a
+                    // wanted feature, but it gives the user less space to work with when scrolling.
+                    UserStickyView().frame(height: proxy.size.height / (sizeClass == .regular ? 4 : 2))
+                    UserPageView()
                 }
             }.currentUser()
         }.navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            viewModel.loadUser()
-        }
+        .environmentObject(viewModel)
+        .onAppear { viewModel.loadUser() }
     }
 }
 
 struct UserPageView: View {
-    let geometry: GeometryProxy
-
     var body: some View {
         TabView {
-            UserOverviewView(geometry: geometry)
+            UserOverviewView()
             UserAnimeListView()
         }.tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
