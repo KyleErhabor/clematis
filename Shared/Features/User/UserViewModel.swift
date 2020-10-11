@@ -10,6 +10,7 @@ import Down
 
 class UserViewModel: ObservableObject {
     let id: Int
+
     var user: UserQuery.Data.User?
 
     init(id: Int) {
