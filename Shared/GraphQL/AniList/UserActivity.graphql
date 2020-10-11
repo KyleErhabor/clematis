@@ -1,0 +1,41 @@
+query UserActivity($page: Int!, $perPage: Int!, $userID: Int!) {
+  Page(page: $page, perPage: $perPage) {
+    activities(userId: $userID, sort: ID_DESC) {
+      ...on ListActivity {
+        id
+        status
+        isLiked
+        isLocked
+        progress
+        createdAt
+        isSubscribed
+        likes {
+          name
+        }
+        replies {
+          id
+          text(asHtml: true)
+          likes {
+            name
+          }
+        }
+        media {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+      ...on TextActivity {
+        id
+      }
+      ...on MessageActivity {
+        id
+      }
+    }
+  }
+}
