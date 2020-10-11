@@ -16,10 +16,8 @@ struct TabNavigationView: View {
                 Label("Home", systemImage: "house")
             }
 
-            if let id = currentUser.user?.id {
-                UserView(viewModel: UserViewModel(id: id)).tabItem {
-                    Label("Profile", systemImage: "person")
-                }
+            ProfileView().tabItem {
+                Label("Profile", systemImage: "person")
             }
 
             if currentUser.user != nil {
