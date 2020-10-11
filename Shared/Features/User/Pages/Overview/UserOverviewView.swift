@@ -21,6 +21,7 @@ struct UserOverviewView: View {
         // causing it to give each content its own separate page. This is not what we want.
         VStack {
             ScrollView {
+                // FIXME: See issue #1
                 Text("<...> (user bio)").frame(maxWidth: .infinity, maxHeight: .infinity)
             }.frame(height: 150)
             .background(Color.secondary.opacity(0.1))
