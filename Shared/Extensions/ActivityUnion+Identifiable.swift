@@ -2,12 +2,11 @@
 //  ActivityUnion+Identifiable.swift
 //  Anime Catalog
 //
-//  Created by Kyle Erhabor on 9/19/20.
+//  Created by Kyle Erhabor on 10/8/20.
 //
 
-extension ActivityFeedQuery.Data.Page.Activity.Fragments: Identifiable {
-    // I hate you so much.
+extension UserActivityQuery.Data.Page.Activity: Identifiable {
     public var id: Int {
-        return (textActivityFragment?.id ?? listActivityFragment?.id)!
+        return (asListActivity?.id ?? asTextActivity?.id ?? asMessageActivity?.id)!
     }
 }
