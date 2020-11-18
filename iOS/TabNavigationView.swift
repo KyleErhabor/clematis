@@ -1,6 +1,6 @@
 //
 //  TabNavigationView.swift
-//  Anime Catalog (iOS)
+//  Amincapp (iOS)
 //
 //  Created by Kyle Erhabor on 9/4/20.
 //
