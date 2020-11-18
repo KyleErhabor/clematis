@@ -1,6 +1,6 @@
 //
 //  UserStickyView.swift
-//  Anime Catalog
+//  Amincapp
 //
 //  Created by Kyle Erhabor on 10/3/20.
 //
