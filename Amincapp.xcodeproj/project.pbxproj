@@ -115,7 +115,7 @@
 		00869F352502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00869F632502CAE600D2DB6F /* ApolloNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloNetwork.swift; sourceTree = "<group>"; };
-		00869F662502D68C00D2DB6F /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		00869F662502D68C00D2DB6F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		00869F672502D79300D2DB6F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00BB6867251FCB0D00B7DDC9 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				00869F672502D79300D2DB6F /* .gitignore */,
+				00869F662502D68C00D2DB6F /* LICENSE */,
 				00869F682502D7E500D2DB6F /* README.md */,
-				00869F662502D68C00D2DB6F /* LICENSE.md */,
 				00869F0C2502A75100D2DB6F /* Shared */,
 				00869F162502A75300D2DB6F /* iOS */,
 				00869F1D2502A75300D2DB6F /* macOS */,
@@ -446,9 +446,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00869F132502A75300D2DB6F /* Anime Catalog (iOS) */ = {
+		00869F132502A75300D2DB6F /* Amincapp (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Anime Catalog (iOS)" */;
+			buildConfigurationList = 00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (iOS)" */;
 			buildPhases = (
 				00869F502502B85900D2DB6F /* Generate Apollo GraphQL API */,
 				00869F102502A75300D2DB6F /* Sources */,
@@ -460,7 +460,7 @@
 			);
 			dependencies = (
 			);
-			name = "Anime Catalog (iOS)";
+			name = "Amincapp (iOS)";
 			packageProductDependencies = (
 				00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */,
 				00869F4E2502B2D600D2DB6F /* Apollo */,
@@ -548,7 +548,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Anime Catalog" */;
+			buildConfigurationList = 00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Amincapp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -566,7 +566,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00869F132502A75300D2DB6F /* Anime Catalog (iOS) */,
+				00869F132502A75300D2DB6F /* Amincapp (iOS) */,
 				00869F1B2502A75300D2DB6F /* Anime Catalog (macOS) */,
 				00869F232502A75300D2DB6F /* Tests iOS */,
 				00869F2E2502A75300D2DB6F /* Tests macOS */,
@@ -734,7 +734,7 @@
 /* Begin PBXTargetDependency section */
 		00869F262502A75300D2DB6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00869F132502A75300D2DB6F /* Anime Catalog (iOS) */;
+			target = 00869F132502A75300D2DB6F /* Amincapp (iOS) */;
 			targetProxy = 00869F252502A75300D2DB6F /* PBXContainerItemProxy */;
 		};
 		00869F312502A75300D2DB6F /* PBXTargetDependency */ = {
@@ -871,7 +871,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Anime-Catalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = "Anime Catalog";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -895,7 +895,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Anime-Catalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = "Anime Catalog";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -922,7 +922,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Anime-Catalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = "Anime Catalog";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -946,7 +946,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Anime-Catalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = "Anime Catalog";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1045,7 +1045,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Anime Catalog" */ = {
+		00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Amincapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00869F3C2502A75300D2DB6F /* Debug */,
@@ -1054,7 +1054,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Anime Catalog (iOS)" */ = {
+		00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00869F3F2502A75300D2DB6F /* Debug */,
