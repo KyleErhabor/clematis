@@ -12,25 +12,25 @@ struct TabNavigationView: View {
 
     var body: some View {
         TabView {
-            HomeView().tabItem {
+            ActivityView().tabItem {
                 Label("Home", systemImage: "house")
             }
 
-            ProfileView().tabItem {
-                Label("Profile", systemImage: "person")
-            }
-
             if currentUser.user != nil {
-                Text("TODO").tabItem { // TODO
+                Text("TODO (user tab)").tabItem {
+                    Label("Profile", systemImage: "person")
+                }
+
+                Text("TODO (my list tab)").tabItem {
                     Label("My List", systemImage: "books.vertical")
                 }
             }
 
-            BrowseView().tabItem {
+            Text("TODO (browse tab)").tabItem {
                 Label("Browse", systemImage: "magnifyingglass")
             }
 
-            ForumView().tabItem {
+            Text("TODO (forum tab)").tabItem {
                 Label("Forum", systemImage: "bubble.left.and.bubble.right")
             }
         }
