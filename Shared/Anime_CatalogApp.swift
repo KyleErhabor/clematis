@@ -31,7 +31,7 @@ struct Anime_CatalogApp: App {
 
         #if os(macOS)
         Settings {
-            Text("Hello, world!")
+            Text("TODO (Settings)")
         }
 
         #endif
