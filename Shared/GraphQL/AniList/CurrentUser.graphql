@@ -1,4 +1,4 @@
-query SimpleCurrentUser {
+query CurrentUser {
   Viewer {
     id
     name

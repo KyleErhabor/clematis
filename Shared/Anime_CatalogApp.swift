@@ -16,7 +16,7 @@ struct Anime_CatalogApp: App {
             ContentView()
                 .environmentObject(currentUser)
                 .onAppear {
-                    currentUser.loadUser()
+                    currentUser.fetchUser()
                 }
         }.commands {
             #if DEBUG
