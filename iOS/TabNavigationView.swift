@@ -27,7 +27,7 @@ struct TabNavigationView: View {
             }
 
             Text("TODO (browse tab)").tabItem {
-                Label("Browse", systemImage: "magnifyingglass")
+                Label("Search", systemImage: "magnifyingglass")
             }
 
             Text("TODO (forum tab)").tabItem {
