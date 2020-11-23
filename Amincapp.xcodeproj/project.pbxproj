@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0018A63A256A143B00AF5DA3 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A635256A143B00AF5DA3 /* SimpleUser.graphql.swift */; };
-		0018A63B256A143B00AF5DA3 /* SimpleUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A635256A143B00AF5DA3 /* SimpleUser.graphql.swift */; };
-		0018A63C256A143B00AF5DA3 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A636256A143B00AF5DA3 /* ActivityFeed.graphql.swift */; };
-		0018A63D256A143B00AF5DA3 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A636256A143B00AF5DA3 /* ActivityFeed.graphql.swift */; };
-		0018A63E256A143B00AF5DA3 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A637256A143B00AF5DA3 /* Types.graphql.swift */; };
-		0018A63F256A143B00AF5DA3 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A637256A143B00AF5DA3 /* Types.graphql.swift */; };
-		0018A640256A143B00AF5DA3 /* MarkdownParse.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A638256A143B00AF5DA3 /* MarkdownParse.graphql.swift */; };
-		0018A641256A143B00AF5DA3 /* MarkdownParse.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A638256A143B00AF5DA3 /* MarkdownParse.graphql.swift */; };
-		0018A642256A143B00AF5DA3 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A639256A143B00AF5DA3 /* User.graphql.swift */; };
-		0018A643256A143B00AF5DA3 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018A639256A143B00AF5DA3 /* User.graphql.swift */; };
-		00406C7F25224E0F005FC266 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 00406C7E25224E0F005FC266 /* Down */; };
+		00276224256B2E410043A480 /* MarkdownParse.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027621F256B2E400043A480 /* MarkdownParse.graphql.swift */; };
+		00276225256B2E410043A480 /* MarkdownParse.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027621F256B2E400043A480 /* MarkdownParse.graphql.swift */; };
+		00276226256B2E410043A480 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276220256B2E410043A480 /* User.graphql.swift */; };
+		00276227256B2E410043A480 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276220256B2E410043A480 /* User.graphql.swift */; };
+		00276228256B2E410043A480 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276221256B2E410043A480 /* Types.graphql.swift */; };
+		00276229256B2E410043A480 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276221256B2E410043A480 /* Types.graphql.swift */; };
+		0027622A256B2E410043A480 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276222256B2E410043A480 /* ActivityFeed.graphql.swift */; };
+		0027622B256B2E410043A480 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276222256B2E410043A480 /* ActivityFeed.graphql.swift */; };
+		0027622C256B2E410043A480 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276223256B2E410043A480 /* CurrentUser.graphql.swift */; };
+		0027622D256B2E410043A480 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00276223256B2E410043A480 /* CurrentUser.graphql.swift */; };
+		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
+		00371532256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
+		00371541256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
+		00371542256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
 		00453BBE25656A7C00C389B1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BBD25656A7C00C389B1 /* Apollo */; };
 		00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BC325656A9000C389B1 /* SDWebImageSwiftUI */; };
-		00453BC625656A9600C389B1 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BC525656A9600C389B1 /* Down */; };
 		0057D5CA2569716F0085D9EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityView.swift */; };
 		0057D5CB2569716F0085D9EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityView.swift */; };
 		0057D5D12569718F0085D9EF /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityViewModel.swift */; };
@@ -76,12 +78,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0018A635256A143B00AF5DA3 /* SimpleUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleUser.graphql.swift; sourceTree = "<group>"; };
-		0018A636256A143B00AF5DA3 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
-		0018A637256A143B00AF5DA3 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
-		0018A638256A143B00AF5DA3 /* MarkdownParse.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParse.graphql.swift; sourceTree = "<group>"; };
-		0018A639256A143B00AF5DA3 /* User.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.graphql.swift; sourceTree = "<group>"; };
-		00406C6A25224966005FC266 /* MarkdownParse.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarkdownParse.graphql; sourceTree = "<group>"; };
+		0027621F256B2E400043A480 /* MarkdownParse.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParse.graphql.swift; sourceTree = "<group>"; };
+		00276220256B2E410043A480 /* User.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.graphql.swift; sourceTree = "<group>"; };
+		00276221256B2E410043A480 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
+		00276222256B2E410043A480 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
+		00276223256B2E410043A480 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
+		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
+		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		00406C6A25224966005FC266 /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		0057D5C92569716F0085D9EF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0057D5D02569718F0085D9EF /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		0057D5D8256973F60085D9EF /* ActivityListActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListActivityView.swift; sourceTree = "<group>"; };
@@ -113,7 +117,7 @@
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		00BB686A251FCBFC00B7DDC9 /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
-		00C9B2FB251F996F000A8139 /* SimpleUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleUser.graphql; sourceTree = "<group>"; };
+		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +129,6 @@
 			files = (
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
-				00406C7F25224E0F005FC266 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +138,6 @@
 			files = (
 				00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */,
 				00453BBE25656A7C00C389B1 /* Apollo in Frameworks */,
-				00453BC625656A9600C389B1 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +158,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0037152F256BF39000F68734 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				00371530256BF39B00F68734 /* MediaView.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		0037153F256C140000F68734 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				00371540256C141100F68734 /* UserView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		0057D5C82569712F0085D9EF /* Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,14 +202,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		008363942567829B002A16B4 /* Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				00836395256782CA002A16B4 /* AniList.swift */,
-			);
-			path = Metadata;
-			sourceTree = "<group>";
-		};
 		00869F072502A75100D2DB6F = {
 			isa = PBXGroup;
 			children = (
@@ -213,7 +223,6 @@
 				00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */,
 				00869F0E2502A75100D2DB6F /* ContentView.swift */,
 				00869F0F2502A75300D2DB6F /* Assets.xcassets */,
-				008363942567829B002A16B4 /* Metadata */,
 				00986BD4256878D40008D80C /* Environments */,
 				008CDBF025169A8B00B948D4 /* Extensions */,
 				00CAB6EE251977CA00B8C64F /* Features */,
@@ -292,6 +301,7 @@
 		00986BD4256878D40008D80C /* Environments */ = {
 			isa = PBXGroup;
 			children = (
+				00836395256782CA002A16B4 /* AniList.swift */,
 				00986BC9256878C90008D80C /* CurrentUser.swift */,
 			);
 			path = Environments;
@@ -308,11 +318,11 @@
 		00BB6880251FE14A00B7DDC9 /* AniList */ = {
 			isa = PBXGroup;
 			children = (
-				0018A636256A143B00AF5DA3 /* ActivityFeed.graphql.swift */,
-				0018A638256A143B00AF5DA3 /* MarkdownParse.graphql.swift */,
-				0018A635256A143B00AF5DA3 /* SimpleUser.graphql.swift */,
-				0018A637256A143B00AF5DA3 /* Types.graphql.swift */,
-				0018A639256A143B00AF5DA3 /* User.graphql.swift */,
+				00276222256B2E410043A480 /* ActivityFeed.graphql.swift */,
+				00276223256B2E410043A480 /* CurrentUser.graphql.swift */,
+				0027621F256B2E400043A480 /* MarkdownParse.graphql.swift */,
+				00276221256B2E410043A480 /* Types.graphql.swift */,
+				00276220256B2E410043A480 /* User.graphql.swift */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -330,10 +340,10 @@
 			isa = PBXGroup;
 			children = (
 				00869F542502C0EE00D2DB6F /* schema.json */,
-				00BB686A251FCBFC00B7DDC9 /* User.graphql */,
-				00C9B2FB251F996F000A8139 /* SimpleUser.graphql */,
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
-				00406C6A25224966005FC266 /* MarkdownParse.graphql */,
+				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
+				00406C6A25224966005FC266 /* Markdown.graphql */,
+				00BB686A251FCBFC00B7DDC9 /* User.graphql */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -342,6 +352,8 @@
 			isa = PBXGroup;
 			children = (
 				0057D5C82569712F0085D9EF /* Activity */,
+				0037152F256BF39000F68734 /* Media */,
+				0037153F256C140000F68734 /* User */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -366,7 +378,6 @@
 			packageProductDependencies = (
 				00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */,
 				00869F4E2502B2D600D2DB6F /* Apollo */,
-				00406C7E25224E0F005FC266 /* Down */,
 			);
 			productName = "Anime Catalog (iOS)";
 			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
@@ -388,7 +399,6 @@
 			packageProductDependencies = (
 				00453BBD25656A7C00C389B1 /* Apollo */,
 				00453BC325656A9000C389B1 /* SDWebImageSwiftUI */,
-				00453BC525656A9600C389B1 /* Down */,
 			);
 			productName = "Anime Catalog (macOS)";
 			productReference = 00869F1C2502A75300D2DB6F /* Amincapp.app */;
@@ -467,7 +477,6 @@
 			packageReferences = (
 				00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */,
-				00406C7D25224E0F005FC266 /* XCRemoteSwiftPackageReference "Down" */,
 			);
 			productRefGroup = 00869F152502A75300D2DB6F /* Products */;
 			projectDirPath = "";
@@ -540,20 +549,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0018A642256A143B00AF5DA3 /* User.graphql.swift in Sources */,
 				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
+				00276224256B2E410043A480 /* MarkdownParse.graphql.swift in Sources */,
 				0057D5E0256974030085D9EF /* ActivityTextActivityView.swift in Sources */,
+				00276226256B2E410043A480 /* User.graphql.swift in Sources */,
+				00276228256B2E410043A480 /* Types.graphql.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				0057D5CA2569716F0085D9EF /* ActivityView.swift in Sources */,
-				0018A63E256A143B00AF5DA3 /* Types.graphql.swift in Sources */,
+				0027622A256B2E410043A480 /* ActivityFeed.graphql.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
 				0057D5D9256973F60085D9EF /* ActivityListActivityView.swift in Sources */,
-				0018A63A256A143B00AF5DA3 /* SimpleUser.graphql.swift in Sources */,
 				00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
+				00371541256C141100F68734 /* UserView.swift in Sources */,
+				0027622C256B2E410043A480 /* CurrentUser.graphql.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,
 				0057D5E72569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */,
-				0018A640256A143B00AF5DA3 /* MarkdownParse.graphql.swift in Sources */,
-				0018A63C256A143B00AF5DA3 /* ActivityFeed.graphql.swift in Sources */,
+				00371531256BF39B00F68734 /* MediaView.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
 				00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
@@ -567,25 +578,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0018A63F256A143B00AF5DA3 /* Types.graphql.swift in Sources */,
 				00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
-				0018A643256A143B00AF5DA3 /* User.graphql.swift in Sources */,
 				0057D5E82569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */,
 				00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				0057D5DA256973F60085D9EF /* ActivityListActivityView.swift in Sources */,
 				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
-				0018A63B256A143B00AF5DA3 /* SimpleUser.graphql.swift in Sources */,
 				0057D5E1256974030085D9EF /* ActivityTextActivityView.swift in Sources */,
+				0027622D256B2E410043A480 /* CurrentUser.graphql.swift in Sources */,
 				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
 				0057D5CB2569716F0085D9EF /* ActivityView.swift in Sources */,
+				00276227256B2E410043A480 /* User.graphql.swift in Sources */,
 				00986BB62568482A0008D80C /* AniList.swift in Sources */,
+				0027622B256B2E410043A480 /* ActivityFeed.graphql.swift in Sources */,
+				00371542256C141100F68734 /* UserView.swift in Sources */,
+				00371532256BF39B00F68734 /* MediaView.swift in Sources */,
+				00276229256B2E410043A480 /* Types.graphql.swift in Sources */,
 				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				0057D5D22569718F0085D9EF /* ActivityViewModel.swift in Sources */,
 				00986BCB256878C90008D80C /* CurrentUser.swift in Sources */,
-				0018A63D256A143B00AF5DA3 /* ActivityFeed.graphql.swift in Sources */,
-				0018A641256A143B00AF5DA3 /* MarkdownParse.graphql.swift in Sources */,
+				00276225256B2E410043A480 /* MarkdownParse.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,7 +761,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = Amincapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -774,7 +787,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = Amincapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -802,7 +815,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = Amincapp;
 				SDKROOT = macosx;
@@ -827,7 +840,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
 				PRODUCT_NAME = Amincapp;
 				SDKROOT = macosx;
@@ -975,14 +988,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		00406C7D25224E0F005FC266 /* XCRemoteSwiftPackageReference "Down" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/iwasrobbed/Down";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.9.3;
-			};
-		};
 		00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1002,11 +1007,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		00406C7E25224E0F005FC266 /* Down */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00406C7D25224E0F005FC266 /* XCRemoteSwiftPackageReference "Down" */;
-			productName = Down;
-		};
 		00453BBD25656A7C00C389B1 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */;
@@ -1016,11 +1016,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		00453BC525656A9600C389B1 /* Down */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00406C7D25224E0F005FC266 /* XCRemoteSwiftPackageReference "Down" */;
-			productName = Down;
 		};
 		00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

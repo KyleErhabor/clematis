@@ -23,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>anime-catalog</string>
+				<string>amincapp</string>
 			</array>
 		</dict>
 	</array>
