@@ -17,7 +17,8 @@ class CurrentUser: ObservableObject {
                     if let viewer = queryData.data?.viewer {
                         self.user = viewer
                     }
-                case .failure(let err): print(err)
+                // The error is most likely 401 Unauthorized.
+                case .failure: break
             }
         }
     }
