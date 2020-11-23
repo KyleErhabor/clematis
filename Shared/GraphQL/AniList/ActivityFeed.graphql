@@ -1,11 +1,37 @@
-query ActivityFeed($page: Int!, $perPage: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
-  Page(page: $page, perPage: $perPage) {
+query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+  Page(page: $page, perPage: 50) {
     activities(isFollowing: $isFollowing, hasRepliesOrTypeText: $hasRepliesOrTypeText, sort: [ID_DESC]) {
       ... on TextActivity {
         id
       }
       ... on ListActivity {
         id
+        status
+        isLiked
+        siteUrl
+        progress
+        isLocked
+        createdAt
+        likeCount
+        replyCount
+        isSubscribed
+        user {
+          id
+          name
+          avatar {
+            large
+          }
+        }
+        media {
+          id
+          coverImage {
+            color
+            extraLarge
+          }
+          title {
+            userPreferred
+          }
+        }
       }
       ... on MessageActivity {
         id

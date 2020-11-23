@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @StateObject var viewModel = ActivityViewModel()
+    @State private var selection: String? = nil
 
     var body: some View {
         NavigationView {
@@ -18,8 +19,8 @@ struct ActivityView: View {
                 // distinct sub-expressions".
                 //
                 // In the future, it would be preferred to move the activity selection back to parent view.
-                ActivitySelectorView(activity: activity)
-            }.navigationTitle("Global Feed")
+                ActivitySelectorView(activity: activity, selection: $selection)
+            }.navigationTitle("Activity Feed")
         }.onAppear {
             viewModel.fetchActivities()
         }
@@ -28,10 +29,11 @@ struct ActivityView: View {
 
 fileprivate struct ActivitySelectorView: View {
     let activity: ActivityFeedQuery.Data.Page.Activity
+    @Binding var selection: String?
 
     var body: some View {
         if let listActivity = activity.asListActivity {
-            ActivityListActivityView(activity: listActivity)
+            ActivityListActivityView(activity: listActivity, selection: $selection)
         } else if activity.asTextActivity != nil {
             ActivityTextActivityView()
         } else if activity.asMessageActivity != nil {

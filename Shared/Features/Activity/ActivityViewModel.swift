@@ -8,6 +8,9 @@
 import Foundation
 
 class ActivityViewModel: ObservableObject {
+    /// An array of activity feed activity instances that -- when updated -- trigger a UI refresh.
+    ///
+    /// To populate the array, call the `fetchActivities(page:isFollowing:)` method.
     @Published private(set) var activities = [ActivityFeedQuery.Data.Page.Activity]()
 
     /// Fetches the most recent activity updates from AniList.
@@ -23,13 +26,12 @@ class ActivityViewModel: ObservableObject {
     ///   - isFollowing: If the activities displayed should be from users the current user follows. This acts as the Following feed rather than the Global
     ///    feed.
     ///
-    /// - Returns: `Void`. This method does not return a value. Instead, it updates the `activities` array with new activity (up to 50 new results). If
-    /// there are no results or results updating older results, `activities` will not be updated, not triggering a UI refresh.
+    /// - Returns: This method does not return a value. Instead, it updates the `activities` array with new activity (up to 50 new results at once). If there
+    /// are no new results, `activities` will not be updated, not triggering a UI refresh.
     ///
     func fetchActivities(page: Int = 1, isFollowing: Bool = false) {
         ApolloNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
             page: page,
-            perPage: 50,
             isFollowing: isFollowing,
             hasRepliesOrTypeText: !isFollowing
         )) { result in
