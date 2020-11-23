@@ -1,4 +1,4 @@
-query MarkdownParse($markdown: String!) {
+query Markdown($markdown: String!) {
   Markdown(markdown: $markdown) {
     html
   }
