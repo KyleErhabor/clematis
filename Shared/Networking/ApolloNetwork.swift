@@ -10,6 +10,7 @@ import Apollo
 
 class ApolloNetwork {
     static let shared = ApolloNetwork()
+
     private(set) lazy var anilist = ApolloClient(networkTransport: networkTransport)
 
     private lazy var networkTransport: HTTPNetworkTransport = {

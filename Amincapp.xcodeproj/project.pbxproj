@@ -13,16 +13,16 @@
 		00371542256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
 		00453BBE25656A7C00C389B1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BBD25656A7C00C389B1 /* Apollo */; };
 		00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BC325656A9000C389B1 /* SDWebImageSwiftUI */; };
-		0057D5CA2569716F0085D9EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityView.swift */; };
-		0057D5CB2569716F0085D9EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityView.swift */; };
-		0057D5D12569718F0085D9EF /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityViewModel.swift */; };
-		0057D5D22569718F0085D9EF /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityViewModel.swift */; };
-		0057D5D9256973F60085D9EF /* ActivityListActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityListActivityView.swift */; };
-		0057D5DA256973F60085D9EF /* ActivityListActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityListActivityView.swift */; };
-		0057D5E0256974030085D9EF /* ActivityTextActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityTextActivityView.swift */; };
-		0057D5E1256974030085D9EF /* ActivityTextActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityTextActivityView.swift */; };
-		0057D5E72569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityMessageActivityView.swift */; };
-		0057D5E82569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityMessageActivityView.swift */; };
+		0057D5CA2569716F0085D9EF /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityFeedView.swift */; };
+		0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityFeedView.swift */; };
+		0057D5D12569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */; };
+		0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */; };
+		0057D5D9256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */; };
+		0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */; };
+		0057D5E0256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */; };
+		0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */; };
+		0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
+		0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
 		006C0CDC256C7949007B5543 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */; };
 		006C0CDD256C7949007B5543 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */; };
 		006C0CDE256C7949007B5543 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD8256C7949007B5543 /* Markdown.graphql.swift */; };
@@ -56,6 +56,8 @@
 		00986BB62568482A0008D80C /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
 		00986BCB256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
+		00BE6560256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */; };
+		00BE6561256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 		00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 /* End PBXBuildFile section */
@@ -81,11 +83,11 @@
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		00406C6A25224966005FC266 /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
-		0057D5C92569716F0085D9EF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		0057D5D02569718F0085D9EF /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
-		0057D5D8256973F60085D9EF /* ActivityListActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListActivityView.swift; sourceTree = "<group>"; };
-		0057D5DF256974030085D9EF /* ActivityTextActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTextActivityView.swift; sourceTree = "<group>"; };
-		0057D5E62569740D0085D9EF /* ActivityMessageActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMessageActivityView.swift; sourceTree = "<group>"; };
+		0057D5C92569716F0085D9EF /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
+		0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedViewModel.swift; sourceTree = "<group>"; };
+		0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedListKindView.swift; sourceTree = "<group>"; };
+		0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTextKindView.swift; sourceTree = "<group>"; };
+		0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedMessageKindView.swift; sourceTree = "<group>"; };
 		006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
 		006C0CD8256C7949007B5543 /* Markdown.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.graphql.swift; sourceTree = "<group>"; };
 		006C0CD9256C7949007B5543 /* User.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.graphql.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0070E5EF2503045200BC0509 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
+		007A1FDB256EBA4800FB0713 /* Activity.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Activity.graphql; sourceTree = "<group>"; };
 		00836395256782CA002A16B4 /* AniList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniList.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime_CatalogApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		00BB686A251FCBFC00B7DDC9 /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
+		00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReplyListView.swift; sourceTree = "<group>"; };
 		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
@@ -177,8 +181,9 @@
 		0057D5C82569712F0085D9EF /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				0057D5C92569716F0085D9EF /* ActivityView.swift */,
-				0057D5D02569718F0085D9EF /* ActivityViewModel.swift */,
+				0057D5C92569716F0085D9EF /* ActivityFeedView.swift */,
+				0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */,
+				00BE655E256E0C30009BE2E1 /* Reply */,
 				0057D5D72569739A0085D9EF /* Union */,
 			);
 			path = Activity;
@@ -187,9 +192,9 @@
 		0057D5D72569739A0085D9EF /* Union */ = {
 			isa = PBXGroup;
 			children = (
-				0057D5D8256973F60085D9EF /* ActivityListActivityView.swift */,
-				0057D5DF256974030085D9EF /* ActivityTextActivityView.swift */,
-				0057D5E62569740D0085D9EF /* ActivityMessageActivityView.swift */,
+				0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */,
+				0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */,
+				0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */,
 			);
 			path = Union;
 			sourceTree = "<group>";
@@ -327,6 +332,14 @@
 			path = AniList;
 			sourceTree = "<group>";
 		};
+		00BE655E256E0C30009BE2E1 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
 		00C9B2F9251F9830000A8139 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				00869F542502C0EE00D2DB6F /* schema.json */,
+				007A1FDB256EBA4800FB0713 /* Activity.graphql */,
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
 				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
 				00406C6A25224966005FC266 /* Markdown.graphql */,
@@ -551,23 +565,24 @@
 			files = (
 				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				006C0CE0256C7949007B5543 /* User.graphql.swift in Sources */,
-				0057D5E0256974030085D9EF /* ActivityTextActivityView.swift in Sources */,
+				0057D5E0256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
-				0057D5CA2569716F0085D9EF /* ActivityView.swift in Sources */,
+				0057D5CA2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
-				0057D5D9256973F60085D9EF /* ActivityListActivityView.swift in Sources */,
+				0057D5D9256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
 				006C0CE4256C7949007B5543 /* Types.graphql.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,
-				0057D5E72569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */,
+				0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
+				00BE6560256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */,
 				00371531256BF39B00F68734 /* MediaView.swift in Sources */,
 				006C0CDE256C7949007B5543 /* Markdown.graphql.swift in Sources */,
 				006C0CDC256C7949007B5543 /* CurrentUser.graphql.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
 				00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
-				0057D5D12569718F0085D9EF /* ActivityViewModel.swift in Sources */,
+				0057D5D12569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				006C0CE2256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */,
@@ -579,24 +594,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
-				0057D5E82569740D0085D9EF /* ActivityMessageActivityView.swift in Sources */,
+				0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
 				00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
-				0057D5DA256973F60085D9EF /* ActivityListActivityView.swift in Sources */,
+				0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
 				006C0CDD256C7949007B5543 /* CurrentUser.graphql.swift in Sources */,
 				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
-				0057D5E1256974030085D9EF /* ActivityTextActivityView.swift in Sources */,
+				0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
 				006C0CE5256C7949007B5543 /* Types.graphql.swift in Sources */,
 				006C0CE3256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */,
 				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
-				0057D5CB2569716F0085D9EF /* ActivityView.swift in Sources */,
+				0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
+				00BE6561256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */,
 				00986BB62568482A0008D80C /* AniList.swift in Sources */,
 				00371542256C141100F68734 /* UserView.swift in Sources */,
 				00371532256BF39B00F68734 /* MediaView.swift in Sources */,
 				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				006C0CE1256C7949007B5543 /* User.graphql.swift in Sources */,
-				0057D5D22569718F0085D9EF /* ActivityViewModel.swift in Sources */,
+				0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
 				00986BCB256878C90008D80C /* CurrentUser.swift in Sources */,
 				006C0CDF256C7949007B5543 /* Markdown.graphql.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  ActivityViewModel.swift
+//  ActivityFeedViewModel.swift
 //  Amincapp
 //
 //  Created by Kyle Erhabor on 11/21/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ActivityViewModel: ObservableObject {
+class ActivityFeedViewModel: ObservableObject {
     /// An array of activity feed activity instances that -- when updated -- trigger a UI refresh.
     ///
     /// To populate the array, call the `fetchActivities(page:isFollowing:)` method.

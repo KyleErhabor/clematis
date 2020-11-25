@@ -1,5 +1,5 @@
 //
-//  ActivityMessageActivityView.swift
+//  ActivityFeedMessageKindView.swift
 //  Amincapp
 //
 //  Created by Kyle Erhabor on 11/21/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ActivityMessageActivityView: View {
+struct ActivityFeedMessageKindView: View {
     var body: some View {
         Text("TODO (message activity)")
     }
@@ -15,6 +15,6 @@ struct ActivityMessageActivityView: View {
 
 struct ActivityMessageActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityMessageActivityView()
+        ActivityFeedMessageKindView()
     }
 }

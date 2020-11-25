@@ -12,7 +12,7 @@ struct TabNavigationView: View {
 
     var body: some View {
         TabView {
-            ActivityView().tabItem {
+            ActivityFeedView().tabItem {
                 Label("Home", systemImage: "house")
             }
 
