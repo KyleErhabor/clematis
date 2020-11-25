@@ -1,0 +1,43 @@
+query Activity($id: Int!) {
+  Activity(id: $id) {
+    ... on ListActivity {
+      isLiked
+      isLocked
+      createdAt
+      isSubscribed
+      status
+      progress
+      user {
+        name
+        avatar {
+          large
+        }
+      }
+      replies {
+        id
+        isLiked
+        createdAt
+        text(asHtml: true)
+        user {
+          name
+          avatar {
+            large
+          }
+        }
+        likes {
+          name
+          avatar {
+            large
+          }
+        }
+      }
+    }
+    ... on TextActivity {
+      id
+    }
+    ... on MessageActivity {
+      id
+    }
+  }
+}
+
