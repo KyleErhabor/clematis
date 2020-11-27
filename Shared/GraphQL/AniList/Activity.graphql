@@ -1,43 +1,32 @@
 query Activity($id: Int!) {
   Activity(id: $id) {
     ... on ListActivity {
-      isLiked
-      isLocked
-      createdAt
-      isSubscribed
-      status
-      progress
-      user {
-        name
-        avatar {
-          large
-        }
-      }
       replies {
-        id
-        isLiked
-        createdAt
-        text(asHtml: true)
-        user {
-          name
-          avatar {
-            large
-          }
-        }
-        likes {
-          name
-          avatar {
-            large
-          }
-        }
+        ...activityReplyFragment
       }
     }
     ... on TextActivity {
-      id
+      replies {
+        ...activityReplyFragment
+      }
     }
     ... on MessageActivity {
-      id
+      replies {
+        ...activityReplyFragment
+      }
     }
   }
 }
 
+fragment activityReplyFragment on ActivityReply {
+  id
+  isLiked
+  createdAt
+  text(asHtml: true)
+  user {
+    name
+    avatar {
+      large
+    }
+  }
+}

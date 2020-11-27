@@ -9,7 +9,7 @@ import SDWebImageSwiftUI
 import SwiftUI
 
 struct ActivityFeedListKindView: View {
-    var activity: ActivityFeedQuery.Data.Page.Activity.AsListActivity
+    let activity: ActivityFeedQuery.Data.Page.Activity.AsListActivity
 
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
@@ -74,7 +74,7 @@ struct ActivityFeedListKindView: View {
                     Text("")
                     Spacer()
 
-                    NavigationLink(destination: ActivityReplyListView()) {
+                    NavigationLink(destination: ActivityView(viewModel: ActivityViewModel(id: activity.id))) {
                         Label("\(activity.replyCount)", systemImage: "bubble.left").foregroundColor(.accentColor)
                     }
 
