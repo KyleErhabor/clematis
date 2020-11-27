@@ -23,16 +23,6 @@
 		0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */; };
 		0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
 		0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
-		006C0CDC256C7949007B5543 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */; };
-		006C0CDD256C7949007B5543 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */; };
-		006C0CDE256C7949007B5543 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD8256C7949007B5543 /* Markdown.graphql.swift */; };
-		006C0CDF256C7949007B5543 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD8256C7949007B5543 /* Markdown.graphql.swift */; };
-		006C0CE0256C7949007B5543 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD9256C7949007B5543 /* User.graphql.swift */; };
-		006C0CE1256C7949007B5543 /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CD9256C7949007B5543 /* User.graphql.swift */; };
-		006C0CE2256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CDA256C7949007B5543 /* ActivityFeed.graphql.swift */; };
-		006C0CE3256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CDA256C7949007B5543 /* ActivityFeed.graphql.swift */; };
-		006C0CE4256C7949007B5543 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CDB256C7949007B5543 /* Types.graphql.swift */; };
-		006C0CE5256C7949007B5543 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C0CDB256C7949007B5543 /* Types.graphql.swift */; };
 		006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
@@ -40,6 +30,19 @@
 		0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070E5EF2503045200BC0509 /* TabNavigationView.swift */; };
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
+		007A1FF6256EE70200FB0713 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A1FF5256EE70100FB0713 /* ActivityView.swift */; };
+		007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A1FF5256EE70100FB0713 /* ActivityView.swift */; };
+		007A2001256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
+		007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
+		007A208725706C7200FB0713 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208325706C7100FB0713 /* Types.graphql.swift */; };
+		007A208825706C7200FB0713 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208325706C7100FB0713 /* Types.graphql.swift */; };
+		007A208925706C7200FB0713 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208425706C7100FB0713 /* CurrentUser.graphql.swift */; };
+		007A208A25706C7200FB0713 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208425706C7100FB0713 /* CurrentUser.graphql.swift */; };
+		007A208B25706C7200FB0713 /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208525706C7100FB0713 /* Activity.graphql.swift */; };
+		007A208C25706C7200FB0713 /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208525706C7100FB0713 /* Activity.graphql.swift */; };
+		007A208D25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */; };
+		007A208E25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */; };
+		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
 		00836396256782CA002A16B4 /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00869F292502A75300D2DB6F /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F282502A75300D2DB6F /* Tests_iOS.swift */; };
 		00869F342502A75300D2DB6F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F332502A75300D2DB6F /* Tests_macOS.swift */; };
@@ -51,13 +54,11 @@
 		00869F3B2502A75300D2DB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00869F0F2502A75300D2DB6F /* Assets.xcassets */; };
 		00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */; };
 		00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 00869F4E2502B2D600D2DB6F /* Apollo */; };
-		00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* ApolloNetwork.swift */; };
-		00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* ApolloNetwork.swift */; };
+		00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */; };
+		00869F652502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */; };
 		00986BB62568482A0008D80C /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
 		00986BCB256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
-		00BE6560256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */; };
-		00BE6561256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 		00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 /* End PBXBuildFile section */
@@ -82,22 +83,22 @@
 /* Begin PBXFileReference section */
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		00406C6A25224966005FC266 /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		0057D5C92569716F0085D9EF /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
 		0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedViewModel.swift; sourceTree = "<group>"; };
 		0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedListKindView.swift; sourceTree = "<group>"; };
 		0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTextKindView.swift; sourceTree = "<group>"; };
 		0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedMessageKindView.swift; sourceTree = "<group>"; };
-		006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
-		006C0CD8256C7949007B5543 /* Markdown.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.graphql.swift; sourceTree = "<group>"; };
-		006C0CD9256C7949007B5543 /* User.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.graphql.swift; sourceTree = "<group>"; };
-		006C0CDA256C7949007B5543 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
-		006C0CDB256C7949007B5543 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
 		006ED0D72517A80B004992F7 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0070E5EF2503045200BC0509 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		007A1FDB256EBA4800FB0713 /* Activity.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Activity.graphql; sourceTree = "<group>"; };
+		007A1FF5256EE70100FB0713 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		007A2000256EE71E00FB0713 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		007A208325706C7100FB0713 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
+		007A208425706C7100FB0713 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
+		007A208525706C7100FB0713 /* Activity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.graphql.swift; sourceTree = "<group>"; };
+		007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		00836395256782CA002A16B4 /* AniList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniList.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime_CatalogApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,13 +115,11 @@
 		00869F332502A75300D2DB6F /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		00869F352502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		00869F632502CAE600D2DB6F /* ApolloNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloNetwork.swift; sourceTree = "<group>"; };
+		00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLNetwork.swift; sourceTree = "<group>"; };
 		00869F662502D68C00D2DB6F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		00869F672502D79300D2DB6F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
-		00BB686A251FCBFC00B7DDC9 /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
-		00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReplyListView.swift; sourceTree = "<group>"; };
 		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
@@ -131,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007A20952570B05A00FB0713 /* Logging in Frameworks */,
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
 			);
@@ -181,10 +181,9 @@
 		0057D5C82569712F0085D9EF /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				0057D5C92569716F0085D9EF /* ActivityFeedView.swift */,
-				0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */,
-				00BE655E256E0C30009BE2E1 /* Reply */,
-				0057D5D72569739A0085D9EF /* Union */,
+				007A1FF5256EE70100FB0713 /* ActivityView.swift */,
+				007A2000256EE71E00FB0713 /* ActivityViewModel.swift */,
+				007A1FF0256EC59A00FB0713 /* Feed */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -205,6 +204,16 @@
 				0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		007A1FF0256EC59A00FB0713 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				0057D5C92569716F0085D9EF /* ActivityFeedView.swift */,
+				0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */,
+				0057D5D72569739A0085D9EF /* Union */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		00869F072502A75100D2DB6F = {
@@ -288,7 +297,7 @@
 		00869F622502CACE00D2DB6F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				00869F632502CAE600D2DB6F /* ApolloNetwork.swift */,
+				00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -323,21 +332,12 @@
 		00BB6880251FE14A00B7DDC9 /* AniList */ = {
 			isa = PBXGroup;
 			children = (
-				006C0CDA256C7949007B5543 /* ActivityFeed.graphql.swift */,
-				006C0CD7256C7949007B5543 /* CurrentUser.graphql.swift */,
-				006C0CD8256C7949007B5543 /* Markdown.graphql.swift */,
-				006C0CDB256C7949007B5543 /* Types.graphql.swift */,
-				006C0CD9256C7949007B5543 /* User.graphql.swift */,
+				007A208525706C7100FB0713 /* Activity.graphql.swift */,
+				007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */,
+				007A208425706C7100FB0713 /* CurrentUser.graphql.swift */,
+				007A208325706C7100FB0713 /* Types.graphql.swift */,
 			);
 			path = AniList;
-			sourceTree = "<group>";
-		};
-		00BE655E256E0C30009BE2E1 /* Reply */ = {
-			isa = PBXGroup;
-			children = (
-				00BE655F256E0C53009BE2E1 /* ActivityReplyListView.swift */,
-			);
-			path = Reply;
 			sourceTree = "<group>";
 		};
 		00C9B2F9251F9830000A8139 /* GraphQL */ = {
@@ -356,8 +356,6 @@
 				007A1FDB256EBA4800FB0713 /* Activity.graphql */,
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
 				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
-				00406C6A25224966005FC266 /* Markdown.graphql */,
-				00BB686A251FCBFC00B7DDC9 /* User.graphql */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -392,6 +390,7 @@
 			packageProductDependencies = (
 				00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */,
 				00869F4E2502B2D600D2DB6F /* Apollo */,
+				007A20942570B05A00FB0713 /* Logging */,
 			);
 			productName = "Anime Catalog (iOS)";
 			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
@@ -491,6 +490,7 @@
 			packageReferences = (
 				00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = 00869F152502A75300D2DB6F /* Products */;
 			projectDirPath = "";
@@ -546,6 +546,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/**/GraphQL/**/*.graphql",
 			);
 			name = "Generate Apollo GraphQL API";
 			outputFileListPaths = (
@@ -554,7 +555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=./Shared/GraphQL/AniList/schema.json ./Shared/GraphQL/API/AniList\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# AniList\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --target swift --includes './Shared/GraphQL/AniList/*.graphql' --localSchemaFile ./Shared/GraphQL/AniList/schema.json ./Shared/GraphQL/API/AniList\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -563,29 +564,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007A208725706C7200FB0713 /* Types.graphql.swift in Sources */,
 				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
-				006C0CE0256C7949007B5543 /* User.graphql.swift in Sources */,
 				0057D5E0256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				0057D5CA2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
 				0057D5D9256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
-				00869F642502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
-				006C0CE4256C7949007B5543 /* Types.graphql.swift in Sources */,
+				007A208B25706C7200FB0713 /* Activity.graphql.swift in Sources */,
+				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,
+				007A2001256EE71E00FB0713 /* ActivityViewModel.swift in Sources */,
+				007A208D25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */,
+				007A208925706C7200FB0713 /* CurrentUser.graphql.swift in Sources */,
 				0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
-				00BE6560256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */,
 				00371531256BF39B00F68734 /* MediaView.swift in Sources */,
-				006C0CDE256C7949007B5543 /* Markdown.graphql.swift in Sources */,
-				006C0CDC256C7949007B5543 /* CurrentUser.graphql.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
 				00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
+				007A1FF6256EE70200FB0713 /* ActivityView.swift in Sources */,
 				0057D5D12569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
-				006C0CE2256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,28 +594,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00869F652502CAE600D2DB6F /* ApolloNetwork.swift in Sources */,
+				00869F652502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
+				007A208C25706C7200FB0713 /* Activity.graphql.swift in Sources */,
 				00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
-				006C0CDD256C7949007B5543 /* CurrentUser.graphql.swift in Sources */,
 				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
-				006C0CE5256C7949007B5543 /* Types.graphql.swift in Sources */,
-				006C0CE3256C7949007B5543 /* ActivityFeed.graphql.swift in Sources */,
+				007A208E25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */,
 				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
+				007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */,
 				0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
-				00BE6561256E0C53009BE2E1 /* ActivityReplyListView.swift in Sources */,
 				00986BB62568482A0008D80C /* AniList.swift in Sources */,
+				007A208A25706C7200FB0713 /* CurrentUser.graphql.swift in Sources */,
 				00371542256C141100F68734 /* UserView.swift in Sources */,
 				00371532256BF39B00F68734 /* MediaView.swift in Sources */,
 				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
-				006C0CE1256C7949007B5543 /* User.graphql.swift in Sources */,
 				0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
+				007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */,
+				007A208825706C7200FB0713 /* Types.graphql.swift in Sources */,
 				00986BCB256878C90008D80C /* CurrentUser.swift in Sources */,
-				006C0CDF256C7949007B5543 /* Markdown.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1005,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 		00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1017,7 +1026,7 @@
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.32.0;
+				minimumVersion = 0.37.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1032,6 +1041,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		007A20942570B05A00FB0713 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 		00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

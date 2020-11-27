@@ -11,7 +11,7 @@ class CurrentUser: ObservableObject {
     @Published private(set) var user: CurrentUserQuery.Data.Viewer?
 
     func fetchUser() {
-        ApolloNetwork.shared.anilist.fetch(query: CurrentUserQuery()) { result in
+        GraphQLNetwork.shared.anilist.fetch(query: CurrentUserQuery()) { result in
             switch result {
                 case .success(let queryData):
                     if let viewer = queryData.data?.viewer {

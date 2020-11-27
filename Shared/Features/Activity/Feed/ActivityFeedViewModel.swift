@@ -30,7 +30,7 @@ class ActivityFeedViewModel: ObservableObject {
     /// are no new results, `activities` will not be updated, not triggering a UI refresh.
     ///
     func fetchActivities(page: Int = 1, isFollowing: Bool = false) {
-        ApolloNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
+        GraphQLNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
             page: page,
             isFollowing: isFollowing,
             hasRepliesOrTypeText: !isFollowing
