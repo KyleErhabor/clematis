@@ -69,8 +69,17 @@
         "repositoryURL": "https://github.com/stencilproject/Stencil.git",
         "state": {
           "branch": null,
-          "revision": "0e9a78d6584e3812cd9c09494d5c7b483e8f533c",
-          "version": "0.13.1"
+          "revision": "94197b3adbbf926348ad8765476a158aa4e54f8a",
+          "version": "0.14.0"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log",
+        "state": {
+          "branch": null,
+          "revision": "173f567a2dfec11d74588eea82cecea555bdc0bc",
+          "version": "1.4.0"
         }
       },
       {
