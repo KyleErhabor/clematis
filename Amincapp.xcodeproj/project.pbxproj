@@ -34,18 +34,8 @@
 		007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A1FF5256EE70100FB0713 /* ActivityView.swift */; };
 		007A2001256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
 		007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
-		007A208725706C7200FB0713 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208325706C7100FB0713 /* Types.graphql.swift */; };
-		007A208825706C7200FB0713 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208325706C7100FB0713 /* Types.graphql.swift */; };
-		007A208925706C7200FB0713 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208425706C7100FB0713 /* CurrentUser.graphql.swift */; };
-		007A208A25706C7200FB0713 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208425706C7100FB0713 /* CurrentUser.graphql.swift */; };
-		007A208B25706C7200FB0713 /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208525706C7100FB0713 /* Activity.graphql.swift */; };
-		007A208C25706C7200FB0713 /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208525706C7100FB0713 /* Activity.graphql.swift */; };
-		007A208D25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */; };
-		007A208E25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
 		00836396256782CA002A16B4 /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
-		00869F292502A75300D2DB6F /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F282502A75300D2DB6F /* Tests_iOS.swift */; };
-		00869F342502A75300D2DB6F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F332502A75300D2DB6F /* Tests_macOS.swift */; };
 		00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */; };
 		00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */; };
 		00869F382502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
@@ -59,26 +49,22 @@
 		00986BB62568482A0008D80C /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
 		00986BCB256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
+		00C1088A257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
+		00C1088B257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
+		00C108922573426000E3DCBA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 00C108912573426000E3DCBA /* SwiftSoup */; };
+		00C108A5257361E100E3DCBA /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A0257361E100E3DCBA /* Markdown.graphql.swift */; };
+		00C108A6257361E100E3DCBA /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A0257361E100E3DCBA /* Markdown.graphql.swift */; };
+		00C108A7257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */; };
+		00C108A8257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */; };
+		00C108A9257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */; };
+		00C108AA257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */; };
+		00C108AB257361E100E3DCBA /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A3257361E100E3DCBA /* Types.graphql.swift */; };
+		00C108AC257361E100E3DCBA /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A3257361E100E3DCBA /* Types.graphql.swift */; };
+		00C108AD257361E100E3DCBA /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A4257361E100E3DCBA /* Activity.graphql.swift */; };
+		00C108AE257361E100E3DCBA /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A4257361E100E3DCBA /* Activity.graphql.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 		00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		00869F252502A75300D2DB6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00869F082502A75100D2DB6F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00869F132502A75300D2DB6F;
-			remoteInfo = "Anime Catalog (iOS)";
-		};
-		00869F302502A75300D2DB6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00869F082502A75100D2DB6F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00869F1B2502A75300D2DB6F;
-			remoteInfo = "Anime Catalog (macOS)";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
@@ -88,6 +74,7 @@
 		0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedListKindView.swift; sourceTree = "<group>"; };
 		0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTextKindView.swift; sourceTree = "<group>"; };
 		0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedMessageKindView.swift; sourceTree = "<group>"; };
+		0065F54C2576E7BB00233495 /* ListChildren.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ListChildren.playground; path = "../../../../../Library/Autosave Information/ListChildren.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		006ED0D72517A80B004992F7 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0070E5EF2503045200BC0509 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
@@ -95,10 +82,6 @@
 		007A1FDB256EBA4800FB0713 /* Activity.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Activity.graphql; sourceTree = "<group>"; };
 		007A1FF5256EE70100FB0713 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		007A2000256EE71E00FB0713 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
-		007A208325706C7100FB0713 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
-		007A208425706C7100FB0713 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
-		007A208525706C7100FB0713 /* Activity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.graphql.swift; sourceTree = "<group>"; };
-		007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		00836395256782CA002A16B4 /* AniList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniList.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime_CatalogApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,18 +91,19 @@
 		00869F1C2502A75300D2DB6F /* Amincapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amincapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00869F1E2502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F1F2502A75300D2DB6F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		00869F242502A75300D2DB6F /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00869F282502A75300D2DB6F /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		00869F2A2502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00869F2F2502A75300D2DB6F /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00869F332502A75300D2DB6F /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		00869F352502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLNetwork.swift; sourceTree = "<group>"; };
 		00869F662502D68C00D2DB6F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		00869F672502D79300D2DB6F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		00C10889257341B600E3DCBA /* RichView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichView.swift; sourceTree = "<group>"; };
+		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
+		00C108A0257361E100E3DCBA /* Markdown.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.graphql.swift; sourceTree = "<group>"; };
+		00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
+		00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
+		00C108A3257361E100E3DCBA /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
+		00C108A4257361E100E3DCBA /* Activity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.graphql.swift; sourceTree = "<group>"; };
 		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
@@ -131,6 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007A20952570B05A00FB0713 /* Logging in Frameworks */,
+				00C108922573426000E3DCBA /* SwiftSoup in Frameworks */,
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
 			);
@@ -142,20 +127,6 @@
 			files = (
 				00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */,
 				00453BBE25656A7C00C389B1 /* Apollo in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F212502A75300D2DB6F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F2C2502A75300D2DB6F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +169,14 @@
 			path = Union;
 			sourceTree = "<group>";
 		};
+		0065F54B2576E78C00233495 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				0065F54C2576E7BB00233495 /* ListChildren.playground */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
 		0073DB7E251EEE2E000C1FA1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +204,6 @@
 				00869F0C2502A75100D2DB6F /* Shared */,
 				00869F162502A75300D2DB6F /* iOS */,
 				00869F1D2502A75300D2DB6F /* macOS */,
-				00869F272502A75300D2DB6F /* Tests iOS */,
-				00869F322502A75300D2DB6F /* Tests macOS */,
 				00869F152502A75300D2DB6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -242,7 +219,9 @@
 				00CAB6EE251977CA00B8C64F /* Features */,
 				00C9B2F9251F9830000A8139 /* GraphQL */,
 				00869F622502CACE00D2DB6F /* Networking */,
+				0065F54B2576E78C00233495 /* Playgrounds */,
 				0073DB7E251EEE2E000C1FA1 /* Settings */,
+				00C10889257341B600E3DCBA /* RichView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -252,8 +231,6 @@
 			children = (
 				00869F142502A75300D2DB6F /* Amincapp.app */,
 				00869F1C2502A75300D2DB6F /* Amincapp.app */,
-				00869F242502A75300D2DB6F /* Tests iOS.xctest */,
-				00869F2F2502A75300D2DB6F /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,24 +251,6 @@
 				00869F1F2502A75300D2DB6F /* macOS.entitlements */,
 			);
 			path = macOS;
-			sourceTree = "<group>";
-		};
-		00869F272502A75300D2DB6F /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				00869F282502A75300D2DB6F /* Tests_iOS.swift */,
-				00869F2A2502A75300D2DB6F /* Info.plist */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		00869F322502A75300D2DB6F /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				00869F332502A75300D2DB6F /* Tests_macOS.swift */,
-				00869F352502A75300D2DB6F /* Info.plist */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 		00869F622502CACE00D2DB6F /* Networking */ = {
@@ -332,10 +291,11 @@
 		00BB6880251FE14A00B7DDC9 /* AniList */ = {
 			isa = PBXGroup;
 			children = (
-				007A208525706C7100FB0713 /* Activity.graphql.swift */,
-				007A208625706C7200FB0713 /* ActivityFeed.graphql.swift */,
-				007A208425706C7100FB0713 /* CurrentUser.graphql.swift */,
-				007A208325706C7100FB0713 /* Types.graphql.swift */,
+				00C108A4257361E100E3DCBA /* Activity.graphql.swift */,
+				00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */,
+				00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */,
+				00C108A0257361E100E3DCBA /* Markdown.graphql.swift */,
+				00C108A3257361E100E3DCBA /* Types.graphql.swift */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -356,6 +316,7 @@
 				007A1FDB256EBA4800FB0713 /* Activity.graphql */,
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
 				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
+				00C108972573619D00E3DCBA /* Markdown.graphql */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -391,6 +352,7 @@
 				00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */,
 				00869F4E2502B2D600D2DB6F /* Apollo */,
 				007A20942570B05A00FB0713 /* Logging */,
+				00C108912573426000E3DCBA /* SwiftSoup */,
 			);
 			productName = "Anime Catalog (iOS)";
 			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
@@ -417,42 +379,6 @@
 			productReference = 00869F1C2502A75300D2DB6F /* Amincapp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00869F232502A75300D2DB6F /* Tests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00869F442502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Tests iOS" */;
-			buildPhases = (
-				00869F202502A75300D2DB6F /* Sources */,
-				00869F212502A75300D2DB6F /* Frameworks */,
-				00869F222502A75300D2DB6F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00869F262502A75300D2DB6F /* PBXTargetDependency */,
-			);
-			name = "Tests iOS";
-			productName = "Tests iOS";
-			productReference = 00869F242502A75300D2DB6F /* Tests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		00869F2E2502A75300D2DB6F /* Tests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00869F472502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Tests macOS" */;
-			buildPhases = (
-				00869F2B2502A75300D2DB6F /* Sources */,
-				00869F2C2502A75300D2DB6F /* Frameworks */,
-				00869F2D2502A75300D2DB6F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00869F312502A75300D2DB6F /* PBXTargetDependency */,
-			);
-			name = "Tests macOS";
-			productName = "Tests macOS";
-			productReference = 00869F2F2502A75300D2DB6F /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -467,14 +393,6 @@
 					};
 					00869F1B2502A75300D2DB6F = {
 						CreatedOnToolsVersion = 12.0;
-					};
-					00869F232502A75300D2DB6F = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = 00869F132502A75300D2DB6F;
-					};
-					00869F2E2502A75300D2DB6F = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = 00869F1B2502A75300D2DB6F;
 					};
 				};
 			};
@@ -491,6 +409,7 @@
 				00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */,
+				00C108902573426000E3DCBA /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 00869F152502A75300D2DB6F /* Products */;
 			projectDirPath = "";
@@ -498,8 +417,6 @@
 			targets = (
 				00869F132502A75300D2DB6F /* Amincapp (iOS) */,
 				00869F1B2502A75300D2DB6F /* Amincapp (macOS) */,
-				00869F232502A75300D2DB6F /* Tests iOS */,
-				00869F2E2502A75300D2DB6F /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -518,20 +435,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00869F3B2502A75300D2DB6F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F222502A75300D2DB6F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F2D2502A75300D2DB6F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,29 +467,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007A208725706C7200FB0713 /* Types.graphql.swift in Sources */,
 				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				0057D5E0256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
+				00C108A9257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */,
 				0057D5CA2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
 				0057D5D9256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
-				007A208B25706C7200FB0713 /* Activity.graphql.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
+				00C108A7257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
+				00C1088A257341B600E3DCBA /* RichView.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,
+				00C108AD257361E100E3DCBA /* Activity.graphql.swift in Sources */,
 				007A2001256EE71E00FB0713 /* ActivityViewModel.swift in Sources */,
-				007A208D25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */,
-				007A208925706C7200FB0713 /* CurrentUser.graphql.swift in Sources */,
 				0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
 				00371531256BF39B00F68734 /* MediaView.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
+				00C108AB257361E100E3DCBA /* Types.graphql.swift in Sources */,
 				00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				007A1FF6256EE70200FB0713 /* ActivityView.swift in Sources */,
 				0057D5D12569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
+				00C108A5257361E100E3DCBA /* Markdown.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,59 +501,32 @@
 			files = (
 				00869F652502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
-				007A208C25706C7200FB0713 /* Activity.graphql.swift in Sources */,
 				00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
 				0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
 				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
-				007A208E25706C7200FB0713 /* ActivityFeed.graphql.swift in Sources */,
 				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
+				00C1088B257341B600E3DCBA /* RichView.swift in Sources */,
 				007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */,
 				0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
+				00C108AE257361E100E3DCBA /* Activity.graphql.swift in Sources */,
 				00986BB62568482A0008D80C /* AniList.swift in Sources */,
-				007A208A25706C7200FB0713 /* CurrentUser.graphql.swift in Sources */,
 				00371542256C141100F68734 /* UserView.swift in Sources */,
+				00C108A6257361E100E3DCBA /* Markdown.graphql.swift in Sources */,
 				00371532256BF39B00F68734 /* MediaView.swift in Sources */,
+				00C108AA257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */,
 				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
 				007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */,
-				007A208825706C7200FB0713 /* Types.graphql.swift in Sources */,
 				00986BCB256878C90008D80C /* CurrentUser.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F202502A75300D2DB6F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00869F292502A75300D2DB6F /* Tests_iOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F2B2502A75300D2DB6F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00869F342502A75300D2DB6F /* Tests_macOS.swift in Sources */,
+				00C108AC257361E100E3DCBA /* Types.graphql.swift in Sources */,
+				00C108A8257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00869F262502A75300D2DB6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00869F132502A75300D2DB6F /* Amincapp (iOS) */;
-			targetProxy = 00869F252502A75300D2DB6F /* PBXContainerItemProxy */;
-		};
-		00869F312502A75300D2DB6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00869F1B2502A75300D2DB6F /* Amincapp (macOS) */;
-			targetProxy = 00869F302502A75300D2DB6F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		00869F3C2502A75300D2DB6F /* Debug */ = {
@@ -779,7 +657,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
 				PRODUCT_NAME = Amincapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -805,7 +683,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
 				PRODUCT_NAME = Amincapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -833,7 +711,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
 				PRODUCT_NAME = Amincapp;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -858,99 +736,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.litelt.Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
 				PRODUCT_NAME = Amincapp;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		00869F452502A75300D2DB6F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Amincapp (iOS)";
-			};
-			name = Debug;
-		};
-		00869F462502A75300D2DB6F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Amincapp (iOS)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		00869F482502A75300D2DB6F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Amincapp (macOS)";
-			};
-			name = Debug;
-		};
-		00869F492502A75300D2DB6F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.lite.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Amincapp (macOS)";
 			};
 			name = Release;
 		};
@@ -984,24 +773,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00869F442502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00869F452502A75300D2DB6F /* Debug */,
-				00869F462502A75300D2DB6F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00869F472502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00869F482502A75300D2DB6F /* Debug */,
-				00869F492502A75300D2DB6F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1027,6 +798,14 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 0.37.0;
+			};
+		};
+		00C108902573426000E3DCBA /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.3.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1056,6 +835,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		00C108912573426000E3DCBA /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C108902573426000E3DCBA /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
