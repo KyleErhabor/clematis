@@ -60,8 +60,9 @@ struct ActivityFeedListKindView: View {
                     WebImage(url: URL(string: activity.user?.avatar?.large ?? ""))
                         .resizable()
                         .placeholder { Color.accentColor }
-                        .cornerRadius(8)
+                        .scaledToFill()
                         .frame(width: 36, height: 36)
+                        .cornerRadius(8)
 
                     Text("\(activity.user?.name ?? "?")")
                         .fontWeight(.medium)

@@ -5,8 +5,8 @@
 //  Created by Kyle Erhabor on 9/4/20.
 //
 
-import SwiftUI
 import Apollo
+import SwiftUI
 
 class GraphQLNetwork {
     static let shared = GraphQLNetwork()
@@ -25,8 +25,13 @@ class GraphQLNetwork {
 }
 
 fileprivate struct GraphQLNetworkInterceptorProvider {
-    private(set) var store: ApolloStore
-    private(set) var client: URLSessionClient
+    private let store: ApolloStore
+    private let client: URLSessionClient
+
+    init(store: ApolloStore, client: URLSessionClient) {
+        self.store = store
+        self.client = client
+    }
 }
 
 extension GraphQLNetworkInterceptorProvider: InterceptorProvider {
