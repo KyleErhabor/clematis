@@ -8,62 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
-		00371532256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
 		00371541256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
-		00371542256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
-		00453BBE25656A7C00C389B1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BBD25656A7C00C389B1 /* Apollo */; };
-		00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00453BC325656A9000C389B1 /* SDWebImageSwiftUI */; };
 		0057D5CA2569716F0085D9EF /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityFeedView.swift */; };
-		0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5C92569716F0085D9EF /* ActivityFeedView.swift */; };
 		0057D5D12569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */; };
-		0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D02569718F0085D9EF /* ActivityFeedViewModel.swift */; };
 		0057D5D9256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */; };
-		0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5D8256973F60085D9EF /* ActivityFeedListKindView.swift */; };
 		0057D5E0256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */; };
-		0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5DF256974030085D9EF /* ActivityFeedTextKindView.swift */; };
 		0057D5E72569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
-		0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0057D5E62569740D0085D9EF /* ActivityFeedMessageKindView.swift */; };
 		006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
-		006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
-		006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
 		0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070E5EF2503045200BC0509 /* TabNavigationView.swift */; };
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
-		0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		007A1FF6256EE70200FB0713 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A1FF5256EE70100FB0713 /* ActivityView.swift */; };
-		007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A1FF5256EE70100FB0713 /* ActivityView.swift */; };
 		007A2001256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
-		007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2000256EE71E00FB0713 /* ActivityViewModel.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
 		00836396256782CA002A16B4 /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */; };
-		00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* Anime_CatalogApp.swift */; };
 		00869F382502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
-		00869F392502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
 		00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00869F0F2502A75300D2DB6F /* Assets.xcassets */; };
-		00869F3B2502A75300D2DB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00869F0F2502A75300D2DB6F /* Assets.xcassets */; };
 		00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */; };
 		00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 00869F4E2502B2D600D2DB6F /* Apollo */; };
 		00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */; };
-		00869F652502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */; };
-		00986BB62568482A0008D80C /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
-		00986BCB256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
 		00C1088A257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
-		00C1088B257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
 		00C108922573426000E3DCBA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 00C108912573426000E3DCBA /* SwiftSoup */; };
 		00C108A5257361E100E3DCBA /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A0257361E100E3DCBA /* Markdown.graphql.swift */; };
-		00C108A6257361E100E3DCBA /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A0257361E100E3DCBA /* Markdown.graphql.swift */; };
 		00C108A7257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */; };
-		00C108A8257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A1257361E100E3DCBA /* ActivityFeed.graphql.swift */; };
 		00C108A9257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */; };
-		00C108AA257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A2257361E100E3DCBA /* CurrentUser.graphql.swift */; };
 		00C108AB257361E100E3DCBA /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A3257361E100E3DCBA /* Types.graphql.swift */; };
-		00C108AC257361E100E3DCBA /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A3257361E100E3DCBA /* Types.graphql.swift */; };
 		00C108AD257361E100E3DCBA /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A4257361E100E3DCBA /* Activity.graphql.swift */; };
-		00C108AE257361E100E3DCBA /* Activity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C108A4257361E100E3DCBA /* Activity.graphql.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
-		00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,9 +61,6 @@
 		00869F0F2502A75300D2DB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00869F142502A75300D2DB6F /* Amincapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amincapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00869F172502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00869F1C2502A75300D2DB6F /* Amincapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amincapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		00869F1E2502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00869F1F2502A75300D2DB6F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLNetwork.swift; sourceTree = "<group>"; };
 		00869F662502D68C00D2DB6F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -118,15 +88,6 @@
 				00C108922573426000E3DCBA /* SwiftSoup in Frameworks */,
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F192502A75300D2DB6F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00453BC425656A9000C389B1 /* SDWebImageSwiftUI in Frameworks */,
-				00453BBE25656A7C00C389B1 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +164,6 @@
 				00869F682502D7E500D2DB6F /* README.md */,
 				00869F0C2502A75100D2DB6F /* Shared */,
 				00869F162502A75300D2DB6F /* iOS */,
-				00869F1D2502A75300D2DB6F /* macOS */,
 				00869F152502A75300D2DB6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -230,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				00869F142502A75300D2DB6F /* Amincapp.app */,
-				00869F1C2502A75300D2DB6F /* Amincapp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,15 +201,6 @@
 				0070E5EF2503045200BC0509 /* TabNavigationView.swift */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		00869F1D2502A75300D2DB6F /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				00869F1E2502A75300D2DB6F /* Info.plist */,
-				00869F1F2502A75300D2DB6F /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 		00869F622502CACE00D2DB6F /* Networking */ = {
@@ -358,27 +308,6 @@
 			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00869F1B2502A75300D2DB6F /* Amincapp (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00869F412502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (macOS)" */;
-			buildPhases = (
-				00869F182502A75300D2DB6F /* Sources */,
-				00869F192502A75300D2DB6F /* Frameworks */,
-				00869F1A2502A75300D2DB6F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Amincapp (macOS)";
-			packageProductDependencies = (
-				00453BBD25656A7C00C389B1 /* Apollo */,
-				00453BC325656A9000C389B1 /* SDWebImageSwiftUI */,
-			);
-			productName = "Anime Catalog (macOS)";
-			productReference = 00869F1C2502A75300D2DB6F /* Amincapp.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -389,9 +318,6 @@
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					00869F132502A75300D2DB6F = {
-						CreatedOnToolsVersion = 12.0;
-					};
-					00869F1B2502A75300D2DB6F = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
@@ -416,7 +342,6 @@
 			projectRoot = "";
 			targets = (
 				00869F132502A75300D2DB6F /* Amincapp (iOS) */,
-				00869F1B2502A75300D2DB6F /* Amincapp (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -427,14 +352,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F1A2502A75300D2DB6F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00869F3B2502A75300D2DB6F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,37 +409,6 @@
 				00869F362502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				00C108A5257361E100E3DCBA /* Markdown.graphql.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00869F182502A75300D2DB6F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00869F652502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
-				0057D5E82569740D0085D9EF /* ActivityFeedMessageKindView.swift in Sources */,
-				00CA19A5252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
-				0057D5DA256973F60085D9EF /* ActivityFeedListKindView.swift in Sources */,
-				006ED0E62517C9F6004992F7 /* Color+Hex.swift in Sources */,
-				0057D5E1256974030085D9EF /* ActivityFeedTextKindView.swift in Sources */,
-				0073DB81251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
-				00869F392502A75300D2DB6F /* ContentView.swift in Sources */,
-				00C1088B257341B600E3DCBA /* RichView.swift in Sources */,
-				007A1FF7256EE70200FB0713 /* ActivityView.swift in Sources */,
-				0057D5CB2569716F0085D9EF /* ActivityFeedView.swift in Sources */,
-				00C108AE257361E100E3DCBA /* Activity.graphql.swift in Sources */,
-				00986BB62568482A0008D80C /* AniList.swift in Sources */,
-				00371542256C141100F68734 /* UserView.swift in Sources */,
-				00C108A6257361E100E3DCBA /* Markdown.graphql.swift in Sources */,
-				00371532256BF39B00F68734 /* MediaView.swift in Sources */,
-				00C108AA257361E100E3DCBA /* CurrentUser.graphql.swift in Sources */,
-				00869F372502A75300D2DB6F /* Anime_CatalogApp.swift in Sources */,
-				006ED0D92517A80B004992F7 /* String+Capitalize.swift in Sources */,
-				0057D5D22569718F0085D9EF /* ActivityFeedViewModel.swift in Sources */,
-				007A2002256EE71E00FB0713 /* ActivityViewModel.swift in Sources */,
-				00986BCB256878C90008D80C /* CurrentUser.swift in Sources */,
-				00C108AC257361E100E3DCBA /* Types.graphql.swift in Sources */,
-				00C108A8257361E100E3DCBA /* ActivityFeed.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,56 +579,6 @@
 			};
 			name = Release;
 		};
-		00869F422502A75300D2DB6F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
-				PRODUCT_NAME = Amincapp;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		00869F432502A75300D2DB6F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYJ357XWK6;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
-				PRODUCT_NAME = Amincapp;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -760,15 +596,6 @@
 			buildConfigurations = (
 				00869F3F2502A75300D2DB6F /* Debug */,
 				00869F402502A75300D2DB6F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00869F412502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00869F422502A75300D2DB6F /* Debug */,
-				00869F432502A75300D2DB6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -811,16 +638,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		00453BBD25656A7C00C389B1 /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		00453BC325656A9000C389B1 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
 		007A20942570B05A00FB0713 /* Logging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */;
