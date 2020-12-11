@@ -7,6 +7,6 @@
 
 extension ActivityFeedQuery.Data.Page.Activity: Identifiable {
     public var id: Int {
-        return (asListActivity?.id ?? asTextActivity?.id ?? asMessageActivity?.id)!
+        return (asListActivity?.fragments.listActivityFragment.id ?? asTextActivity?.id ?? asMessageActivity?.id)!
     }
 }

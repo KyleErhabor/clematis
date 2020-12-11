@@ -1,45 +1,51 @@
 //
 //  ActivityFeedView.swift
-//  Amincapp
+//  Amincapp (iOS)
 //
-//  Created by Kyle Erhabor on 11/21/20.
+//  Created by Kyle Erhabor on 12/5/20.
 //
 
+import Combine
 import SwiftUI
 
 struct ActivityFeedView: View {
     @StateObject var viewModel = ActivityFeedViewModel()
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.activities) { activity in
-                    // Wrapping everything in a ScrollView allows for certain views in the row content to be
-                    // navigatable, while ignoring the non-navigatable elements.
-                    ScrollView {
-                        // The activity selection logic has been moved to its own view, because Swift had problems
-                        // type-checking the expression in reasonable time. My god, please fix this.
-                        ActivityFeedSelectionView(activity: activity)
-                    }
-                }
-            }.navigationTitle("Activity Feed")
-        }.onAppear {
+        List(viewModel.activities) { activity in
+            // In order to make certain views in the list cell navigatable (`NavigationView(...) {...}`), we're
+            // wrapping our main view in a `ScrollView`.
+            ScrollView {
+                // NOTE: "The compiler is unable to type-check this expression in reasonable time; try breaking up
+                // the expression into distinct sub-expressions"
+                // Do not remove this sub-view until this issue has been resolved.
+                ActivityFeedSelectorView(activity: activity)
+                    .padding(8)
+            }.animation(.default)
+        }.currentUser()
+        .navigationTitle("Activity Feed")
+        .environmentObject(viewModel)
+        .onAppear {
             viewModel.fetchActivities()
         }
     }
 }
 
-fileprivate struct ActivityFeedSelectionView: View {
-    let activity: ActivityFeedQuery.Data.Page.Activity
+struct ActivityFeedSelectorView: View {
+    private let activity: ActivityFeedQuery.Data.Page.Activity
 
     var body: some View {
-        if let listActivity = activity.asListActivity {
-            ActivityFeedListKindView(activity: listActivity)
+        if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
+            ActivityListKindView(activity: listActivity)
         } else if activity.asTextActivity != nil {
-            ActivityFeedTextKindView()
+            Text("Text Activity")
         } else if activity.asMessageActivity != nil {
-            ActivityFeedMessageKindView()
+            Text("Message Activity")
         }
+    }
+
+    init(activity: ActivityFeedQuery.Data.Page.Activity) {
+        self.activity = activity
     }
 }
 

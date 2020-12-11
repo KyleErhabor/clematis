@@ -1,34 +1,15 @@
 //
 //  ActivityFeedViewModel.swift
-//  Amincapp
+//  Amincapp (iOS)
 //
-//  Created by Kyle Erhabor on 11/21/20.
+//  Created by Kyle Erhabor on 12/5/20.
 //
 
-import Foundation
+import Combine
 
 class ActivityFeedViewModel: ObservableObject {
-    /// An array of activity feed activity instances that -- when updated -- trigger a UI refresh.
-    ///
-    /// To populate the array, call the `fetchActivities(page:isFollowing:)` method.
     @Published private(set) var activities = [ActivityFeedQuery.Data.Page.Activity]()
 
-    /// Fetches the most recent activity updates from AniList.
-    ///
-    /// AniList manages the activity feed by clamping media progress updates together based on how much time has passed between the last update. All other
-    /// kinds of activity updates are the responsibility of the developer.
-    ///
-    /// Mirroring the Following and Global feed varies on the value of `isFollowing`. `false` indicates the Following feed, while `true` inditicates the
-    /// Global feed.
-    ///
-    /// - Parameters:
-    ///   - page: The current page number for pagination.
-    ///   - isFollowing: If the activities displayed should be from users the current user follows. This acts as the Following feed rather than the Global
-    ///    feed.
-    ///
-    /// - Returns: This method does not return a value. Instead, it updates the `activities` array with new activity (up to 50 new results at once). If there
-    /// are no new results, `activities` will not be updated, not triggering a UI refresh.
-    ///
     func fetchActivities(page: Int = 1, isFollowing: Bool = false) {
         GraphQLNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
             page: page,
@@ -36,17 +17,60 @@ class ActivityFeedViewModel: ObservableObject {
             hasRepliesOrTypeText: !isFollowing
         )) { result in
             switch result {
-                case .success(let queryData):
-                    if let activities = queryData.data?.page?.activities {
-                        // TODO: Update old activity in the `activities` array.
-                        let activities = activities.compactMap { $0 }
-
+                case .success(let query):
+                    if let activities = query.data?.page?.activities?.compactMap({ $0 }) {
                         if !activities.isEmpty {
                             self.activities = activities
                         }
                     }
-                case .failure(let err): // MARK: UI error
-                    print(err)
+                case .failure(let err):
+                    logger.error("\(err)")
+            }
+        }
+    }
+
+    func like(id: Int, type: LikeableType) {
+        GraphQLNetwork.shared.anilist.perform(mutation: LikeMutation(id: id, type: type)) { result in
+            switch result {
+                case .success(let query):
+                    if let kind = query.data?.toggleLikeV2 {
+                        if let listActivity = kind.asListActivity?.fragments.listActivityFragment {
+                            if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
+                                self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
+                            }
+                        }
+                    }
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case .failure(let err):
+                    logger.error("\(err)")
+            }
+        }
+    }
+
+    func subscribe(id: Int, subscribe: Bool) {
+        GraphQLNetwork.shared.anilist.perform(mutation: ActivitySubscriptionMutation(
+            id: id,
+            subscribe: subscribe
+        )) { result in
+            switch result {
+                case .success(let query):
+                    if let kind = query.data?.toggleActivitySubscription {
+                        // TODO: Add `asTextActivity` and `asMessageActivity` cases.
+                        if let listActivity = kind.asListActivity?.fragments.listActivityFragment {
+                            if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
+                                self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
+                            }
+                        }
+                    }
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case .failure(let err):
+                    logger.error("\(err)")
             }
         }
     }

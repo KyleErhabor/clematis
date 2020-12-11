@@ -12,25 +12,35 @@ struct TabNavigationView: View {
 
     var body: some View {
         TabView {
-            ActivityFeedView().tabItem {
+            NavigationView {
+                ActivityFeedView()
+            }.tabItem {
                 Label("Home", systemImage: "house")
             }
 
             if currentUser.user != nil {
-                Text("TODO (user tab)").tabItem {
+                NavigationView {
+                    Text("TODO (user tab)")
+                }.tabItem {
                     Label("Profile", systemImage: "person")
                 }
 
-                Text("TODO (my list tab)").tabItem {
+                NavigationView {
+                    Text("TODO (my list tab)")
+                }.tabItem {
                     Label("My List", systemImage: "books.vertical")
                 }
             }
 
-            Text("TODO (browse tab)").tabItem {
+            NavigationView {
+                Text("TODO (browse tab)")
+            }.tabItem {
                 Label("Search", systemImage: "magnifyingglass")
             }
 
-            Text("TODO (forum tab)").tabItem {
+            NavigationView {
+                Text("TODO (forum tab)")
+            }.tabItem {
                 Label("Forum", systemImage: "bubble.left.and.bubble.right")
             }
         }
