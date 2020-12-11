@@ -11,7 +11,7 @@ import SwiftUI
 let logger = Logger(label: Bundle.main.bundleIdentifier ?? "app")
 
 @main
-struct Anime_CatalogApp: App {
+struct AmincappApp: App {
     @StateObject private var currentUser = CurrentUser()
 
     var body: some Scene {
