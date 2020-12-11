@@ -1,0 +1,15 @@
+query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+  Page(page: $page, perPage: 50) {
+    activities(isFollowing: $isFollowing, hasRepliesOrTypeText: $hasRepliesOrTypeText, sort: [ID_DESC]) {
+      ... on TextActivity {
+        id
+      }
+      ... on ListActivity {
+        ...listActivityFragment
+      }
+      ... on MessageActivity {
+        id
+      }
+    }
+  }
+}

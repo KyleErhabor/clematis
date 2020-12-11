@@ -1,0 +1,29 @@
+fragment listActivityFragment on ListActivity {
+  id
+  status
+  isLiked
+  siteUrl
+  progress
+  isLocked
+  createdAt
+  likeCount
+  replyCount
+  isSubscribed
+  user {
+    id
+    name
+    avatar {
+      large
+    }
+  }
+  media {
+    id
+    coverImage {
+      color
+      extraLarge
+    }
+    title {
+      userPreferred
+    }
+  }
+}
