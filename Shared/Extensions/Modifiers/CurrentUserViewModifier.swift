@@ -13,9 +13,7 @@ fileprivate struct CurrentUserViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    print("Clicked!")
-                } label: {
+                Link(destination: AniList.authorizationURL) {
                     Image(systemName: currentUser.user == nil ? "person.crop.circle.badge.plus" : "person.crop.circle")
                 }
             }
