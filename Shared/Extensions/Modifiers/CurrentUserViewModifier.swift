@@ -13,8 +13,23 @@ fileprivate struct CurrentUserViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Link(destination: AniList.authorizationURL) {
-                    Image(systemName: currentUser.user == nil ? "person.crop.circle.badge.plus" : "person.crop.circle")
+                if let user = currentUser.user {
+                    Menu {
+                        Text("Signed in as \(user.name)")
+
+                        Button {
+                            currentUser.removeUser()
+                        } label: {
+                            Label("Sign Out", systemImage: "person.crop.circle.badge.minus")
+                        }
+                    } label: {
+                        Image(systemName: "person.crop.circle")
+                            .imageScale(.large)
+                    }
+                } else {
+                    Link(destination: AniList.authorizationURL) {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                    }
                 }
             }
         }

@@ -12,8 +12,9 @@ struct ActivityListKindView: View {
     @EnvironmentObject private var currentUser: CurrentUser
     @EnvironmentObject private var viewModel: ActivityFeedViewModel
     @State private var error: AniList.ErrorKind?
+    @State private var isPresenting = false
 
-    private let activity: ListActivityFragment
+    private(set) var activity: ListActivityFragment
 
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
@@ -80,15 +81,11 @@ struct ActivityListKindView: View {
                 Spacer()
 
                 HStack {
-                    Text("") // Find an alternative for allocating a small amount of space to balance space.
+                    Text("") // NOTE: Find an alternative for allocating a small amount of space to balance space.
                     Spacer()
 
                     Button {
-                        if currentUser.user == nil {
-                            error = .unauthorized
-                        } else {
-                            viewModel.like(id: activity.id, type: .activity)
-                        }
+                        like()
                     } label: {
                         Label("\(activity.likeCount)", systemImage: activity.isLiked == true ? "heart.fill" : "heart")
                             .foregroundColor(.accentColor)
@@ -99,10 +96,25 @@ struct ActivityListKindView: View {
                         .foregroundColor(.accentColor)
                 }
             }
-        }.alert(item: $error) { err in
-            Alert(title: Text(err.message()))
         }.contextMenu {
             let isSubscribed = activity.isSubscribed ?? false
+
+            Button {
+                if currentUser.user == nil {
+                    error = .unauthorized
+                } else {
+                    isPresenting = true
+                }
+            } label: {
+                Label("Open List Editor", systemImage: "pencil")
+            }
+
+            Button {
+                like()
+            } label: {
+                Label("Like", systemImage: activity.isLiked == true ? "heart.fill" : "heart")
+                    .foregroundColor(.accentColor)
+            }
 
             Button {
                 if currentUser.user == nil {
@@ -113,11 +125,19 @@ struct ActivityListKindView: View {
             } label: {
                 Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
             }
+        }.alert(item: $error) { err in
+            Alert(title: Text(err.message()))
+        }.sheet(isPresented: $isPresenting) {
+            MediaEditorView(viewModel: MediaEditorViewModel(id: activity.media!.id))
         }
     }
 
-    init(activity: ListActivityFragment) {
-        self.activity = activity
+    func like() {
+        if currentUser.user == nil {
+            error = .unauthorized
+        } else {
+            viewModel.like(id: activity.id, type: .activity)
+        }
     }
 }
 

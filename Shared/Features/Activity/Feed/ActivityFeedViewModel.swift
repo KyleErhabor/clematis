@@ -14,7 +14,8 @@ class ActivityFeedViewModel: ObservableObject {
         GraphQLNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
             page: page,
             isFollowing: isFollowing,
-            hasRepliesOrTypeText: !isFollowing
+            hasRepliesOrTypeText: !isFollowing,
+            includeBuggyFields: true
         )) { result in
             switch result {
                 case .success(let query):
@@ -30,7 +31,11 @@ class ActivityFeedViewModel: ObservableObject {
     }
 
     func like(id: Int, type: LikeableType) {
-        GraphQLNetwork.shared.anilist.perform(mutation: LikeMutation(id: id, type: type)) { result in
+        GraphQLNetwork.shared.anilist.perform(mutation: LikeMutation(
+            id: id,
+            type: type,
+            includeBuggyFields: false
+        )) { result in
             switch result {
                 case .success(let query):
                     if let kind = query.data?.toggleLikeV2 {
@@ -53,7 +58,8 @@ class ActivityFeedViewModel: ObservableObject {
     func subscribe(id: Int, subscribe: Bool) {
         GraphQLNetwork.shared.anilist.perform(mutation: ActivitySubscriptionMutation(
             id: id,
-            subscribe: subscribe
+            subscribe: subscribe,
+            includeBuggyFields: false
         )) { result in
             switch result {
                 case .success(let query):
