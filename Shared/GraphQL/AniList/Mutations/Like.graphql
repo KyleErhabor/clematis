@@ -1,4 +1,4 @@
-mutation Like($id: Int!, $type: LikeableType!) {
+mutation Like($id: Int!, $type: LikeableType!, $includeBuggyFields: Boolean!) {
   ToggleLikeV2(id: $id, type: $type) {
     ... on ListActivity {
       ...listActivityFragment
