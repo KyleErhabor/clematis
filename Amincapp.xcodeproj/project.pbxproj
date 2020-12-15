@@ -8,27 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00152BAA257C15400080C352 /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA9257C15400080C352 /* ActivityFeedViewModel.swift */; };
-		002D81372582F6B200866A31 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81302582F6B100866A31 /* CurrentUser.graphql.swift */; };
-		002D81382582F6B200866A31 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81302582F6B100866A31 /* CurrentUser.graphql.swift */; };
-		002D81392582F6B200866A31 /* ActivitySubscription.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81312582F6B100866A31 /* ActivitySubscription.graphql.swift */; };
-		002D813A2582F6B200866A31 /* ActivitySubscription.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81312582F6B100866A31 /* ActivitySubscription.graphql.swift */; };
-		002D813B2582F6B200866A31 /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81322582F6B100866A31 /* Like.graphql.swift */; };
-		002D813C2582F6B200866A31 /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81322582F6B100866A31 /* Like.graphql.swift */; };
-		002D813D2582F6B200866A31 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81332582F6B100866A31 /* ActivityFeed.graphql.swift */; };
-		002D813E2582F6B200866A31 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81332582F6B100866A31 /* ActivityFeed.graphql.swift */; };
-		002D813F2582F6B200866A31 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81342582F6B100866A31 /* Markdown.graphql.swift */; };
-		002D81402582F6B200866A31 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81342582F6B100866A31 /* Markdown.graphql.swift */; };
-		002D81412582F6B200866A31 /* Fragments.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81352582F6B100866A31 /* Fragments.graphql.swift */; };
-		002D81422582F6B200866A31 /* Fragments.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81352582F6B100866A31 /* Fragments.graphql.swift */; };
-		002D81432582F6B200866A31 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81362582F6B200866A31 /* Types.graphql.swift */; };
-		002D81442582F6B200866A31 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D81362582F6B200866A31 /* Types.graphql.swift */; };
 		002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D814A2583090E00866A31 /* MediaEditorView.swift */; };
 		002D814C2583090E00866A31 /* MediaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D814A2583090E00866A31 /* MediaEditorView.swift */; };
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
 		00371541256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
-		006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0D72517A80B004992F7 /* String+Capitalize.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
 		0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070E5EF2503045200BC0509 /* TabNavigationView.swift */; };
+		0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071E89E258337D600173A16 /* MediaEditorViewModel.swift */; };
+		0071E8A0258337D600173A16 /* MediaEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071E89E258337D600173A16 /* MediaEditorViewModel.swift */; };
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
 		00836396256782CA002A16B4 /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
@@ -41,11 +28,41 @@
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
 		00C1088A257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
 		00C108922573426000E3DCBA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 00C108912573426000E3DCBA /* SwiftSoup */; };
+		00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
+		00C8C3952587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
+		00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */; };
+		00C8C39C2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */; };
+		00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
+		00C8C3A12587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
+		00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3A42587ED3000443135 /* MediaEditorFormCustomListView.swift */; };
+		00C8C3A62587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3A42587ED3000443135 /* MediaEditorFormCustomListView.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
 		00E365662581B5A7007DAF08 /* CurrentUserViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E365652581B5A7007DAF08 /* CurrentUserViewModifier.swift */; };
 		00E3656E2581D687007DAF08 /* ActivityTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3656D2581D687007DAF08 /* ActivityTextKindView.swift */; };
 		00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA4257C13CF0080C352 /* ActivityFeedView.swift */; };
 		00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F18C02257D728300AB0183 /* ActivityListKindView.swift */; };
+		00FA0C30258452BA00A08117 /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C27258452BA00A08117 /* Like.graphql.swift */; };
+		00FA0C31258452BA00A08117 /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C27258452BA00A08117 /* Like.graphql.swift */; };
+		00FA0C32258452BA00A08117 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C28258452BA00A08117 /* ActivityFeed.graphql.swift */; };
+		00FA0C33258452BA00A08117 /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C28258452BA00A08117 /* ActivityFeed.graphql.swift */; };
+		00FA0C34258452BA00A08117 /* ActivitySubscription.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C29258452BA00A08117 /* ActivitySubscription.graphql.swift */; };
+		00FA0C35258452BA00A08117 /* ActivitySubscription.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C29258452BA00A08117 /* ActivitySubscription.graphql.swift */; };
+		00FA0C36258452BA00A08117 /* Media.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2A258452BA00A08117 /* Media.graphql.swift */; };
+		00FA0C37258452BA00A08117 /* Media.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2A258452BA00A08117 /* Media.graphql.swift */; };
+		00FA0C38258452BA00A08117 /* MediaEditor.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2B258452BA00A08117 /* MediaEditor.graphql.swift */; };
+		00FA0C39258452BA00A08117 /* MediaEditor.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2B258452BA00A08117 /* MediaEditor.graphql.swift */; };
+		00FA0C3A258452BA00A08117 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2C258452BA00A08117 /* CurrentUser.graphql.swift */; };
+		00FA0C3B258452BA00A08117 /* CurrentUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2C258452BA00A08117 /* CurrentUser.graphql.swift */; };
+		00FA0C3C258452BA00A08117 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2D258452BA00A08117 /* Types.graphql.swift */; };
+		00FA0C3D258452BA00A08117 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2D258452BA00A08117 /* Types.graphql.swift */; };
+		00FA0C3E258452BA00A08117 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2E258452BA00A08117 /* Markdown.graphql.swift */; };
+		00FA0C3F258452BA00A08117 /* Markdown.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2E258452BA00A08117 /* Markdown.graphql.swift */; };
+		00FA0C40258452BA00A08117 /* ActivityUnion.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2F258452BA00A08117 /* ActivityUnion.graphql.swift */; };
+		00FA0C41258452BA00A08117 /* ActivityUnion.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C2F258452BA00A08117 /* ActivityUnion.graphql.swift */; };
+		00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */; };
+		00FA0C4825845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */; };
+		00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */; };
+		00FA0C512584F4D200A08117 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,19 +72,14 @@
 		002D81162582BF1F00866A31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		002D81172582BF1F00866A31 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		002D812B2582F40B00866A31 /* ActivitySubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivitySubscription.graphql; sourceTree = "<group>"; };
-		002D81302582F6B100866A31 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
-		002D81312582F6B100866A31 /* ActivitySubscription.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySubscription.graphql.swift; sourceTree = "<group>"; };
-		002D81322582F6B100866A31 /* Like.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.graphql.swift; sourceTree = "<group>"; };
-		002D81332582F6B100866A31 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
-		002D81342582F6B100866A31 /* Markdown.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.graphql.swift; sourceTree = "<group>"; };
-		002D81352582F6B100866A31 /* Fragments.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fragments.graphql.swift; sourceTree = "<group>"; };
-		002D81362582F6B200866A31 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
 		002D814A2583090E00866A31 /* MediaEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorView.swift; sourceTree = "<group>"; };
+		002D81512583212500866A31 /* Media.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Media.graphql; sourceTree = "<group>"; };
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		006ED0D72517A80B004992F7 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0070E5EF2503045200BC0509 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
+		0071E89E258337D600173A16 /* MediaEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorViewModel.swift; sourceTree = "<group>"; };
+		0071E8C32583A7D900173A16 /* MediaEditor.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MediaEditor.graphql; sourceTree = "<group>"; };
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		00836395256782CA002A16B4 /* AniList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniList.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* AmincappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmincappApp.swift; sourceTree = "<group>"; };
@@ -83,6 +95,10 @@
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		00C10889257341B600E3DCBA /* RichView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
+		00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormOverviewView.swift; sourceTree = "<group>"; };
+		00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormProgressView.swift; sourceTree = "<group>"; };
+		00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormAdvancedScoresView.swift; sourceTree = "<group>"; };
+		00C8C3A42587ED3000443135 /* MediaEditorFormCustomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormCustomListView.swift; sourceTree = "<group>"; };
 		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
@@ -90,7 +106,18 @@
 		00E3656D2581D687007DAF08 /* ActivityTextKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTextKindView.swift; sourceTree = "<group>"; };
 		00F18C02257D728300AB0183 /* ActivityListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListKindView.swift; sourceTree = "<group>"; };
 		00F3864D257E9B11000DBDA0 /* Like.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Like.graphql; sourceTree = "<group>"; };
-		00F3865E257EA06F000DBDA0 /* Fragments.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fragments.graphql; sourceTree = "<group>"; };
+		00F3865E257EA06F000DBDA0 /* ActivityUnion.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityUnion.graphql; sourceTree = "<group>"; };
+		00FA0C27258452BA00A08117 /* Like.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.graphql.swift; sourceTree = "<group>"; };
+		00FA0C28258452BA00A08117 /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
+		00FA0C29258452BA00A08117 /* ActivitySubscription.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySubscription.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2A258452BA00A08117 /* Media.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2B258452BA00A08117 /* MediaEditor.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEditor.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2C258452BA00A08117 /* CurrentUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2D258452BA00A08117 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2E258452BA00A08117 /* Markdown.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.graphql.swift; sourceTree = "<group>"; };
+		00FA0C2F258452BA00A08117 /* ActivityUnion.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityUnion.graphql.swift; sourceTree = "<group>"; };
+		00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLCustomScalars.swift; sourceTree = "<group>"; };
+		00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +157,8 @@
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
 				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
 				00C108972573619D00E3DCBA /* Markdown.graphql */,
+				002D81512583212500866A31 /* Media.graphql */,
+				0071E8C32583A7D900173A16 /* MediaEditor.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -143,17 +172,12 @@
 			path = Mutations;
 			sourceTree = "<group>";
 		};
-		002D8147258308A200866A31 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		002D8149258308FB00866A31 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
 				002D814A2583090E00866A31 /* MediaEditorView.swift */,
+				0071E89E258337D600173A16 /* MediaEditorViewModel.swift */,
+				00C8C3922587E7A500443135 /* Sections */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -183,6 +207,14 @@
 				00F18C00257D725200AB0183 /* Feed */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		0071E87E25832B2100173A16 /* Fragments */ = {
+			isa = PBXGroup;
+			children = (
+				00F3865E257EA06F000DBDA0 /* ActivityUnion.graphql */,
+			);
+			path = Fragments;
 			sourceTree = "<group>";
 		};
 		0073DB7E251EEE2E000C1FA1 /* Settings */ = {
@@ -254,7 +286,8 @@
 			children = (
 				00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */,
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
-				006ED0D72517A80B004992F7 /* String+Capitalize.swift */,
+				00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */,
+				00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */,
 				00E365642581B56E007DAF08 /* Modifiers */,
 			);
 			path = Extensions;
@@ -280,15 +313,28 @@
 		00BB6880251FE14A00B7DDC9 /* AniList */ = {
 			isa = PBXGroup;
 			children = (
-				002D81332582F6B100866A31 /* ActivityFeed.graphql.swift */,
-				002D81312582F6B100866A31 /* ActivitySubscription.graphql.swift */,
-				002D81302582F6B100866A31 /* CurrentUser.graphql.swift */,
-				002D81352582F6B100866A31 /* Fragments.graphql.swift */,
-				002D81322582F6B100866A31 /* Like.graphql.swift */,
-				002D81342582F6B100866A31 /* Markdown.graphql.swift */,
-				002D81362582F6B200866A31 /* Types.graphql.swift */,
+				00FA0C28258452BA00A08117 /* ActivityFeed.graphql.swift */,
+				00FA0C29258452BA00A08117 /* ActivitySubscription.graphql.swift */,
+				00FA0C2F258452BA00A08117 /* ActivityUnion.graphql.swift */,
+				00FA0C2C258452BA00A08117 /* CurrentUser.graphql.swift */,
+				00FA0C27258452BA00A08117 /* Like.graphql.swift */,
+				00FA0C2E258452BA00A08117 /* Markdown.graphql.swift */,
+				00FA0C2A258452BA00A08117 /* Media.graphql.swift */,
+				00FA0C2B258452BA00A08117 /* MediaEditor.graphql.swift */,
+				00FA0C2D258452BA00A08117 /* Types.graphql.swift */,
 			);
 			path = AniList;
+			sourceTree = "<group>";
+		};
+		00C8C3922587E7A500443135 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */,
+				00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */,
+				00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */,
+				00C8C3A42587ED3000443135 /* MediaEditorFormCustomListView.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		00C9B2F9251F9830000A8139 /* GraphQL */ = {
@@ -304,9 +350,9 @@
 			isa = PBXGroup;
 			children = (
 				00869F542502C0EE00D2DB6F /* schema.json */,
-				00F3865E257EA06F000DBDA0 /* Fragments.graphql */,
-				002D81282582F35700866A31 /* Queries */,
+				0071E87E25832B2100173A16 /* Fragments */,
 				002D81292582F36600866A31 /* Mutations */,
+				002D81282582F35700866A31 /* Queries */,
 			);
 			path = AniList;
 			sourceTree = "<group>";
@@ -314,7 +360,6 @@
 		00CAB6EE251977CA00B8C64F /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				002D8147258308A200866A31 /* New Group */,
 				0057D5C82569712F0085D9EF /* Activity */,
 				0037152F256BF39000F68734 /* Media */,
 				0037153F256C140000F68734 /* User */,
@@ -462,7 +507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# AniList\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --target swift --includes './Shared/GraphQL/AniList/**/*.graphql' --localSchemaFile ./Shared/GraphQL/AniList/schema.json ./Shared/GraphQL/API/AniList\n\n# Schema downloader\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# AniList\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --passthroughCustomScalars --target swift --includes './Shared/GraphQL/AniList/**/*.graphql' --localSchemaFile ./Shared/GraphQL/AniList/schema.json ./Shared/GraphQL/API/AniList\n\n# Schema downloader\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -471,14 +516,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002D81442582F6B200866A31 /* Types.graphql.swift in Sources */,
-				002D813C2582F6B200866A31 /* Like.graphql.swift in Sources */,
+				00FA0C31258452BA00A08117 /* Like.graphql.swift in Sources */,
+				00FA0C37258452BA00A08117 /* Media.graphql.swift in Sources */,
+				00C8C3A62587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */,
+				00FA0C35258452BA00A08117 /* ActivitySubscription.graphql.swift in Sources */,
+				00FA0C512584F4D200A08117 /* String+Capitalize.swift in Sources */,
+				00FA0C41258452BA00A08117 /* ActivityUnion.graphql.swift in Sources */,
+				00FA0C3F258452BA00A08117 /* Markdown.graphql.swift in Sources */,
+				00C8C39C2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */,
+				00FA0C3B258452BA00A08117 /* CurrentUser.graphql.swift in Sources */,
+				00FA0C3D258452BA00A08117 /* Types.graphql.swift in Sources */,
+				0071E8A0258337D600173A16 /* MediaEditorViewModel.swift in Sources */,
+				00C8C3952587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */,
+				00FA0C4825845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
+				00FA0C39258452BA00A08117 /* MediaEditor.graphql.swift in Sources */,
+				00C8C3A12587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */,
 				002D814C2583090E00866A31 /* MediaEditorView.swift in Sources */,
-				002D813A2582F6B200866A31 /* ActivitySubscription.graphql.swift in Sources */,
-				002D81382582F6B200866A31 /* CurrentUser.graphql.swift in Sources */,
-				002D81402582F6B200866A31 /* Markdown.graphql.swift in Sources */,
-				002D81422582F6B200866A31 /* Fragments.graphql.swift in Sources */,
-				002D813E2582F6B200866A31 /* ActivityFeed.graphql.swift in Sources */,
+				00FA0C33258452BA00A08117 /* ActivityFeed.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,31 +540,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FA0C38258452BA00A08117 /* MediaEditor.graphql.swift in Sources */,
 				00E3656E2581D687007DAF08 /* ActivityTextKindView.swift in Sources */,
-				006ED0D82517A80B004992F7 /* String+Capitalize.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
+				00FA0C3C258452BA00A08117 /* Types.graphql.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
 				002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
+				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
 				00E365662581B5A7007DAF08 /* CurrentUserViewModifier.swift in Sources */,
-				002D81372582F6B200866A31 /* CurrentUser.graphql.swift in Sources */,
-				002D813D2582F6B200866A31 /* ActivityFeed.graphql.swift in Sources */,
+				00FA0C32258452BA00A08117 /* ActivityFeed.graphql.swift in Sources */,
 				00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */,
-				002D813F2582F6B200866A31 /* Markdown.graphql.swift in Sources */,
+				00FA0C34258452BA00A08117 /* ActivitySubscription.graphql.swift in Sources */,
+				00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
+				00FA0C3E258452BA00A08117 /* Markdown.graphql.swift in Sources */,
 				00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */,
+				00FA0C3A258452BA00A08117 /* CurrentUser.graphql.swift in Sources */,
+				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
 				00C1088A257341B600E3DCBA /* RichView.swift in Sources */,
+				00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */,
+				00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */,
 				00152BAA257C15400080C352 /* ActivityFeedViewModel.swift in Sources */,
+				00FA0C40258452BA00A08117 /* ActivityUnion.graphql.swift in Sources */,
+				00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,
 				00371531256BF39B00F68734 /* MediaView.swift in Sources */,
 				0070E5F02503045200BC0509 /* TabNavigationView.swift in Sources */,
-				002D813B2582F6B200866A31 /* Like.graphql.swift in Sources */,
+				00FA0C30258452BA00A08117 /* Like.graphql.swift in Sources */,
 				00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */,
-				002D81392582F6B200866A31 /* ActivitySubscription.graphql.swift in Sources */,
-				002D81432582F6B200866A31 /* Types.graphql.swift in Sources */,
+				00FA0C36258452BA00A08117 /* Media.graphql.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
+				0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */,
-				002D81412582F6B200866A31 /* Fragments.graphql.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +593,7 @@
 				DEVELOPMENT_TEAM = UYJ357XWK6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Amincapp/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -559,7 +621,7 @@
 				DEVELOPMENT_TEAM = UYJ357XWK6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Amincapp/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -791,7 +853,7 @@
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.37.0;
+				minimumVersion = 0.38.3;
 			};
 		};
 		00C108902573426000E3DCBA /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {

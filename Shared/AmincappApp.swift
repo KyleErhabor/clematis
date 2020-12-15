@@ -12,7 +12,7 @@ let logger = Logger(label: Bundle.main.bundleIdentifier ?? "app")
 
 @main
 struct AmincappApp: App {
-    @StateObject private var currentUser = CurrentUser()
+    @StateObject var currentUser = CurrentUser()
 
     var body: some Scene {
         WindowGroup {
@@ -20,6 +20,8 @@ struct AmincappApp: App {
                 .environmentObject(currentUser)
                 .onAppear {
                     currentUser.fetchUser()
+                }.onOpenURL { url in
+                    currentUser.handleIncomingURL(url: url)
                 }
         }.commands {
             #if DEBUG

@@ -9,14 +9,14 @@ fragment listActivityFragment on ListActivity {
   likeCount
   replyCount
   isSubscribed
-  user {
+  user @include(if: $includeBuggyFields) {
     id
     name
     avatar {
       large
     }
   }
-  media {
+  media @include(if: $includeBuggyFields) {
     id
     coverImage {
       color

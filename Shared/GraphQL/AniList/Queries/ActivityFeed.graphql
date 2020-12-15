@@ -1,4 +1,4 @@
-query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!, $includeBuggyFields: Boolean!) {
   Page(page: $page, perPage: 50) {
     activities(isFollowing: $isFollowing, hasRepliesOrTypeText: $hasRepliesOrTypeText, sort: [ID_DESC]) {
       ... on TextActivity {

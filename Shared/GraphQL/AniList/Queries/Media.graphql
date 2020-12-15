@@ -1,0 +1,7 @@
+query Media($page: Int!, $id: Int, $search: String) {
+  Page(page: $page, perPage: 50) {
+    media(id: $id, search: $search) {
+      id
+    }
+  }
+}

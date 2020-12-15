@@ -54,3 +54,174 @@ public enum LikeableType: RawRepresentable, Equatable, Hashable, CaseIterable, A
     ]
   }
 }
+
+/// Media list scoring type
+public enum ScoreFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// An integer from 0-100
+  case point_100
+  /// A float from 0-10 with 1 decimal place
+  case point_10Decimal
+  /// An integer from 0-10
+  case point_10
+  /// An integer from 0-5. Should be represented in Stars
+  case point_5
+  /// An integer from 0-3. Should be represented in Smileys. 0 => No Score, 1 => :(, 2 => :|, 3 => :)
+  case point_3
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "POINT_100": self = .point_100
+      case "POINT_10_DECIMAL": self = .point_10Decimal
+      case "POINT_10": self = .point_10
+      case "POINT_5": self = .point_5
+      case "POINT_3": self = .point_3
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .point_100: return "POINT_100"
+      case .point_10Decimal: return "POINT_10_DECIMAL"
+      case .point_10: return "POINT_10"
+      case .point_5: return "POINT_5"
+      case .point_3: return "POINT_3"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScoreFormat, rhs: ScoreFormat) -> Bool {
+    switch (lhs, rhs) {
+      case (.point_100, .point_100): return true
+      case (.point_10Decimal, .point_10Decimal): return true
+      case (.point_10, .point_10): return true
+      case (.point_5, .point_5): return true
+      case (.point_3, .point_3): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScoreFormat] {
+    return [
+      .point_100,
+      .point_10Decimal,
+      .point_10,
+      .point_5,
+      .point_3,
+    ]
+  }
+}
+
+/// Media type enum, anime or manga.
+public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Japanese Anime
+  case anime
+  /// Asian comic
+  case manga
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "ANIME": self = .anime
+      case "MANGA": self = .manga
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .anime: return "ANIME"
+      case .manga: return "MANGA"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaType, rhs: MediaType) -> Bool {
+    switch (lhs, rhs) {
+      case (.anime, .anime): return true
+      case (.manga, .manga): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaType] {
+    return [
+      .anime,
+      .manga,
+    ]
+  }
+}
+
+/// Media list watching/reading status enum.
+public enum MediaListStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Currently watching/reading
+  case current
+  /// Planning to watch/read
+  case planning
+  /// Finished watching/reading
+  case completed
+  /// Stopped watching/reading before completing
+  case dropped
+  /// Paused watching/reading
+  case paused
+  /// Re-watching/reading
+  case repeating
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "CURRENT": self = .current
+      case "PLANNING": self = .planning
+      case "COMPLETED": self = .completed
+      case "DROPPED": self = .dropped
+      case "PAUSED": self = .paused
+      case "REPEATING": self = .repeating
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .current: return "CURRENT"
+      case .planning: return "PLANNING"
+      case .completed: return "COMPLETED"
+      case .dropped: return "DROPPED"
+      case .paused: return "PAUSED"
+      case .repeating: return "REPEATING"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaListStatus, rhs: MediaListStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.current, .current): return true
+      case (.planning, .planning): return true
+      case (.completed, .completed): return true
+      case (.dropped, .dropped): return true
+      case (.paused, .paused): return true
+      case (.repeating, .repeating): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaListStatus] {
+    return [
+      .current,
+      .planning,
+      .completed,
+      .dropped,
+      .paused,
+      .repeating,
+    ]
+  }
+}

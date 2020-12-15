@@ -20,7 +20,7 @@ enum AniList {
 
         func message() -> String {
             switch self {
-                case .unauthorized: return "You must sign in."
+                case .unauthorized: return "You must sign in to perform this action."
                 case .unknown: return "Unable to perform action."
             }
         }

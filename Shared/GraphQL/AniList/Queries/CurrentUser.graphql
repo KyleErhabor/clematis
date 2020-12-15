@@ -2,5 +2,18 @@ query CurrentUser {
   Viewer {
     id
     name
+    mediaListOptions {
+      scoreFormat
+      animeList {
+        customLists
+        advancedScoring
+        advancedScoringEnabled
+      }
+      mangaList {
+        customLists
+        advancedScoring
+        advancedScoringEnabled
+      }
+    }
   }
 }

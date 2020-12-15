@@ -8,7 +8,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    mutation ActivitySubscription($id: Int!, $subscribe: Boolean!) {
+    mutation ActivitySubscription($id: Int!, $subscribe: Boolean!, $includeBuggyFields: Boolean!) {
       ToggleActivitySubscription(activityId: $id, subscribe: $subscribe) {
         __typename
         ... on TextActivity {
@@ -30,14 +30,16 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
 
   public var id: Int
   public var subscribe: Bool
+  public var includeBuggyFields: Bool
 
-  public init(id: Int, subscribe: Bool) {
+  public init(id: Int, subscribe: Bool, includeBuggyFields: Bool) {
     self.id = id
     self.subscribe = subscribe
+    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "subscribe": subscribe]
+    return ["id": id, "subscribe": subscribe, "includeBuggyFields": includeBuggyFields]
   }
 
   public struct Data: GraphQLSelectionSet {

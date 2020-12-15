@@ -8,10 +8,14 @@ public final class ActivityFeedQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+    query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!, $includeBuggyFields: Boolean!) {
       Page(page: $page, perPage: 50) {
         __typename
-        activities(isFollowing: $isFollowing, hasRepliesOrTypeText: $hasRepliesOrTypeText, sort: [ID_DESC]) {
+        activities(
+          isFollowing: $isFollowing
+          hasRepliesOrTypeText: $hasRepliesOrTypeText
+          sort: [ID_DESC]
+        ) {
           __typename
           ... on TextActivity {
             id
@@ -34,15 +38,17 @@ public final class ActivityFeedQuery: GraphQLQuery {
   public var page: Int
   public var isFollowing: Bool
   public var hasRepliesOrTypeText: Bool
+  public var includeBuggyFields: Bool
 
-  public init(page: Int, isFollowing: Bool, hasRepliesOrTypeText: Bool) {
+  public init(page: Int, isFollowing: Bool, hasRepliesOrTypeText: Bool, includeBuggyFields: Bool) {
     self.page = page
     self.isFollowing = isFollowing
     self.hasRepliesOrTypeText = hasRepliesOrTypeText
+    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["page": page, "isFollowing": isFollowing, "hasRepliesOrTypeText": hasRepliesOrTypeText]
+    return ["page": page, "isFollowing": isFollowing, "hasRepliesOrTypeText": hasRepliesOrTypeText, "includeBuggyFields": includeBuggyFields]
   }
 
   public struct Data: GraphQLSelectionSet {
