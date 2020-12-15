@@ -8,7 +8,7 @@ public final class LikeMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    mutation Like($id: Int!, $type: LikeableType!) {
+    mutation Like($id: Int!, $type: LikeableType!, $includeBuggyFields: Boolean!) {
       ToggleLikeV2(id: $id, type: $type) {
         __typename
         ... on ListActivity {
@@ -24,14 +24,16 @@ public final class LikeMutation: GraphQLMutation {
 
   public var id: Int
   public var type: LikeableType
+  public var includeBuggyFields: Bool
 
-  public init(id: Int, type: LikeableType) {
+  public init(id: Int, type: LikeableType, includeBuggyFields: Bool) {
     self.id = id
     self.type = type
+    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "type": type]
+    return ["id": id, "type": type, "includeBuggyFields": includeBuggyFields]
   }
 
   public struct Data: GraphQLSelectionSet {
