@@ -38,14 +38,11 @@ extension GraphQLNetworkInterceptorProvider: InterceptorProvider {
     func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
         return [
             MaxRetryInterceptor(maxRetriesAllowed: 1),
-            LegacyCacheReadInterceptor(store: store),
             AuthorizationHeaderAddingInterceptor(),
             NetworkFetchInterceptor(client: client),
-//            ResponseCodeInterceptor(), // TODO: Remove
             LegacyParsingInterceptor(cacheKeyForObject: store.cacheKeyForObject),
             ResponseCheckingInterceptor(),
             AutomaticPersistedQueryInterceptor(),
-            LegacyCacheWriteInterceptor(store: store),
         ]
     }
 }
@@ -57,8 +54,10 @@ fileprivate class AuthorizationHeaderAddingInterceptor: ApolloInterceptor {
         response: HTTPResponse<Operation>?,
         completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
     ) {
-        if let token = UserDefaults.standard.string(forKey: SettingsKeys.accessToken) {
-            request.addHeader(name: "Authorization", value: "Bearer \(token)")
+        if let tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens), !tokens.isEmpty {
+            let accountIndex = UserDefaults.standard.integer(forKey: SettingsKeys.accountIndex)
+
+            request.addHeader(name: "Authorization", value: "Bearer \(tokens[accountIndex])")
         }
 
         chain.proceedAsync(request: request, response: response, completion: completion)
@@ -77,8 +76,7 @@ fileprivate class ResponseCheckingInterceptor: ApolloInterceptor {
             //
             // It would be nice to call `CurrentUser.removeUser(:)`, but instances of the class only live in views.
             // Instead, we'll remove it from the UserDefaults settings.
-            UserDefaults.standard.set(nil, forKey: SettingsKeys.accessToken)
-
+            UserDefaults.standard.set(nil, forKey: SettingsKeys.accessTokens)
             chain.retry(request: request, completion: completion)
 
             return

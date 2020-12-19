@@ -14,48 +14,26 @@ struct MediaEditorView: View {
     @StateObject var viewModel: MediaEditorViewModel
 
     var body: some View {
-        // NOTE: SwiftUI may crash due to the CurrentUser environment variable not being found in the
-        // environment. The presentation mode will say the view is no longer presenting, but it is to the user. The
-        // source of this issue has yet to be found, but it happening is rare. It could happen due to inactivity from
-        // the user, moving a Slider too quickly (the cursor going off-screen and on-screen), and other arbitrary
-        // reasons unknown at the time of writing this.
         VStack {
-            if let media = viewModel.media {
-                let entry = media.mediaListEntry
+            if viewModel.media != nil {
+                NavigationView {
+                    MediaEditorFormView()
+                        .navigationTitle("List Editor")
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button("Dismiss") {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
 
-                let customList = entry?.customLists == nil
-                    ? []
-                    : Array(entry!.customLists!.filter { $0.value as! Bool }.keys)
-
-                let advancedScores: [Double] = {
-                    // advancedScores will be nil if the user hasn't added this entry to any custom lists`.
-                    if let scores = entry?.advancedScores {
-                        return Array(scores.values) as! [Double]
-                    }
-
-                    if media.type == .anime {
-                        let times = currentUser.user!.mediaListOptions!.animeList!.advancedScoring!.count
-
-                        return Array(repeating: 0, count: times)
-                    }
-
-                    let times = currentUser.user!.mediaListOptions!.mangaList!.advancedScoring!.count
-
-                    return Array(repeating: 0, count: times)
-                }()
-
-                MediaEditorFormView(
-                    note: entry?.notes ?? "",
-                    status: entry?.status ?? .planning,
-                    score: entry?.score ?? 0,
-                    repeats: entry?.repeat ?? 0,
-                    isPrivate: entry?.private ?? false,
-                    progress: entry?.progress ?? 0,
-                    customList: customList,
-                    advancedScores: advancedScores,
-                    volumes: entry?.progressVolumes ?? 0,
-                    media: media
-                )
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button("Save") {
+                                    viewModel.saveEntry()
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                }
             } else {
                 NavigationView {
                     ProgressView()
@@ -76,20 +54,8 @@ struct MediaEditorView: View {
 }
 
 fileprivate struct MediaEditorFormView: View {
-    @Environment(\.presentationMode) private var presentationMode
+    @EnvironmentObject private var viewModel: MediaEditorViewModel
     @EnvironmentObject private var currentUser: CurrentUser
-
-    @State private(set) var note: String
-    @State private(set) var status: MediaListStatus
-    @State private(set) var score: Double
-    @State private(set) var repeats: Int
-    @State private(set) var isPrivate: Bool
-    @State private(set) var progress: Int
-    @State private(set) var customList: [String]
-    @State private(set) var advancedScores: [Double]
-    @State private(set) var volumes: Int
-
-    private(set) var media: MediaEditorQuery.Data.Medium
 
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
@@ -99,88 +65,69 @@ fileprivate struct MediaEditorFormView: View {
     }()
 
     var body: some View {
-        NavigationView {
-            Form {
-                let listOptions = currentUser.user!.mediaListOptions!
+        Form {
+            let media = viewModel.media!
+            let listOptions = currentUser.users[0].mediaListOptions!
 
-                Section(header: Text("Overview")) {
-                    MediaEditorFormOverviewView(status: $status, score: $score, media: media)
-                }
+            Section(header: Text("Overview")) {
+                MediaEditorFormOverviewView()
+            }.animation(.default)
 
-                Section(header: Text("Progress")) {
-                    MediaEditorFormProgressView(
-                        repeats: $repeats,
-                        progress: $progress,
-                        volumes: $volumes,
-                        status: $status,
-                        media: media
-                    )
-                }
+            Section(header: Text("Progress")) {
+                MediaEditorFormProgressView()
+            }.animation(.default)
 
-                if let scoreFormat = listOptions.scoreFormat {
-                    if scoreFormat == .point_10Decimal || scoreFormat == .point_100 {
-                        if media.type == .anime {
-                            if listOptions.animeList!.advancedScoringEnabled == true {
-                                Section(header: Text("Advanced Scores")) {
-                                    MediaEditorFormAdvancedScoresView(advancedScores: $advancedScores, media: media)
-                                }
-                            }
-                        } else {
-                            if listOptions.mangaList!.advancedScoringEnabled == true {
-                                Section(header: Text("Advanced Scores")) {
-                                    MediaEditorFormAdvancedScoresView(advancedScores: $advancedScores, media: media)
-                                }
-                            }
-                        }
+            if let scoreFormat = listOptions.scoreFormat {
+                if scoreFormat == .point_10Decimal || scoreFormat == .point_100 {
+                    let animeList = listOptions.animeList!
+
+                    if media.type == .anime && animeList.advancedScoringEnabled == true
+                        && !animeList.advancedScoring!.isEmpty {
+                        Section(header: Text("Advanced Scores")) {
+                            MediaEditorFormAdvancedScoresView()
+                        }.animation(.default)
                     }
-                }
 
-                // NOTE: Using `else if` causes the Swift compiler to choke and fail to type-check in reasonable time.
-                if media.type == .anime && listOptions.animeList!.customLists!.count > 0 {
-                    Section(header: Text("Custom Lists")) {
-                        MediaEditorFormCustomListView(list: $customList, media: media)
-                    }
-                }
+                    let mangaList = listOptions.mangaList!
 
-                if media.type == .manga && listOptions.mangaList!.customLists!.count > 0 {
-                    Section(header: Text("Custom Lists")) {
-                        MediaEditorFormCustomListView(list: $customList, media: media)
-                    }
-                }
-
-                Section(header: Text("Notes")) {
-                    TextEditor(text: $note)
-                }
-
-                Section(footer: HStack {
-                    if let lastUpdate = media.mediaListEntry?.updatedAt {
-                        let lastUpdateDate = Date(timeIntervalSince1970: TimeInterval(lastUpdate))
-                        let relativeTime = dateFormatter.localizedString(
-                            for: lastUpdateDate,
-                            relativeTo: Date()
-                        )
-
-                        Spacer()
-                        Text("Last Updated: ").bold() + Text(relativeTime)
-                    }
-                }.padding()) {
-                    Toggle("Private", isOn: $isPrivate)
-                }
-            }.navigationTitle("List Editor")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Dismiss") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        // TODO: Save the data
-                        presentationMode.wrappedValue.dismiss()
+                    if media.type == .manga && mangaList.advancedScoringEnabled == true
+                        && !mangaList.advancedScoring!.isEmpty {
+                        Section(header: Text("Advanced Scores")) {
+                            MediaEditorFormAdvancedScoresView()
+                        }.animation(.default)
                     }
                 }
             }
+
+            // Using `else if` instead of a seprate `if` causes the Swift compiler to choke (type-checking in
+            // reasonable time error).
+            if media.type == .anime && listOptions.animeList!.customLists!.count > 0 {
+                Section(header: Text("Custom Lists")) {
+                    MediaEditorFormCustomListView()
+                }.animation(.default)
+            }
+
+            if media.type == .manga && listOptions.mangaList!.customLists!.count > 0 {
+                Section(header: Text("Custom Lists")) {
+                    MediaEditorFormCustomListView()
+                }.animation(.default)
+            }
+
+            Section(header: Text("Notes")) {
+                MediaEditorFormNotesView()
+            }.animation(.default)
+
+            Section(header: Text("List Settings"), footer: HStack {
+                if let lastUpdate = media.mediaListEntry?.updatedAt {
+                    let lastUpdateDate = Date(timeIntervalSince1970: TimeInterval(lastUpdate))
+                    let relativeTime = dateFormatter.localizedString(for: lastUpdateDate, relativeTo: Date())
+
+                    Spacer()
+                    Text("Last Updated: ").bold() + Text(relativeTime)
+                }
+            }.padding()) {
+                MediaEditorFormListSettingsView()
+            }.animation(.default)
         }
     }
 }

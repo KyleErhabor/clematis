@@ -1,16 +1,17 @@
 query MediaEditor($id: Int!) {
   Media(id: $id) {
-    id
     type
     volumes
     chapters
     episodes
     mediaListEntry {
+      id
       notes
       score
       status
       repeat
       private
+      priority
       progress
       updatedAt
       customLists

@@ -4,6 +4,116 @@
 import Apollo
 import Foundation
 
+/// Media list watching/reading status enum.
+public enum MediaListStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Currently watching/reading
+  case current
+  /// Planning to watch/read
+  case planning
+  /// Finished watching/reading
+  case completed
+  /// Stopped watching/reading before completing
+  case dropped
+  /// Paused watching/reading
+  case paused
+  /// Re-watching/reading
+  case repeating
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "CURRENT": self = .current
+      case "PLANNING": self = .planning
+      case "COMPLETED": self = .completed
+      case "DROPPED": self = .dropped
+      case "PAUSED": self = .paused
+      case "REPEATING": self = .repeating
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .current: return "CURRENT"
+      case .planning: return "PLANNING"
+      case .completed: return "COMPLETED"
+      case .dropped: return "DROPPED"
+      case .paused: return "PAUSED"
+      case .repeating: return "REPEATING"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaListStatus, rhs: MediaListStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.current, .current): return true
+      case (.planning, .planning): return true
+      case (.completed, .completed): return true
+      case (.dropped, .dropped): return true
+      case (.paused, .paused): return true
+      case (.repeating, .repeating): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaListStatus] {
+    return [
+      .current,
+      .planning,
+      .completed,
+      .dropped,
+      .paused,
+      .repeating,
+    ]
+  }
+}
+
+/// Date object that allows for incomplete date values (fuzzy)
+public struct FuzzyDateInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - year: Numeric Year (2017)
+  ///   - month: Numeric Month (3)
+  ///   - day: Numeric Day (24)
+  public init(year: Swift.Optional<Int?> = nil, month: Swift.Optional<Int?> = nil, day: Swift.Optional<Int?> = nil) {
+    graphQLMap = ["year": year, "month": month, "day": day]
+  }
+
+  /// Numeric Year (2017)
+  public var year: Swift.Optional<Int?> {
+    get {
+      return graphQLMap["year"] as? Swift.Optional<Int?> ?? Swift.Optional<Int?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "year")
+    }
+  }
+
+  /// Numeric Month (3)
+  public var month: Swift.Optional<Int?> {
+    get {
+      return graphQLMap["month"] as? Swift.Optional<Int?> ?? Swift.Optional<Int?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "month")
+    }
+  }
+
+  /// Numeric Day (24)
+  public var day: Swift.Optional<Int?> {
+    get {
+      return graphQLMap["day"] as? Swift.Optional<Int?> ?? Swift.Optional<Int?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "day")
+    }
+  }
+}
+
 /// Types that can be liked
 public enum LikeableType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
@@ -155,73 +265,6 @@ public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apol
     return [
       .anime,
       .manga,
-    ]
-  }
-}
-
-/// Media list watching/reading status enum.
-public enum MediaListStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  /// Currently watching/reading
-  case current
-  /// Planning to watch/read
-  case planning
-  /// Finished watching/reading
-  case completed
-  /// Stopped watching/reading before completing
-  case dropped
-  /// Paused watching/reading
-  case paused
-  /// Re-watching/reading
-  case repeating
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
-
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "CURRENT": self = .current
-      case "PLANNING": self = .planning
-      case "COMPLETED": self = .completed
-      case "DROPPED": self = .dropped
-      case "PAUSED": self = .paused
-      case "REPEATING": self = .repeating
-      default: self = .__unknown(rawValue)
-    }
-  }
-
-  public var rawValue: RawValue {
-    switch self {
-      case .current: return "CURRENT"
-      case .planning: return "PLANNING"
-      case .completed: return "COMPLETED"
-      case .dropped: return "DROPPED"
-      case .paused: return "PAUSED"
-      case .repeating: return "REPEATING"
-      case .__unknown(let value): return value
-    }
-  }
-
-  public static func == (lhs: MediaListStatus, rhs: MediaListStatus) -> Bool {
-    switch (lhs, rhs) {
-      case (.current, .current): return true
-      case (.planning, .planning): return true
-      case (.completed, .completed): return true
-      case (.dropped, .dropped): return true
-      case (.paused, .paused): return true
-      case (.repeating, .repeating): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
-    }
-  }
-
-  public static var allCases: [MediaListStatus] {
-    return [
-      .current,
-      .planning,
-      .completed,
-      .dropped,
-      .paused,
-      .repeating,
     ]
   }
 }

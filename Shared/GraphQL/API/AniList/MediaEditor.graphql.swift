@@ -11,18 +11,19 @@ public final class MediaEditorQuery: GraphQLQuery {
     query MediaEditor($id: Int!) {
       Media(id: $id) {
         __typename
-        id
         type
         volumes
         chapters
         episodes
         mediaListEntry {
           __typename
+          id
           notes
           score
           status
           repeat
           private
+          priority
           progress
           updatedAt
           customLists
@@ -93,7 +94,6 @@ public final class MediaEditorQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("type", type: .scalar(MediaType.self)),
           GraphQLField("volumes", type: .scalar(Int.self)),
           GraphQLField("chapters", type: .scalar(Int.self)),
@@ -108,8 +108,8 @@ public final class MediaEditorQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, type: MediaType? = nil, volumes: Int? = nil, chapters: Int? = nil, episodes: Int? = nil, mediaListEntry: MediaListEntry? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "volumes": volumes, "chapters": chapters, "episodes": episodes, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }])
+      public init(type: MediaType? = nil, volumes: Int? = nil, chapters: Int? = nil, episodes: Int? = nil, mediaListEntry: MediaListEntry? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Media", "type": type, "volumes": volumes, "chapters": chapters, "episodes": episodes, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -118,16 +118,6 @@ public final class MediaEditorQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The id of the media
-      public var id: Int {
-        get {
-          return resultMap["id"]! as! Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
@@ -187,11 +177,13 @@ public final class MediaEditorQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             GraphQLField("notes", type: .scalar(String.self)),
             GraphQLField("score", type: .scalar(Double.self)),
             GraphQLField("status", type: .scalar(MediaListStatus.self)),
             GraphQLField("repeat", type: .scalar(Int.self)),
             GraphQLField("private", type: .scalar(Bool.self)),
+            GraphQLField("priority", type: .scalar(Int.self)),
             GraphQLField("progress", type: .scalar(Int.self)),
             GraphQLField("updatedAt", type: .scalar(Int.self)),
             GraphQLField("customLists", type: .scalar(Json.self)),
@@ -209,8 +201,8 @@ public final class MediaEditorQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(notes: String? = nil, score: Double? = nil, status: MediaListStatus? = nil, `repeat`: Int? = nil, `private`: Bool? = nil, progress: Int? = nil, updatedAt: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaList", "notes": notes, "score": score, "status": status, "repeat": `repeat`, "private": `private`, "progress": progress, "updatedAt": updatedAt, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
+        public init(id: Int, notes: String? = nil, score: Double? = nil, status: MediaListStatus? = nil, `repeat`: Int? = nil, `private`: Bool? = nil, priority: Int? = nil, progress: Int? = nil, updatedAt: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MediaList", "id": id, "notes": notes, "score": score, "status": status, "repeat": `repeat`, "private": `private`, "priority": priority, "progress": progress, "updatedAt": updatedAt, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -219,6 +211,16 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// The id of the list entry
+        public var id: Int {
+          get {
+            return resultMap["id"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
@@ -269,6 +271,16 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "private")
+          }
+        }
+
+        /// Priority of planning
+        public var priority: Int? {
+          get {
+            return resultMap["priority"] as? Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "priority")
           }
         }
 

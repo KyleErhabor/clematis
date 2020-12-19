@@ -100,7 +100,7 @@ struct ActivityListKindView: View {
             let isSubscribed = activity.isSubscribed ?? false
 
             Button {
-                if currentUser.user == nil {
+                if currentUser.users.count == 0 {
                     error = .unauthorized
                 } else {
                     isPresenting = true
@@ -117,7 +117,7 @@ struct ActivityListKindView: View {
             }
 
             Button {
-                if currentUser.user == nil {
+                if currentUser.users.count == 0 {
                     error = .unauthorized
                 } else {
                     viewModel.subscribe(id: activity.id, subscribe: !isSubscribed)
@@ -129,11 +129,12 @@ struct ActivityListKindView: View {
             Alert(title: Text(err.message()))
         }.sheet(isPresented: $isPresenting) {
             MediaEditorView(viewModel: MediaEditorViewModel(id: activity.media!.id))
+                .environmentObject(currentUser)
         }
     }
 
     func like() {
-        if currentUser.user == nil {
+        if currentUser.users.count == 0 {
             error = .unauthorized
         } else {
             viewModel.like(id: activity.id, type: .activity)

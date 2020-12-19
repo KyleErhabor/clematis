@@ -19,7 +19,7 @@ struct AmincappApp: App {
             ContentView()
                 .environmentObject(currentUser)
                 .onAppear {
-                    currentUser.fetchUser()
+                    currentUser.fetchUsers()
                 }.onOpenURL { url in
                     currentUser.handleIncomingURL(url: url)
                 }
@@ -27,8 +27,9 @@ struct AmincappApp: App {
             #if DEBUG
             CommandMenu("Debug") {
                 Button("Log User Access Token") {
-                    if let token = UserDefaults.standard.string(forKey: SettingsKeys.accessToken) {
-                        logger.info("\(token)")
+                    if let tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens),
+                       !tokens.isEmpty {
+                        logger.info("\(tokens[0])")
                     } else {
                         logger.notice("No user access token set")
                     }

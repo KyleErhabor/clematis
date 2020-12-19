@@ -8,57 +8,48 @@
 import SwiftUI
 
 struct MediaEditorFormCustomListView: View {
+    @EnvironmentObject private var viewModel: MediaEditorViewModel
     @EnvironmentObject private var currentUser: CurrentUser
-    @Binding private(set) var list: [String]
-
-    private(set) var media: MediaEditorQuery.Data.Medium
 
     var body: some View {
-        let mediaListOptions = currentUser.user!.mediaListOptions!
+        if viewModel.media!.type == .anime {
+            let customLists = currentUser.users[0].mediaListOptions!.animeList!.customLists!.compactMap { $0 }
 
-        if media.type == .anime {
-            ForEach(mediaListOptions.animeList!.customLists!.compactMap { $0 }, id: \.self) { name in
-                MediaEditorFormCustomListRowView(list: $list, name: name)
+            ForEach(customLists, id: \.self) { name in
+                MediaEditorFormCustomListRowView(name: name)
             }
-        } else {
-            ForEach(mediaListOptions.mangaList!.customLists!.compactMap { $0 }, id: \.self) { name in
-                MediaEditorFormCustomListRowView(list: $list, name: name)
+        }
+
+        if viewModel.media!.type == .manga {
+            let customLists = currentUser.users[0].mediaListOptions!.mangaList!.customLists!.compactMap { $0 }
+
+            ForEach(customLists, id: \.self) { name in
+                MediaEditorFormCustomListRowView(name: name)
             }
         }
     }
 }
 
 fileprivate struct MediaEditorFormCustomListRowView: View {
-    @Binding private(set) var list: [String]
+    @EnvironmentObject private var viewModel: MediaEditorViewModel
+
     private(set) var name: String
 
     var body: some View {
-        let binding: Binding<Bool> = Binding {
-            list.contains(name)
-        } set: { val in
-            if val {
-                list.append(name)
+        let listBinding = Binding {
+            (viewModel.media!.mediaListEntry?.customLists?[name] as? Bool) ?? false
+        } set: { enabled in
+            if viewModel.media!.mediaListEntry == nil {
+                viewModel.media!.mediaListEntry = .init(id: -1, customLists: [name: enabled])
             } else {
-                if let index = list.firstIndex(of: name) {
-                    list.remove(at: index)
+                if viewModel.media!.mediaListEntry!.customLists == nil {
+                    viewModel.media!.mediaListEntry!.customLists = [name: enabled]
+                } else {
+                    viewModel.media!.mediaListEntry!.customLists![name] = enabled
                 }
             }
         }
 
-        Toggle(name, isOn: binding)
-    }
-}
-
-struct MediaEditorFormCustomListView_Previews: PreviewProvider {
-    @State static private var list = ["Flower", "Poppy"]
-
-    static var previews: some View {
-        MediaEditorFormCustomListView(list: $list, media: MediaEditorQuery.Data.Medium(
-            id: 1,
-            type: .anime,
-            chapters: nil,
-            episodes: 12,
-            mediaListEntry: nil
-        ))
+        Toggle(name, isOn: listBinding)
     }
 }

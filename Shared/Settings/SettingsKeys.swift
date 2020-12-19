@@ -6,5 +6,6 @@
 //
 
 enum SettingsKeys {
-    static let accessToken = "accessToken"
+    static let accessTokens = "accessTokens"
+    static var accountIndex = "accountIndex"
 }

@@ -8,72 +8,62 @@
 import SwiftUI
 
 struct MediaEditorFormAdvancedScoresView: View {
+    @EnvironmentObject private var viewModel: MediaEditorViewModel
     @EnvironmentObject private var currentUser: CurrentUser
-    @Binding private(set) var advancedScores: [Double]
-
-    private(set) var media: MediaEditorQuery.Data.Medium
 
     var body: some View {
-        if media.type == .anime {
-            let scoring = currentUser.user!.mediaListOptions!.animeList!.advancedScoring!.compactMap { $0 }
+        if viewModel.media!.type == .anime {
+            let scoreSections = currentUser.users[0].mediaListOptions!.animeList!.advancedScoring!.compactMap { $0 }
 
-            ForEach(scoring.indices, id: \.self) { index in
-                MediaEditorFormAdvancedScoresRowView(
-                    advancedScores: $advancedScores,
-                    name: scoring[index],
-                    index: index
-                )
+            ForEach(scoreSections, id: \.self) { name in
+                MediaEditorFormAdvancedScoresRowView(name: name)
             }
-        } else {
-            let scoring = currentUser.user!.mediaListOptions!.mangaList!.advancedScoring!.compactMap { $0 }
+        }
 
-            ForEach(scoring.indices, id: \.self) { index in
-                MediaEditorFormAdvancedScoresRowView(
-                    advancedScores: $advancedScores,
-                    name: scoring[index],
-                    index: index
-                )
+        if viewModel.media!.type == .manga {
+            let scoreSections = currentUser.users[0].mediaListOptions!.mangaList!.advancedScoring!.compactMap { $0 }
+
+            ForEach(scoreSections, id: \.self) { name in
+                MediaEditorFormAdvancedScoresRowView(name: name)
             }
         }
     }
 }
 
-struct MediaEditorFormAdvancedScoresRowView: View {
+fileprivate struct MediaEditorFormAdvancedScoresRowView: View {
     @EnvironmentObject private var currentUser: CurrentUser
-    @Binding private(set) var advancedScores: [Double]
-
+    @EnvironmentObject private var viewModel: MediaEditorViewModel
+    
     private(set) var name: String
-    private(set) var index: Int
 
     var body: some View {
-        let isPoint100 = currentUser.user!.mediaListOptions!.scoreFormat! == .point_100
-        let max = Double(isPoint100 ? 100 : 10)
-        let step = isPoint100 ? 1 : 0.1
-        let score = advancedScores[index]
-        let scoreString = isPoint100
-            ? "\(Int(score))"
-            : String(format: "%.1f", score)
+        let isPoint100 = currentUser.users[0].mediaListOptions!.scoreFormat! == .point_100
 
-        Stepper("\(name): \(score == 0 ? "None" : scoreString)",
-                value: $advancedScores[index],
-                in: 0...max,
-                step: step
-        )
+        let scoreBinding = Binding {
+            (viewModel.media!.mediaListEntry?.advancedScores?[name] as? Double) ?? 0
+        } set: { score in
+            let score = isPoint100 ? floor(score) : round(score * 10) / 10
 
-        Slider(value: $advancedScores[index], in: 0...max)
-    }
-}
+            if viewModel.media!.mediaListEntry == nil {
+                viewModel.media!.mediaListEntry = .init(id: -1, advancedScores: [name: score])
+            } else {
+                if viewModel.media!.mediaListEntry!.advancedScores == nil {
+                    viewModel.media!.mediaListEntry!.advancedScores = [name: score]
+                } else {
+                    viewModel.media!.mediaListEntry!.advancedScores![name] = score
+                }
+            }
+        }
 
-struct MediaEditorFormAdvancedScoresView_Previews: PreviewProvider {
-    @State static private var scores = [5.0]
+        let scoreLabel = isPoint100
+            ? "\(Int(scoreBinding.wrappedValue))"
+            : String(format: "%.1f", scoreBinding.wrappedValue)
 
-    static var previews: some View {
-        MediaEditorFormAdvancedScoresView(advancedScores: $scores, media: MediaEditorQuery.Data.Medium(
-            id: 1,
-            type: .anime,
-            chapters: nil,
-            episodes: 12,
-            mediaListEntry: nil
-        ))
+        Stepper("\(name): \(scoreBinding.wrappedValue == 0 ? "None" : scoreLabel)",
+                value: scoreBinding,
+                in: 0...(isPoint100 ? 100 : 10),
+                step: isPoint100 ? 1 : 0.1)
+
+        Slider(value: scoreBinding, in: 0...(isPoint100 ? 100 : 10))
     }
 }
