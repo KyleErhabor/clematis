@@ -112,9 +112,9 @@ struct ActivityListKindView: View {
             Button {
                 like()
             } label: {
-                let liked = activity.isLiked ?? false
+                let isLiked = activity.isLiked ?? false
 
-                Label(liked ? "Unlike" : "Like", systemImage: liked ? "heart.fill" : "heart")
+                Label(isLiked ? "Unlike" : "Like", systemImage: isLiked ? "heart.fill" : "heart")
                     .foregroundColor(.accentColor)
             }
 
