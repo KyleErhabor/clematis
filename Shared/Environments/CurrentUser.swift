@@ -33,7 +33,7 @@ class CurrentUser: ObservableObject {
     func fetchUsers() {
         let tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens) ?? []
 
-        if tokens.count > 0 {
+        if !tokens.isEmpty {
             // https://stackoverflow.com/a/46852224/14695788
             let queue = DispatchQueue(label: "\(Bundle.main.bundleIdentifier ?? "app")-fetchUsers")
             let group = DispatchGroup()

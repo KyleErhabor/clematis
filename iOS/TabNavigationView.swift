@@ -18,7 +18,7 @@ struct TabNavigationView: View {
                 Label("Home", systemImage: "house")
             }
 
-            if currentUser.users.count > 0 {
+            if !currentUser.users.isEmpty {
                 NavigationView {
                     Text("TODO (user tab)")
                 }.tabItem {

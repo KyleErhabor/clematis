@@ -14,7 +14,11 @@ fileprivate struct CurrentUserViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if currentUser.users.count > 0 {
+                if currentUser.users.isEmpty {
+                    Link(destination: AniList.authorizationURL) {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                    }
+                } else {
                     Menu {
                         Text("Signed in as \(currentUser.users[0].name)")
 
@@ -36,10 +40,6 @@ fileprivate struct CurrentUserViewModifier: ViewModifier {
                     } label: {
                         Image(systemName: "person.crop.circle")
                             .imageScale(.large)
-                    }
-                } else {
-                    Link(destination: AniList.authorizationURL) {
-                        Image(systemName: "person.crop.circle.badge.plus")
                     }
                 }
             }

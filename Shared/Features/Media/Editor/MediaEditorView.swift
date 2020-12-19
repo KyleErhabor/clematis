@@ -101,13 +101,13 @@ fileprivate struct MediaEditorFormView: View {
 
             // Using `else if` instead of a seprate `if` causes the Swift compiler to choke (type-checking in
             // reasonable time error).
-            if media.type == .anime && listOptions.animeList!.customLists!.count > 0 {
+            if media.type == .anime && !listOptions.animeList!.customLists!.isEmpty {
                 Section(header: Text("Custom Lists")) {
                     MediaEditorFormCustomListView()
                 }.animation(.default)
             }
 
-            if media.type == .manga && listOptions.mangaList!.customLists!.count > 0 {
+            if media.type == .manga && !listOptions.mangaList!.customLists!.isEmpty {
                 Section(header: Text("Custom Lists")) {
                     MediaEditorFormCustomListView()
                 }.animation(.default)

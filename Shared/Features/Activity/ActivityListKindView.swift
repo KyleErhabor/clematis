@@ -100,7 +100,7 @@ struct ActivityListKindView: View {
             let isSubscribed = activity.isSubscribed ?? false
 
             Button {
-                if currentUser.users.count == 0 {
+                if currentUser.users.isEmpty {
                     error = .unauthorized
                 } else {
                     isPresenting = true
@@ -117,7 +117,7 @@ struct ActivityListKindView: View {
             }
 
             Button {
-                if currentUser.users.count == 0 {
+                if currentUser.users.isEmpty {
                     error = .unauthorized
                 } else {
                     viewModel.subscribe(id: activity.id, subscribe: !isSubscribed)
@@ -134,7 +134,7 @@ struct ActivityListKindView: View {
     }
 
     func like() {
-        if currentUser.users.count == 0 {
+        if currentUser.users.isEmpty {
             error = .unauthorized
         } else {
             viewModel.like(id: activity.id, type: .activity)
