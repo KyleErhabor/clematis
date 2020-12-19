@@ -106,13 +106,15 @@ struct ActivityListKindView: View {
                     isPresenting = true
                 }
             } label: {
-                Label("Open List Editor", systemImage: "pencil")
+                Label("Open List Editor", systemImage: "slider.horizontal.3")
             }
 
             Button {
                 like()
             } label: {
-                Label("Like", systemImage: activity.isLiked == true ? "heart.fill" : "heart")
+                let liked = activity.isLiked ?? false
+
+                Label(liked ? "Unlike" : "Like", systemImage: liked ? "heart.fill" : "heart")
                     .foregroundColor(.accentColor)
             }
 
