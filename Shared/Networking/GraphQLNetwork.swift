@@ -43,6 +43,7 @@ extension GraphQLNetworkInterceptorProvider: InterceptorProvider {
             LegacyParsingInterceptor(cacheKeyForObject: store.cacheKeyForObject),
             ResponseCheckingInterceptor(),
             AutomaticPersistedQueryInterceptor(),
+            LegacyCacheWriteInterceptor(store: store)
         ]
     }
 }
