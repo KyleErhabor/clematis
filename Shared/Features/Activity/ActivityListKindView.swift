@@ -13,6 +13,7 @@ struct ActivityListKindView: View {
     @EnvironmentObject private var viewModel: ActivityFeedViewModel
     @State private var error: AniList.ErrorKind?
     @State private var isPresenting = false
+    @State private var deleteAlertIsPresenting = false
 
     private(set) var activity: ListActivityFragment
 
@@ -94,9 +95,12 @@ struct ActivityListKindView: View {
                     // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/2
                     Label("\(activity.replyCount)", systemImage: "bubble.left")
                         .foregroundColor(.accentColor)
+                        // There's no guarantee it'll be interactable, so we'll say it's locked
+                        .disabled(activity.isLocked ?? true)
                 }
             }
         }.contextMenu {
+            // TODO: Add view media
             let isSubscribed = activity.isSubscribed ?? false
 
             Button {
@@ -106,9 +110,10 @@ struct ActivityListKindView: View {
                     isPresenting = true
                 }
             } label: {
-                Label("Open List Editor", systemImage: "slider.horizontal.3")
+                Label("Open List Editor", systemImage: "bookmark")
             }
 
+            // TODO: On hover, display users who liked the activity.
             Button {
                 like()
             } label: {
@@ -127,8 +132,26 @@ struct ActivityListKindView: View {
             } label: {
                 Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
             }
+
+            if !currentUser.users.isEmpty && activity.user?.id == currentUser.users[0].id {
+                Button {
+                    deleteAlertIsPresenting = true
+                } label: {
+                    Label("Delete", systemImage: "minus.circle")
+                }
+            }
+
         }.alert(item: $error) { err in
             Alert(title: Text(err.message()))
+        }.alert(isPresented: $deleteAlertIsPresenting) {
+            Alert(
+                title: Text("Are you sure you would like to delete this activity?"),
+                message: Text("This action cannot be undone."),
+                primaryButton: .cancel(),
+                secondaryButton: .destructive(Text("Delete")) {
+                    viewModel.delete(id: activity.id)
+                }
+            )
         }.sheet(isPresented: $isPresenting) {
             MediaEditorView(viewModel: MediaEditorViewModel(id: activity.media!.id))
                 .environmentObject(currentUser)

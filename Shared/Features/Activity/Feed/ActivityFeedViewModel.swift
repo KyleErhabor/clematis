@@ -80,4 +80,25 @@ class ActivityFeedViewModel: ObservableObject {
             }
         }
     }
+
+    func delete(id: Int) {
+        // This has only been tested on an activity the user can't delete. In the future, this should tested on an
+        // activity the user can delete to make sure it works.
+        GraphQLNetwork.shared.anilist.perform(mutation: DeleteActivityMutation(id: id)) { result in
+            switch result {
+                case .success(let query):
+                    if query.data?.deleteActivity?.deleted == true {
+                        if let index = self.activities.firstIndex(where: { $0.id == id }) {
+                            self.activities.remove(at: index)
+                        }
+                    }
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case .failure(let err):
+                    logger.error("\(err)")
+            }
+        }
+    }
 }
