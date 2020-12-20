@@ -27,3 +27,21 @@ fragment listActivityFragment on ListActivity {
     }
   }
 }
+
+fragment textActivityFragment on TextActivity {
+  id
+  isLiked
+  isLocked
+  createdAt
+  likeCount
+  replyCount
+  isSubscribed
+  text(asHtml: true)
+  user @include(if: $includeBuggyFields) {
+    id
+    name
+    avatar {
+      large
+    }
+  }
+}
