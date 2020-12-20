@@ -2,7 +2,7 @@ query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: B
   Page(page: $page, perPage: 50) {
     activities(isFollowing: $isFollowing, hasRepliesOrTypeText: $hasRepliesOrTypeText, sort: [ID_DESC]) {
       ... on TextActivity {
-        id
+        ...textActivityFragment
       }
       ... on ListActivity {
         ...listActivityFragment

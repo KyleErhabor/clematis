@@ -18,7 +18,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
         ) {
           __typename
           ... on TextActivity {
-            id
+            ...textActivityFragment
           }
           ... on ListActivity {
             ...listActivityFragment
@@ -33,7 +33,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
   public let operationName: String = "ActivityFeed"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition) }
+  public var queryDocument: String { return operationDefinition.appending("\n" + TextActivityFragment.fragmentDefinition).appending("\n" + ListActivityFragment.fragmentDefinition) }
 
   public var page: Int
   public var isFollowing: Bool
@@ -137,10 +137,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public static func makeTextActivity(id: Int) -> Activity {
-          return Activity(unsafeResultMap: ["__typename": "TextActivity", "id": id])
-        }
-
         public static func makeMessageActivity(id: Int) -> Activity {
           return Activity(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
         }
@@ -171,7 +167,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+              GraphQLFragmentSpread(TextActivityFragment.self),
             ]
           }
 
@@ -179,10 +175,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
           public init(unsafeResultMap: ResultMap) {
             self.resultMap = unsafeResultMap
-          }
-
-          public init(id: Int) {
-            self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id])
           }
 
           public var __typename: String {
@@ -194,13 +186,29 @@ public final class ActivityFeedQuery: GraphQLQuery {
             }
           }
 
-          /// The id of the activity
-          public var id: Int {
+          public var fragments: Fragments {
             get {
-              return resultMap["id"]! as! Int
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
-              resultMap.updateValue(newValue, forKey: "id")
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var textActivityFragment: TextActivityFragment {
+              get {
+                return TextActivityFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
             }
           }
         }
