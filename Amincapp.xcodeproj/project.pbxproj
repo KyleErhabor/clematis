@@ -55,7 +55,6 @@
 		00874546258BF16F003A6AFE /* MediaEditorFormListSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00874545258BF16F003A6AFE /* MediaEditorFormListSettingsView.swift */; };
 		00874547258BF16F003A6AFE /* MediaEditorFormListSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00874545258BF16F003A6AFE /* MediaEditorFormListSettingsView.swift */; };
 		00986BCA256878C90008D80C /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00986BC9256878C90008D80C /* CurrentUser.swift */; };
-		00C1088A257341B600E3DCBA /* RichView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C10889257341B600E3DCBA /* RichView.swift */; };
 		00C108922573426000E3DCBA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 00C108912573426000E3DCBA /* SwiftSoup */; };
 		00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
 		00C8C3952587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
@@ -121,7 +120,6 @@
 		0087453E258BEEB4003A6AFE /* MediaEditorFormNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormNotesView.swift; sourceTree = "<group>"; };
 		00874545258BF16F003A6AFE /* MediaEditorFormListSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormListSettingsView.swift; sourceTree = "<group>"; };
 		00986BC9256878C90008D80C /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
-		00C10889257341B600E3DCBA /* RichView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormOverviewView.swift; sourceTree = "<group>"; };
 		00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormProgressView.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 			children = (
 				00869F0D2502A75100D2DB6F /* AmincappApp.swift */,
 				00869F0E2502A75100D2DB6F /* ContentView.swift */,
-				00C10889257341B600E3DCBA /* RichView.swift */,
 				00869F0F2502A75300D2DB6F /* Assets.xcassets */,
 				00986BD4256878D40008D80C /* Environments */,
 				008CDBF025169A8B00B948D4 /* Extensions */,
@@ -592,7 +589,6 @@
 				006AAE31258E7D6400674767 /* UpdateMediaListEntry.graphql.swift in Sources */,
 				00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */,
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
-				00C1088A257341B600E3DCBA /* RichView.swift in Sources */,
 				00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */,
 				006AAE35258E7D6400674767 /* Types.graphql.swift in Sources */,
 				006AAE3F258E7D6400674767 /* Like.graphql.swift in Sources */,

@@ -11,8 +11,6 @@ extension ActivityFeedQuery.Data.Page.Activity: Identifiable {
             return id
         } else if let id = asTextActivity?.fragments.textActivityFragment.id {
             return id
-        } else if let id = asMessageActivity?.id {
-            return id
         }
 
         fatalError()

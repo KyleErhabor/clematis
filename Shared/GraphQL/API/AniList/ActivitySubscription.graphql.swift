@@ -12,7 +12,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
       ToggleActivitySubscription(activityId: $id, subscribe: $subscribe) {
         __typename
         ... on TextActivity {
-          id
+          ...textActivityFragment
         }
         ... on ListActivity {
           ...listActivityFragment
@@ -26,7 +26,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
 
   public let operationName: String = "ActivitySubscription"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition) }
+  public var queryDocument: String { return operationDefinition.appending("\n" + TextActivityFragment.fragmentDefinition).appending("\n" + ListActivityFragment.fragmentDefinition) }
 
   public var id: Int
   public var subscribe: Bool
@@ -91,10 +91,6 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public static func makeTextActivity(id: Int) -> ToggleActivitySubscription {
-        return ToggleActivitySubscription(unsafeResultMap: ["__typename": "TextActivity", "id": id])
-      }
-
       public static func makeMessageActivity(id: Int) -> ToggleActivitySubscription {
         return ToggleActivitySubscription(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
       }
@@ -125,7 +121,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+            GraphQLFragmentSpread(TextActivityFragment.self),
           ]
         }
 
@@ -133,10 +129,6 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
 
         public init(unsafeResultMap: ResultMap) {
           self.resultMap = unsafeResultMap
-        }
-
-        public init(id: Int) {
-          self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id])
         }
 
         public var __typename: String {
@@ -148,13 +140,29 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
           }
         }
 
-        /// The id of the activity
-        public var id: Int {
+        public var fragments: Fragments {
           get {
-            return resultMap["id"]! as! Int
+            return Fragments(unsafeResultMap: resultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "id")
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var textActivityFragment: TextActivityFragment {
+            get {
+              return TextActivityFragment(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
           }
         }
       }

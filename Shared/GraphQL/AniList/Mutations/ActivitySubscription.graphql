@@ -1,7 +1,7 @@
 mutation ActivitySubscription($id: Int!, $subscribe: Boolean!, $includeBuggyFields: Boolean!) {
   ToggleActivitySubscription(activityId: $id, subscribe: $subscribe) {
     ... on TextActivity {
-      id
+      ...textActivityFragment
     }
     ... on ListActivity {
       ...listActivityFragment

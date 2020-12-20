@@ -14,13 +14,16 @@ public final class LikeMutation: GraphQLMutation {
         ... on ListActivity {
           ...listActivityFragment
         }
+        ... on TextActivity {
+          ...textActivityFragment
+        }
       }
     }
     """
 
   public let operationName: String = "Like"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition) }
+  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition).appending("\n" + TextActivityFragment.fragmentDefinition) }
 
   public var id: Int
   public var type: LikeableType
@@ -71,7 +74,7 @@ public final class LikeMutation: GraphQLMutation {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLTypeCase(
-            variants: ["ListActivity": AsListActivity.selections],
+            variants: ["ListActivity": AsListActivity.selections, "TextActivity": AsTextActivity.selections],
             default: [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             ]
@@ -83,10 +86,6 @@ public final class LikeMutation: GraphQLMutation {
 
       public init(unsafeResultMap: ResultMap) {
         self.resultMap = unsafeResultMap
-      }
-
-      public static func makeTextActivity() -> ToggleLikeV2 {
-        return ToggleLikeV2(unsafeResultMap: ["__typename": "TextActivity"])
       }
 
       public static func makeMessageActivity() -> ToggleLikeV2 {
@@ -169,6 +168,69 @@ public final class LikeMutation: GraphQLMutation {
           public var listActivityFragment: ListActivityFragment {
             get {
               return ListActivityFragment(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+        }
+      }
+
+      public var asTextActivity: AsTextActivity? {
+        get {
+          if !AsTextActivity.possibleTypes.contains(__typename) { return nil }
+          return AsTextActivity(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsTextActivity: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["TextActivity"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLFragmentSpread(TextActivityFragment.self),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var fragments: Fragments {
+          get {
+            return Fragments(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var textActivityFragment: TextActivityFragment {
+            get {
+              return TextActivityFragment(unsafeResultMap: resultMap)
             }
             set {
               resultMap += newValue.resultMap

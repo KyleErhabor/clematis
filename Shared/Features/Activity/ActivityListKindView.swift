@@ -12,8 +12,8 @@ struct ActivityListKindView: View {
     @EnvironmentObject private var currentUser: CurrentUser
     @EnvironmentObject private var viewModel: ActivityFeedViewModel
     @State private var error: AniList.ErrorKind?
-    @State private var isPresenting = false
-    @State private var deleteAlertIsPresenting = false
+    @State private var isPresentingListEditor = false
+    @State private var isPresentingDeleteNotice = false
 
     private(set) var activity: ListActivityFragment
 
@@ -95,19 +95,15 @@ struct ActivityListKindView: View {
                     // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/2
                     Label("\(activity.replyCount)", systemImage: "bubble.left")
                         .foregroundColor(.accentColor)
-                        // There's no guarantee it'll be interactable, so we'll say it's locked
                         .disabled(activity.isLocked ?? true)
                 }
             }
         }.contextMenu {
-            // TODO: Add view media
-            let isSubscribed = activity.isSubscribed ?? false
-
             Button {
                 if currentUser.users.isEmpty {
                     error = .unauthorized
                 } else {
-                    isPresenting = true
+                    isPresentingListEditor = true
                 }
             } label: {
                 Label("Open List Editor", systemImage: "bookmark")
@@ -123,6 +119,8 @@ struct ActivityListKindView: View {
                     .foregroundColor(.accentColor)
             }
 
+            let isSubscribed = activity.isSubscribed ?? false
+
             Button {
                 if currentUser.users.isEmpty {
                     error = .unauthorized
@@ -135,15 +133,49 @@ struct ActivityListKindView: View {
 
             if !currentUser.users.isEmpty && activity.user?.id == currentUser.users[0].id {
                 Button {
-                    deleteAlertIsPresenting = true
+                    isPresentingDeleteNotice = true
                 } label: {
                     Label("Delete", systemImage: "minus.circle")
                 }
             }
 
+            #if DEBUG
+            Button {
+                UIPasteboard.general.string = "\(activity.id)"
+            } label: {
+                Label("Copy Activity ID", systemImage: "doc.on.doc")
+            }
+
+            Button {
+                if let id = activity.media?.id {
+                    UIPasteboard.general.string = "\(id)"
+                } else {
+                    logger.notice("Could not copy media ID to clipboard: activity.media was nil")
+                }
+            } label: {
+                Label("Copy Media ID", systemImage: "doc.on.doc")
+            }
+
+            Button {
+                if let id = activity.user?.id {
+                    UIPasteboard.general.string = "\(id)"
+                } else {
+                    logger.notice("Could not copy user ID to clipboard: activity.user was nil")
+                }
+            } label: {
+                Label("Copy User ID", systemImage: "doc.on.doc")
+            }
+
+            Button {
+                UIPasteboard.general.string = "\(activity.createdAt * 1000)"
+            } label: {
+                Label("Copy Message Timestamp", systemImage: "doc.on.doc")
+            }
+
+            #endif
         }.alert(item: $error) { err in
             Alert(title: Text(err.message()))
-        }.alert(isPresented: $deleteAlertIsPresenting) {
+        }.alert(isPresented: $isPresentingDeleteNotice) {
             Alert(
                 title: Text("Are you sure you would like to delete this activity?"),
                 message: Text("This action cannot be undone."),
@@ -152,7 +184,7 @@ struct ActivityListKindView: View {
                     viewModel.delete(id: activity.id)
                 }
             )
-        }.sheet(isPresented: $isPresenting) {
+        }.sheet(isPresented: $isPresentingListEditor) {
             MediaEditorView(viewModel: MediaEditorViewModel(id: activity.media!.id))
                 .environmentObject(currentUser)
         }
@@ -164,16 +196,5 @@ struct ActivityListKindView: View {
         } else {
             viewModel.like(id: activity.id, type: .activity)
         }
-    }
-}
-
-struct ActivityListKindView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityListKindView(activity: ListActivityFragment(
-            id: 1,
-            createdAt: Int(Date().timeIntervalSince1970) * 1000,
-            likeCount: 10,
-            replyCount: 3
-        ))
     }
 }

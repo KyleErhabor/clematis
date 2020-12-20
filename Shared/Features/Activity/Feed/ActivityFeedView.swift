@@ -37,10 +37,8 @@ struct ActivityFeedSelectorView: View {
     var body: some View {
         if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
             ActivityListKindView(activity: listActivity)
-        } else if activity.asTextActivity != nil {
-            Text("Text Activity")
-        } else if activity.asMessageActivity != nil {
-            Text("Message Activity")
+        } else if let textActivity = activity.asTextActivity?.fragments.textActivityFragment {
+            ActivityTextKindView(activity: textActivity)
         }
     }
 

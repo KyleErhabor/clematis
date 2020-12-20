@@ -23,9 +23,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
           ... on ListActivity {
             ...listActivityFragment
           }
-          ... on MessageActivity {
-            id
-          }
         }
       }
     }
@@ -123,7 +120,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLTypeCase(
-              variants: ["TextActivity": AsTextActivity.selections, "ListActivity": AsListActivity.selections, "MessageActivity": AsMessageActivity.selections],
+              variants: ["TextActivity": AsTextActivity.selections, "ListActivity": AsListActivity.selections],
               default: [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               ]
@@ -137,8 +134,8 @@ public final class ActivityFeedQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public static func makeMessageActivity(id: Int) -> Activity {
-          return Activity(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
+        public static func makeMessageActivity() -> Activity {
+          return Activity(unsafeResultMap: ["__typename": "MessageActivity"])
         }
 
         public var __typename: String {
@@ -272,57 +269,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
               set {
                 resultMap += newValue.resultMap
               }
-            }
-          }
-        }
-
-        public var asMessageActivity: AsMessageActivity? {
-          get {
-            if !AsMessageActivity.possibleTypes.contains(__typename) { return nil }
-            return AsMessageActivity(unsafeResultMap: resultMap)
-          }
-          set {
-            guard let newValue = newValue else { return }
-            resultMap = newValue.resultMap
-          }
-        }
-
-        public struct AsMessageActivity: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["MessageActivity"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public init(id: Int) {
-            self.init(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          /// The id of the activity
-          public var id: Int {
-            get {
-              return resultMap["id"]! as! Int
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }

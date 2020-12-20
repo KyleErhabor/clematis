@@ -43,6 +43,10 @@ class ActivityFeedViewModel: ObservableObject {
                             if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
                                 self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
                             }
+                        } else if let textActivity = kind.asTextActivity?.fragments.textActivityFragment {
+                            if let index = self.activities.firstIndex(where: { $0.id == textActivity.id }) {
+                                self.activities[index].asTextActivity!.fragments.textActivityFragment = textActivity
+                            }
                         }
                     }
 
@@ -68,6 +72,10 @@ class ActivityFeedViewModel: ObservableObject {
                         if let listActivity = kind.asListActivity?.fragments.listActivityFragment {
                             if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
                                 self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
+                            }
+                        } else if let textActivity = kind.asTextActivity?.fragments.textActivityFragment {
+                            if let index = self.activities.firstIndex(where: { $0.id == textActivity.id }) {
+                                self.activities[index].asTextActivity!.fragments.textActivityFragment = textActivity
                             }
                         }
                     }

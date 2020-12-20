@@ -3,5 +3,8 @@ mutation Like($id: Int!, $type: LikeableType!, $includeBuggyFields: Boolean!) {
     ... on ListActivity {
       ...listActivityFragment
     }
+    ... on TextActivity {
+      ...textActivityFragment
+    }
   }
 }
