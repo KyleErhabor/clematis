@@ -15,18 +15,26 @@ struct MediaEditorView: View {
 
     var body: some View {
         VStack {
+            #if os(macOS)
+            let toolbarPlacement = ToolbarItemPlacement.navigation
+
+            #else
+            let toolbarPlacement = ToolbarItemPlacement.navigationBarLeading
+
+            #endif
+
             if viewModel.media != nil {
                 NavigationView {
                     MediaEditorFormView()
                         .navigationTitle("List Editor")
                         .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
+                            ToolbarItem(placement: toolbarPlacement) {
                                 Button("Dismiss") {
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             }
 
-                            ToolbarItem(placement: .navigationBarTrailing) {
+                            ToolbarItem(placement: toolbarPlacement) {
                                 Button("Save") {
                                     viewModel.saveEntry()
                                     presentationMode.wrappedValue.dismiss()
@@ -38,7 +46,7 @@ struct MediaEditorView: View {
                 NavigationView {
                     ProgressView()
                         .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
+                            ToolbarItem(placement: toolbarPlacement) {
                                 Button("Dismiss") {
                                     presentationMode.wrappedValue.dismiss()
                                 }
