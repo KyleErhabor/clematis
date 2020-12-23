@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS, unavailable)
 fileprivate struct CurrentUserViewModifier: ViewModifier {
     @EnvironmentObject private var currentUser: CurrentUser
     @State private var isPresenting = false
@@ -58,6 +59,12 @@ fileprivate struct CurrentUserViewModifier: ViewModifier {
 
 extension View {
     func currentUser() -> some View {
-        modifier(CurrentUserViewModifier())
+        #if os(macOS)
+        return self
+
+        #else
+        return modifier(CurrentUserViewModifier())
+
+        #endif
     }
 }

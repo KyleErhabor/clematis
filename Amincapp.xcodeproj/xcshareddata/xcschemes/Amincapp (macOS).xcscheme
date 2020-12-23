@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "002D810A2582BF1A00866A31"
-               BuildableName = "Amincapp (macOS).app"
+               BuildableName = "Amincapp.app"
                BlueprintName = "Amincapp (macOS)"
                ReferencedContainer = "container:Amincapp.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "002D810A2582BF1A00866A31"
-            BuildableName = "Amincapp (macOS).app"
+            BuildableName = "Amincapp.app"
             BlueprintName = "Amincapp (macOS)"
             ReferencedContainer = "container:Amincapp.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "002D810A2582BF1A00866A31"
-            BuildableName = "Amincapp (macOS).app"
+            BuildableName = "Amincapp.app"
             BlueprintName = "Amincapp (macOS)"
             ReferencedContainer = "container:Amincapp.xcodeproj">
          </BuildableReference>

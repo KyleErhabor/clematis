@@ -26,8 +26,8 @@ struct ActivityListKindView: View {
 
     var body: some View {
         HStack {
-            NavigationLink(destination: MediaView()) {
-                WebImage(url: URL(string: activity.media?.coverImage?.extraLarge ?? ""))
+            NavigationLink(destination: MediaView(viewModel: MediaViewModel(id: activity.media!.id))) {
+                WebImage(url: URL(string: activity.media!.coverImage?.extraLarge ?? ""))
                     .resizable()
                     .placeholder {
                         if let coverImageColor = activity.media?.coverImage?.color {
@@ -41,8 +41,8 @@ struct ActivityListKindView: View {
 
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
-                    NavigationLink(destination: MediaView()) {
-                        Text(activity.media?.title?.userPreferred ?? "?")
+                    NavigationLink(destination: MediaView(viewModel: MediaViewModel(id: activity.media!.id))) {
+                        Text(activity.media!.title?.userPreferred ?? "?")
                             .bold()
                             .lineLimit(2)
                     }.buttonStyle(PlainButtonStyle())
@@ -138,41 +138,6 @@ struct ActivityListKindView: View {
                     Label("Delete", systemImage: "minus.circle")
                 }
             }
-
-            #if DEBUG
-            Button {
-                UIPasteboard.general.string = "\(activity.id)"
-            } label: {
-                Label("Copy Activity ID", systemImage: "doc.on.doc")
-            }
-
-            Button {
-                if let id = activity.media?.id {
-                    UIPasteboard.general.string = "\(id)"
-                } else {
-                    logger.notice("Could not copy media ID to clipboard: activity.media was nil")
-                }
-            } label: {
-                Label("Copy Media ID", systemImage: "doc.on.doc")
-            }
-
-            Button {
-                if let id = activity.user?.id {
-                    UIPasteboard.general.string = "\(id)"
-                } else {
-                    logger.notice("Could not copy user ID to clipboard: activity.user was nil")
-                }
-            } label: {
-                Label("Copy User ID", systemImage: "doc.on.doc")
-            }
-
-            Button {
-                UIPasteboard.general.string = "\(activity.createdAt * 1000)"
-            } label: {
-                Label("Copy Message Timestamp", systemImage: "doc.on.doc")
-            }
-
-            #endif
         }.alert(item: $error) { err in
             Alert(title: Text(err.message()))
         }.alert(isPresented: $isPresentingDeleteNotice) {

@@ -1,7 +1,19 @@
-query Media($page: Int!, $id: Int, $search: String) {
-  Page(page: $page, perPage: 50) {
-    media(id: $id, search: $search) {
-      id
+query Media($id: Int!) {
+  Media(id: $id) {
+    id
+    type
+    idMal
+    format
+    bannerImage
+    title {
+      english
+      romaji
+      native
+      userPreferred
+    }
+    coverImage {
+      color
+      extraLarge
     }
   }
 }

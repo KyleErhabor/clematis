@@ -26,7 +26,7 @@ struct ActivityTextKindView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                NavigationLink(destination: UserView()) {
+//                NavigationLink(destination: UserView()) {
                     WebImage(url: URL(string: activity.user?.avatar?.large ?? ""))
                         .resizable()
                         .placeholder { Color.accentColor }
@@ -36,7 +36,7 @@ struct ActivityTextKindView: View {
 
                     Text(activity.user?.name ?? "?")
                         .fontWeight(.medium)
-                }
+//                }
 
                 Spacer()
 
@@ -49,15 +49,15 @@ struct ActivityTextKindView: View {
             }
 
             // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/1
-            Text(activity.text ?? "")
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(10)
+//            Text(activity.text ?? "")
+//                .fixedSize(horizontal: false, vertical: true)
+//                .lineLimit(10)
 
             // The buttons stored in the HStack look squashed without this Spacer.
             Spacer()
 
             HStack {
-                Spacer()
+//                Spacer()
 
                 Button {
                     like()
@@ -100,31 +100,6 @@ struct ActivityTextKindView: View {
                     Label("Delete", systemImage: "minus.circle")
                 }
             }
-
-            #if DEBUG
-            Button {
-                UIPasteboard.general.string = "\(activity.id)"
-            } label: {
-                Label("Copy Activity ID", systemImage: "doc.on.doc")
-            }
-
-            Button {
-                if let id = activity.user?.id {
-                    UIPasteboard.general.string = "\(id)"
-                } else {
-                    logger.notice("Could not copy user ID to clipboard: activity.user was nil")
-                }
-            } label: {
-                Label("Copy User ID", systemImage: "doc.on.doc")
-            }
-
-            Button {
-                UIPasteboard.general.string = "\(activity.createdAt * 1000)"
-            } label: {
-                Label("Copy Message Timestamp", systemImage: "doc.on.doc")
-            }
-
-            #endif
         }.alert(item: $error) { err in
             Alert(title: Text(err.message()))
         }.alert(isPresented: $isPresentingDeleteNotice) {

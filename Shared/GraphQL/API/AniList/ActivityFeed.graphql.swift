@@ -15,6 +15,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
           isFollowing: $isFollowing
           hasRepliesOrTypeText: $hasRepliesOrTypeText
           sort: [ID_DESC]
+          type_in: [TEXT, ANIME_LIST, MANGA_LIST]
         ) {
           __typename
           ... on TextActivity {
@@ -82,7 +83,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("activities", arguments: ["isFollowing": GraphQLVariable("isFollowing"), "hasRepliesOrTypeText": GraphQLVariable("hasRepliesOrTypeText"), "sort": ["ID_DESC"]], type: .list(.object(Activity.selections))),
+          GraphQLField("activities", arguments: ["isFollowing": GraphQLVariable("isFollowing"), "hasRepliesOrTypeText": GraphQLVariable("hasRepliesOrTypeText"), "sort": ["ID_DESC"], "type_in": ["TEXT", "ANIME_LIST", "MANGA_LIST"]], type: .list(.object(Activity.selections))),
         ]
       }
 

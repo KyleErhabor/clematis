@@ -21,7 +21,7 @@ struct ActivityFeedView: View {
                 // Do not remove this sub-view until this issue has been resolved.
                 ActivityFeedSelectorView(activity: activity)
                     .padding(8)
-            }.animation(.default)
+            }
         }.currentUser()
         .navigationTitle("Activity Feed")
         .environmentObject(viewModel)
@@ -36,7 +36,7 @@ struct ActivityFeedSelectorView: View {
 
     var body: some View {
         if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
-            ActivityListKindView(activity: listActivity)
+//            ActivityListKindView(activity: listActivity)
         } else if let textActivity = activity.asTextActivity?.fragments.textActivityFragment {
             ActivityTextKindView(activity: textActivity)
         }

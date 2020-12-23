@@ -9,10 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        #if os(iOS)
-        TabNavigationView()
+        NavigationView {
+            #if os(macOS)
+            SidebarNavigationView()
 
-        #endif
+            #else
+            TabNavigationView()
+
+            #endif
+
+            Text("?")
+//            ActivityFeedView()
+        }
     }
 }
 
