@@ -26,7 +26,7 @@ struct ActivityTextKindView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-//                NavigationLink(destination: UserView()) {
+                NavigationLink(destination: UserView()) {
                     WebImage(url: URL(string: activity.user?.avatar?.large ?? ""))
                         .resizable()
                         .placeholder { Color.accentColor }
@@ -36,7 +36,7 @@ struct ActivityTextKindView: View {
 
                     Text(activity.user?.name ?? "?")
                         .fontWeight(.medium)
-//                }
+                }
 
                 Spacer()
 
@@ -49,15 +49,15 @@ struct ActivityTextKindView: View {
             }
 
             // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/1
-//            Text(activity.text ?? "")
-//                .fixedSize(horizontal: false, vertical: true)
-//                .lineLimit(10)
+            Text(activity.text ?? "")
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(10)
 
             // The buttons stored in the HStack look squashed without this Spacer.
             Spacer()
 
             HStack {
-//                Spacer()
+                Spacer()
 
                 Button {
                     like()
