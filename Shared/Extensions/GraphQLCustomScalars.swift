@@ -6,3 +6,4 @@
 //
 
 public typealias Json = [String: Any]
+public typealias CountryCode = String

@@ -5,6 +5,7 @@
 //  Created by Kyle Erhabor on 12/20/20.
 //
 
+import Apollo
 import Foundation
 
 class MediaViewModel: ObservableObject {
@@ -28,6 +29,26 @@ class MediaViewModel: ObservableObject {
                         logger.error("\(errors)")
                     }
                 case let .failure(err):
+                    logger.error("\(err)")
+            }
+        }
+    }
+
+    func favorite() {
+        GraphQLNetwork.shared.anilist.perform(mutation: FavoriteMutation(
+            animeId: self.media?.type == .anime ? id : nil,
+            mangaId: self.media?.type == .manga ? id : nil
+        )) { result in
+            switch result {
+                case .success(let query):
+                    if query.data?.toggleFavourite != nil {
+                        self.media?.isFavourite.toggle()
+                    }
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case .failure(let err):
                     logger.error("\(err)")
             }
         }

@@ -22,8 +22,7 @@ struct ActivityFeedView: View {
                 ActivityFeedSelectorView(activity: activity)
                     .padding(8)
             }
-        }.currentUser()
-        .navigationTitle("Activity Feed")
+        }.navigationTitle("Activity Feed")
         .environmentObject(viewModel)
         .onAppear {
             viewModel.fetchActivities()
@@ -36,7 +35,7 @@ struct ActivityFeedSelectorView: View {
 
     var body: some View {
         if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
-//            ActivityListKindView(activity: listActivity)
+            ActivityListKindView(activity: listActivity)
         } else if let textActivity = activity.asTextActivity?.fragments.textActivityFragment {
             ActivityTextKindView(activity: textActivity)
         }

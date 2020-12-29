@@ -25,4 +25,26 @@ enum AniList {
             }
         }
     }
+
+    static func statusName(status: MediaListStatus, type: MediaType) -> String {
+        switch status {
+            case .planning: return "Planning"
+            case .completed: return "Completed"
+            case .dropped: return "Dropped"
+            case .paused: return "Paused"
+            case .current:
+                switch type {
+                    case .anime: return "Watching"
+                    case .manga: return "Reading"
+                    case .__unknown: return "Current"
+                }
+            case .repeating:
+                switch type {
+                    case .anime: return "Rewatching"
+                    case .manga: return "Rereading"
+                    case .__unknown: return "Repeating"
+                }
+            case .__unknown(let name): return name.capitalized
+        }
+    }
 }

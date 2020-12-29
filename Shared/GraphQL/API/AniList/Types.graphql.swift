@@ -359,3 +359,118 @@ public enum MediaFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Ap
     ]
   }
 }
+
+public enum MediaSeason: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Months December to February
+  case winter
+  /// Months March to May
+  case spring
+  /// Months June to August
+  case summer
+  /// Months September to November
+  case fall
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "WINTER": self = .winter
+      case "SPRING": self = .spring
+      case "SUMMER": self = .summer
+      case "FALL": self = .fall
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .winter: return "WINTER"
+      case .spring: return "SPRING"
+      case .summer: return "SUMMER"
+      case .fall: return "FALL"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaSeason, rhs: MediaSeason) -> Bool {
+    switch (lhs, rhs) {
+      case (.winter, .winter): return true
+      case (.spring, .spring): return true
+      case (.summer, .summer): return true
+      case (.fall, .fall): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaSeason] {
+    return [
+      .winter,
+      .spring,
+      .summer,
+      .fall,
+    ]
+  }
+}
+
+/// The current releasing status of the media
+public enum MediaStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Has completed and is no longer being released
+  case finished
+  /// Currently releasing
+  case releasing
+  /// To be released at a later date
+  case notYetReleased
+  /// Ended before the work could be finished
+  case cancelled
+  /// Version 2 only. Is currently paused from releasing and will resume at a later date
+  case hiatus
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "FINISHED": self = .finished
+      case "RELEASING": self = .releasing
+      case "NOT_YET_RELEASED": self = .notYetReleased
+      case "CANCELLED": self = .cancelled
+      case "HIATUS": self = .hiatus
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .finished: return "FINISHED"
+      case .releasing: return "RELEASING"
+      case .notYetReleased: return "NOT_YET_RELEASED"
+      case .cancelled: return "CANCELLED"
+      case .hiatus: return "HIATUS"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaStatus, rhs: MediaStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.finished, .finished): return true
+      case (.releasing, .releasing): return true
+      case (.notYetReleased, .notYetReleased): return true
+      case (.cancelled, .cancelled): return true
+      case (.hiatus, .hiatus): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaStatus] {
+    return [
+      .finished,
+      .releasing,
+      .notYetReleased,
+      .cancelled,
+      .hiatus,
+    ]
+  }
+}
