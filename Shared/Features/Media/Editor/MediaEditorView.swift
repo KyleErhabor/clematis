@@ -15,26 +15,18 @@ struct MediaEditorView: View {
 
     var body: some View {
         VStack {
-            #if os(macOS)
-            let toolbarPlacement = ToolbarItemPlacement.navigation
-
-            #else
-            let toolbarPlacement = ToolbarItemPlacement.navigationBarLeading
-
-            #endif
-
             if viewModel.media != nil {
                 NavigationView {
                     MediaEditorFormView()
                         .navigationTitle("List Editor")
                         .toolbar {
-                            ToolbarItem(placement: toolbarPlacement) {
+                            ToolbarItem(placement: .navigationBarLeading) {
                                 Button("Dismiss") {
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             }
 
-                            ToolbarItem(placement: toolbarPlacement) {
+                            ToolbarItem(placement: .navigationBarTrailing) {
                                 Button("Save") {
                                     viewModel.saveEntry()
                                     presentationMode.wrappedValue.dismiss()
@@ -44,14 +36,13 @@ struct MediaEditorView: View {
                 }
             } else {
                 NavigationView {
-                    ProgressView()
-                        .toolbar {
-                            ToolbarItem(placement: toolbarPlacement) {
-                                Button("Dismiss") {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
+                    ProgressView().toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Dismiss") {
+                                presentationMode.wrappedValue.dismiss()
                             }
                         }
+                    }
                 }
             }
         }.environmentObject(viewModel)
@@ -131,7 +122,7 @@ fileprivate struct MediaEditorFormView: View {
                     let relativeTime = dateFormatter.localizedString(for: lastUpdateDate, relativeTo: Date())
 
                     Spacer()
-                    Text("Last Updated: ").bold() + Text(relativeTime)
+                    Text("Last Updated ").bold() + Text(relativeTime)
                 }
             }.padding()) {
                 MediaEditorFormListSettingsView()
