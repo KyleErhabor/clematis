@@ -46,7 +46,6 @@
 		00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
 		00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3A42587ED3000443135 /* MediaEditorFormCustomListView.swift */; };
 		00CA19A4252FA04B00B1D2D8 /* Activity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */; };
-		00E365662581B5A7007DAF08 /* CurrentUserViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E365652581B5A7007DAF08 /* CurrentUserViewModifier.swift */; };
 		00E3656E2581D687007DAF08 /* ActivityTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3656D2581D687007DAF08 /* ActivityTextKindView.swift */; };
 		00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA4257C13CF0080C352 /* ActivityFeedView.swift */; };
 		00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F18C02257D728300AB0183 /* ActivityListKindView.swift */; };
@@ -108,7 +107,6 @@
 		00C9B2FB251F996F000A8139 /* CurrentUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentUser.graphql; sourceTree = "<group>"; };
 		00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityFeed.graphql; sourceTree = "<group>"; };
 		00CA19A3252FA04B00B1D2D8 /* Activity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Identifiable.swift"; sourceTree = "<group>"; };
-		00E365652581B5A7007DAF08 /* CurrentUserViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewModifier.swift; sourceTree = "<group>"; };
 		00E3656D2581D687007DAF08 /* ActivityTextKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTextKindView.swift; sourceTree = "<group>"; };
 		00F18C02257D728300AB0183 /* ActivityListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListKindView.swift; sourceTree = "<group>"; };
 		00F3864D257E9B11000DBDA0 /* Like.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Like.graphql; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
 				00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */,
 				00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */,
-				00E365642581B56E007DAF08 /* Modifiers */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,14 +367,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		00E365642581B56E007DAF08 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				00E365652581B5A7007DAF08 /* CurrentUserViewModifier.swift */,
-			);
-			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		00F18C00257D725200AB0183 /* Feed */ = {
@@ -498,7 +487,6 @@
 				002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
-				00E365662581B5A7007DAF08 /* CurrentUserViewModifier.swift in Sources */,
 				0087453F258BEEB4003A6AFE /* MediaEditorFormNotesView.swift in Sources */,
 				006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */,
 				00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */,
