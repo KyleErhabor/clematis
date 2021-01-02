@@ -17,7 +17,7 @@ class MediaEditorViewModel: ObservableObject {
     }
 
     func fetchMedia() {
-        GraphQLNetwork.shared.anilist.fetch(query: MediaEditorQuery(id: id)) { result in
+        GraphQLNetwork.shared.fetch(query: MediaEditorQuery(id: id)) { result in
             switch result {
                 case .success(let query):
                     if let media = query.data?.media {
@@ -55,7 +55,7 @@ class MediaEditorViewModel: ObservableObject {
         )
 
         if let id = media?.mediaListEntry?.id, id != -1 {
-            GraphQLNetwork.shared.anilist.perform(mutation: UpdateMediaListEntryMutation(
+            GraphQLNetwork.shared.perform(mutation: UpdateMediaListEntryMutation(
                 id: id,
                 status: media?.mediaListEntry?.status,
                 score: media?.mediaListEntry?.score,
@@ -85,7 +85,7 @@ class MediaEditorViewModel: ObservableObject {
                 }
             }
         } else {
-            GraphQLNetwork.shared.anilist.perform(mutation: CreateMediaListEntryMutation(
+            GraphQLNetwork.shared.perform(mutation: CreateMediaListEntryMutation(
                 mediaId: id,
                 status: media?.mediaListEntry?.status ?? .planning,
                 score: media?.mediaListEntry?.score ?? 0,

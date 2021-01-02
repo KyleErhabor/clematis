@@ -33,42 +33,49 @@ struct SidebarNavigationView: View {
                 }
             }
 
-            // On macOS, we'll likely hide the Menu controls since the user can access the settings instead.
-            if currentUser.users.isEmpty {
-                Link(destination: AniList.authorizationURL) {
-                    Label("Sign In", systemImage: "person.crop.circle.badge.plus")
-                }
-            } else {
-                Menu {
-                    Button {
-                        isPresenting = true
-                    } label: {
-                        Label("Switch Account", systemImage: "arrow.left.arrow.right")
-                    }
-
+            HStack {
+                Spacer()
+                
+                // On macOS, we'll likely hide the Menu controls since the user can access the settings instead.
+                if currentUser.users.isEmpty {
                     Link(destination: AniList.authorizationURL) {
-                        Label("Add Account", systemImage: "plus.circle")
+                        Label("Sign In", systemImage: "person.crop.circle.badge.plus")
                     }
-
-                    Button {
-                        currentUser.removeUser(at: 0)
+                } else {
+                    Menu {
+                        Button {
+                            isPresenting = true
+                        } label: {
+                            Label("Switch Account", systemImage: "arrow.left.arrow.right")
+                        }
+                        
+                        Link(destination: AniList.authorizationURL) {
+                            Label("Add Account", systemImage: "plus.circle")
+                        }
+                        
+                        Button {
+                            currentUser.removeUser(at: 0)
+                        } label: {
+                            Label("Sign Out", systemImage: "minus.circle")
+                        }
                     } label: {
-                        Label("Sign Out", systemImage: "minus.circle")
+                        Text("Signed in as ") + Text(currentUser.users[0].name).bold()
+                    }.actionSheet(isPresented: $isPresenting) {
+                        ActionSheet(
+                            title: Text("Accounts"),
+                            message: nil, // TODO: Add a descriptive message
+                            buttons: currentUser.users.enumerated().map { index, user in
+                                .default(Text(user.name)) {
+                                    currentUser.switchUser(at: index)
+                                }
+                            } + [.cancel()]
+                        )
                     }
-                } label: {
-                    Text("Signed in as ") + Text(currentUser.users[0].name).bold()
-                }.actionSheet(isPresented: $isPresenting) {
-                    ActionSheet(
-                        title: Text("Accounts"),
-                        message: nil, // TODO: Add a descriptive message
-                        buttons: currentUser.users.enumerated().map { index, user in
-                            .default(Text(user.name)) {
-                                currentUser.switchUser(at: index)
-                            }
-                        } + [.cancel()]
-                    )
                 }
+
+                Spacer()
             }
+
         }.listStyle(SidebarListStyle())
         .navigationTitle("Amincapp")
     }

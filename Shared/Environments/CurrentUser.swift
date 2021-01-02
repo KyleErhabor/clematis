@@ -62,7 +62,7 @@ class CurrentUser: ObservableObject {
                     // been cleared So it keeps adding the Authorization header when it shouldn't be. I don't know
                     // why this is happening (maybe threading issues?), but this issue should be resolved before
                     // production.
-                    GraphQLNetwork.shared.anilist.fetch(query: CurrentUserQuery()) { result in
+                    GraphQLNetwork.shared.fetch(query: CurrentUserQuery()) { result in
                         UserDefaults.standard.set((index + 1) % tokens.count, forKey: SettingsKeys.accountIndex)
 
                         switch result {

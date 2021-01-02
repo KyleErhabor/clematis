@@ -11,7 +11,7 @@ class ActivityFeedViewModel: ObservableObject {
     @Published private(set) var activities = [ActivityFeedQuery.Data.Page.Activity]()
 
     func fetchActivities(page: Int = 1, isFollowing: Bool = false) {
-        GraphQLNetwork.shared.anilist.fetch(query: ActivityFeedQuery(
+        GraphQLNetwork.shared.fetch(query: ActivityFeedQuery(
             page: page,
             isFollowing: isFollowing,
             hasRepliesOrTypeText: !isFollowing,
@@ -31,7 +31,7 @@ class ActivityFeedViewModel: ObservableObject {
     }
 
     func like(id: Int, type: LikeableType) {
-        GraphQLNetwork.shared.anilist.perform(mutation: LikeMutation(
+        GraphQLNetwork.shared.perform(mutation: LikeMutation(
             id: id,
             type: type,
             includeBuggyFields: false
@@ -60,7 +60,7 @@ class ActivityFeedViewModel: ObservableObject {
     }
 
     func subscribe(id: Int, subscribe: Bool) {
-        GraphQLNetwork.shared.anilist.perform(mutation: ActivitySubscriptionMutation(
+        GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
             id: id,
             subscribe: subscribe,
             includeBuggyFields: false
@@ -92,7 +92,7 @@ class ActivityFeedViewModel: ObservableObject {
     func delete(id: Int) {
         // This has only been tested on an activity the user can't delete. In the future, this should tested on an
         // activity the user can delete to make sure it works.
-        GraphQLNetwork.shared.anilist.perform(mutation: DeleteActivityMutation(id: id)) { result in
+        GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: id)) { result in
             switch result {
                 case .success(let query):
                     if query.data?.deleteActivity?.deleted == true {

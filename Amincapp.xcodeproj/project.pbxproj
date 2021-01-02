@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000A6124259D81030040F7F8 /* MediaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6123259D81030040F7F8 /* MediaHeaderView.swift */; };
+		000A6128259D86A10040F7F8 /* MediaSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6127259D86A10040F7F8 /* MediaSummaryView.swift */; };
 		00152BAA257C15400080C352 /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA9257C15400080C352 /* ActivityFeedViewModel.swift */; };
 		002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D814A2583090E00866A31 /* MediaEditorView.swift */; };
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
@@ -14,6 +16,7 @@
 		006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006755842594239E00E557E0 /* SidebarNavigationView.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
 		0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071E89E258337D600173A16 /* MediaEditorViewModel.swift */; };
+		0073113125A0F4600070776A /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073113025A0F4600070776A /* TabNavigationView.swift */; };
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00767DC5259001EC009AD3BE /* MediaViewModel.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
@@ -53,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000A6123259D81030040F7F8 /* MediaHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHeaderView.swift; sourceTree = "<group>"; };
+		000A6127259D86A10040F7F8 /* MediaSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSummaryView.swift; sourceTree = "<group>"; };
 		00152BA4257C13CF0080C352 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
 		00152BA9257C15400080C352 /* ActivityFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedViewModel.swift; sourceTree = "<group>"; };
 		002D812B2582F40B00866A31 /* ActivitySubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivitySubscription.graphql; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 		006ED0E42517C9F6004992F7 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0071E89E258337D600173A16 /* MediaEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorViewModel.swift; sourceTree = "<group>"; };
 		0071E8C32583A7D900173A16 /* MediaEditor.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MediaEditor.graphql; sourceTree = "<group>"; };
+		0073113025A0F4600070776A /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		00767DC5259001EC009AD3BE /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		00767DCC25900770009AD3BE /* Media.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Media.graphql; sourceTree = "<group>"; };
@@ -127,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000A6122259D80E90040F7F8 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				000A6123259D81030040F7F8 /* MediaHeaderView.swift */,
+				000A6127259D86A10040F7F8 /* MediaSummaryView.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
 		002D81282582F35700866A31 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +183,7 @@
 				00371530256BF39B00F68734 /* MediaView.swift */,
 				00767DC5259001EC009AD3BE /* MediaViewModel.swift */,
 				002D8149258308FB00866A31 /* Editor */,
+				000A6122259D80E90040F7F8 /* Sections */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -194,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				006755842594239E00E557E0 /* SidebarNavigationView.swift */,
+				0073113025A0F4600070776A /* TabNavigationView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -204,14 +221,6 @@
 				00F3865E257EA06F000DBDA0 /* ActivityUnion.graphql */,
 			);
 			path = Fragments;
-			sourceTree = "<group>";
-		};
-		0073DB7E251EEE2E000C1FA1 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		00869F072502A75100D2DB6F = {
@@ -232,14 +241,14 @@
 			children = (
 				00869F0D2502A75100D2DB6F /* AmincappApp.swift */,
 				00869F0E2502A75100D2DB6F /* ContentView.swift */,
+				00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */,
+				0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */,
 				00869F0F2502A75300D2DB6F /* Assets.xcassets */,
 				00986BD4256878D40008D80C /* Environments */,
 				008CDBF025169A8B00B948D4 /* Extensions */,
 				00CAB6EE251977CA00B8C64F /* Features */,
 				00C9B2F9251F9830000A8139 /* GraphQL */,
 				006755832594238600E557E0 /* Navigation */,
-				00869F622502CACE00D2DB6F /* Networking */,
-				0073DB7E251EEE2E000C1FA1 /* Settings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -258,14 +267,6 @@
 				00869F172502A75300D2DB6F /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		00869F622502CACE00D2DB6F /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		008CDBF025169A8B00B948D4 /* Extensions */ = {
@@ -291,14 +292,6 @@
 		00BB687F251FE13B00B7DDC9 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				00BB6880251FE14A00B7DDC9 /* AniList */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		00BB6880251FE14A00B7DDC9 /* AniList */ = {
-			isa = PBXGroup;
-			children = (
 				009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */,
 				009BB1BD259574390041BF8C /* ActivitySubscription.graphql.swift */,
 				009BB1BA259574390041BF8C /* ActivityUnion.graphql.swift */,
@@ -313,7 +306,7 @@
 				009BB1BC259574390041BF8C /* Types.graphql.swift */,
 				009BB1B9259574390041BF8C /* UpdateMediaListEntry.graphql.swift */,
 			);
-			path = AniList;
+			path = API;
 			sourceTree = "<group>";
 		};
 		00C8C3922587E7A500443135 /* Sections */ = {
@@ -332,21 +325,13 @@
 		00C9B2F9251F9830000A8139 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				00BB687F251FE13B00B7DDC9 /* API */,
-				00C9B2FA251F9847000A8139 /* AniList */,
-			);
-			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		00C9B2FA251F9847000A8139 /* AniList */ = {
-			isa = PBXGroup;
-			children = (
 				00869F542502C0EE00D2DB6F /* schema.json */,
+				00BB687F251FE13B00B7DDC9 /* API */,
 				0071E87E25832B2100173A16 /* Fragments */,
 				002D81292582F36600866A31 /* Mutations */,
 				002D81282582F35700866A31 /* Queries */,
 			);
-			path = AniList;
+			path = GraphQL;
 			sourceTree = "<group>";
 		};
 		00CAB6EE251977CA00B8C64F /* Features */ = {
@@ -467,7 +452,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# AniList\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --passthroughCustomScalars --target swift --includes './Shared/GraphQL/AniList/**/*.graphql' --localSchemaFile ./Shared/GraphQL/AniList/schema.json ./Shared/GraphQL/API/AniList\n\n# Schema downloader\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# GraphQL -> Swift Code\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --passthroughCustomScalars --target swift --includes './Shared/GraphQL/**/*.graphql' --localSchemaFile ./Shared/GraphQL/schema.json ./Shared/GraphQL/API\n\n# URL -> Schema file\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -484,10 +469,12 @@
 				002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
+				000A6128259D86A10040F7F8 /* MediaSummaryView.swift in Sources */,
 				0087453F258BEEB4003A6AFE /* MediaEditorFormNotesView.swift in Sources */,
 				006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */,
 				00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */,
 				00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */,
+				000A6124259D81030040F7F8 /* MediaHeaderView.swift in Sources */,
 				00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
 				009BB1CE259574390041BF8C /* CurrentUser.graphql.swift in Sources */,
@@ -512,6 +499,7 @@
 				009BB1C8259574390041BF8C /* MediaEditor.graphql.swift in Sources */,
 				0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */,
+				0073113125A0F4600070776A /* TabNavigationView.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				009BB1CF259574390041BF8C /* Media.graphql.swift in Sources */,
 				009BB1D1259574390041BF8C /* Like.graphql.swift in Sources */,
@@ -730,7 +718,7 @@
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.38.3;
+				minimumVersion = 0.39.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

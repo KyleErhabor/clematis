@@ -18,7 +18,7 @@ class MediaViewModel: ObservableObject {
     }
 
     func fetchMedia() {
-        GraphQLNetwork.shared.anilist.fetch(query: MediaQuery(id: id)) { result in
+        GraphQLNetwork.shared.fetch(query: MediaQuery(id: id)) { result in
             switch result {
                 case let .success(query):
                     if let media = query.data?.media {
@@ -35,7 +35,7 @@ class MediaViewModel: ObservableObject {
     }
 
     func favorite() {
-        GraphQLNetwork.shared.anilist.perform(mutation: FavoriteMutation(
+        GraphQLNetwork.shared.perform(mutation: FavoriteMutation(
             animeId: self.media?.type == .anime ? id : nil,
             mangaId: self.media?.type == .manga ? id : nil
         )) { result in

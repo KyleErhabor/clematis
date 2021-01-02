@@ -9,9 +9,7 @@ import Apollo
 import Foundation
 
 class GraphQLNetwork {
-    static let shared = GraphQLNetwork()
-
-    let anilist: ApolloClient = {
+    static let shared: ApolloClient = {
         let store = ApolloStore()
 
         return ApolloClient(networkTransport: RequestChainNetworkTransport(
