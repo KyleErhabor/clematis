@@ -13,17 +13,10 @@ public final class MediaQuery: GraphQLQuery {
         __typename
         id
         type
-        format
-        season
-        status
-        volumes
-        chapters
-        duration
-        episodes
-        isLicensed
+        idMal
+        synonyms
         bannerImage
         isFavourite
-        countryOfOrigin
         description(asHtml: true)
         coverImage {
           __typename
@@ -36,22 +29,6 @@ public final class MediaQuery: GraphQLQuery {
           romaji
           english
           userPreferred
-        }
-        mediaListEntry {
-          __typename
-          status
-        }
-        startDate {
-          __typename
-          day
-          year
-          month
-        }
-        endDate {
-          __typename
-          day
-          year
-          month
         }
       }
     }
@@ -106,23 +83,13 @@ public final class MediaQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("type", type: .scalar(MediaType.self)),
-          GraphQLField("format", type: .scalar(MediaFormat.self)),
-          GraphQLField("season", type: .scalar(MediaSeason.self)),
-          GraphQLField("status", type: .scalar(MediaStatus.self)),
-          GraphQLField("volumes", type: .scalar(Int.self)),
-          GraphQLField("chapters", type: .scalar(Int.self)),
-          GraphQLField("duration", type: .scalar(Int.self)),
-          GraphQLField("episodes", type: .scalar(Int.self)),
-          GraphQLField("isLicensed", type: .scalar(Bool.self)),
+          GraphQLField("idMal", type: .scalar(Int.self)),
+          GraphQLField("synonyms", type: .list(.scalar(String.self))),
           GraphQLField("bannerImage", type: .scalar(String.self)),
           GraphQLField("isFavourite", type: .nonNull(.scalar(Bool.self))),
-          GraphQLField("countryOfOrigin", type: .scalar(CountryCode.self)),
           GraphQLField("description", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("coverImage", type: .object(CoverImage.selections)),
           GraphQLField("title", type: .object(Title.selections)),
-          GraphQLField("mediaListEntry", type: .object(MediaListEntry.selections)),
-          GraphQLField("startDate", type: .object(StartDate.selections)),
-          GraphQLField("endDate", type: .object(EndDate.selections)),
         ]
       }
 
@@ -132,8 +99,8 @@ public final class MediaQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, type: MediaType? = nil, format: MediaFormat? = nil, season: MediaSeason? = nil, status: MediaStatus? = nil, volumes: Int? = nil, chapters: Int? = nil, duration: Int? = nil, episodes: Int? = nil, isLicensed: Bool? = nil, bannerImage: String? = nil, isFavourite: Bool, countryOfOrigin: CountryCode? = nil, description: String? = nil, coverImage: CoverImage? = nil, title: Title? = nil, mediaListEntry: MediaListEntry? = nil, startDate: StartDate? = nil, endDate: EndDate? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "format": format, "season": season, "status": status, "volumes": volumes, "chapters": chapters, "duration": duration, "episodes": episodes, "isLicensed": isLicensed, "bannerImage": bannerImage, "isFavourite": isFavourite, "countryOfOrigin": countryOfOrigin, "description": description, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }, "startDate": startDate.flatMap { (value: StartDate) -> ResultMap in value.resultMap }, "endDate": endDate.flatMap { (value: EndDate) -> ResultMap in value.resultMap }])
+      public init(id: Int, type: MediaType? = nil, idMal: Int? = nil, synonyms: [String?]? = nil, bannerImage: String? = nil, isFavourite: Bool, description: String? = nil, coverImage: CoverImage? = nil, title: Title? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "idMal": idMal, "synonyms": synonyms, "bannerImage": bannerImage, "isFavourite": isFavourite, "description": description, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -165,83 +132,23 @@ public final class MediaQuery: GraphQLQuery {
         }
       }
 
-      /// The format the media was released in
-      public var format: MediaFormat? {
+      /// The mal id of the media
+      public var idMal: Int? {
         get {
-          return resultMap["format"] as? MediaFormat
+          return resultMap["idMal"] as? Int
         }
         set {
-          resultMap.updateValue(newValue, forKey: "format")
+          resultMap.updateValue(newValue, forKey: "idMal")
         }
       }
 
-      /// The season the media was initially released in
-      public var season: MediaSeason? {
+      /// Alternative titles of the media
+      public var synonyms: [String?]? {
         get {
-          return resultMap["season"] as? MediaSeason
+          return resultMap["synonyms"] as? [String?]
         }
         set {
-          resultMap.updateValue(newValue, forKey: "season")
-        }
-      }
-
-      /// The current releasing status of the media
-      public var status: MediaStatus? {
-        get {
-          return resultMap["status"] as? MediaStatus
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "status")
-        }
-      }
-
-      /// The amount of volumes the manga has when complete
-      public var volumes: Int? {
-        get {
-          return resultMap["volumes"] as? Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "volumes")
-        }
-      }
-
-      /// The amount of chapters the manga has when complete
-      public var chapters: Int? {
-        get {
-          return resultMap["chapters"] as? Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "chapters")
-        }
-      }
-
-      /// The general length of each anime episode in minutes
-      public var duration: Int? {
-        get {
-          return resultMap["duration"] as? Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "duration")
-        }
-      }
-
-      /// The amount of episodes the anime has when complete
-      public var episodes: Int? {
-        get {
-          return resultMap["episodes"] as? Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "episodes")
-        }
-      }
-
-      /// If the media is officially licensed or a self-published doujin release
-      public var isLicensed: Bool? {
-        get {
-          return resultMap["isLicensed"] as? Bool
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "isLicensed")
+          resultMap.updateValue(newValue, forKey: "synonyms")
         }
       }
 
@@ -262,16 +169,6 @@ public final class MediaQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "isFavourite")
-        }
-      }
-
-      /// Where the media was created. (ISO 3166-1 alpha-2)
-      public var countryOfOrigin: CountryCode? {
-        get {
-          return resultMap["countryOfOrigin"] as? CountryCode
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "countryOfOrigin")
         }
       }
 
@@ -302,36 +199,6 @@ public final class MediaQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue?.resultMap, forKey: "title")
-        }
-      }
-
-      /// The authenticated user's media list entry for the media
-      public var mediaListEntry: MediaListEntry? {
-        get {
-          return (resultMap["mediaListEntry"] as? ResultMap).flatMap { MediaListEntry(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "mediaListEntry")
-        }
-      }
-
-      /// The first official release date of the media
-      public var startDate: StartDate? {
-        get {
-          return (resultMap["startDate"] as? ResultMap).flatMap { StartDate(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "startDate")
-        }
-      }
-
-      /// The last official release date of the media
-      public var endDate: EndDate? {
-        get {
-          return (resultMap["endDate"] as? ResultMap).flatMap { EndDate(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "endDate")
         }
       }
 
@@ -455,170 +322,6 @@ public final class MediaQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "userPreferred")
-          }
-        }
-      }
-
-      public struct MediaListEntry: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["MediaList"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("status", type: .scalar(MediaListStatus.self)),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(status: MediaListStatus? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaList", "status": status])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// The watching/reading status
-        public var status: MediaListStatus? {
-          get {
-            return resultMap["status"] as? MediaListStatus
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "status")
-          }
-        }
-      }
-
-      public struct StartDate: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["FuzzyDate"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("day", type: .scalar(Int.self)),
-            GraphQLField("year", type: .scalar(Int.self)),
-            GraphQLField("month", type: .scalar(Int.self)),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(day: Int? = nil, year: Int? = nil, month: Int? = nil) {
-          self.init(unsafeResultMap: ["__typename": "FuzzyDate", "day": day, "year": year, "month": month])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// Numeric Day (24)
-        public var day: Int? {
-          get {
-            return resultMap["day"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "day")
-          }
-        }
-
-        /// Numeric Year (2017)
-        public var year: Int? {
-          get {
-            return resultMap["year"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "year")
-          }
-        }
-
-        /// Numeric Month (3)
-        public var month: Int? {
-          get {
-            return resultMap["month"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "month")
-          }
-        }
-      }
-
-      public struct EndDate: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["FuzzyDate"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("day", type: .scalar(Int.self)),
-            GraphQLField("year", type: .scalar(Int.self)),
-            GraphQLField("month", type: .scalar(Int.self)),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(day: Int? = nil, year: Int? = nil, month: Int? = nil) {
-          self.init(unsafeResultMap: ["__typename": "FuzzyDate", "day": day, "year": year, "month": month])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// Numeric Day (24)
-        public var day: Int? {
-          get {
-            return resultMap["day"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "day")
-          }
-        }
-
-        /// Numeric Year (2017)
-        public var year: Int? {
-          get {
-            return resultMap["year"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "year")
-          }
-        }
-
-        /// Numeric Month (3)
-        public var month: Int? {
-          get {
-            return resultMap["month"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "month")
           }
         }
       }

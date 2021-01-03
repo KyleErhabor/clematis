@@ -2,17 +2,10 @@ query Media($id: Int!) {
   Media(id: $id) {
     id
     type
-    format
-    season
-    status
-    volumes
-    chapters
-    duration
-    episodes
-    isLicensed
+    idMal
+    synonyms
     bannerImage
     isFavourite
-    countryOfOrigin
     description(asHtml: true)
     coverImage {
       color
@@ -23,19 +16,6 @@ query Media($id: Int!) {
       romaji
       english
       userPreferred
-    }
-    mediaListEntry {
-      status
-    }
-    startDate {
-      day
-      year
-      month
-    }
-    endDate {
-      day
-      year
-      month
     }
   }
 }

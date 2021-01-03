@@ -1,5 +1,5 @@
 //
-//  MediaHeaderView.swift
+//  MediaSectionHeaderView.swift
 //  Amincapp (iOS)
 //
 //  Created by Kyle Erhabor on 12/30/20.
@@ -8,7 +8,7 @@
 import SDWebImageSwiftUI
 import SwiftUI
 
-struct MediaHeaderView: View {
+struct MediaSectionHeaderView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
@@ -31,7 +31,6 @@ struct MediaHeaderView: View {
             if geo.frame(in: .global).minY <= 0 {
                 bannerWebImage
                     .frame(width: geo.size.width, height: geo.size.height)
-                    .offset(y: geo.frame(in: .global).minY / 9)
                     .clipped()
             } else {
                 bannerWebImage
@@ -43,8 +42,8 @@ struct MediaHeaderView: View {
     }
 }
 
-struct MediaHeaderView_Previews: PreviewProvider {
+struct MediaSectionHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaHeaderView()
+        MediaSectionHeaderView()
     }
 }

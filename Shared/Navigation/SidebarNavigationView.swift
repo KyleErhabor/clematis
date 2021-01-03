@@ -9,25 +9,24 @@ import SwiftUI
 
 struct SidebarNavigationView: View {
     @EnvironmentObject private var currentUser: CurrentUser
-    @State private var selection: Int? = 0
     @State private var isPresenting = false
 
     var body: some View {
         // Refer to the note in `ContentView.swift`
         List {
             Section(header: Text("AniList")) {
-                NavigationLink(destination: ActivityFeedView(), tag: 0, selection: $selection) {
+                NavigationLink(destination: ActivityFeedView()) {
                     Label("Home", systemImage: "house")
                 }
             }
 
             Section(header: Text("Profile")) {
                 if currentUser.users.isEmpty {
-                    NavigationLink(destination: UserView(), tag: 1, selection: $selection) {
+                    NavigationLink(destination: UserView()) {
                         Label("My Profile", systemImage: "person.crop.circle")
                     }
                 } else {
-                    NavigationLink(destination: UserView(), tag: 1, selection: $selection) {
+                    NavigationLink(destination: UserView()) {
                         Label("\(currentUser.users[0].name)", systemImage: "person.crop.circle")
                     }
                 }
