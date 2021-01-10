@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000A6124259D81030040F7F8 /* MediaSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6123259D81030040F7F8 /* MediaSectionHeaderView.swift */; };
-		000A6128259D86A10040F7F8 /* MediaSectionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6127259D86A10040F7F8 /* MediaSectionSummaryView.swift */; };
+		000A6124259D81030040F7F8 /* MediaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6123259D81030040F7F8 /* MediaHeaderView.swift */; };
+		000A6128259D86A10040F7F8 /* MediaSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A6127259D86A10040F7F8 /* MediaSummaryView.swift */; };
 		00152BAA257C15400080C352 /* ActivityFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA9257C15400080C352 /* ActivityFeedViewModel.swift */; };
 		002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D814A2583090E00866A31 /* MediaEditorView.swift */; };
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
@@ -20,6 +20,7 @@
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00767DC5259001EC009AD3BE /* MediaViewModel.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
+		007A2CDA25A26E4A00AF6F25 /* MediaMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2CD925A26E4A00AF6F25 /* MediaMetadataView.swift */; };
 		00836396256782CA002A16B4 /* AniList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00836395256782CA002A16B4 /* AniList.swift */; };
 		00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* AmincappApp.swift */; };
 		00869F382502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
@@ -43,9 +44,7 @@
 		009BB1D0259574390041BF8C /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */; };
 		009BB1D1259574390041BF8C /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C4259574390041BF8C /* Like.graphql.swift */; };
 		009BB1D2259574390041BF8C /* DeleteActivity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C5259574390041BF8C /* DeleteActivity.graphql.swift */; };
-		00AF480A25A21CB600422960 /* MediaSectionExternalLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF480925A21CB600422960 /* MediaSectionExternalLinksView.swift */; };
-		00AF480D25A22A8000422960 /* MediaSectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF480C25A22A8000422960 /* MediaSectionTitleView.swift */; };
-		00AF481425A22F1400422960 /* PlainGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF481325A22F1400422960 /* PlainGroupBoxStyle.swift */; };
+		00AF480A25A21CB600422960 /* MediaExternalLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF480925A21CB600422960 /* MediaExternalLinksView.swift */; };
 		00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
 		00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */; };
 		00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
@@ -59,8 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000A6123259D81030040F7F8 /* MediaSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSectionHeaderView.swift; sourceTree = "<group>"; };
-		000A6127259D86A10040F7F8 /* MediaSectionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSectionSummaryView.swift; sourceTree = "<group>"; };
+		000A6123259D81030040F7F8 /* MediaHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHeaderView.swift; sourceTree = "<group>"; };
+		000A6127259D86A10040F7F8 /* MediaSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSummaryView.swift; sourceTree = "<group>"; };
 		00152BA4257C13CF0080C352 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
 		00152BA9257C15400080C352 /* ActivityFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedViewModel.swift; sourceTree = "<group>"; };
 		002D812B2582F40B00866A31 /* ActivitySubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivitySubscription.graphql; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		00767DC5259001EC009AD3BE /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		00767DCC25900770009AD3BE /* Media.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Media.graphql; sourceTree = "<group>"; };
+		007A2CD925A26E4A00AF6F25 /* MediaMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMetadataView.swift; sourceTree = "<group>"; };
 		00836395256782CA002A16B4 /* AniList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniList.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* AmincappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmincappApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,9 +106,7 @@
 		009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		009BB1C4259574390041BF8C /* Like.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.graphql.swift; sourceTree = "<group>"; };
 		009BB1C5259574390041BF8C /* DeleteActivity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteActivity.graphql.swift; sourceTree = "<group>"; };
-		00AF480925A21CB600422960 /* MediaSectionExternalLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSectionExternalLinksView.swift; sourceTree = "<group>"; };
-		00AF480C25A22A8000422960 /* MediaSectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSectionTitleView.swift; sourceTree = "<group>"; };
-		00AF481325A22F1400422960 /* PlainGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainGroupBoxStyle.swift; sourceTree = "<group>"; };
+		00AF480925A21CB600422960 /* MediaExternalLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaExternalLinksView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormOverviewView.swift; sourceTree = "<group>"; };
 		00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormProgressView.swift; sourceTree = "<group>"; };
@@ -142,10 +140,10 @@
 		000A6122259D80E90040F7F8 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				000A6123259D81030040F7F8 /* MediaSectionHeaderView.swift */,
-				000A6127259D86A10040F7F8 /* MediaSectionSummaryView.swift */,
-				00AF480C25A22A8000422960 /* MediaSectionTitleView.swift */,
-				00AF480925A21CB600422960 /* MediaSectionExternalLinksView.swift */,
+				000A6123259D81030040F7F8 /* MediaHeaderView.swift */,
+				000A6127259D86A10040F7F8 /* MediaSummaryView.swift */,
+				007A2CD925A26E4A00AF6F25 /* MediaMetadataView.swift */,
+				00AF480925A21CB600422960 /* MediaExternalLinksView.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -284,7 +282,6 @@
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
 				00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */,
 				00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */,
-				00AF481225A22F0A00422960 /* Styles */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -296,14 +293,6 @@
 				00986BC9256878C90008D80C /* CurrentUser.swift */,
 			);
 			path = Environments;
-			sourceTree = "<group>";
-		};
-		00AF481225A22F0A00422960 /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-				00AF481325A22F1400422960 /* PlainGroupBoxStyle.swift */,
-			);
-			path = Styles;
 			sourceTree = "<group>";
 		};
 		00BB687F251FE13B00B7DDC9 /* API */ = {
@@ -486,19 +475,19 @@
 				002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
 				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
-				000A6128259D86A10040F7F8 /* MediaSectionSummaryView.swift in Sources */,
+				000A6128259D86A10040F7F8 /* MediaSummaryView.swift in Sources */,
 				0087453F258BEEB4003A6AFE /* MediaEditorFormNotesView.swift in Sources */,
+				007A2CDA25A26E4A00AF6F25 /* MediaMetadataView.swift in Sources */,
 				006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */,
 				00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */,
 				00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */,
-				000A6124259D81030040F7F8 /* MediaSectionHeaderView.swift in Sources */,
+				000A6124259D81030040F7F8 /* MediaHeaderView.swift in Sources */,
 				00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */,
 				00371541256C141100F68734 /* UserView.swift in Sources */,
 				009BB1CE259574390041BF8C /* CurrentUser.graphql.swift in Sources */,
 				00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */,
 				009BB1D0259574390041BF8C /* ActivityFeed.graphql.swift in Sources */,
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
-				00AF480D25A22A8000422960 /* MediaSectionTitleView.swift in Sources */,
 				009BB1CD259574390041BF8C /* Markdown.graphql.swift in Sources */,
 				00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */,
 				009BB1CC259574390041BF8C /* CreateMediaListEntry.graphql.swift in Sources */,
@@ -514,12 +503,11 @@
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				009BB1CB259574390041BF8C /* Favorite.graphql.swift in Sources */,
 				009BB1CA259574390041BF8C /* ActivitySubscription.graphql.swift in Sources */,
-				00AF480A25A21CB600422960 /* MediaSectionExternalLinksView.swift in Sources */,
+				00AF480A25A21CB600422960 /* MediaExternalLinksView.swift in Sources */,
 				009BB1C8259574390041BF8C /* MediaEditor.graphql.swift in Sources */,
 				0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */,
 				00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */,
 				0073113125A0F4600070776A /* TabNavigationView.swift in Sources */,
-				00AF481425A22F1400422960 /* PlainGroupBoxStyle.swift in Sources */,
 				0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */,
 				009BB1CF259574390041BF8C /* Media.graphql.swift in Sources */,
 				009BB1D1259574390041BF8C /* Like.graphql.swift in Sources */,

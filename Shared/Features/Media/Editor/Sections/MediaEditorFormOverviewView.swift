@@ -95,7 +95,7 @@ struct MediaEditorFormOverviewView: View {
                 }.pickerStyle(SegmentedPickerStyle())
             case .point_3: // Smiley faces :)
                 Picker("Score", selection: scoreBinding) {
-                    // Replace these with custom images (modified version of SF symbol face.smiling)
+                    // TODO: Replace these with custom images (modified version of SF symbol face.smiling)
                     Text(":(").tag(1.0)
                     Text(":|").tag(2.0)
                     Image(systemName: "face.smiling").tag(3.0)

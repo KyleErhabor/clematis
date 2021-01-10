@@ -1,5 +1,5 @@
 //
-//  MediaSectionExternalLinksView.swift
+//  MediaExternalLinksView.swift
 //  Amincapp (iOS)
 //
 //  Created by Kyle Erhabor on 1/3/21.
@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct MediaSectionExternalLinksView: View {
+struct MediaExternalLinksView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
         if let media = viewModel.media {
             if let idMal = media.idMal,
                let url = URL(string: "https://myanimelist.net/\(media.type == .anime ? "anime" : "manga")/\(idMal)") {
-                MediaSectionExternalLinksButtonView(text: "MyAnimeList", url: url, backgroundColor: .blue)
+                MediaExternalLinksButtonView(text: "MyAnimeList", url: url, backgroundColor: .blue)
             }
         }
     }
 }
 
-struct MediaSectionExternalLinksButtonView: View {
+fileprivate struct MediaExternalLinksButtonView: View {
     private(set) var text: String
     private(set) var url: URL
     private(set) var backgroundColor: Color
@@ -40,6 +40,6 @@ struct MediaSectionExternalLinksButtonView: View {
 
 struct MediaExternalLinksView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaSectionExternalLinksView()
+        MediaExternalLinksView()
     }
 }

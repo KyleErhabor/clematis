@@ -3,9 +3,11 @@ query Media($id: Int!) {
     id
     type
     idMal
+    format
     synonyms
     bannerImage
     isFavourite
+    averageScore
     description(asHtml: true)
     coverImage {
       color

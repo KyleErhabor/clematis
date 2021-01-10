@@ -268,3 +268,94 @@ public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apol
     ]
   }
 }
+
+/// The format the media was released in
+public enum MediaFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Anime broadcast on television
+  case tv
+  /// Anime which are under 15 minutes in length and broadcast on television
+  case tvShort
+  /// Anime movies with a theatrical release
+  case movie
+  /// Special episodes that have been included in DVD/Blu-ray releases, picture dramas, pilots, etc
+  case special
+  /// (Original Video Animation) Anime that have been released directly on DVD/Blu-ray without originally going through a theatrical release or television broadcast
+  case ova
+  /// (Original Net Animation) Anime that have been originally released online or are only available through streaming services.
+  case ona
+  /// Short anime released as a music video
+  case music
+  /// Professionally published manga with more than one chapter
+  case manga
+  /// Written books released as a series of light novels
+  case novel
+  /// Manga with just one chapter
+  case oneShot
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "TV": self = .tv
+      case "TV_SHORT": self = .tvShort
+      case "MOVIE": self = .movie
+      case "SPECIAL": self = .special
+      case "OVA": self = .ova
+      case "ONA": self = .ona
+      case "MUSIC": self = .music
+      case "MANGA": self = .manga
+      case "NOVEL": self = .novel
+      case "ONE_SHOT": self = .oneShot
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .tv: return "TV"
+      case .tvShort: return "TV_SHORT"
+      case .movie: return "MOVIE"
+      case .special: return "SPECIAL"
+      case .ova: return "OVA"
+      case .ona: return "ONA"
+      case .music: return "MUSIC"
+      case .manga: return "MANGA"
+      case .novel: return "NOVEL"
+      case .oneShot: return "ONE_SHOT"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaFormat, rhs: MediaFormat) -> Bool {
+    switch (lhs, rhs) {
+      case (.tv, .tv): return true
+      case (.tvShort, .tvShort): return true
+      case (.movie, .movie): return true
+      case (.special, .special): return true
+      case (.ova, .ova): return true
+      case (.ona, .ona): return true
+      case (.music, .music): return true
+      case (.manga, .manga): return true
+      case (.novel, .novel): return true
+      case (.oneShot, .oneShot): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaFormat] {
+    return [
+      .tv,
+      .tvShort,
+      .movie,
+      .special,
+      .ova,
+      .ona,
+      .music,
+      .manga,
+      .novel,
+      .oneShot,
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 //
-//  MediaSectionHeaderView.swift
+//  MediaHeaderView.swift
 //  Amincapp (iOS)
 //
 //  Created by Kyle Erhabor on 12/30/20.
@@ -8,7 +8,7 @@
 import SDWebImageSwiftUI
 import SwiftUI
 
-struct MediaSectionHeaderView: View {
+struct MediaHeaderView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
@@ -42,8 +42,8 @@ struct MediaSectionHeaderView: View {
     }
 }
 
-struct MediaSectionHeaderView_Previews: PreviewProvider {
+struct MediaHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaSectionHeaderView()
+        MediaHeaderView()
     }
 }

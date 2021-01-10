@@ -15,20 +15,22 @@ struct MediaView: View {
 
     var body: some View {
         ScrollView {
-            MediaSectionHeaderView()
+            MediaHeaderView()
 
             Group {
-                MediaSectionSummaryView()
+                MediaSummaryView()
                 Divider()
-                MediaSectionTitleView()
+
+                MediaMetadataView().padding()
                 Divider()
-                MediaSectionExternalLinksView()
-            }.padding()
-            .offset(y: -100)
+
+                MediaExternalLinksView().padding()
+                Divider()
+            }.offset(y: -100)
         }.environmentObject(viewModel)
         .navigationTitle("\(viewModel.media?.title?.userPreferred ?? "")")
         .navigationBarTitleDisplayMode(.inline)
-        .edgesIgnoringSafeArea([.top, .horizontal])
+        .ignoresSafeArea(.all, edges: [.top, .horizontal])
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

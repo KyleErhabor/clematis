@@ -14,9 +14,11 @@ public final class MediaQuery: GraphQLQuery {
         id
         type
         idMal
+        format
         synonyms
         bannerImage
         isFavourite
+        averageScore
         description(asHtml: true)
         coverImage {
           __typename
@@ -84,9 +86,11 @@ public final class MediaQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("type", type: .scalar(MediaType.self)),
           GraphQLField("idMal", type: .scalar(Int.self)),
+          GraphQLField("format", type: .scalar(MediaFormat.self)),
           GraphQLField("synonyms", type: .list(.scalar(String.self))),
           GraphQLField("bannerImage", type: .scalar(String.self)),
           GraphQLField("isFavourite", type: .nonNull(.scalar(Bool.self))),
+          GraphQLField("averageScore", type: .scalar(Int.self)),
           GraphQLField("description", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("coverImage", type: .object(CoverImage.selections)),
           GraphQLField("title", type: .object(Title.selections)),
@@ -99,8 +103,8 @@ public final class MediaQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, type: MediaType? = nil, idMal: Int? = nil, synonyms: [String?]? = nil, bannerImage: String? = nil, isFavourite: Bool, description: String? = nil, coverImage: CoverImage? = nil, title: Title? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "idMal": idMal, "synonyms": synonyms, "bannerImage": bannerImage, "isFavourite": isFavourite, "description": description, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }])
+      public init(id: Int, type: MediaType? = nil, idMal: Int? = nil, format: MediaFormat? = nil, synonyms: [String?]? = nil, bannerImage: String? = nil, isFavourite: Bool, averageScore: Int? = nil, description: String? = nil, coverImage: CoverImage? = nil, title: Title? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "idMal": idMal, "format": format, "synonyms": synonyms, "bannerImage": bannerImage, "isFavourite": isFavourite, "averageScore": averageScore, "description": description, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -142,6 +146,16 @@ public final class MediaQuery: GraphQLQuery {
         }
       }
 
+      /// The format the media was released in
+      public var format: MediaFormat? {
+        get {
+          return resultMap["format"] as? MediaFormat
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "format")
+        }
+      }
+
       /// Alternative titles of the media
       public var synonyms: [String?]? {
         get {
@@ -169,6 +183,16 @@ public final class MediaQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "isFavourite")
+        }
+      }
+
+      /// A weighted average score of all the user's scores of the media
+      public var averageScore: Int? {
+        get {
+          return resultMap["averageScore"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "averageScore")
         }
       }
 

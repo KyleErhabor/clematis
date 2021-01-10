@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        #if os(iOS)
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabNavigationView()
                 .navigationViewStyle(StackNavigationViewStyle())
@@ -28,6 +29,8 @@ struct ContentView: View {
                 ActivityFeedView()
             }
         }
+
+        #endif
     }
 }
 
