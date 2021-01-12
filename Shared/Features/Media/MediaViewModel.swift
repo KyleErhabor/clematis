@@ -11,7 +11,7 @@ import Foundation
 class MediaViewModel: ObservableObject {
     @Published private(set) var media: MediaQuery.Data.Medium?
 
-    private let id: Int
+    let id: Int
 
     init(id: Int) {
         self.id = id
@@ -34,7 +34,7 @@ class MediaViewModel: ObservableObject {
         }
     }
 
-    func favorite() {
+    func toggleFavorite() {
         GraphQLNetwork.shared.perform(mutation: FavoriteMutation(
             animeId: self.media?.type == .anime ? id : nil,
             mangaId: self.media?.type == .manga ? id : nil

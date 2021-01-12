@@ -5,7 +5,6 @@
 //  Created by Kyle Erhabor on 11/23/20.
 //
 
-import SDWebImageSwiftUI
 import SwiftUI
 
 struct MediaView: View {
@@ -18,14 +17,20 @@ struct MediaView: View {
             MediaHeaderView()
 
             Group {
-                MediaSummaryView()
+                MediaSummaryView(isPresenting: $isPresenting)
                 Divider()
 
-                MediaMetadataView().padding()
-                Divider()
+                if let updatedAt = viewModel.media?.updatedAt {
+                    HStack {
+                        Spacer()
 
-                MediaExternalLinksView().padding()
-                Divider()
+                        Text("Last Updated ").bold()
+                            + Text(Date(timeIntervalSince1970: TimeInterval(updatedAt)),
+                                   formatter: RelativeDateTimeFormatter())
+                    }.padding()
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                }
             }.offset(y: -100)
         }.environmentObject(viewModel)
         .navigationTitle("\(viewModel.media?.title?.userPreferred ?? "")")
@@ -42,10 +47,8 @@ struct MediaView: View {
         }.onAppear {
             viewModel.fetchMedia()
         }.sheet(isPresented: $isPresenting) {
-            if let id = viewModel.media?.id {
-                MediaEditorView(viewModel: MediaEditorViewModel(id: id))
-                    .environmentObject(currentUser)
-            }
+            MediaEditorView(viewModel: MediaEditorViewModel(id: viewModel.id))
+                .environmentObject(currentUser)
         }
     }
 }

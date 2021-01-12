@@ -1,23 +1,50 @@
 query Media($id: Int!) {
   Media(id: $id) {
-    id
     type
-    idMal
     format
+    season
+    siteUrl
+    volumes
+    chapters
+    duration
+    episodes
+    isLocked
     synonyms
+    updatedAt
+    favourites
+    isLicensed
+    popularity
+    seasonYear
     bannerImage
     isFavourite
     averageScore
+    countryOfOrigin
+    source(version: 2)
+    status(version: 2)
     description(asHtml: true)
+    title {
+      userPreferred
+    }
+    mediaListEntry {
+      status
+    }
     coverImage {
       color
       extraLarge
     }
-    title {
-      native
-      romaji
-      english
-      userPreferred
+    nextAiringEpisode {
+      episode
+      timeUntilAiring
+    }
+    startDate {
+      day
+      year
+      month
+    }
+    endDate {
+      day
+      year
+      month
     }
   }
 }

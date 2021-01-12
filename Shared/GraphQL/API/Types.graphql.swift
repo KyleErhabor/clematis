@@ -359,3 +359,203 @@ public enum MediaFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Ap
     ]
   }
 }
+
+public enum MediaSeason: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Months December to February
+  case winter
+  /// Months March to May
+  case spring
+  /// Months June to August
+  case summer
+  /// Months September to November
+  case fall
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "WINTER": self = .winter
+      case "SPRING": self = .spring
+      case "SUMMER": self = .summer
+      case "FALL": self = .fall
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .winter: return "WINTER"
+      case .spring: return "SPRING"
+      case .summer: return "SUMMER"
+      case .fall: return "FALL"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaSeason, rhs: MediaSeason) -> Bool {
+    switch (lhs, rhs) {
+      case (.winter, .winter): return true
+      case (.spring, .spring): return true
+      case (.summer, .summer): return true
+      case (.fall, .fall): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaSeason] {
+    return [
+      .winter,
+      .spring,
+      .summer,
+      .fall,
+    ]
+  }
+}
+
+/// Source type the media was adapted from
+public enum MediaSource: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// An original production not based of another work
+  case original
+  /// Asian comic book
+  case manga
+  /// Written work published in volumes
+  case lightNovel
+  /// Video game driven primary by text and narrative
+  case visualNovel
+  /// Video game
+  case videoGame
+  /// Other
+  case other
+  /// Version 2 only. Written works not published in volumes
+  case novel
+  /// Version 2 only. Self-published works
+  case doujinshi
+  /// Version 2 only. Japanese Anime
+  case anime
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "ORIGINAL": self = .original
+      case "MANGA": self = .manga
+      case "LIGHT_NOVEL": self = .lightNovel
+      case "VISUAL_NOVEL": self = .visualNovel
+      case "VIDEO_GAME": self = .videoGame
+      case "OTHER": self = .other
+      case "NOVEL": self = .novel
+      case "DOUJINSHI": self = .doujinshi
+      case "ANIME": self = .anime
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .original: return "ORIGINAL"
+      case .manga: return "MANGA"
+      case .lightNovel: return "LIGHT_NOVEL"
+      case .visualNovel: return "VISUAL_NOVEL"
+      case .videoGame: return "VIDEO_GAME"
+      case .other: return "OTHER"
+      case .novel: return "NOVEL"
+      case .doujinshi: return "DOUJINSHI"
+      case .anime: return "ANIME"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaSource, rhs: MediaSource) -> Bool {
+    switch (lhs, rhs) {
+      case (.original, .original): return true
+      case (.manga, .manga): return true
+      case (.lightNovel, .lightNovel): return true
+      case (.visualNovel, .visualNovel): return true
+      case (.videoGame, .videoGame): return true
+      case (.other, .other): return true
+      case (.novel, .novel): return true
+      case (.doujinshi, .doujinshi): return true
+      case (.anime, .anime): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaSource] {
+    return [
+      .original,
+      .manga,
+      .lightNovel,
+      .visualNovel,
+      .videoGame,
+      .other,
+      .novel,
+      .doujinshi,
+      .anime,
+    ]
+  }
+}
+
+/// The current releasing status of the media
+public enum MediaStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Has completed and is no longer being released
+  case finished
+  /// Currently releasing
+  case releasing
+  /// To be released at a later date
+  case notYetReleased
+  /// Ended before the work could be finished
+  case cancelled
+  /// Version 2 only. Is currently paused from releasing and will resume at a later date
+  case hiatus
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "FINISHED": self = .finished
+      case "RELEASING": self = .releasing
+      case "NOT_YET_RELEASED": self = .notYetReleased
+      case "CANCELLED": self = .cancelled
+      case "HIATUS": self = .hiatus
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .finished: return "FINISHED"
+      case .releasing: return "RELEASING"
+      case .notYetReleased: return "NOT_YET_RELEASED"
+      case .cancelled: return "CANCELLED"
+      case .hiatus: return "HIATUS"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaStatus, rhs: MediaStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.finished, .finished): return true
+      case (.releasing, .releasing): return true
+      case (.notYetReleased, .notYetReleased): return true
+      case (.cancelled, .cancelled): return true
+      case (.hiatus, .hiatus): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaStatus] {
+    return [
+      .finished,
+      .releasing,
+      .notYetReleased,
+      .cancelled,
+      .hiatus,
+    ]
+  }
+}

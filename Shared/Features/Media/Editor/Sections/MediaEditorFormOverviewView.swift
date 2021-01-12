@@ -61,7 +61,7 @@ struct MediaEditorFormOverviewView: View {
 
         Picker("Status", selection: statusBinding) {
             ForEach(MediaListStatus.allCases, id: \.rawValue) { status in
-                Text(AniList.statusName(status: status, type: viewModel.media!.type!))
+                Text(AniList.statusString(status: status, type: viewModel.media!.type!))
                     .tag(status)
             }
         }

@@ -2,7 +2,7 @@
 //  MediaHeaderView.swift
 //  Amincapp (iOS)
 //
-//  Created by Kyle Erhabor on 12/30/20.
+//  Created by Kyle Erhabor on 1/10/21.
 //
 
 import SDWebImageSwiftUI
