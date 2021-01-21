@@ -12,6 +12,14 @@ enum AniList {
         string: "https://anilist.co/api/v2/oauth/authorize?client_id=1652&response_type=token"
     )!
 
+    enum primaryTypes {
+        case anime
+        case manga
+        case character
+        case staff
+        case studio
+    }
+
     enum ErrorKind: Int, Identifiable {
         case unauthorized
         case unknown
@@ -23,6 +31,37 @@ enum AniList {
                 case .unauthorized: return "You must sign in to perform this action."
                 case .unknown: return "Unable to perform action."
             }
+        }
+    }
+
+    static func formatString(format: MediaFormat) -> String {
+        switch format {
+            case .tv: return "TV"
+            case .tvShort: return "TV Short"
+            case .movie: return "Movie"
+            case .special: return "Special"
+            case .ova: return "OVA"
+            case .ona: return "ONA"
+            case .music: return "Music"
+            case .manga: return "Manga"
+            case .novel: return "Novel" // Consider Light Novel
+            case .oneShot: return "One Shot"
+            case let .__unknown(fmt): return fmt.capitalized
+        }
+    }
+
+    static func sourceString(source: MediaSource) -> String {
+        switch source {
+            case .original: return "Original"
+            case .manga: return "Manga"
+            case .lightNovel: return "Light Novel"
+            case .visualNovel: return "Visual Novel"
+            case .videoGame: return "Video Game"
+            case .other: return "Other"
+            case .novel: return "Novel"
+            case .doujinshi: return "Doujinshi"
+            case .anime: return "Anime" // Trigger moment
+            case let .__unknown(src): return src.capitalized
         }
     }
 
