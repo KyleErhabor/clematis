@@ -11,38 +11,40 @@ struct MediaStaffListView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            VStack(alignment: .leading) {
+        if viewModel.media?.staff?.edges?.isEmpty == false {
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading) {
+                    NavigationLink(destination: MediaStaffListExtendedView().environmentObject(viewModel)) {
+                        Text("Staff")
+                            .font(.title)
+                            .bold()
+                    }.buttonStyle(PlainButtonStyle())
+                    
+                    let total = viewModel.media?.staff?.pageInfo?.total
+                        ?? viewModel.media?.staff?.edges?.count
+                        ?? 0
+                    
+                    Text("\(total) Total")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
                 NavigationLink(destination: MediaStaffListExtendedView().environmentObject(viewModel)) {
-                    Text("Staff")
-                        .font(.title)
-                        .bold()
-                }.buttonStyle(PlainButtonStyle())
-
-                let total = viewModel.media?.staff?.pageInfo?.total
-                    ?? viewModel.media?.staff?.edges?.count
-                    ?? 0
-
-                Text("\(total) Total")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
+                    Text("See All")
+                        .font(.headline)
+                }
             }
-
-            Spacer()
-
-            NavigationLink(destination: MediaStaffListExtendedView().environmentObject(viewModel)) {
-                Text("See All")
-                    .font(.headline)
-            }
-        }
-
-        let edges = viewModel.media?.staff?.edges?.prefix(4).compactMap { $0?.node == nil ? nil : $0 } ?? []
-
-        Divider()
-
-        ForEach(edges, id: \.id) { edge in
-            MediaStaffView(edge: edge)
+            
+            let edges = viewModel.media?.staff?.edges?.prefix(4).compactMap { $0?.node == nil ? nil : $0 } ?? []
+            
             Divider()
+            
+            ForEach(edges, id: \.id) { edge in
+                MediaStaffView(edge: edge)
+                Divider()
+            }
         }
     }
 }

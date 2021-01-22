@@ -38,6 +38,8 @@ struct MediaSummaryView: View {
                 }
             }
         }.padding(.horizontal)
+
+        Divider().padding()
     }
 }
 

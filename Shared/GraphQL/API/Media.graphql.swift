@@ -101,17 +101,31 @@ public final class MediaQuery: GraphQLQuery {
           allTime
           context
         }
-        stats {
+        reviews(sort: RATING_DESC) {
           __typename
-          scoreDistribution {
+          pageInfo {
             __typename
-            score
-            amount
+            total
+            hasNextPage
           }
-          statusDistribution {
+          nodes {
             __typename
-            status
-            amount
+            id
+            rating
+            private
+            summary
+            createdAt
+            userRating
+            ratingAmount
+            user {
+              __typename
+              id
+              name
+              avatar {
+                __typename
+                large
+              }
+            }
           }
         }
         studios {
@@ -317,7 +331,7 @@ public final class MediaQuery: GraphQLQuery {
           GraphQLField("title", type: .object(Title.selections)),
           GraphQLField("tags", type: .list(.object(Tag.selections))),
           GraphQLField("rankings", type: .list(.object(Ranking.selections))),
-          GraphQLField("stats", type: .object(Stat.selections)),
+          GraphQLField("reviews", arguments: ["sort": "RATING_DESC"], type: .object(Review.selections)),
           GraphQLField("studios", type: .object(Studio.selections)),
           GraphQLField("staff", arguments: ["page": GraphQLVariable("staffPage")], type: .object(Staff.selections)),
           GraphQLField("relations", type: .object(Relation.selections)),
@@ -331,8 +345,8 @@ public final class MediaQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(type: MediaType? = nil, format: MediaFormat? = nil, genres: [String?]? = nil, season: MediaSeason? = nil, hashtag: String? = nil, siteUrl: String? = nil, volumes: Int? = nil, chapters: Int? = nil, duration: Int? = nil, episodes: Int? = nil, isLocked: Bool? = nil, synonyms: [String?]? = nil, meanScore: Int? = nil, updatedAt: Int? = nil, favourites: Int? = nil, isLicensed: Bool? = nil, popularity: Int? = nil, seasonYear: Int? = nil, bannerImage: String? = nil, isFavourite: Bool, averageScore: Int? = nil, countryOfOrigin: CountryCode? = nil, source: MediaSource? = nil, status: MediaStatus? = nil, description: String? = nil, mediaListEntry: MediaListEntry? = nil, coverImage: CoverImage? = nil, nextAiringEpisode: NextAiringEpisode? = nil, startDate: StartDate? = nil, endDate: EndDate? = nil, trailer: Trailer? = nil, externalLinks: [ExternalLink?]? = nil, title: Title? = nil, tags: [Tag?]? = nil, rankings: [Ranking?]? = nil, stats: Stat? = nil, studios: Studio? = nil, staff: Staff? = nil, relations: Relation? = nil, characters: Character? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Media", "type": type, "format": format, "genres": genres, "season": season, "hashtag": hashtag, "siteUrl": siteUrl, "volumes": volumes, "chapters": chapters, "duration": duration, "episodes": episodes, "isLocked": isLocked, "synonyms": synonyms, "meanScore": meanScore, "updatedAt": updatedAt, "favourites": favourites, "isLicensed": isLicensed, "popularity": popularity, "seasonYear": seasonYear, "bannerImage": bannerImage, "isFavourite": isFavourite, "averageScore": averageScore, "countryOfOrigin": countryOfOrigin, "source": source, "status": status, "description": description, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "nextAiringEpisode": nextAiringEpisode.flatMap { (value: NextAiringEpisode) -> ResultMap in value.resultMap }, "startDate": startDate.flatMap { (value: StartDate) -> ResultMap in value.resultMap }, "endDate": endDate.flatMap { (value: EndDate) -> ResultMap in value.resultMap }, "trailer": trailer.flatMap { (value: Trailer) -> ResultMap in value.resultMap }, "externalLinks": externalLinks.flatMap { (value: [ExternalLink?]) -> [ResultMap?] in value.map { (value: ExternalLink?) -> ResultMap? in value.flatMap { (value: ExternalLink) -> ResultMap in value.resultMap } } }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "tags": tags.flatMap { (value: [Tag?]) -> [ResultMap?] in value.map { (value: Tag?) -> ResultMap? in value.flatMap { (value: Tag) -> ResultMap in value.resultMap } } }, "rankings": rankings.flatMap { (value: [Ranking?]) -> [ResultMap?] in value.map { (value: Ranking?) -> ResultMap? in value.flatMap { (value: Ranking) -> ResultMap in value.resultMap } } }, "stats": stats.flatMap { (value: Stat) -> ResultMap in value.resultMap }, "studios": studios.flatMap { (value: Studio) -> ResultMap in value.resultMap }, "staff": staff.flatMap { (value: Staff) -> ResultMap in value.resultMap }, "relations": relations.flatMap { (value: Relation) -> ResultMap in value.resultMap }, "characters": characters.flatMap { (value: Character) -> ResultMap in value.resultMap }])
+      public init(type: MediaType? = nil, format: MediaFormat? = nil, genres: [String?]? = nil, season: MediaSeason? = nil, hashtag: String? = nil, siteUrl: String? = nil, volumes: Int? = nil, chapters: Int? = nil, duration: Int? = nil, episodes: Int? = nil, isLocked: Bool? = nil, synonyms: [String?]? = nil, meanScore: Int? = nil, updatedAt: Int? = nil, favourites: Int? = nil, isLicensed: Bool? = nil, popularity: Int? = nil, seasonYear: Int? = nil, bannerImage: String? = nil, isFavourite: Bool, averageScore: Int? = nil, countryOfOrigin: CountryCode? = nil, source: MediaSource? = nil, status: MediaStatus? = nil, description: String? = nil, mediaListEntry: MediaListEntry? = nil, coverImage: CoverImage? = nil, nextAiringEpisode: NextAiringEpisode? = nil, startDate: StartDate? = nil, endDate: EndDate? = nil, trailer: Trailer? = nil, externalLinks: [ExternalLink?]? = nil, title: Title? = nil, tags: [Tag?]? = nil, rankings: [Ranking?]? = nil, reviews: Review? = nil, studios: Studio? = nil, staff: Staff? = nil, relations: Relation? = nil, characters: Character? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Media", "type": type, "format": format, "genres": genres, "season": season, "hashtag": hashtag, "siteUrl": siteUrl, "volumes": volumes, "chapters": chapters, "duration": duration, "episodes": episodes, "isLocked": isLocked, "synonyms": synonyms, "meanScore": meanScore, "updatedAt": updatedAt, "favourites": favourites, "isLicensed": isLicensed, "popularity": popularity, "seasonYear": seasonYear, "bannerImage": bannerImage, "isFavourite": isFavourite, "averageScore": averageScore, "countryOfOrigin": countryOfOrigin, "source": source, "status": status, "description": description, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "nextAiringEpisode": nextAiringEpisode.flatMap { (value: NextAiringEpisode) -> ResultMap in value.resultMap }, "startDate": startDate.flatMap { (value: StartDate) -> ResultMap in value.resultMap }, "endDate": endDate.flatMap { (value: EndDate) -> ResultMap in value.resultMap }, "trailer": trailer.flatMap { (value: Trailer) -> ResultMap in value.resultMap }, "externalLinks": externalLinks.flatMap { (value: [ExternalLink?]) -> [ResultMap?] in value.map { (value: ExternalLink?) -> ResultMap? in value.flatMap { (value: ExternalLink) -> ResultMap in value.resultMap } } }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "tags": tags.flatMap { (value: [Tag?]) -> [ResultMap?] in value.map { (value: Tag?) -> ResultMap? in value.flatMap { (value: Tag) -> ResultMap in value.resultMap } } }, "rankings": rankings.flatMap { (value: [Ranking?]) -> [ResultMap?] in value.map { (value: Ranking?) -> ResultMap? in value.flatMap { (value: Ranking) -> ResultMap in value.resultMap } } }, "reviews": reviews.flatMap { (value: Review) -> ResultMap in value.resultMap }, "studios": studios.flatMap { (value: Studio) -> ResultMap in value.resultMap }, "staff": staff.flatMap { (value: Staff) -> ResultMap in value.resultMap }, "relations": relations.flatMap { (value: Relation) -> ResultMap in value.resultMap }, "characters": characters.flatMap { (value: Character) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -694,12 +708,13 @@ public final class MediaQuery: GraphQLQuery {
         }
       }
 
-      public var stats: Stat? {
+      /// User reviews of the media
+      public var reviews: Review? {
         get {
-          return (resultMap["stats"] as? ResultMap).flatMap { Stat(unsafeResultMap: $0) }
+          return (resultMap["reviews"] as? ResultMap).flatMap { Review(unsafeResultMap: $0) }
         }
         set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "stats")
+          resultMap.updateValue(newValue?.resultMap, forKey: "reviews")
         }
       }
 
@@ -1418,14 +1433,14 @@ public final class MediaQuery: GraphQLQuery {
         }
       }
 
-      public struct Stat: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["MediaStats"]
+      public struct Review: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ReviewConnection"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("scoreDistribution", type: .list(.object(ScoreDistribution.selections))),
-            GraphQLField("statusDistribution", type: .list(.object(StatusDistribution.selections))),
+            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -1435,8 +1450,8 @@ public final class MediaQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(scoreDistribution: [ScoreDistribution?]? = nil, statusDistribution: [StatusDistribution?]? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaStats", "scoreDistribution": scoreDistribution.flatMap { (value: [ScoreDistribution?]) -> [ResultMap?] in value.map { (value: ScoreDistribution?) -> ResultMap? in value.flatMap { (value: ScoreDistribution) -> ResultMap in value.resultMap } } }, "statusDistribution": statusDistribution.flatMap { (value: [StatusDistribution?]) -> [ResultMap?] in value.map { (value: StatusDistribution?) -> ResultMap? in value.flatMap { (value: StatusDistribution) -> ResultMap in value.resultMap } } }])
+        public init(pageInfo: PageInfo? = nil, nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "ReviewConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }, "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -1448,32 +1463,33 @@ public final class MediaQuery: GraphQLQuery {
           }
         }
 
-        public var scoreDistribution: [ScoreDistribution?]? {
+        /// The pagination information
+        public var pageInfo: PageInfo? {
           get {
-            return (resultMap["scoreDistribution"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [ScoreDistribution?] in value.map { (value: ResultMap?) -> ScoreDistribution? in value.flatMap { (value: ResultMap) -> ScoreDistribution in ScoreDistribution(unsafeResultMap: value) } } }
+            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
           }
           set {
-            resultMap.updateValue(newValue.flatMap { (value: [ScoreDistribution?]) -> [ResultMap?] in value.map { (value: ScoreDistribution?) -> ResultMap? in value.flatMap { (value: ScoreDistribution) -> ResultMap in value.resultMap } } }, forKey: "scoreDistribution")
+            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
           }
         }
 
-        public var statusDistribution: [StatusDistribution?]? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["statusDistribution"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [StatusDistribution?] in value.map { (value: ResultMap?) -> StatusDistribution? in value.flatMap { (value: ResultMap) -> StatusDistribution in StatusDistribution(unsafeResultMap: value) } } }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue.flatMap { (value: [StatusDistribution?]) -> [ResultMap?] in value.map { (value: StatusDistribution?) -> ResultMap? in value.flatMap { (value: StatusDistribution) -> ResultMap in value.resultMap } } }, forKey: "statusDistribution")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct ScoreDistribution: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["ScoreDistribution"]
+        public struct PageInfo: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["PageInfo"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("score", type: .scalar(Int.self)),
-              GraphQLField("amount", type: .scalar(Int.self)),
+              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("hasNextPage", type: .scalar(Bool.self)),
             ]
           }
 
@@ -1483,8 +1499,8 @@ public final class MediaQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(score: Int? = nil, amount: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "ScoreDistribution", "score": score, "amount": amount])
+          public init(total: Int? = nil, hasNextPage: Bool? = nil) {
+            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total, "hasNextPage": hasNextPage])
           }
 
           public var __typename: String {
@@ -1496,34 +1512,41 @@ public final class MediaQuery: GraphQLQuery {
             }
           }
 
-          public var score: Int? {
+          /// The total number of items
+          public var total: Int? {
             get {
-              return resultMap["score"] as? Int
+              return resultMap["total"] as? Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "score")
+              resultMap.updateValue(newValue, forKey: "total")
             }
           }
 
-          /// The amount of list entries with this score
-          public var amount: Int? {
+          /// If there is another page
+          public var hasNextPage: Bool? {
             get {
-              return resultMap["amount"] as? Int
+              return resultMap["hasNextPage"] as? Bool
             }
             set {
-              resultMap.updateValue(newValue, forKey: "amount")
+              resultMap.updateValue(newValue, forKey: "hasNextPage")
             }
           }
         }
 
-        public struct StatusDistribution: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["StatusDistribution"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Review"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("status", type: .scalar(MediaListStatus.self)),
-              GraphQLField("amount", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+              GraphQLField("rating", type: .scalar(Int.self)),
+              GraphQLField("private", type: .scalar(Bool.self)),
+              GraphQLField("summary", type: .scalar(String.self)),
+              GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
+              GraphQLField("userRating", type: .scalar(ReviewRating.self)),
+              GraphQLField("ratingAmount", type: .scalar(Int.self)),
+              GraphQLField("user", type: .object(User.selections)),
             ]
           }
 
@@ -1533,8 +1556,8 @@ public final class MediaQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(status: MediaListStatus? = nil, amount: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "StatusDistribution", "status": status, "amount": amount])
+          public init(id: Int, rating: Int? = nil, `private`: Bool? = nil, summary: String? = nil, createdAt: Int, userRating: ReviewRating? = nil, ratingAmount: Int? = nil, user: User? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Review", "id": id, "rating": rating, "private": `private`, "summary": summary, "createdAt": createdAt, "userRating": userRating, "ratingAmount": ratingAmount, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -1546,23 +1569,185 @@ public final class MediaQuery: GraphQLQuery {
             }
           }
 
-          /// The day the activity took place (Unix timestamp)
-          public var status: MediaListStatus? {
+          /// The id of the review
+          public var id: Int {
             get {
-              return resultMap["status"] as? MediaListStatus
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "status")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
 
-          /// The amount of entries with this status
-          public var amount: Int? {
+          /// The total user rating of the review
+          public var rating: Int? {
             get {
-              return resultMap["amount"] as? Int
+              return resultMap["rating"] as? Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "amount")
+              resultMap.updateValue(newValue, forKey: "rating")
+            }
+          }
+
+          /// If the review is not yet publicly published and is only viewable by creator
+          public var `private`: Bool? {
+            get {
+              return resultMap["private"] as? Bool
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "private")
+            }
+          }
+
+          /// A short summary of the review
+          public var summary: String? {
+            get {
+              return resultMap["summary"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "summary")
+            }
+          }
+
+          /// The time of the thread creation
+          public var createdAt: Int {
+            get {
+              return resultMap["createdAt"]! as! Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "createdAt")
+            }
+          }
+
+          /// The rating of the review by currently authenticated user
+          public var userRating: ReviewRating? {
+            get {
+              return resultMap["userRating"] as? ReviewRating
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "userRating")
+            }
+          }
+
+          /// The amount of user ratings of the review
+          public var ratingAmount: Int? {
+            get {
+              return resultMap["ratingAmount"] as? Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "ratingAmount")
+            }
+          }
+
+          /// The creator of the review
+          public var user: User? {
+            get {
+              return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "user")
+            }
+          }
+
+          public struct User: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["User"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+                GraphQLField("name", type: .nonNull(.scalar(String.self))),
+                GraphQLField("avatar", type: .object(Avatar.selections)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(id: Int, name: String, avatar: Avatar? = nil) {
+              self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// The id of the user
+            public var id: Int {
+              get {
+                return resultMap["id"]! as! Int
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            /// The name of the user
+            public var name: String {
+              get {
+                return resultMap["name"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
+
+            /// The user's avatar images
+            public var avatar: Avatar? {
+              get {
+                return (resultMap["avatar"] as? ResultMap).flatMap { Avatar(unsafeResultMap: $0) }
+              }
+              set {
+                resultMap.updateValue(newValue?.resultMap, forKey: "avatar")
+              }
+            }
+
+            public struct Avatar: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["UserAvatar"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("large", type: .scalar(String.self)),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(large: String? = nil) {
+                self.init(unsafeResultMap: ["__typename": "UserAvatar", "large": large])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// The avatar of user at its largest size
+              public var large: String? {
+                get {
+                  return resultMap["large"] as? String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "large")
+                }
+              }
             }
           }
         }

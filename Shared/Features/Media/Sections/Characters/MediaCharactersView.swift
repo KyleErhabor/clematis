@@ -12,38 +12,40 @@ struct MediaCharactersView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            VStack(alignment: .leading) {
+        if viewModel.media?.characters?.edges?.isEmpty == false {
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading) {
+                    NavigationLink(destination: MediaCharacterListExpandedView().environmentObject(viewModel)) {
+                        Text("Characters")
+                            .font(.title)
+                            .bold()
+                    }.buttonStyle(PlainButtonStyle())
+
+                    let total = viewModel.media?.characters?.pageInfo?.total
+                        ?? viewModel.media?.characters?.edges?.count
+                        ?? 0
+
+                    Text("\(total) Total")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+
                 NavigationLink(destination: MediaCharacterListExpandedView().environmentObject(viewModel)) {
-                    Text("Characters")
-                        .font(.title)
-                        .bold()
-                }.buttonStyle(PlainButtonStyle())
-
-                let total = viewModel.media?.characters?.pageInfo?.total
-                    ?? viewModel.media?.characters?.edges?.count
-                    ?? 0
-
-                Text("\(total) Total")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
+                    Text("See All")
+                        .font(.headline)
+                }
             }
 
-            Spacer()
+            let edges = viewModel.media?.characters?.edges?.prefix(6).compactMap { $0?.node == nil ? nil : $0 } ?? []
 
-            NavigationLink(destination: MediaCharacterListExpandedView().environmentObject(viewModel)) {
-                Text("See All")
-                    .font(.headline)
-            }
-        }
-
-        let edges = viewModel.media?.characters?.edges?.prefix(6).compactMap { $0?.node == nil ? nil : $0 } ?? []
-
-        Divider()
-        
-        ForEach(edges, id: \.id) { edge in
-            MediaCharacterView(edge: edge)
             Divider()
+
+            ForEach(edges, id: \.id) { edge in
+                MediaCharacterView(edge: edge)
+                Divider()
+            }
         }
     }
 }

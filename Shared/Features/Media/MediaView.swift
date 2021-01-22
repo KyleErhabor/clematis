@@ -21,25 +21,12 @@ struct MediaView: View {
 
             VStack(alignment: .leading) {
                 MediaSummaryView(isPresenting: $isPresenting) // Padding applied internally
-                Divider().padding()
 
-                if viewModel.media?.relations?.edges?.isEmpty == false {
-                    MediaRelationsView().padding(.horizontal)
-                }
-
-                if viewModel.media?.characters?.edges?.isEmpty == false {
-                    MediaCharactersView().padding(.horizontal)
-                }
-
-                if viewModel.media?.staff?.edges?.isEmpty == false {
-                    MediaStaffListView().padding(.horizontal)
-                }
-
-                if hasStats() {
-                    MediaStatsView().padding(.horizontal)
-                    Divider().padding()
-                }
-
+                MediaRelationsView().padding(.horizontal)
+                MediaCharactersView().padding(.horizontal)
+                MediaStaffListView().padding(.horizontal)
+                MediaStatsView().padding(.horizontal)
+                MediaReviewsView().padding(.horizontal)
                 MediaPropertiesView().padding(.horizontal)
 
                 if let updatedAt = viewModel.media?.updatedAt {
@@ -72,17 +59,5 @@ struct MediaView: View {
             MediaEditorView(viewModel: MediaEditorViewModel(id: viewModel.id))
                 .environmentObject(currentUser)
         }
-    }
-
-    func hasStats() -> Bool {
-        if viewModel.media?.stats?.scoreDistribution?.isEmpty == false {
-            return true
-        }
-
-//        if viewModel.media?.stats?.statusDistribution?.contains(where: { $0?.amount ?? 0 > 0 }) == true {
-//            return true
-//        }
-
-        return false
     }
 }

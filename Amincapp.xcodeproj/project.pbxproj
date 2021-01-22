@@ -19,7 +19,6 @@
 		0031AC0A25B73BCE0079DE28 /* MediaStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC0925B73BCE0079DE28 /* MediaStatsView.swift */; };
 		0031AC1725B76CFF0079DE28 /* Array+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1625B76CFF0079DE28 /* Array+Hashable.swift */; };
 		0031AC1B25B795D80079DE28 /* MediaStatsRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1A25B795D80079DE28 /* MediaStatsRankingView.swift */; };
-		0031AC1E25B7AD820079DE28 /* MediaStatsDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1D25B7AD820079DE28 /* MediaStatsDistributionView.swift */; };
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
 		00371541256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
 		006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006755842594239E00E557E0 /* SidebarNavigationView.swift */; };
@@ -99,6 +98,9 @@
 		009BB1D0259574390041BF8C /* ActivityFeed.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */; };
 		009BB1D1259574390041BF8C /* Like.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C4259574390041BF8C /* Like.graphql.swift */; };
 		009BB1D2259574390041BF8C /* DeleteActivity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BB1C5259574390041BF8C /* DeleteActivity.graphql.swift */; };
+		00A8597225BB497100EDC7E2 /* MediaReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597125BB497100EDC7E2 /* MediaReviewsView.swift */; };
+		00A8597625BB4B0200EDC7E2 /* MediaReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597525BB4B0200EDC7E2 /* MediaReviewView.swift */; };
+		00A8597A25BB7A9200EDC7E2 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597925BB7A9200EDC7E2 /* ReviewView.swift */; };
 		00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
 		00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */; };
 		00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
@@ -132,7 +134,6 @@
 		0031AC1425B767EA0079DE28 /* IMG_0243.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0243.png; sourceTree = "<group>"; };
 		0031AC1625B76CFF0079DE28 /* Array+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Hashable.swift"; sourceTree = "<group>"; };
 		0031AC1A25B795D80079DE28 /* MediaStatsRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatsRankingView.swift; sourceTree = "<group>"; };
-		0031AC1D25B7AD820079DE28 /* MediaStatsDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatsDistributionView.swift; sourceTree = "<group>"; };
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		006755842594239E00E557E0 /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
@@ -221,6 +222,9 @@
 		009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeed.graphql.swift; sourceTree = "<group>"; };
 		009BB1C4259574390041BF8C /* Like.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.graphql.swift; sourceTree = "<group>"; };
 		009BB1C5259574390041BF8C /* DeleteActivity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteActivity.graphql.swift; sourceTree = "<group>"; };
+		00A8597125BB497100EDC7E2 /* MediaReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReviewsView.swift; sourceTree = "<group>"; };
+		00A8597525BB4B0200EDC7E2 /* MediaReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReviewView.swift; sourceTree = "<group>"; };
+		00A8597925BB7A9200EDC7E2 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormOverviewView.swift; sourceTree = "<group>"; };
 		00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormProgressView.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				00DC20B025AE9DE500C5DCCB /* Characters */,
 				00930D1425B0A8F900067284 /* Staff */,
 				0031AC0825B73B730079DE28 /* Stats */,
+				00A8597025BB495C00EDC7E2 /* Reviews */,
 				0080C10E25B5EB0E004624C9 /* Properties */,
 			);
 			path = Sections;
@@ -334,7 +339,6 @@
 			children = (
 				0031AC0925B73BCE0079DE28 /* MediaStatsView.swift */,
 				0031AC1A25B795D80079DE28 /* MediaStatsRankingView.swift */,
-				0031AC1D25B7AD820079DE28 /* MediaStatsDistributionView.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -581,6 +585,23 @@
 			path = Environments;
 			sourceTree = "<group>";
 		};
+		00A8597025BB495C00EDC7E2 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				00A8597125BB497100EDC7E2 /* MediaReviewsView.swift */,
+				00A8597525BB4B0200EDC7E2 /* MediaReviewView.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		00A8597825BB7A7E00EDC7E2 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				00A8597925BB7A9200EDC7E2 /* ReviewView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		00BB687F251FE13B00B7DDC9 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +653,7 @@
 				0057D5C82569712F0085D9EF /* Activity */,
 				00930D0F25B09D3600067284 /* Character */,
 				0037152F256BF39000F68734 /* Media */,
+				00A8597825BB7A7E00EDC7E2 /* Review */,
 				0095D83F25B548CC00B03D39 /* Staff */,
 				0037153F256C140000F68734 /* User */,
 			);
@@ -789,9 +811,11 @@
 				0080C16B25B68F7F004624C9 /* MediaPropertyPopularityView.swift in Sources */,
 				0095D84C25B54BCE00B03D39 /* MediaStaffView.swift in Sources */,
 				0080C12725B61358004624C9 /* MediaPropertyStatusView.swift in Sources */,
+				00A8597625BB4B0200EDC7E2 /* MediaReviewView.swift in Sources */,
 				00986BCA256878C90008D80C /* CurrentUser.swift in Sources */,
 				002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */,
 				00869F642502CAE600D2DB6F /* GraphQLNetwork.swift in Sources */,
+				00A8597A25BB7A9200EDC7E2 /* ReviewView.swift in Sources */,
 				0080C13025B61668004624C9 /* MediaPropertySeasonView.swift in Sources */,
 				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
 				0080C12A25B61445004624C9 /* MediaPropertyStartDateView.swift in Sources */,
@@ -813,7 +837,6 @@
 				009BB1CE259574390041BF8C /* CurrentUser.graphql.swift in Sources */,
 				00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */,
 				009BB1D0259574390041BF8C /* ActivityFeed.graphql.swift in Sources */,
-				0031AC1E25B7AD820079DE28 /* MediaStatsDistributionView.swift in Sources */,
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
 				0072CD5D25BA18B60061E70F /* MediaSummaryPropertySourceView.swift in Sources */,
 				0007F71025AE263D00C7E885 /* MediaRelationsView.swift in Sources */,
@@ -835,6 +858,7 @@
 				0072CD5125BA18670061E70F /* MediaSummaryPropertySeasonView.swift in Sources */,
 				0080C13725B618A0004624C9 /* MediaPropertyDurationView.swift in Sources */,
 				0080C12125B606BD004624C9 /* MediaPropertyTitleView.swift in Sources */,
+				00A8597225BB497100EDC7E2 /* MediaReviewsView.swift in Sources */,
 				009BB1D2259574390041BF8C /* DeleteActivity.graphql.swift in Sources */,
 				00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */,
 				00836396256782CA002A16B4 /* AniList.swift in Sources */,

@@ -603,6 +603,52 @@ public enum MediaRankType: RawRepresentable, Equatable, Hashable, CaseIterable, 
   }
 }
 
+/// Review rating enums
+public enum ReviewRating: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case noVote
+  case upVote
+  case downVote
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "NO_VOTE": self = .noVote
+      case "UP_VOTE": self = .upVote
+      case "DOWN_VOTE": self = .downVote
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .noVote: return "NO_VOTE"
+      case .upVote: return "UP_VOTE"
+      case .downVote: return "DOWN_VOTE"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ReviewRating, rhs: ReviewRating) -> Bool {
+    switch (lhs, rhs) {
+      case (.noVote, .noVote): return true
+      case (.upVote, .upVote): return true
+      case (.downVote, .downVote): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ReviewRating] {
+    return [
+      .noVote,
+      .upVote,
+      .downVote,
+    ]
+  }
+}
+
 /// Type of relation media has to its parent.
 public enum MediaRelation: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String

@@ -42,8 +42,7 @@ struct MediaStatsRankingView: View {
 
     func rankImage(type: MediaRankType) -> String {
         switch type {
-            // Change
-            case .popular: return "shippingbox"
+            case .popular: return "shippingbox" // <-- Replace for something better.
             case .rated: return "star.fill"
             case .__unknown: return ""
         }
@@ -84,7 +83,7 @@ fileprivate struct MediaStatsRankingRowView: View {
         }
 
         if ranking.year != nil {
-            return "gyroscope"
+            return "gyroscope" // <-- Replace for something better
         }
 
         return "rosette"

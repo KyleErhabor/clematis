@@ -11,15 +11,16 @@ struct MediaStatsView: View {
     @EnvironmentObject private var viewModel: MediaViewModel
 
     var body: some View {
-        Text("Stats")
-            .font(.title)
-            .bold()
-
         if viewModel.media?.rankings?.isEmpty == false {
-            MediaStatsRankingView()
-        }
+            // TODO: Add scores distribution (bar graph) and status distribution (pie graph)
+            Text("Stats")
+                .font(.title)
+                .bold()
 
-        MediaStatsDistributionView()
+            MediaStatsRankingView()
+            
+            Divider()
+        }
     }
 }
 
