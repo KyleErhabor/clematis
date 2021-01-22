@@ -2,6 +2,9 @@ query CurrentUser {
   Viewer {
     id
     name
+    options {
+      displayAdultContent
+    }
     mediaListOptions {
       scoreFormat
       animeList {

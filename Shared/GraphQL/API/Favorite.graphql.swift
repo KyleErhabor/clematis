@@ -19,37 +19,37 @@ public final class FavoriteMutation: GraphQLMutation {
         __typename
         anime {
           __typename
-          pageInfo {
+          nodes {
             __typename
-            total
+            id
           }
         }
         manga {
           __typename
-          pageInfo {
+          nodes {
             __typename
-            total
+            id
           }
         }
         characters {
           __typename
-          pageInfo {
+          nodes {
             __typename
-            total
+            id
           }
         }
         staff {
           __typename
-          pageInfo {
+          nodes {
             __typename
-            total
+            id
           }
         }
         studios {
           __typename
-          pageInfo {
+          nodes {
             __typename
-            total
+            id
           }
         }
       }
@@ -194,7 +194,7 @@ public final class FavoriteMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -204,8 +204,8 @@ public final class FavoriteMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(pageInfo: PageInfo? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }])
+        public init(nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MediaConnection", "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -217,23 +217,22 @@ public final class FavoriteMutation: GraphQLMutation {
           }
         }
 
-        /// The pagination information
-        public var pageInfo: PageInfo? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct PageInfo: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PageInfo"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Media"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             ]
           }
 
@@ -243,8 +242,8 @@ public final class FavoriteMutation: GraphQLMutation {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total])
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "Media", "id": id])
           }
 
           public var __typename: String {
@@ -256,13 +255,13 @@ public final class FavoriteMutation: GraphQLMutation {
             }
           }
 
-          /// The total number of items
-          public var total: Int? {
+          /// The id of the media
+          public var id: Int {
             get {
-              return resultMap["total"] as? Int
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "total")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }
@@ -274,7 +273,7 @@ public final class FavoriteMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -284,8 +283,8 @@ public final class FavoriteMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(pageInfo: PageInfo? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }])
+        public init(nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MediaConnection", "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -297,23 +296,22 @@ public final class FavoriteMutation: GraphQLMutation {
           }
         }
 
-        /// The pagination information
-        public var pageInfo: PageInfo? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct PageInfo: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PageInfo"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Media"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             ]
           }
 
@@ -323,8 +321,8 @@ public final class FavoriteMutation: GraphQLMutation {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total])
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "Media", "id": id])
           }
 
           public var __typename: String {
@@ -336,13 +334,13 @@ public final class FavoriteMutation: GraphQLMutation {
             }
           }
 
-          /// The total number of items
-          public var total: Int? {
+          /// The id of the media
+          public var id: Int {
             get {
-              return resultMap["total"] as? Int
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "total")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }
@@ -354,7 +352,7 @@ public final class FavoriteMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -364,8 +362,8 @@ public final class FavoriteMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(pageInfo: PageInfo? = nil) {
-          self.init(unsafeResultMap: ["__typename": "CharacterConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }])
+        public init(nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "CharacterConnection", "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -377,23 +375,22 @@ public final class FavoriteMutation: GraphQLMutation {
           }
         }
 
-        /// The pagination information
-        public var pageInfo: PageInfo? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct PageInfo: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PageInfo"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Character"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             ]
           }
 
@@ -403,8 +400,8 @@ public final class FavoriteMutation: GraphQLMutation {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total])
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "Character", "id": id])
           }
 
           public var __typename: String {
@@ -416,13 +413,13 @@ public final class FavoriteMutation: GraphQLMutation {
             }
           }
 
-          /// The total number of items
-          public var total: Int? {
+          /// The id of the character
+          public var id: Int {
             get {
-              return resultMap["total"] as? Int
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "total")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }
@@ -434,7 +431,7 @@ public final class FavoriteMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -444,8 +441,8 @@ public final class FavoriteMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(pageInfo: PageInfo? = nil) {
-          self.init(unsafeResultMap: ["__typename": "StaffConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }])
+        public init(nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "StaffConnection", "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -457,23 +454,22 @@ public final class FavoriteMutation: GraphQLMutation {
           }
         }
 
-        /// The pagination information
-        public var pageInfo: PageInfo? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct PageInfo: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PageInfo"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Staff"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             ]
           }
 
@@ -483,8 +479,8 @@ public final class FavoriteMutation: GraphQLMutation {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total])
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "Staff", "id": id])
           }
 
           public var __typename: String {
@@ -496,13 +492,13 @@ public final class FavoriteMutation: GraphQLMutation {
             }
           }
 
-          /// The total number of items
-          public var total: Int? {
+          /// The id of the staff member
+          public var id: Int {
             get {
-              return resultMap["total"] as? Int
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "total")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }
@@ -514,7 +510,7 @@ public final class FavoriteMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+            GraphQLField("nodes", type: .list(.object(Node.selections))),
           ]
         }
 
@@ -524,8 +520,8 @@ public final class FavoriteMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(pageInfo: PageInfo? = nil) {
-          self.init(unsafeResultMap: ["__typename": "StudioConnection", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }])
+        public init(nodes: [Node?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "StudioConnection", "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -537,23 +533,22 @@ public final class FavoriteMutation: GraphQLMutation {
           }
         }
 
-        /// The pagination information
-        public var pageInfo: PageInfo? {
+        public var nodes: [Node?]? {
           get {
-            return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
+            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
           }
         }
 
-        public struct PageInfo: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PageInfo"]
+        public struct Node: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Studio"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             ]
           }
 
@@ -563,8 +558,8 @@ public final class FavoriteMutation: GraphQLMutation {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total])
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "Studio", "id": id])
           }
 
           public var __typename: String {
@@ -576,13 +571,13 @@ public final class FavoriteMutation: GraphQLMutation {
             }
           }
 
-          /// The total number of items
-          public var total: Int? {
+          /// The id of the studio
+          public var id: Int {
             get {
-              return resultMap["total"] as? Int
+              return resultMap["id"]! as! Int
             }
             set {
-              resultMap.updateValue(newValue, forKey: "total")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
         }

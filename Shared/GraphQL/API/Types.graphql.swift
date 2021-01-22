@@ -559,3 +559,295 @@ public enum MediaStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Ap
     ]
   }
 }
+
+/// The type of ranking
+public enum MediaRankType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Ranking is based on the media's ratings/score
+  case rated
+  /// Ranking is based on the media's popularity
+  case popular
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "RATED": self = .rated
+      case "POPULAR": self = .popular
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .rated: return "RATED"
+      case .popular: return "POPULAR"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaRankType, rhs: MediaRankType) -> Bool {
+    switch (lhs, rhs) {
+      case (.rated, .rated): return true
+      case (.popular, .popular): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaRankType] {
+    return [
+      .rated,
+      .popular,
+    ]
+  }
+}
+
+/// Type of relation media has to its parent.
+public enum MediaRelation: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// An adaption of this media into a different format
+  case adaptation
+  /// Released before the relation
+  case prequel
+  /// Released after the relation
+  case sequel
+  /// The media a side story is from
+  case parent
+  /// A side story of the parent media
+  case sideStory
+  /// Shares at least 1 character
+  case character
+  /// A shortened and summarized version
+  case summary
+  /// An alternative version of the same media
+  case alternative
+  /// An alternative version of the media with a different primary focus
+  case spinOff
+  /// Other
+  case other
+  /// Version 2 only. The source material the media was adapted from
+  case source
+  /// Version 2 only.
+  case compilation
+  /// Version 2 only.
+  case contains
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "ADAPTATION": self = .adaptation
+      case "PREQUEL": self = .prequel
+      case "SEQUEL": self = .sequel
+      case "PARENT": self = .parent
+      case "SIDE_STORY": self = .sideStory
+      case "CHARACTER": self = .character
+      case "SUMMARY": self = .summary
+      case "ALTERNATIVE": self = .alternative
+      case "SPIN_OFF": self = .spinOff
+      case "OTHER": self = .other
+      case "SOURCE": self = .source
+      case "COMPILATION": self = .compilation
+      case "CONTAINS": self = .contains
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .adaptation: return "ADAPTATION"
+      case .prequel: return "PREQUEL"
+      case .sequel: return "SEQUEL"
+      case .parent: return "PARENT"
+      case .sideStory: return "SIDE_STORY"
+      case .character: return "CHARACTER"
+      case .summary: return "SUMMARY"
+      case .alternative: return "ALTERNATIVE"
+      case .spinOff: return "SPIN_OFF"
+      case .other: return "OTHER"
+      case .source: return "SOURCE"
+      case .compilation: return "COMPILATION"
+      case .contains: return "CONTAINS"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: MediaRelation, rhs: MediaRelation) -> Bool {
+    switch (lhs, rhs) {
+      case (.adaptation, .adaptation): return true
+      case (.prequel, .prequel): return true
+      case (.sequel, .sequel): return true
+      case (.parent, .parent): return true
+      case (.sideStory, .sideStory): return true
+      case (.character, .character): return true
+      case (.summary, .summary): return true
+      case (.alternative, .alternative): return true
+      case (.spinOff, .spinOff): return true
+      case (.other, .other): return true
+      case (.source, .source): return true
+      case (.compilation, .compilation): return true
+      case (.contains, .contains): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [MediaRelation] {
+    return [
+      .adaptation,
+      .prequel,
+      .sequel,
+      .parent,
+      .sideStory,
+      .character,
+      .summary,
+      .alternative,
+      .spinOff,
+      .other,
+      .source,
+      .compilation,
+      .contains,
+    ]
+  }
+}
+
+/// The role the character plays in the media
+public enum CharacterRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// A primary character role in the media
+  case main
+  /// A supporting character role in the media
+  case supporting
+  /// A background character in the media
+  case background
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "MAIN": self = .main
+      case "SUPPORTING": self = .supporting
+      case "BACKGROUND": self = .background
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .main: return "MAIN"
+      case .supporting: return "SUPPORTING"
+      case .background: return "BACKGROUND"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: CharacterRole, rhs: CharacterRole) -> Bool {
+    switch (lhs, rhs) {
+      case (.main, .main): return true
+      case (.supporting, .supporting): return true
+      case (.background, .background): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [CharacterRole] {
+    return [
+      .main,
+      .supporting,
+      .background,
+    ]
+  }
+}
+
+/// The primary language of the voice actor
+public enum StaffLanguage: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Japanese
+  case japanese
+  /// English
+  case english
+  /// Korean
+  case korean
+  /// Italian
+  case italian
+  /// Spanish
+  case spanish
+  /// Portuguese
+  case portuguese
+  /// French
+  case french
+  /// German
+  case german
+  /// Hebrew
+  case hebrew
+  /// Hungarian
+  case hungarian
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "JAPANESE": self = .japanese
+      case "ENGLISH": self = .english
+      case "KOREAN": self = .korean
+      case "ITALIAN": self = .italian
+      case "SPANISH": self = .spanish
+      case "PORTUGUESE": self = .portuguese
+      case "FRENCH": self = .french
+      case "GERMAN": self = .german
+      case "HEBREW": self = .hebrew
+      case "HUNGARIAN": self = .hungarian
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .japanese: return "JAPANESE"
+      case .english: return "ENGLISH"
+      case .korean: return "KOREAN"
+      case .italian: return "ITALIAN"
+      case .spanish: return "SPANISH"
+      case .portuguese: return "PORTUGUESE"
+      case .french: return "FRENCH"
+      case .german: return "GERMAN"
+      case .hebrew: return "HEBREW"
+      case .hungarian: return "HUNGARIAN"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: StaffLanguage, rhs: StaffLanguage) -> Bool {
+    switch (lhs, rhs) {
+      case (.japanese, .japanese): return true
+      case (.english, .english): return true
+      case (.korean, .korean): return true
+      case (.italian, .italian): return true
+      case (.spanish, .spanish): return true
+      case (.portuguese, .portuguese): return true
+      case (.french, .french): return true
+      case (.german, .german): return true
+      case (.hebrew, .hebrew): return true
+      case (.hungarian, .hungarian): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [StaffLanguage] {
+    return [
+      .japanese,
+      .english,
+      .korean,
+      .italian,
+      .spanish,
+      .portuguese,
+      .french,
+      .german,
+      .hebrew,
+      .hungarian,
+    ]
+  }
+}

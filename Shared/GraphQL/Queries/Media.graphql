@@ -1,8 +1,10 @@
-query Media($id: Int!) {
+query Media($id: Int!, $staffPage: Int, $characterPage: Int) {
   Media(id: $id) {
     type
     format
+    genres
     season
+    hashtag
     siteUrl
     volumes
     chapters
@@ -10,6 +12,7 @@ query Media($id: Int!) {
     episodes
     isLocked
     synonyms
+    meanScore
     updatedAt
     favourites
     isLicensed
@@ -22,9 +25,6 @@ query Media($id: Int!) {
     source(version: 2)
     status(version: 2)
     description(asHtml: true)
-    title {
-      userPreferred
-    }
     mediaListEntry {
       status
     }
@@ -45,6 +45,139 @@ query Media($id: Int!) {
       day
       year
       month
+    }
+    trailer {
+      id
+      site
+      thumbnail
+    }
+    externalLinks {
+      id
+      url
+      site
+    }
+    title {
+      native
+      romaji
+      english
+      userPreferred
+    }
+    tags {
+      id
+      name
+      rank
+      isAdult
+      description
+      isMediaSpoiler
+    }
+    rankings {
+      id
+      rank
+      type
+      year
+      format
+      season
+      allTime
+      context
+    }
+    stats {
+      scoreDistribution {
+        score
+        amount
+      }
+      statusDistribution {
+        status
+        amount
+      }
+    }
+    studios {
+      edges {
+        id
+        isMain
+        node {
+          id
+          name
+          isFavourite
+        }
+      }
+    }
+    staff(page: $staffPage) {
+      pageInfo {
+        total
+        hasNextPage
+      }
+      edges {
+        id
+        role
+        node {
+          id
+          isFavourite
+          image {
+            large
+          }
+          name {
+            full
+            native
+          }
+        }
+      }
+    }
+    relations {
+      pageInfo {
+        total
+      }
+      edges {
+        id
+        relationType(version: 2)
+        node {
+          id
+          type
+          format
+          season
+          status
+          seasonYear
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+    }
+    characters(page: $characterPage, sort: [ROLE, ID]) {
+      pageInfo {
+        total
+        hasNextPage
+      }
+      edges {
+        id
+        role
+        node {
+          id
+          isFavourite
+          image {
+            large
+          }
+          name {
+            full
+            native
+          }
+        }
+        voiceActors(sort: LANGUAGE) {
+          id
+          language
+          isFavourite
+          image {
+            large
+          }
+          name {
+            full
+            native
+          }
+        }
+      }
     }
   }
 }

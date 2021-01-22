@@ -13,6 +13,10 @@ public final class CurrentUserQuery: GraphQLQuery {
         __typename
         id
         name
+        options {
+          __typename
+          displayAdultContent
+        }
         mediaListOptions {
           __typename
           scoreFormat
@@ -75,6 +79,7 @@ public final class CurrentUserQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("options", type: .object(Option.selections)),
           GraphQLField("mediaListOptions", type: .object(MediaListOption.selections)),
         ]
       }
@@ -85,8 +90,8 @@ public final class CurrentUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, name: String, mediaListOptions: MediaListOption? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "mediaListOptions": mediaListOptions.flatMap { (value: MediaListOption) -> ResultMap in value.resultMap }])
+      public init(id: Int, name: String, options: Option? = nil, mediaListOptions: MediaListOption? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "mediaListOptions": mediaListOptions.flatMap { (value: MediaListOption) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -118,6 +123,16 @@ public final class CurrentUserQuery: GraphQLQuery {
         }
       }
 
+      /// The user's general options
+      public var options: Option? {
+        get {
+          return (resultMap["options"] as? ResultMap).flatMap { Option(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "options")
+        }
+      }
+
       /// The user's media list options
       public var mediaListOptions: MediaListOption? {
         get {
@@ -125,6 +140,46 @@ public final class CurrentUserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue?.resultMap, forKey: "mediaListOptions")
+        }
+      }
+
+      public struct Option: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["UserOptions"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("displayAdultContent", type: .scalar(Bool.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(displayAdultContent: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "UserOptions", "displayAdultContent": displayAdultContent])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// Whether the user has enabled viewing of 18+ content
+        public var displayAdultContent: Bool? {
+          get {
+            return resultMap["displayAdultContent"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "displayAdultContent")
+          }
         }
       }
 
