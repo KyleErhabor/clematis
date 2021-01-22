@@ -14,7 +14,7 @@ struct MediaSummaryHeaderView: View {
     @Binding private(set) var isPresenting: Bool
 
     var body: some View {
-        HStack {
+        HStack(alignment: .bottom) {
             WebImage(url: URL(string: viewModel.media?.coverImage?.extraLarge ?? ""))
                 .resizable()
                 .placeholder {
@@ -23,74 +23,47 @@ struct MediaSummaryHeaderView: View {
                     } else {
                         Color.accentColor
                     }
-                }.frame(width: 180, height: 270)
-                .border(colorScheme == .dark ? Color.black : Color.white, width: 8)
+                }.scaledToFill()
+                .frame(width: 117, height: 176)
+                .clipped()
+                .cornerRadius(4)
 
-            VStack(alignment: .leading) {
-                Text(viewModel.media?.title?.userPreferred ?? "")
-                    .font(.title)
-                    .fontWeight(.bold)
+            HStack {
+                Button {
+                    isPresenting = true
+                } label: {
+                    let title: String = {
+                        if let status = viewModel.media?.mediaListEntry?.status,
+                           let type = viewModel.media?.type {
+                            return AniList.statusString(status: status, type: type)
+                        }
 
-                // After 5, the layout starts to break outside its area.
-                if let synonyms = viewModel.media?.synonyms?.compactMap({ $0 }).prefix(5), !synonyms.isEmpty {
-                    ForEach(synonyms, id: \.self) { syn in
-                        Text(syn)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                }
+                        return "Add to List"
+                    }()
+
+                    let locked = viewModel.media?.isLocked ?? false
+
+                    Label(locked ? "Locked" : title, systemImage: locked ? "pencil.slash" : "pencil")
+                }.font(.headline)
+                .padding(8)
+                .background(Color.accentColor)
+                .foregroundColor(.white)
+                .cornerRadius(4)
+                .disabled(viewModel.media?.isLocked ?? true)
 
                 Spacer()
 
-                HStack {
-                    Button {
-                        isPresenting = true
-                    } label: {
-                        let title: String = {
-                            if let status = viewModel.media?.mediaListEntry?.status,
-                               let type = viewModel.media?.type {
-                                return AniList.statusString(status: status, type: type)
-                            }
-
-                            return "Add to List"
-                        }()
-
-                        let locked = viewModel.media?.isLocked ?? false
-
-                        Label(locked ? "Locked" : title, systemImage: locked ? "pencil.slash" : "pencil")
-                            .font(.headline)
-                            .padding(12)
-                            .background(Color.accentColor)
-                            .foregroundColor(.white)
-                            .cornerRadius(4)
-                    }
-
-                    Spacer()
-
-                    Button {
-                        viewModel.toggleFavorite()
-                    } label: {
-                        Image(systemName: viewModel.media?.isFavourite == true ? "heart.fill" : "heart")
-                    }
-
-                    Button {
-                        presentShareSheet()
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                    }
+                Button {
+                    viewModel.toggleFavorite(
+                        id: viewModel.id,
+                        for: viewModel.media?.type == .anime ? .anime : .manga
+                    )
+                } label: {
+                    Image(systemName: viewModel.media?.isFavourite == true ? "heart.fill" : "heart")
                 }.disabled(viewModel.media?.isLocked ?? true)
-                .padding(.bottom, 8)
-            }.padding(.top, 80)
-        }.frame(height: 270)
-    }
-
-    func presentShareSheet() {
-        guard viewModel.media?.siteUrl != nil, let url = URL(string: viewModel.media!.siteUrl!) else {
-            return
-        }
-
-        let activity = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activity, animated: true, completion: nil)
+            }
+        }.frame(height: 176)
+        .animation(.default)
     }
 }
 
