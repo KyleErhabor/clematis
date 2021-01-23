@@ -17,7 +17,7 @@ struct MediaCharacterView: View {
         let staff = edge.voiceActors?.isEmpty == true ? nil : edge.voiceActors![0]
 
         HStack(spacing: 0) {
-            NavigationLink(destination: CharacterView()) {
+            NavigationLink(destination: CharacterView(viewModel: CharacterViewModel(id: character.id))) {
                 MediaCharacterImageView(url: URL(string: character.image?.large ?? ""))
             }.animation(.default)
 
@@ -28,7 +28,7 @@ struct MediaCharacterView: View {
                     native: character.name?.native,
                     footer: edge.role?.rawValue.capitalized,
                     alignment: .leading,
-                    destination: CharacterView()
+                    destination: CharacterView(viewModel: CharacterViewModel(id: character.id))
                 )
 
                 Spacer()
