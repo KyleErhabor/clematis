@@ -101,6 +101,11 @@
 		00A8597225BB497100EDC7E2 /* MediaReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597125BB497100EDC7E2 /* MediaReviewsView.swift */; };
 		00A8597625BB4B0200EDC7E2 /* MediaReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597525BB4B0200EDC7E2 /* MediaReviewView.swift */; };
 		00A8597A25BB7A9200EDC7E2 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8597925BB7A9200EDC7E2 /* ReviewView.swift */; };
+		00A8598225BB884000EDC7E2 /* Character.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8598125BB884000EDC7E2 /* Character.graphql.swift */; };
+		00A8598525BB885400EDC7E2 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8598425BB885400EDC7E2 /* CharacterViewModel.swift */; };
+		00A8598925BBB28900EDC7E2 /* CharacterSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8598825BBB28800EDC7E2 /* CharacterSummaryView.swift */; };
+		00A8598C25BBB5B100EDC7E2 /* CharacterMediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */; };
+		00A8599325BBBAFA00EDC7E2 /* CharacterMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8599225BBBAFA00EDC7E2 /* CharacterMediaView.swift */; };
 		00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */; };
 		00C8C39B2587E92000443135 /* MediaEditorFormProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */; };
 		00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C39F2587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift */; };
@@ -225,6 +230,12 @@
 		00A8597125BB497100EDC7E2 /* MediaReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReviewsView.swift; sourceTree = "<group>"; };
 		00A8597525BB4B0200EDC7E2 /* MediaReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReviewView.swift; sourceTree = "<group>"; };
 		00A8597925BB7A9200EDC7E2 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		00A8597D25BB880E00EDC7E2 /* Character.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Character.graphql; sourceTree = "<group>"; };
+		00A8598125BB884000EDC7E2 /* Character.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.graphql.swift; sourceTree = "<group>"; };
+		00A8598425BB885400EDC7E2 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
+		00A8598825BBB28800EDC7E2 /* CharacterSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSummaryView.swift; sourceTree = "<group>"; };
+		00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaListView.swift; sourceTree = "<group>"; };
+		00A8599225BBBAFA00EDC7E2 /* CharacterMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C8C3932587E7E200443135 /* MediaEditorFormOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormOverviewView.swift; sourceTree = "<group>"; };
 		00C8C39A2587E92000443135 /* MediaEditorFormProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFormProgressView.swift; sourceTree = "<group>"; };
@@ -303,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				00CA1971252F7B0300B1D2D8 /* ActivityFeed.graphql */,
+				00A8597D25BB880E00EDC7E2 /* Character.graphql */,
 				00C9B2FB251F996F000A8139 /* CurrentUser.graphql */,
 				00C108972573619D00E3DCBA /* Markdown.graphql */,
 				00767DCC25900770009AD3BE /* Media.graphql */,
@@ -534,6 +546,9 @@
 			isa = PBXGroup;
 			children = (
 				00930D1025B09DC300067284 /* CharacterView.swift */,
+				00A8598425BB885400EDC7E2 /* CharacterViewModel.swift */,
+				00A8598825BBB28800EDC7E2 /* CharacterSummaryView.swift */,
+				00A8599025BBBAE400EDC7E2 /* Media */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -602,12 +617,22 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		00A8599025BBBAE400EDC7E2 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */,
+				00A8599225BBBAFA00EDC7E2 /* CharacterMediaView.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
 		00BB687F251FE13B00B7DDC9 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				009BB1C3259574390041BF8C /* ActivityFeed.graphql.swift */,
 				009BB1BD259574390041BF8C /* ActivitySubscription.graphql.swift */,
 				009BB1BA259574390041BF8C /* ActivityUnion.graphql.swift */,
+				00A8598125BB884000EDC7E2 /* Character.graphql.swift */,
 				009BB1BF259574390041BF8C /* CreateMediaListEntry.graphql.swift */,
 				009BB1C1259574390041BF8C /* CurrentUser.graphql.swift */,
 				009BB1C5259574390041BF8C /* DeleteActivity.graphql.swift */,
@@ -796,12 +821,14 @@
 				0031AC0525B716FE0079DE28 /* MediaPropertyStudiosView.swift in Sources */,
 				0080C15825B67015004624C9 /* MediaPropertyTrailerLinkView.swift in Sources */,
 				0072CD3B25BA16560061E70F /* MediaSummaryPropertyAiringView.swift in Sources */,
+				00A8599325BBBAFA00EDC7E2 /* CharacterMediaView.swift in Sources */,
 				0072CD5425BA187E0061E70F /* MediaSummaryPropertyEpisodesView.swift in Sources */,
 				009BB1C9259574390041BF8C /* Types.graphql.swift in Sources */,
 				0080C15E25B674A6004624C9 /* MediaPropertyGenresView.swift in Sources */,
 				0072CD5A25BA18A30061E70F /* MediaSummaryPropertyVolumesView.swift in Sources */,
 				00E3656E2581D687007DAF08 /* ActivityTextKindView.swift in Sources */,
 				0072CD4525BA18110061E70F /* MediaSummaryPropertyFormatView.swift in Sources */,
+				00A8598C25BBB5B100EDC7E2 /* CharacterMediaListView.swift in Sources */,
 				0080C13A25B625CA004624C9 /* MediaPropertyChaptersView.swift in Sources */,
 				006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */,
 				0095D82F25B4D31500B03D39 /* AuthorizationHeaderAddingInterceptor.swift in Sources */,
@@ -829,6 +856,7 @@
 				006755852594239E00E557E0 /* SidebarNavigationView.swift in Sources */,
 				0080C16525B68E33004624C9 /* MediaPropertyAverageScoreView.swift in Sources */,
 				00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */,
+				00A8598925BBB28900EDC7E2 /* CharacterSummaryView.swift in Sources */,
 				00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */,
 				00C8C3942587E7E200443135 /* MediaEditorFormOverviewView.swift in Sources */,
 				0072CD5725BA18940061E70F /* MediaSummaryPropertyChaptersView.swift in Sources */,
@@ -840,6 +868,7 @@
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
 				0072CD5D25BA18B60061E70F /* MediaSummaryPropertySourceView.swift in Sources */,
 				0007F71025AE263D00C7E885 /* MediaRelationsView.swift in Sources */,
+				00A8598525BB885400EDC7E2 /* CharacterViewModel.swift in Sources */,
 				0080C14325B62886004624C9 /* MediaPropertySourceView.swift in Sources */,
 				009BB1CD259574390041BF8C /* Markdown.graphql.swift in Sources */,
 				0013191925AAD48900571CF3 /* MediaHeaderView.swift in Sources */,
@@ -854,6 +883,7 @@
 				0080C16825B68EBB004624C9 /* MediaPropertyMeanScoreView.swift in Sources */,
 				00C8C3A02587EB8700443135 /* MediaEditorFormAdvancedScoresView.swift in Sources */,
 				0080C12D25B6157D004624C9 /* MediaPropertyEndDateView.swift in Sources */,
+				00A8598225BB884000EDC7E2 /* Character.graphql.swift in Sources */,
 				00152BAA257C15400080C352 /* ActivityFeedViewModel.swift in Sources */,
 				0072CD5125BA18670061E70F /* MediaSummaryPropertySeasonView.swift in Sources */,
 				0080C13725B618A0004624C9 /* MediaPropertyDurationView.swift in Sources */,

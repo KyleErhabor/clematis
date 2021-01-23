@@ -11,15 +11,15 @@ struct TabNavigationView: View {
     var body: some View {
         TabView {
             NavigationView {
-                ActivityFeedView()
-            }.tabItem {
-                Label("Home", systemImage: "house")
-            }
-
-            NavigationView {
                 UserView()
             }.tabItem {
                 Label("Profile", systemImage: "person.crop.circle")
+            }
+
+            NavigationView {
+                ActivityFeedView()
+            }.tabItem {
+                Label("Home", systemImage: "house")
             }
         }
     }

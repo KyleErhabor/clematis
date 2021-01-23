@@ -165,6 +165,146 @@ public enum LikeableType: RawRepresentable, Equatable, Hashable, CaseIterable, A
   }
 }
 
+/// The role the character plays in the media
+public enum CharacterRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// A primary character role in the media
+  case main
+  /// A supporting character role in the media
+  case supporting
+  /// A background character in the media
+  case background
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "MAIN": self = .main
+      case "SUPPORTING": self = .supporting
+      case "BACKGROUND": self = .background
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .main: return "MAIN"
+      case .supporting: return "SUPPORTING"
+      case .background: return "BACKGROUND"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: CharacterRole, rhs: CharacterRole) -> Bool {
+    switch (lhs, rhs) {
+      case (.main, .main): return true
+      case (.supporting, .supporting): return true
+      case (.background, .background): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [CharacterRole] {
+    return [
+      .main,
+      .supporting,
+      .background,
+    ]
+  }
+}
+
+/// The primary language of the voice actor
+public enum StaffLanguage: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// Japanese
+  case japanese
+  /// English
+  case english
+  /// Korean
+  case korean
+  /// Italian
+  case italian
+  /// Spanish
+  case spanish
+  /// Portuguese
+  case portuguese
+  /// French
+  case french
+  /// German
+  case german
+  /// Hebrew
+  case hebrew
+  /// Hungarian
+  case hungarian
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "JAPANESE": self = .japanese
+      case "ENGLISH": self = .english
+      case "KOREAN": self = .korean
+      case "ITALIAN": self = .italian
+      case "SPANISH": self = .spanish
+      case "PORTUGUESE": self = .portuguese
+      case "FRENCH": self = .french
+      case "GERMAN": self = .german
+      case "HEBREW": self = .hebrew
+      case "HUNGARIAN": self = .hungarian
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .japanese: return "JAPANESE"
+      case .english: return "ENGLISH"
+      case .korean: return "KOREAN"
+      case .italian: return "ITALIAN"
+      case .spanish: return "SPANISH"
+      case .portuguese: return "PORTUGUESE"
+      case .french: return "FRENCH"
+      case .german: return "GERMAN"
+      case .hebrew: return "HEBREW"
+      case .hungarian: return "HUNGARIAN"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: StaffLanguage, rhs: StaffLanguage) -> Bool {
+    switch (lhs, rhs) {
+      case (.japanese, .japanese): return true
+      case (.english, .english): return true
+      case (.korean, .korean): return true
+      case (.italian, .italian): return true
+      case (.spanish, .spanish): return true
+      case (.portuguese, .portuguese): return true
+      case (.french, .french): return true
+      case (.german, .german): return true
+      case (.hebrew, .hebrew): return true
+      case (.hungarian, .hungarian): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [StaffLanguage] {
+    return [
+      .japanese,
+      .english,
+      .korean,
+      .italian,
+      .spanish,
+      .portuguese,
+      .french,
+      .german,
+      .hebrew,
+      .hungarian,
+    ]
+  }
+}
+
 /// Media list scoring type
 public enum ScoreFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
@@ -754,146 +894,6 @@ public enum MediaRelation: RawRepresentable, Equatable, Hashable, CaseIterable, 
       .source,
       .compilation,
       .contains,
-    ]
-  }
-}
-
-/// The role the character plays in the media
-public enum CharacterRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  /// A primary character role in the media
-  case main
-  /// A supporting character role in the media
-  case supporting
-  /// A background character in the media
-  case background
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
-
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "MAIN": self = .main
-      case "SUPPORTING": self = .supporting
-      case "BACKGROUND": self = .background
-      default: self = .__unknown(rawValue)
-    }
-  }
-
-  public var rawValue: RawValue {
-    switch self {
-      case .main: return "MAIN"
-      case .supporting: return "SUPPORTING"
-      case .background: return "BACKGROUND"
-      case .__unknown(let value): return value
-    }
-  }
-
-  public static func == (lhs: CharacterRole, rhs: CharacterRole) -> Bool {
-    switch (lhs, rhs) {
-      case (.main, .main): return true
-      case (.supporting, .supporting): return true
-      case (.background, .background): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
-    }
-  }
-
-  public static var allCases: [CharacterRole] {
-    return [
-      .main,
-      .supporting,
-      .background,
-    ]
-  }
-}
-
-/// The primary language of the voice actor
-public enum StaffLanguage: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  /// Japanese
-  case japanese
-  /// English
-  case english
-  /// Korean
-  case korean
-  /// Italian
-  case italian
-  /// Spanish
-  case spanish
-  /// Portuguese
-  case portuguese
-  /// French
-  case french
-  /// German
-  case german
-  /// Hebrew
-  case hebrew
-  /// Hungarian
-  case hungarian
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
-
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "JAPANESE": self = .japanese
-      case "ENGLISH": self = .english
-      case "KOREAN": self = .korean
-      case "ITALIAN": self = .italian
-      case "SPANISH": self = .spanish
-      case "PORTUGUESE": self = .portuguese
-      case "FRENCH": self = .french
-      case "GERMAN": self = .german
-      case "HEBREW": self = .hebrew
-      case "HUNGARIAN": self = .hungarian
-      default: self = .__unknown(rawValue)
-    }
-  }
-
-  public var rawValue: RawValue {
-    switch self {
-      case .japanese: return "JAPANESE"
-      case .english: return "ENGLISH"
-      case .korean: return "KOREAN"
-      case .italian: return "ITALIAN"
-      case .spanish: return "SPANISH"
-      case .portuguese: return "PORTUGUESE"
-      case .french: return "FRENCH"
-      case .german: return "GERMAN"
-      case .hebrew: return "HEBREW"
-      case .hungarian: return "HUNGARIAN"
-      case .__unknown(let value): return value
-    }
-  }
-
-  public static func == (lhs: StaffLanguage, rhs: StaffLanguage) -> Bool {
-    switch (lhs, rhs) {
-      case (.japanese, .japanese): return true
-      case (.english, .english): return true
-      case (.korean, .korean): return true
-      case (.italian, .italian): return true
-      case (.spanish, .spanish): return true
-      case (.portuguese, .portuguese): return true
-      case (.french, .french): return true
-      case (.german, .german): return true
-      case (.hebrew, .hebrew): return true
-      case (.hungarian, .hungarian): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
-    }
-  }
-
-  public static var allCases: [StaffLanguage] {
-    return [
-      .japanese,
-      .english,
-      .korean,
-      .italian,
-      .spanish,
-      .portuguese,
-      .french,
-      .german,
-      .hebrew,
-      .hungarian,
     ]
   }
 }
