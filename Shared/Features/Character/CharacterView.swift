@@ -13,7 +13,7 @@ struct CharacterView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 CharacterSummaryView()
                 CharacterMediaListView()
             }.padding()

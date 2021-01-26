@@ -34,14 +34,15 @@ struct CharacterSummaryView: View {
             }
 
             Spacer()
-        }.frame(height: 240)
-        .animation(.default)
+        }.animation(.default)
+        .frame(height: 240)
+        .padding(.bottom)
 
-        Divider().padding(.vertical)
+        Divider()
 
         Text("\(viewModel.character?.description ?? "")")
 
-        Divider().padding(.vertical)
+        Divider()
     }
 }
 

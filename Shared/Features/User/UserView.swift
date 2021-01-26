@@ -9,9 +9,7 @@ import SwiftUI
 
 struct UserView: View {
     var body: some View {
-        CharacterView(viewModel: CharacterViewModel(id: 7373))
-//        NavigationLink("Go", destination: CharacterView(viewModel: CharacterViewModel(id: 132151)))
-//        Text("TODO (user)")
+        Text("TODO (user)")
     }
 }
 

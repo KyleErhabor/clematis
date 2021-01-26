@@ -115,6 +115,9 @@
 		00E3656E2581D687007DAF08 /* ActivityTextKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3656D2581D687007DAF08 /* ActivityTextKindView.swift */; };
 		00F18BFD257C713900AB0183 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00152BA4257C13CF0080C352 /* ActivityFeedView.swift */; };
 		00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F18C02257D728300AB0183 /* ActivityListKindView.swift */; };
+		00F39AF625BFCF0E00824B8C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F39AF525BFCF0E00824B8C /* UserViewModel.swift */; };
+		00F39AF925BFD00000824B8C /* User.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00F39AF825BFD00000824B8C /* User.graphql */; };
+		00F39AFC25BFD01E00824B8C /* User.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F39AFB25BFD01E00824B8C /* User.graphql.swift */; };
 		00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */; };
 		00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */; };
 /* End PBXBuildFile section */
@@ -249,6 +252,9 @@
 		00F18C02257D728300AB0183 /* ActivityListKindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListKindView.swift; sourceTree = "<group>"; };
 		00F3864D257E9B11000DBDA0 /* Like.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Like.graphql; sourceTree = "<group>"; };
 		00F3865E257EA06F000DBDA0 /* ActivityUnion.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActivityUnion.graphql; sourceTree = "<group>"; };
+		00F39AF525BFCF0E00824B8C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		00F39AF825BFD00000824B8C /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
+		00F39AFB25BFD01E00824B8C /* User.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.graphql.swift; sourceTree = "<group>"; };
 		00FA0C4625845B3A00A08117 /* GraphQLCustomScalars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLCustomScalars.swift; sourceTree = "<group>"; };
 		00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,6 +325,7 @@
 				00C108972573619D00E3DCBA /* Markdown.graphql */,
 				00767DCC25900770009AD3BE /* Media.graphql */,
 				0071E8C32583A7D900173A16 /* MediaEditor.graphql */,
+				00F39AF825BFD00000824B8C /* User.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -382,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				00371540256C141100F68734 /* UserView.swift */,
+				00F39AF525BFCF0E00824B8C /* UserViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -643,6 +651,7 @@
 				009BB1BB259574390041BF8C /* MediaEditor.graphql.swift */,
 				009BB1BC259574390041BF8C /* Types.graphql.swift */,
 				009BB1B9259574390041BF8C /* UpdateMediaListEntry.graphql.swift */,
+				00F39AFB25BFD01E00824B8C /* User.graphql.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -778,6 +787,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F39AF925BFD00000824B8C /* User.graphql in Resources */,
 				00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,11 +874,13 @@
 				00371541256C141100F68734 /* UserView.swift in Sources */,
 				009BB1CE259574390041BF8C /* CurrentUser.graphql.swift in Sources */,
 				00F18C03257D728300AB0183 /* ActivityListKindView.swift in Sources */,
+				00F39AFC25BFD01E00824B8C /* User.graphql.swift in Sources */,
 				009BB1D0259574390041BF8C /* ActivityFeed.graphql.swift in Sources */,
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
 				0072CD5D25BA18B60061E70F /* MediaSummaryPropertySourceView.swift in Sources */,
 				0007F71025AE263D00C7E885 /* MediaRelationsView.swift in Sources */,
 				00A8598525BB885400EDC7E2 /* CharacterViewModel.swift in Sources */,
+				00F39AF625BFCF0E00824B8C /* UserViewModel.swift in Sources */,
 				0080C14325B62886004624C9 /* MediaPropertySourceView.swift in Sources */,
 				009BB1CD259574390041BF8C /* Markdown.graphql.swift in Sources */,
 				0013191925AAD48900571CF3 /* MediaHeaderView.swift in Sources */,

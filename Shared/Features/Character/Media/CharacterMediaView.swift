@@ -56,7 +56,6 @@ struct CharacterMediaView: View {
                 }.animation(.default)
             }
         }.frame(height: 120)
-        .animation(nil)
     }
 }
 
