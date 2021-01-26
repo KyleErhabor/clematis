@@ -66,7 +66,7 @@ struct ActivityListKindView: View {
                 }
 
                 if let user = activity.user {
-                    NavigationLink(destination: UserView()) {
+                    NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
                         WebImage(url: URL(string: user.avatar?.large ?? ""))
                             .resizable()
                             .placeholder { Color.accentColor }

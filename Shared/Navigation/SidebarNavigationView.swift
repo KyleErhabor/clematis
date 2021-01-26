@@ -20,14 +20,10 @@ struct SidebarNavigationView: View {
                 }
             }
 
-            Section(header: Text("Profile")) {
-                if currentUser.users.isEmpty {
-                    NavigationLink(destination: UserView()) {
-                        Label("My Profile", systemImage: "person.crop.circle")
-                    }
-                } else {
-                    NavigationLink(destination: UserView()) {
-                        Label("\(currentUser.users[0].name)", systemImage: "person.crop.circle")
+            if let user = currentUser.users.first {
+                Section(header: Text("Profile")) {
+                    NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
+                        Label("\(user.name)", systemImage: "person.crop.circle")
                     }
                 }
             }

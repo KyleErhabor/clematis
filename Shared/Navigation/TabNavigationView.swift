@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct TabNavigationView: View {
+    @EnvironmentObject private var currentUser: CurrentUser
+
     var body: some View {
         TabView {
-            NavigationView {
-                UserView()
-            }.tabItem {
-                Label("Profile", systemImage: "person.crop.circle")
+            // NOTE: https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/
+            // > Don’t hide a tab bar when people navigate to different areas in your app.
+            //
+            // We're doing this for now since it's not important.
+            if let user = currentUser.users.first {
+                NavigationView {
+                    UserView(viewModel: UserViewModel(id: user.id))
+                }.tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
             }
 
             NavigationView {

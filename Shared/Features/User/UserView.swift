@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct UserView: View {
+    @StateObject var viewModel: UserViewModel
+
     var body: some View {
-        Text("TODO (user)")
+        ScrollView {
+            Text("\(viewModel.user?.name ?? "?")")
+        }.navigationTitle("\(viewModel.user?.name ?? "")")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewModel.load()
+        }
     }
 }
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        UserView(viewModel: UserViewModel(id: 164560))
     }
 }

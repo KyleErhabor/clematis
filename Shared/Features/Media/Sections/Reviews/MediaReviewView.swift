@@ -30,17 +30,19 @@ fileprivate struct MediaReviewLabelView: View {
 
     var body: some View {
         HStack {
-            NavigationLink(destination: UserView()) {
-                Label {
-                    Text("\(review.user?.name ?? "")")
-                } icon: {
-                    WebImage(url: URL(string: review.user?.avatar?.large ?? ""))
-                        .resizable()
-                        .placeholder { Color.accentColor }
-                        .scaledToFill()
-                        .frame(width: 36, height: 36, alignment: .top)
-                        .clipped()
-                        .cornerRadius(4)
+            if let user = review.user {
+                NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
+                    Label {
+                        Text("\(user.name)")
+                    } icon: {
+                        WebImage(url: URL(string: user.avatar?.large ?? ""))
+                            .resizable()
+                            .placeholder { Color.accentColor }
+                            .scaledToFill()
+                            .frame(width: 36, height: 36, alignment: .top)
+                            .clipped()
+                            .cornerRadius(4)
+                    }
                 }
             }
 

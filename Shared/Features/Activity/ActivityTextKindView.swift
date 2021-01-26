@@ -26,16 +26,18 @@ struct ActivityTextKindView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                NavigationLink(destination: UserView()) {
-                    WebImage(url: URL(string: activity.user?.avatar?.large ?? ""))
-                        .resizable()
-                        .placeholder { Color.accentColor }
-                        .scaledToFill()
-                        .frame(width: 36, height: 36)
-                        .cornerRadius(8)
+                if let user = activity.user {
+                    NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
+                        WebImage(url: URL(string: user.avatar?.large ?? ""))
+                            .resizable()
+                            .placeholder { Color.accentColor }
+                            .scaledToFill()
+                            .frame(width: 36, height: 36)
+                            .cornerRadius(8)
 
-                    Text(activity.user?.name ?? "?")
-                        .fontWeight(.medium)
+                        Text(activity.user?.name ?? "?")
+                            .fontWeight(.medium)
+                    }
                 }
 
                 Spacer()
