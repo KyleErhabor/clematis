@@ -1,0 +1,5 @@
+mutation ToggleFollow($id: Int!) {
+  ToggleFollow(userId: $id) {
+    isFollowing
+  }
+}

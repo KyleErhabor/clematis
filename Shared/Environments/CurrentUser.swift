@@ -100,14 +100,14 @@ class CurrentUser: ObservableObject {
         users.swapAt(index, 0)
     }
 
-    /// Removes a user from the user's default database.
-    /// - Parameter index: The user in the `users` array by index.
-    func removeUser(at index: Int) {
+    /// Removes all users at the specified offsets.
+    /// - Parameter offsets: The offset indexes representing each user from the `users` array.
+    func removeUsers(at offsets: IndexSet) {
         var tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens)!
-        tokens.remove(at: index)
+        tokens.remove(atOffsets: offsets)
 
         UserDefaults.standard.set(tokens, forKey: SettingsKeys.accessTokens)
-        users.remove(at: index)
+        users.remove(atOffsets: offsets)
     }
 
     /// Handles an incoming URL from the URL scheme.

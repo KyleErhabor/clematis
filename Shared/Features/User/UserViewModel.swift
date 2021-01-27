@@ -32,4 +32,21 @@ class UserViewModel: ObservableObject {
             }
         }
     }
+
+    func toggleFollow() {
+        GraphQLNetwork.shared.perform(mutation: ToggleFollowMutation(id: id)) { result in
+            switch result {
+                case let .success(query):
+                    if let isFollowing = query.data?.toggleFollow?.isFollowing {
+                        self.user?.isFollowing = isFollowing
+                    }
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case let .failure(err):
+                    logger.error("\(err)")
+            }
+        }
+    }
 }

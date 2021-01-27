@@ -49,7 +49,7 @@ struct SidebarNavigationView: View {
                         }
                         
                         Button {
-                            currentUser.removeUser(at: 0)
+                            currentUser.removeUsers(at: .init(integer: 0))
                         } label: {
                             Label("Sign Out", systemImage: "minus.circle")
                         }
