@@ -8,14 +8,18 @@ public final class UserQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query User($id: Int) {
+    query User($id: Int!) {
       User(id: $id) {
         __typename
         name
         isBlocked
+        updatedAt
         isFollower
         bannerImage
+        donatorTier
         isFollowing
+        donatorBadge
+        moderatorStatus
         about(asHtml: true)
         avatar {
           __typename
@@ -124,9 +128,9 @@ public final class UserQuery: GraphQLQuery {
 
   public let operationName: String = "User"
 
-  public var id: Int?
+  public var id: Int
 
-  public init(id: Int? = nil) {
+  public init(id: Int) {
     self.id = id
   }
 
@@ -171,9 +175,13 @@ public final class UserQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("isBlocked", type: .scalar(Bool.self)),
+          GraphQLField("updatedAt", type: .scalar(Int.self)),
           GraphQLField("isFollower", type: .scalar(Bool.self)),
           GraphQLField("bannerImage", type: .scalar(String.self)),
+          GraphQLField("donatorTier", type: .scalar(Int.self)),
           GraphQLField("isFollowing", type: .scalar(Bool.self)),
+          GraphQLField("donatorBadge", type: .scalar(String.self)),
+          GraphQLField("moderatorStatus", type: .scalar(String.self)),
           GraphQLField("about", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("avatar", type: .object(Avatar.selections)),
           GraphQLField("options", type: .object(Option.selections)),
@@ -187,8 +195,8 @@ public final class UserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String, isBlocked: Bool? = nil, isFollower: Bool? = nil, bannerImage: String? = nil, isFollowing: Bool? = nil, about: String? = nil, avatar: Avatar? = nil, options: Option? = nil, favourites: Favourite? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name, "isBlocked": isBlocked, "isFollower": isFollower, "bannerImage": bannerImage, "isFollowing": isFollowing, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "favourites": favourites.flatMap { (value: Favourite) -> ResultMap in value.resultMap }])
+      public init(name: String, isBlocked: Bool? = nil, updatedAt: Int? = nil, isFollower: Bool? = nil, bannerImage: String? = nil, donatorTier: Int? = nil, isFollowing: Bool? = nil, donatorBadge: String? = nil, moderatorStatus: String? = nil, about: String? = nil, avatar: Avatar? = nil, options: Option? = nil, favourites: Favourite? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "name": name, "isBlocked": isBlocked, "updatedAt": updatedAt, "isFollower": isFollower, "bannerImage": bannerImage, "donatorTier": donatorTier, "isFollowing": isFollowing, "donatorBadge": donatorBadge, "moderatorStatus": moderatorStatus, "about": about, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "favourites": favourites.flatMap { (value: Favourite) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -220,6 +228,16 @@ public final class UserQuery: GraphQLQuery {
         }
       }
 
+      /// When the user's data was last updated
+      public var updatedAt: Int? {
+        get {
+          return resultMap["updatedAt"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "updatedAt")
+        }
+      }
+
       /// If this user if following the authenticated user
       public var isFollower: Bool? {
         get {
@@ -240,6 +258,16 @@ public final class UserQuery: GraphQLQuery {
         }
       }
 
+      /// The donation tier of the user
+      public var donatorTier: Int? {
+        get {
+          return resultMap["donatorTier"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "donatorTier")
+        }
+      }
+
       /// If the authenticated user if following this user
       public var isFollowing: Bool? {
         get {
@@ -247,6 +275,26 @@ public final class UserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "isFollowing")
+        }
+      }
+
+      /// Custom donation badge text
+      public var donatorBadge: String? {
+        get {
+          return resultMap["donatorBadge"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "donatorBadge")
+        }
+      }
+
+      /// If the user is a moderator or data moderator
+      public var moderatorStatus: String? {
+        get {
+          return resultMap["moderatorStatus"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "moderatorStatus")
         }
       }
 

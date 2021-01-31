@@ -20,7 +20,6 @@ struct AmincappApp: App {
                 .environmentObject(currentUser)
                 .onAppear {
                     currentUser.fetchUsers()
-                    logger.info("\(AniList.authorizationURL)")
                 }.onOpenURL { url in
                     currentUser.handleIncomingURL(url: url)
                 }

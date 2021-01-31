@@ -1,10 +1,14 @@
-query User($id: Int) {
+query User($id: Int!) {
   User(id: $id) {
     name
     isBlocked
+    updatedAt
     isFollower
     bannerImage
+    donatorTier
     isFollowing
+    donatorBadge
+    moderatorStatus
     about(asHtml: true)
     avatar {
       large

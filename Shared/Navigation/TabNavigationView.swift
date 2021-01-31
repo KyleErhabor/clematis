@@ -12,6 +12,13 @@ struct TabNavigationView: View {
 
     var body: some View {
         TabView {
+
+            NavigationView {
+                ActivityFeedView()
+            }.tabItem {
+                Label("Home", systemImage: "house")
+            }
+            
             // NOTE: https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/
             // > Don’t hide a tab bar when people navigate to different areas in your app.
             //
@@ -22,12 +29,6 @@ struct TabNavigationView: View {
                 }.tabItem {
                     Label("Profile", systemImage: "person.crop.circle")
                 }
-            }
-
-            NavigationView {
-                ActivityFeedView()
-            }.tabItem {
-                Label("Home", systemImage: "house")
             }
         }
     }

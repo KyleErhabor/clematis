@@ -13,6 +13,8 @@ struct UserToolbarView: View {
     @State private var isPresenting = false
 
     var body: some View {
+        let isCurrentUser = currentUser.users.first?.id == viewModel.id
+
         if currentUser.users.contains(where: { $0.id == viewModel.id }) {
             Button {
                 isPresenting = true
@@ -23,7 +25,13 @@ struct UserToolbarView: View {
             }
         }
 
-        if currentUser.users.first?.id != viewModel.id {
+        if isCurrentUser {
+            NavigationLink(destination: UserNotificationListView()) {
+                Image(systemName: "bell")
+            }
+        }
+
+        if !isCurrentUser {
             Menu {
                 Button {
                     viewModel.toggleFollow()
@@ -31,8 +39,7 @@ struct UserToolbarView: View {
                     Text("\(viewModel.user?.isFollowing == true ? "Unfollow" : "Follow")")
                 }
             } label: {
-                Image(systemName: "ellipsis")
-                    .imageScale(.large)
+                Image(systemName: "ellipsis.circle")
             }
         }
     }

@@ -13,6 +13,6 @@ extension ActivityFeedQuery.Data.Page.Activity: Identifiable {
             return id
         }
 
-        fatalError()
+        fatalError("Unknown activity kind")
     }
 }

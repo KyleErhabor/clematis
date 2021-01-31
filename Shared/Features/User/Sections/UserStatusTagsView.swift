@@ -5,6 +5,7 @@
 //  Created by Kyle Erhabor on 1/26/21.
 //
 
+import SDWebImageSwiftUI
 import SwiftUI
 
 struct UserStatusTagsView: View {
@@ -23,6 +24,10 @@ struct UserStatusTagsView: View {
 
                 if viewModel.user?.isBlocked == true {
                     Text("Blocked")
+                }
+
+                if let status = viewModel.user?.moderatorStatus {
+                    Text("\(status.capitalized)")
                 }
             }.frame(maxWidth: .infinity)
         }.font(.headline)

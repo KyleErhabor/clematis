@@ -19,17 +19,30 @@ struct UserView: View {
                 UserStatusTagsView()
                 UserAboutView()
                 UserFavoritesView()
+
+                if let updatedAt = viewModel.user?.updatedAt {
+                    HStack {
+                        Spacer()
+
+                        Text("Last Updated ").bold()
+                            + Text(Date(timeIntervalSince1970: TimeInterval(updatedAt)),
+                                   formatter: RelativeDateTimeFormatter())
+                    }.font(.footnote)
+                    .foregroundColor(.secondary)
+                    .padding(.vertical)
+                }
             }.padding(.horizontal)
-        }.accentColor(profileAccentColor())
-        .navigationTitle("\(viewModel.user?.name ?? "")")
+        }.navigationTitle("\(viewModel.user?.name ?? "")")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 UserToolbarView()
             }
-        }.onAppear {
+        }.accentColor(profileAccentColor())
+        .environmentObject(viewModel)
+        .onAppear {
             viewModel.load()
-        }.environmentObject(viewModel)
+        }
     }
 
     func profileAccentColor() -> Color? {

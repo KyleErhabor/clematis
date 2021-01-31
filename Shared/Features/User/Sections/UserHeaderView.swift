@@ -31,8 +31,20 @@ struct UserHeaderView: View {
                     Text(viewModel.user?.name ?? "")
                         .bold()
                         .shadow(radius: 2)
-                        .padding(.bottom)
-                }.padding(.leading), alignment: .bottomLeading)
+                        .padding()
+
+                    Spacer()
+
+                    if let tier = viewModel.user?.donatorTier, tier > 0,
+                       let badge = viewModel.user?.donatorBadge {
+                        Text("\(badge)")
+                            .bold()
+                            .foregroundColor(.init(.lightText))
+                            .shadow(radius: 2)
+                            .padding()
+                    }
+                }.foregroundColor(.white)
+                .padding(.horizontal), alignment: .bottom)
         }.frame(height: 220)
         .animation(.default)
     }

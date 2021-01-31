@@ -8,7 +8,7 @@
 import Foundation
 
 class UserViewModel: ObservableObject {
-    @Published private(set) var user: UserQuery.Data.User?
+    @Published var user: UserQuery.Data.User?
 
     let id: Int
 
