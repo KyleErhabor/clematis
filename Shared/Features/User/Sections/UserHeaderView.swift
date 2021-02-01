@@ -15,7 +15,6 @@ struct UserHeaderView: View {
         GeometryReader { geo in
             WebImage(url: URL(string: viewModel.user?.bannerImage ?? ""))
                 .resizable()
-                .placeholder { Color.accentColor }
                 .scaledToFill()
                 .frame(width: geo.size.width, height: 220)
                 .clipped()
@@ -26,7 +25,7 @@ struct UserHeaderView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width: 110, height: 110)
-                        .clipped()// <-- Should be scaled down, not clipped
+                        .clipped() // <-- Should be scaled down, not clipped
 
                     Text(viewModel.user?.name ?? "")
                         .bold()
