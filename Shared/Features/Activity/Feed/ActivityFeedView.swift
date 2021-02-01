@@ -2,48 +2,70 @@
 //  ActivityFeedView.swift
 //  Amincapp (iOS)
 //
-//  Created by Kyle Erhabor on 12/5/20.
+//  Created by Kyle Erhabor on 1/31/21.
 //
 
-import Combine
 import SwiftUI
 
 struct ActivityFeedView: View {
-    @StateObject var viewModel = ActivityFeedViewModel()
+    @StateObject private var viewModel = ActivityFeedViewModel()
+    @State private var tab = ActivityFeedTab.global
+    @State private var isPresenting = false
+    @State private var page = 1
 
     var body: some View {
-        List(viewModel.activities) { activity in
-            // In order to make certain views in the list cell navigatable (`NavigationView {...}`), we're
-            // wrapping our main view in a ScrollView.
+        // FIXME: An action that would mutate the activity instance is not saved upon the list being rerendered. This
+        // is due to Swift's pass-by-value nature with function parameters. If attempted, it would require a lot of
+        // uses of `inout` to propogate it up the view stack to a non-view closure.
+        //
+        // It would be easy to create a `like` method on `ActivityFeedViewModel`, but an activity list, text, or
+        // message may have different features and requirements. The view (`Activity<T>View`) is also constructable
+        // outside the activity feed (for example, a user's activity feed) to avoid rewriting the look.
+        //
+        // It's unknown whether this structure will work to solve this problem, but it should be fixed before
+        // production. Although it's probably not uncommon to not see an activity after liking and scrolling up/down,
+        // it may confuse the user.
+        List(Array(viewModel.activities.enumerated()), id: \.element.id) { (index, activity) in
             ScrollView {
-                // NOTE: "The compiler is unable to type-check this expression in reasonable time; try breaking up
-                // the expression into distinct sub-expressions"
-                //
-                // Do not remove this sub-view until this issue has been resolved.
-                ActivityFeedSelectorView(activity: activity)
+                ActivityFeedSelectionView(activity: activity)
                     .padding(8)
-            }.animation(.default)
-        }.navigationTitle("Activity Feed")
-        .environmentObject(viewModel)
-        .onAppear {
-            viewModel.fetchActivities()
+                    .onAppear {
+                        if index == viewModel.activities.count - 1 && viewModel.pageInfo?.hasNextPage == true {
+                            page += 1
+                            viewModel.next(page: page, isFollowing: tab == .following)
+                        }
+                    }
+            }
+        }.listStyle(PlainListStyle())
+        .navigationTitle("Activity Feed")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    isPresenting = true
+                } label: {
+                    Image(systemName: "line.horizontal.3.decrease.circle")
+                }
+            }
+        }.sheet(isPresented: $isPresenting) {
+            viewModel.load(isFollowing: tab == .following)
+        } content: {
+            ActivityFeedFilterView(tab: $tab)
+        }.onAppear {
+            viewModel.load(isFollowing: tab == .following)
         }
     }
 }
 
-struct ActivityFeedSelectorView: View {
-    private let activity: ActivityFeedQuery.Data.Page.Activity
+fileprivate struct ActivityFeedSelectionView: View {
+    private(set) var activity: ActivityFeedQuery.Data.Page.Activity
 
     var body: some View {
-        if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
-            ActivityListKindView(activity: listActivity)
-        } else if let textActivity = activity.asTextActivity?.fragments.textActivityFragment {
-            ActivityTextKindView(activity: textActivity)
+        if let list = activity.asListActivity?.fragments.listActivityFragment {
+            ActivityListView(viewModel: ActivityListViewModel(activity: list))
+        } else if activity.asTextActivity?.fragments.textActivityFragment != nil {
+            ActivityTextView()
         }
-    }
-
-    init(activity: ActivityFeedQuery.Data.Page.Activity) {
-        self.activity = activity
     }
 }
 

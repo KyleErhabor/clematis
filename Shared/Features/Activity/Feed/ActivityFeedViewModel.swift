@@ -2,111 +2,78 @@
 //  ActivityFeedViewModel.swift
 //  Amincapp (iOS)
 //
-//  Created by Kyle Erhabor on 12/5/20.
+//  Created by Kyle Erhabor on 1/31/21.
 //
 
-import Combine
+import Foundation
 
 class ActivityFeedViewModel: ObservableObject {
     @Published private(set) var activities = [ActivityFeedQuery.Data.Page.Activity]()
+    @Published private(set) var pageInfo: ActivityFeedQuery.Data.Page.PageInfo?
 
-    func fetchActivities(page: Int = 1, isFollowing: Bool = false) {
+    func load(isFollowing: Bool) {
         GraphQLNetwork.shared.fetch(query: ActivityFeedQuery(
-            page: page,
             isFollowing: isFollowing,
-            hasRepliesOrTypeText: !isFollowing,
-            includeBuggyFields: true
+            hasRepliesOrTypeText: !isFollowing
         )) { result in
             switch result {
-                case .success(let query):
-                    if let activities = query.data?.page?.activities?.compactMap({ $0 }) {
-                        if !activities.isEmpty {
+                case let .success(query):
+                    if let page = query.data?.page {
+                        if let pageInfo = page.pageInfo {
+                            self.pageInfo = pageInfo
+                        }
+
+                        if let activities = page.activities?.compactMap({ $0 }) {
                             self.activities = activities
                         }
                     }
-                case .failure(let err):
+
+                    if let errors = query.errors {
+                        logger.error("\(errors)")
+                    }
+                case let .failure(err):
                     logger.error("\(err)")
             }
         }
     }
 
-    func like(id: Int, type: LikeableType) {
-        GraphQLNetwork.shared.perform(mutation: LikeMutation(
-            id: id,
-            type: type,
-            includeBuggyFields: false
+    func next(page: Int, isFollowing: Bool) {
+        GraphQLNetwork.shared.fetch(query: ActivityFeedQuery(
+            page: page,
+            isFollowing: isFollowing,
+            hasRepliesOrTypeText: !isFollowing
         )) { result in
             switch result {
-                case .success(let query):
-                    if let kind = query.data?.toggleLikeV2 {
-                        if let listActivity = kind.asListActivity?.fragments.listActivityFragment {
-                            if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
-                                self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
-                            }
-                        } else if let textActivity = kind.asTextActivity?.fragments.textActivityFragment {
-                            if let index = self.activities.firstIndex(where: { $0.id == textActivity.id }) {
-                                self.activities[index].asTextActivity!.fragments.textActivityFragment = textActivity
-                            }
+                case let .success(query):
+                    if let page = query.data?.page {
+                        if let pageInfo = page.pageInfo {
+                            self.pageInfo = pageInfo
+                        }
+
+                        if let activities = page.activities?.compactMap({ $0 }).filter(self.filterDuplicate),
+                           !activities.isEmpty {
+                            self.activities.append(contentsOf: activities)
                         }
                     }
 
                     if let errors = query.errors {
                         logger.error("\(errors)")
                     }
-                case .failure(let err):
+                case let .failure(err):
                     logger.error("\(err)")
             }
         }
     }
 
-    func subscribe(id: Int, subscribe: Bool) {
-        GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
-            id: id,
-            subscribe: subscribe,
-            includeBuggyFields: false
-        )) { result in
-            switch result {
-                case .success(let query):
-                    if let kind = query.data?.toggleActivitySubscription {
-                        // TODO: Add `asTextActivity` and `asMessageActivity` cases.
-                        if let listActivity = kind.asListActivity?.fragments.listActivityFragment {
-                            if let index = self.activities.firstIndex(where: { $0.id == listActivity.id }) {
-                                self.activities[index].asListActivity!.fragments.listActivityFragment = listActivity
-                            }
-                        } else if let textActivity = kind.asTextActivity?.fragments.textActivityFragment {
-                            if let index = self.activities.firstIndex(where: { $0.id == textActivity.id }) {
-                                self.activities[index].asTextActivity!.fragments.textActivityFragment = textActivity
-                            }
-                        }
-                    }
-
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case .failure(let err):
-                    logger.error("\(err)")
-            }
-        }
+    // NOTE: In the future, it may be more appropriate to filter the activity with the `createdAt_lesser` field on
+    // `activities`. This method may exist afterwards to kill off any duplicates that managed to fit in between the
+    // timestamps, but it's unlikely.
+    func filterDuplicate(activity: ActivityFeedQuery.Data.Page.Activity) -> Bool {
+        return !self.activities.contains { $0.id == activity.id }
     }
+}
 
-    func delete(id: Int) {
-        // This has only been tested on an activity the user can't delete. In the future, this should tested on an
-        // activity the user can delete to make sure it works.
-        GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: id)) { result in
-            switch result {
-                case .success(let query):
-                    if query.data?.deleteActivity?.deleted == true {
-                        if let index = self.activities.firstIndex(where: { $0.id == id }) {
-                            self.activities.remove(at: index)
-                        }
-                    }
-
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case .failure(let err):
-                    logger.error("\(err)")
-            }
-        }
-    }
+enum ActivityFeedTab: String, CaseIterable {
+    case following
+    case global
 }
