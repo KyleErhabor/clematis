@@ -1,5 +1,5 @@
 //
-//  Notification+Identifiable.swift
+//  UserNotificationsQuery+Identifiable.swift
 //  Amincapp (iOS)
 //
 //  Created by Kyle Erhabor on 1/30/21.

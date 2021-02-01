@@ -12,7 +12,6 @@ struct TabNavigationView: View {
 
     var body: some View {
         TabView {
-
             NavigationView {
                 ActivityFeedView()
             }.tabItem {
@@ -23,12 +22,14 @@ struct TabNavigationView: View {
             // > Don’t hide a tab bar when people navigate to different areas in your app.
             //
             // We're doing this for now since it's not important.
-            if let user = currentUser.users.first {
-                NavigationView {
+            NavigationView {
+                if let user = currentUser.users.first {
                     UserView(viewModel: UserViewModel(id: user.id))
-                }.tabItem {
-                    Label("Profile", systemImage: "person.crop.circle")
+                } else {
+                    AuthenticationView()
                 }
+            }.tabItem {
+                Label("Profile", systemImage: "person.crop.circle")
             }
         }
     }
