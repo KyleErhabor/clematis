@@ -8,21 +8,25 @@ public final class ActivityFeedQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!, $includeBuggyFields: Boolean!) {
-      Page(page: $page, perPage: 50) {
+    query ActivityFeed($page: Int, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+      Page(page: $page) {
         __typename
+        pageInfo {
+          __typename
+          hasNextPage
+        }
         activities(
           isFollowing: $isFollowing
           hasRepliesOrTypeText: $hasRepliesOrTypeText
-          sort: [ID_DESC]
           type_in: [TEXT, ANIME_LIST, MANGA_LIST]
+          sort: [ID_DESC]
         ) {
           __typename
-          ... on TextActivity {
-            ...textActivityFragment
-          }
           ... on ListActivity {
             ...listActivityFragment
+          }
+          ... on TextActivity {
+            ...textActivityFragment
           }
         }
       }
@@ -31,22 +35,20 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
   public let operationName: String = "ActivityFeed"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + TextActivityFragment.fragmentDefinition).appending("\n" + ListActivityFragment.fragmentDefinition) }
+  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition).appending("\n" + TextActivityFragment.fragmentDefinition) }
 
-  public var page: Int
+  public var page: Int?
   public var isFollowing: Bool
   public var hasRepliesOrTypeText: Bool
-  public var includeBuggyFields: Bool
 
-  public init(page: Int, isFollowing: Bool, hasRepliesOrTypeText: Bool, includeBuggyFields: Bool) {
+  public init(page: Int? = nil, isFollowing: Bool, hasRepliesOrTypeText: Bool) {
     self.page = page
     self.isFollowing = isFollowing
     self.hasRepliesOrTypeText = hasRepliesOrTypeText
-    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["page": page, "isFollowing": isFollowing, "hasRepliesOrTypeText": hasRepliesOrTypeText, "includeBuggyFields": includeBuggyFields]
+    return ["page": page, "isFollowing": isFollowing, "hasRepliesOrTypeText": hasRepliesOrTypeText]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -54,7 +56,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Page", arguments: ["page": GraphQLVariable("page"), "perPage": 50], type: .object(Page.selections)),
+        GraphQLField("Page", arguments: ["page": GraphQLVariable("page")], type: .object(Page.selections)),
       ]
     }
 
@@ -83,7 +85,8 @@ public final class ActivityFeedQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("activities", arguments: ["isFollowing": GraphQLVariable("isFollowing"), "hasRepliesOrTypeText": GraphQLVariable("hasRepliesOrTypeText"), "sort": ["ID_DESC"], "type_in": ["TEXT", "ANIME_LIST", "MANGA_LIST"]], type: .list(.object(Activity.selections))),
+          GraphQLField("pageInfo", type: .object(PageInfo.selections)),
+          GraphQLField("activities", arguments: ["isFollowing": GraphQLVariable("isFollowing"), "hasRepliesOrTypeText": GraphQLVariable("hasRepliesOrTypeText"), "type_in": ["TEXT", "ANIME_LIST", "MANGA_LIST"], "sort": ["ID_DESC"]], type: .list(.object(Activity.selections))),
         ]
       }
 
@@ -93,8 +96,8 @@ public final class ActivityFeedQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(activities: [Activity?]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Page", "activities": activities.flatMap { (value: [Activity?]) -> [ResultMap?] in value.map { (value: Activity?) -> ResultMap? in value.flatMap { (value: Activity) -> ResultMap in value.resultMap } } }])
+      public init(pageInfo: PageInfo? = nil, activities: [Activity?]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Page", "pageInfo": pageInfo.flatMap { (value: PageInfo) -> ResultMap in value.resultMap }, "activities": activities.flatMap { (value: [Activity?]) -> [ResultMap?] in value.map { (value: Activity?) -> ResultMap? in value.flatMap { (value: Activity) -> ResultMap in value.resultMap } } }])
       }
 
       public var __typename: String {
@@ -103,6 +106,16 @@ public final class ActivityFeedQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// The pagination information
+      public var pageInfo: PageInfo? {
+        get {
+          return (resultMap["pageInfo"] as? ResultMap).flatMap { PageInfo(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "pageInfo")
         }
       }
 
@@ -115,13 +128,53 @@ public final class ActivityFeedQuery: GraphQLQuery {
         }
       }
 
+      public struct PageInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PageInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNextPage", type: .scalar(Bool.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNextPage: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// If there is another page
+        public var hasNextPage: Bool? {
+          get {
+            return resultMap["hasNextPage"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNextPage")
+          }
+        }
+      }
+
       public struct Activity: GraphQLSelectionSet {
         public static let possibleTypes: [String] = ["TextActivity", "ListActivity", "MessageActivity"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLTypeCase(
-              variants: ["TextActivity": AsTextActivity.selections, "ListActivity": AsListActivity.selections],
+              variants: ["ListActivity": AsListActivity.selections, "TextActivity": AsTextActivity.selections],
               default: [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               ]
@@ -139,75 +192,16 @@ public final class ActivityFeedQuery: GraphQLQuery {
           return Activity(unsafeResultMap: ["__typename": "MessageActivity"])
         }
 
+        public static func makeTextActivity(id: Int) -> Activity {
+          return Activity(unsafeResultMap: ["__typename": "TextActivity", "id": id])
+        }
+
         public var __typename: String {
           get {
             return resultMap["__typename"]! as! String
           }
           set {
             resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var asTextActivity: AsTextActivity? {
-          get {
-            if !AsTextActivity.possibleTypes.contains(__typename) { return nil }
-            return AsTextActivity(unsafeResultMap: resultMap)
-          }
-          set {
-            guard let newValue = newValue else { return }
-            resultMap = newValue.resultMap
-          }
-        }
-
-        public struct AsTextActivity: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["TextActivity"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLFragmentSpread(TextActivityFragment.self),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          public var fragments: Fragments {
-            get {
-              return Fragments(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
-
-          public struct Fragments {
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public var textActivityFragment: TextActivityFragment {
-              get {
-                return TextActivityFragment(unsafeResultMap: resultMap)
-              }
-              set {
-                resultMap += newValue.resultMap
-              }
-            }
           }
         }
 
@@ -266,6 +260,73 @@ public final class ActivityFeedQuery: GraphQLQuery {
             public var listActivityFragment: ListActivityFragment {
               get {
                 return ListActivityFragment(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+
+        public var asTextActivity: AsTextActivity? {
+          get {
+            if !AsTextActivity.possibleTypes.contains(__typename) { return nil }
+            return AsTextActivity(unsafeResultMap: resultMap)
+          }
+          set {
+            guard let newValue = newValue else { return }
+            resultMap = newValue.resultMap
+          }
+        }
+
+        public struct AsTextActivity: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["TextActivity"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(TextActivityFragment.self),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: Int) {
+            self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var fragments: Fragments {
+            get {
+              return Fragments(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var textActivityFragment: TextActivityFragment {
+              get {
+                return TextActivityFragment(unsafeResultMap: resultMap)
               }
               set {
                 resultMap += newValue.resultMap

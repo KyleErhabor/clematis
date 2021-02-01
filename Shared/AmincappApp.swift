@@ -24,6 +24,8 @@ struct AmincappApp: App {
                     currentUser.handleIncomingURL(url: url)
                 }
         }.commands {
+            TextEditingCommands()
+
             #if DEBUG
             CommandMenu("Debug") {
                 Button("Log User Access Token") {

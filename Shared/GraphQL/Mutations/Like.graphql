@@ -1,10 +1,28 @@
-mutation Like($id: Int!, $type: LikeableType!, $includeBuggyFields: Boolean!) {
+mutation Like($id: Int!, $type: LikeableType!) {
   ToggleLikeV2(id: $id, type: $type) {
-    ... on ListActivity {
-      ...listActivityFragment
+    ...on ListActivity {
+      isLiked
+      likeCount
     }
-    ... on TextActivity {
-      ...textActivityFragment
+    ...on TextActivity {
+      isLiked
+      likeCount
+    }
+    ...on MessageActivity {
+      isLiked
+      likeCount
+    }
+    ...on ActivityReply {
+      isLiked
+      likeCount
+    }
+    ...on Thread {
+      isLiked
+      likeCount
+    }
+    ...on ThreadComment {
+      isLiked
+      likeCount
     }
   }
 }

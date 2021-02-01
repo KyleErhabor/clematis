@@ -2,46 +2,42 @@ fragment listActivityFragment on ListActivity {
   id
   status
   isLiked
-  siteUrl
-  progress
   isLocked
+  progress
   createdAt
   likeCount
   replyCount
   isSubscribed
-  user @include(if: $includeBuggyFields) {
+  likes {
     id
     name
     avatar {
       large
     }
   }
-  media @include(if: $includeBuggyFields) {
+  user {
     id
+    name
+    avatar {
+      large
+    }
+  }
+  media {
+    id
+    title {
+      userPreferred
+    }
     coverImage {
       color
       extraLarge
-    }
-    title {
-      userPreferred
     }
   }
 }
 
 fragment textActivityFragment on TextActivity {
   id
-  isLiked
-  isLocked
-  createdAt
-  likeCount
-  replyCount
-  isSubscribed
-  text(asHtml: true)
-  user @include(if: $includeBuggyFields) {
-    id
-    name
-    avatar {
-      large
-    }
-  }
+}
+
+fragment messageActivityFragment on MessageActivity {
+  id
 }

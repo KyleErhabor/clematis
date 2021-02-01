@@ -8,17 +8,17 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    mutation ActivitySubscription($id: Int!, $subscribe: Boolean!, $includeBuggyFields: Boolean!) {
+    mutation ActivitySubscription($id: Int!, $subscribe: Boolean!) {
       ToggleActivitySubscription(activityId: $id, subscribe: $subscribe) {
         __typename
-        ... on TextActivity {
-          ...textActivityFragment
-        }
         ... on ListActivity {
-          ...listActivityFragment
+          isSubscribed
+        }
+        ... on TextActivity {
+          isSubscribed
         }
         ... on MessageActivity {
-          id
+          isSubscribed
         }
       }
     }
@@ -26,20 +26,16 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
 
   public let operationName: String = "ActivitySubscription"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + TextActivityFragment.fragmentDefinition).appending("\n" + ListActivityFragment.fragmentDefinition) }
-
   public var id: Int
   public var subscribe: Bool
-  public var includeBuggyFields: Bool
 
-  public init(id: Int, subscribe: Bool, includeBuggyFields: Bool) {
+  public init(id: Int, subscribe: Bool) {
     self.id = id
     self.subscribe = subscribe
-    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "subscribe": subscribe, "includeBuggyFields": includeBuggyFields]
+    return ["id": id, "subscribe": subscribe]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -77,7 +73,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLTypeCase(
-            variants: ["TextActivity": AsTextActivity.selections, "ListActivity": AsListActivity.selections, "MessageActivity": AsMessageActivity.selections],
+            variants: ["ListActivity": AsListActivity.selections, "TextActivity": AsTextActivity.selections, "MessageActivity": AsMessageActivity.selections],
             default: [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             ]
@@ -91,8 +87,16 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public static func makeMessageActivity(id: Int) -> ToggleActivitySubscription {
-        return ToggleActivitySubscription(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
+      public static func makeListActivity(isSubscribed: Bool? = nil) -> ToggleActivitySubscription {
+        return ToggleActivitySubscription(unsafeResultMap: ["__typename": "ListActivity", "isSubscribed": isSubscribed])
+      }
+
+      public static func makeTextActivity(isSubscribed: Bool? = nil) -> ToggleActivitySubscription {
+        return ToggleActivitySubscription(unsafeResultMap: ["__typename": "TextActivity", "isSubscribed": isSubscribed])
+      }
+
+      public static func makeMessageActivity(isSubscribed: Bool? = nil) -> ToggleActivitySubscription {
+        return ToggleActivitySubscription(unsafeResultMap: ["__typename": "MessageActivity", "isSubscribed": isSubscribed])
       }
 
       public var __typename: String {
@@ -101,69 +105,6 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      public var asTextActivity: AsTextActivity? {
-        get {
-          if !AsTextActivity.possibleTypes.contains(__typename) { return nil }
-          return AsTextActivity(unsafeResultMap: resultMap)
-        }
-        set {
-          guard let newValue = newValue else { return }
-          resultMap = newValue.resultMap
-        }
-      }
-
-      public struct AsTextActivity: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["TextActivity"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(TextActivityFragment.self),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var fragments: Fragments {
-          get {
-            return Fragments(unsafeResultMap: resultMap)
-          }
-          set {
-            resultMap += newValue.resultMap
-          }
-        }
-
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public var textActivityFragment: TextActivityFragment {
-            get {
-              return TextActivityFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
-          }
         }
       }
 
@@ -184,7 +125,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(ListActivityFragment.self),
+            GraphQLField("isSubscribed", type: .scalar(Bool.self)),
           ]
         }
 
@@ -192,6 +133,10 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
 
         public init(unsafeResultMap: ResultMap) {
           self.resultMap = unsafeResultMap
+        }
+
+        public init(isSubscribed: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "ListActivity", "isSubscribed": isSubscribed])
         }
 
         public var __typename: String {
@@ -203,29 +148,64 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
           }
         }
 
-        public var fragments: Fragments {
+        /// If the currently authenticated user is subscribed to the activity
+        public var isSubscribed: Bool? {
           get {
-            return Fragments(unsafeResultMap: resultMap)
+            return resultMap["isSubscribed"] as? Bool
           }
           set {
-            resultMap += newValue.resultMap
+            resultMap.updateValue(newValue, forKey: "isSubscribed")
+          }
+        }
+      }
+
+      public var asTextActivity: AsTextActivity? {
+        get {
+          if !AsTextActivity.possibleTypes.contains(__typename) { return nil }
+          return AsTextActivity(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsTextActivity: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["TextActivity"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isSubscribed", type: .scalar(Bool.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(isSubscribed: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "TextActivity", "isSubscribed": isSubscribed])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
           }
         }
 
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
+        /// If the currently authenticated user is subscribed to the activity
+        public var isSubscribed: Bool? {
+          get {
+            return resultMap["isSubscribed"] as? Bool
           }
-
-          public var listActivityFragment: ListActivityFragment {
-            get {
-              return ListActivityFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
+          set {
+            resultMap.updateValue(newValue, forKey: "isSubscribed")
           }
         }
       }
@@ -247,7 +227,7 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("isSubscribed", type: .scalar(Bool.self)),
           ]
         }
 
@@ -257,8 +237,8 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: Int) {
-          self.init(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
+        public init(isSubscribed: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MessageActivity", "isSubscribed": isSubscribed])
         }
 
         public var __typename: String {
@@ -270,13 +250,13 @@ public final class ActivitySubscriptionMutation: GraphQLMutation {
           }
         }
 
-        /// The id of the activity
-        public var id: Int {
+        /// If the currently authenticated user is subscribed to the activity
+        public var isSubscribed: Bool? {
           get {
-            return resultMap["id"]! as! Int
+            return resultMap["isSubscribed"] as? Bool
           }
           set {
-            resultMap.updateValue(newValue, forKey: "id")
+            resultMap.updateValue(newValue, forKey: "isSubscribed")
           }
         }
       }

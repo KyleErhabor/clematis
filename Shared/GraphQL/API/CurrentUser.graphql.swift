@@ -13,6 +13,10 @@ public final class CurrentUserQuery: GraphQLQuery {
         __typename
         id
         name
+        avatar {
+          __typename
+          large
+        }
         options {
           __typename
           displayAdultContent
@@ -79,6 +83,7 @@ public final class CurrentUserQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("avatar", type: .object(Avatar.selections)),
           GraphQLField("options", type: .object(Option.selections)),
           GraphQLField("mediaListOptions", type: .object(MediaListOption.selections)),
         ]
@@ -90,8 +95,8 @@ public final class CurrentUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, name: String, options: Option? = nil, mediaListOptions: MediaListOption? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "mediaListOptions": mediaListOptions.flatMap { (value: MediaListOption) -> ResultMap in value.resultMap }])
+      public init(id: Int, name: String, avatar: Avatar? = nil, options: Option? = nil, mediaListOptions: MediaListOption? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }, "options": options.flatMap { (value: Option) -> ResultMap in value.resultMap }, "mediaListOptions": mediaListOptions.flatMap { (value: MediaListOption) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -123,6 +128,16 @@ public final class CurrentUserQuery: GraphQLQuery {
         }
       }
 
+      /// The user's avatar images
+      public var avatar: Avatar? {
+        get {
+          return (resultMap["avatar"] as? ResultMap).flatMap { Avatar(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "avatar")
+        }
+      }
+
       /// The user's general options
       public var options: Option? {
         get {
@@ -140,6 +155,46 @@ public final class CurrentUserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue?.resultMap, forKey: "mediaListOptions")
+        }
+      }
+
+      public struct Avatar: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["UserAvatar"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("large", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(large: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "UserAvatar", "large": large])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// The avatar of user at its largest size
+        public var large: String? {
+          get {
+            return resultMap["large"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "large")
+          }
         }
       }
 

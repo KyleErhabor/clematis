@@ -13,14 +13,13 @@ public struct ListActivityFragment: GraphQLFragment {
       id
       status
       isLiked
-      siteUrl
-      progress
       isLocked
+      progress
       createdAt
       likeCount
       replyCount
       isSubscribed
-      user @include(if: $includeBuggyFields) {
+      likes {
         __typename
         id
         name
@@ -29,17 +28,26 @@ public struct ListActivityFragment: GraphQLFragment {
           large
         }
       }
-      media @include(if: $includeBuggyFields) {
+      user {
         __typename
         id
+        name
+        avatar {
+          __typename
+          large
+        }
+      }
+      media {
+        __typename
+        id
+        title {
+          __typename
+          userPreferred
+        }
         coverImage {
           __typename
           color
           extraLarge
-        }
-        title {
-          __typename
-          userPreferred
         }
       }
     }
@@ -53,19 +61,15 @@ public struct ListActivityFragment: GraphQLFragment {
       GraphQLField("id", type: .nonNull(.scalar(Int.self))),
       GraphQLField("status", type: .scalar(String.self)),
       GraphQLField("isLiked", type: .scalar(Bool.self)),
-      GraphQLField("siteUrl", type: .scalar(String.self)),
-      GraphQLField("progress", type: .scalar(String.self)),
       GraphQLField("isLocked", type: .scalar(Bool.self)),
+      GraphQLField("progress", type: .scalar(String.self)),
       GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
       GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
       GraphQLField("replyCount", type: .nonNull(.scalar(Int.self))),
       GraphQLField("isSubscribed", type: .scalar(Bool.self)),
-      GraphQLBooleanCondition(variableName: "includeBuggyFields", inverted: false, selections: [
-        GraphQLField("user", type: .object(User.selections)),
-      ]),
-      GraphQLBooleanCondition(variableName: "includeBuggyFields", inverted: false, selections: [
-        GraphQLField("media", type: .object(Medium.selections)),
-      ]),
+      GraphQLField("likes", type: .list(.object(Like.selections))),
+      GraphQLField("user", type: .object(User.selections)),
+      GraphQLField("media", type: .object(Medium.selections)),
     ]
   }
 
@@ -75,8 +79,8 @@ public struct ListActivityFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: Int, status: String? = nil, isLiked: Bool? = nil, siteUrl: String? = nil, progress: String? = nil, isLocked: Bool? = nil, createdAt: Int, likeCount: Int, replyCount: Int, isSubscribed: Bool? = nil, user: User? = nil, media: Medium? = nil) {
-    self.init(unsafeResultMap: ["__typename": "ListActivity", "id": id, "status": status, "isLiked": isLiked, "siteUrl": siteUrl, "progress": progress, "isLocked": isLocked, "createdAt": createdAt, "likeCount": likeCount, "replyCount": replyCount, "isSubscribed": isSubscribed, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
+  public init(id: Int, status: String? = nil, isLiked: Bool? = nil, isLocked: Bool? = nil, progress: String? = nil, createdAt: Int, likeCount: Int, replyCount: Int, isSubscribed: Bool? = nil, likes: [Like?]? = nil, user: User? = nil, media: Medium? = nil) {
+    self.init(unsafeResultMap: ["__typename": "ListActivity", "id": id, "status": status, "isLiked": isLiked, "isLocked": isLocked, "progress": progress, "createdAt": createdAt, "likeCount": likeCount, "replyCount": replyCount, "isSubscribed": isSubscribed, "likes": likes.flatMap { (value: [Like?]) -> [ResultMap?] in value.map { (value: Like?) -> ResultMap? in value.flatMap { (value: Like) -> ResultMap in value.resultMap } } }, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
   }
 
   public var __typename: String {
@@ -118,13 +122,13 @@ public struct ListActivityFragment: GraphQLFragment {
     }
   }
 
-  /// The url for the activity page on the AniList website
-  public var siteUrl: String? {
+  /// If the activity is locked and can receive replies
+  public var isLocked: Bool? {
     get {
-      return resultMap["siteUrl"] as? String
+      return resultMap["isLocked"] as? Bool
     }
     set {
-      resultMap.updateValue(newValue, forKey: "siteUrl")
+      resultMap.updateValue(newValue, forKey: "isLocked")
     }
   }
 
@@ -135,16 +139,6 @@ public struct ListActivityFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "progress")
-    }
-  }
-
-  /// If the activity is locked and can receive replies
-  public var isLocked: Bool? {
-    get {
-      return resultMap["isLocked"] as? Bool
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "isLocked")
     }
   }
 
@@ -188,6 +182,16 @@ public struct ListActivityFragment: GraphQLFragment {
     }
   }
 
+  /// The users who liked the activity
+  public var likes: [Like?]? {
+    get {
+      return (resultMap["likes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Like?] in value.map { (value: ResultMap?) -> Like? in value.flatMap { (value: ResultMap) -> Like in Like(unsafeResultMap: value) } } }
+    }
+    set {
+      resultMap.updateValue(newValue.flatMap { (value: [Like?]) -> [ResultMap?] in value.map { (value: Like?) -> ResultMap? in value.flatMap { (value: Like) -> ResultMap in value.resultMap } } }, forKey: "likes")
+    }
+  }
+
   /// The owner of the activity
   public var user: User? {
     get {
@@ -205,6 +209,108 @@ public struct ListActivityFragment: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue?.resultMap, forKey: "media")
+    }
+  }
+
+  public struct Like: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["User"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("avatar", type: .object(Avatar.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: Int, name: String, avatar: Avatar? = nil) {
+      self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    /// The id of the user
+    public var id: Int {
+      get {
+        return resultMap["id"]! as! Int
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "id")
+      }
+    }
+
+    /// The name of the user
+    public var name: String {
+      get {
+        return resultMap["name"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    /// The user's avatar images
+    public var avatar: Avatar? {
+      get {
+        return (resultMap["avatar"] as? ResultMap).flatMap { Avatar(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "avatar")
+      }
+    }
+
+    public struct Avatar: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserAvatar"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("large", type: .scalar(String.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(large: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "UserAvatar", "large": large])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// The avatar of user at its largest size
+      public var large: String? {
+        get {
+          return resultMap["large"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "large")
+        }
+      }
     }
   }
 
@@ -317,8 +423,8 @@ public struct ListActivityFragment: GraphQLFragment {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(Int.self))),
-        GraphQLField("coverImage", type: .object(CoverImage.selections)),
         GraphQLField("title", type: .object(Title.selections)),
+        GraphQLField("coverImage", type: .object(CoverImage.selections)),
       ]
     }
 
@@ -328,8 +434,8 @@ public struct ListActivityFragment: GraphQLFragment {
       self.resultMap = unsafeResultMap
     }
 
-    public init(id: Int, coverImage: CoverImage? = nil, title: Title? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Media", "id": id, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }])
+    public init(id: Int, title: Title? = nil, coverImage: CoverImage? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Media", "id": id, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }])
     }
 
     public var __typename: String {
@@ -351,6 +457,16 @@ public struct ListActivityFragment: GraphQLFragment {
       }
     }
 
+    /// The official titles of the media in various languages
+    public var title: Title? {
+      get {
+        return (resultMap["title"] as? ResultMap).flatMap { Title(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "title")
+      }
+    }
+
     /// The cover images of the media
     public var coverImage: CoverImage? {
       get {
@@ -361,13 +477,43 @@ public struct ListActivityFragment: GraphQLFragment {
       }
     }
 
-    /// The official titles of the media in various languages
-    public var title: Title? {
-      get {
-        return (resultMap["title"] as? ResultMap).flatMap { Title(unsafeResultMap: $0) }
+    public struct Title: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["MediaTitle"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("userPreferred", type: .scalar(String.self)),
+        ]
       }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "title")
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(userPreferred: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "MediaTitle", "userPreferred": userPreferred])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// The currently authenticated users preferred title language. Default romaji for non-authenticated
+      public var userPreferred: String? {
+        get {
+          return resultMap["userPreferred"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "userPreferred")
+        }
       }
     }
 
@@ -421,46 +567,6 @@ public struct ListActivityFragment: GraphQLFragment {
         }
       }
     }
-
-    public struct Title: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["MediaTitle"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("userPreferred", type: .scalar(String.self)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(userPreferred: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "MediaTitle", "userPreferred": userPreferred])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The currently authenticated users preferred title language. Default romaji for non-authenticated
-      public var userPreferred: String? {
-        get {
-          return resultMap["userPreferred"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "userPreferred")
-        }
-      }
-    }
   }
 }
 
@@ -471,22 +577,6 @@ public struct TextActivityFragment: GraphQLFragment {
     fragment textActivityFragment on TextActivity {
       __typename
       id
-      isLiked
-      isLocked
-      createdAt
-      likeCount
-      replyCount
-      isSubscribed
-      text(asHtml: true)
-      user @include(if: $includeBuggyFields) {
-        __typename
-        id
-        name
-        avatar {
-          __typename
-          large
-        }
-      }
     }
     """
 
@@ -496,16 +586,6 @@ public struct TextActivityFragment: GraphQLFragment {
     return [
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("id", type: .nonNull(.scalar(Int.self))),
-      GraphQLField("isLiked", type: .scalar(Bool.self)),
-      GraphQLField("isLocked", type: .scalar(Bool.self)),
-      GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
-      GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
-      GraphQLField("replyCount", type: .nonNull(.scalar(Int.self))),
-      GraphQLField("isSubscribed", type: .scalar(Bool.self)),
-      GraphQLField("text", arguments: ["asHtml": true], type: .scalar(String.self)),
-      GraphQLBooleanCondition(variableName: "includeBuggyFields", inverted: false, selections: [
-        GraphQLField("user", type: .object(User.selections)),
-      ]),
     ]
   }
 
@@ -515,8 +595,8 @@ public struct TextActivityFragment: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: Int, isLiked: Bool? = nil, isLocked: Bool? = nil, createdAt: Int, likeCount: Int, replyCount: Int, isSubscribed: Bool? = nil, text: String? = nil, user: User? = nil) {
-    self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id, "isLiked": isLiked, "isLocked": isLocked, "createdAt": createdAt, "likeCount": likeCount, "replyCount": replyCount, "isSubscribed": isSubscribed, "text": text, "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
+  public init(id: Int) {
+    self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id])
   }
 
   public var __typename: String {
@@ -537,186 +617,53 @@ public struct TextActivityFragment: GraphQLFragment {
       resultMap.updateValue(newValue, forKey: "id")
     }
   }
+}
 
-  /// If the currently authenticated user liked the activity
-  public var isLiked: Bool? {
+public struct MessageActivityFragment: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment messageActivityFragment on MessageActivity {
+      __typename
+      id
+    }
+    """
+
+  public static let possibleTypes: [String] = ["MessageActivity"]
+
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+    ]
+  }
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: Int) {
+    self.init(unsafeResultMap: ["__typename": "MessageActivity", "id": id])
+  }
+
+  public var __typename: String {
     get {
-      return resultMap["isLiked"] as? Bool
+      return resultMap["__typename"]! as! String
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isLiked")
+      resultMap.updateValue(newValue, forKey: "__typename")
     }
   }
 
-  /// If the activity is locked and can receive replies
-  public var isLocked: Bool? {
+  /// The id of the activity
+  public var id: Int {
     get {
-      return resultMap["isLocked"] as? Bool
+      return resultMap["id"]! as! Int
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isLocked")
-    }
-  }
-
-  /// The time the activity was created at
-  public var createdAt: Int {
-    get {
-      return resultMap["createdAt"]! as! Int
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "createdAt")
-    }
-  }
-
-  /// The amount of likes the activity has
-  public var likeCount: Int {
-    get {
-      return resultMap["likeCount"]! as! Int
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "likeCount")
-    }
-  }
-
-  /// The number of activity replies
-  public var replyCount: Int {
-    get {
-      return resultMap["replyCount"]! as! Int
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "replyCount")
-    }
-  }
-
-  /// If the currently authenticated user is subscribed to the activity
-  public var isSubscribed: Bool? {
-    get {
-      return resultMap["isSubscribed"] as? Bool
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "isSubscribed")
-    }
-  }
-
-  /// The status text (Markdown)
-  public var text: String? {
-    get {
-      return resultMap["text"] as? String
-    }
-    set {
-      resultMap.updateValue(newValue, forKey: "text")
-    }
-  }
-
-  /// The user who created the activity
-  public var user: User? {
-    get {
-      return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
-    }
-    set {
-      resultMap.updateValue(newValue?.resultMap, forKey: "user")
-    }
-  }
-
-  public struct User: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["User"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(Int.self))),
-        GraphQLField("name", type: .nonNull(.scalar(String.self))),
-        GraphQLField("avatar", type: .object(Avatar.selections)),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(id: Int, name: String, avatar: Avatar? = nil) {
-      self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "avatar": avatar.flatMap { (value: Avatar) -> ResultMap in value.resultMap }])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// The id of the user
-    public var id: Int {
-      get {
-        return resultMap["id"]! as! Int
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "id")
-      }
-    }
-
-    /// The name of the user
-    public var name: String {
-      get {
-        return resultMap["name"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "name")
-      }
-    }
-
-    /// The user's avatar images
-    public var avatar: Avatar? {
-      get {
-        return (resultMap["avatar"] as? ResultMap).flatMap { Avatar(unsafeResultMap: $0) }
-      }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "avatar")
-      }
-    }
-
-    public struct Avatar: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["UserAvatar"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("large", type: .scalar(String.self)),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(large: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "UserAvatar", "large": large])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The avatar of user at its largest size
-      public var large: String? {
-        get {
-          return resultMap["large"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "large")
-        }
-      }
+      resultMap.updateValue(newValue, forKey: "id")
     }
   }
 }

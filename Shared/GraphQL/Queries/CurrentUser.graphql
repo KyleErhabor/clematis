@@ -2,6 +2,9 @@ query CurrentUser {
   Viewer {
     id
     name
+    avatar {
+      large
+    }
     options {
       displayAdultContent
     }

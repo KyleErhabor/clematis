@@ -1,0 +1,19 @@
+query ActivityReplies($id: Int!) {
+  Activity(id: $id) {
+    ...on ListActivity {
+      replies {
+        ...activityReplyFragment
+      }
+    }
+    ...on TextActivity {
+      replies {
+        ...activityReplyFragment
+      }
+    }
+    ...on MessageActivity {
+      replies {
+        ...activityReplyFragment
+      }
+    }
+  }
+}

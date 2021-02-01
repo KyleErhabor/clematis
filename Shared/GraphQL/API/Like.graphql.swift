@@ -8,14 +8,32 @@ public final class LikeMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    mutation Like($id: Int!, $type: LikeableType!, $includeBuggyFields: Boolean!) {
+    mutation Like($id: Int!, $type: LikeableType!) {
       ToggleLikeV2(id: $id, type: $type) {
         __typename
         ... on ListActivity {
-          ...listActivityFragment
+          isLiked
+          likeCount
         }
         ... on TextActivity {
-          ...textActivityFragment
+          isLiked
+          likeCount
+        }
+        ... on MessageActivity {
+          isLiked
+          likeCount
+        }
+        ... on ActivityReply {
+          isLiked
+          likeCount
+        }
+        ... on Thread {
+          isLiked
+          likeCount
+        }
+        ... on ThreadComment {
+          isLiked
+          likeCount
         }
       }
     }
@@ -23,20 +41,16 @@ public final class LikeMutation: GraphQLMutation {
 
   public let operationName: String = "Like"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition).appending("\n" + TextActivityFragment.fragmentDefinition) }
-
   public var id: Int
   public var type: LikeableType
-  public var includeBuggyFields: Bool
 
-  public init(id: Int, type: LikeableType, includeBuggyFields: Bool) {
+  public init(id: Int, type: LikeableType) {
     self.id = id
     self.type = type
-    self.includeBuggyFields = includeBuggyFields
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "type": type, "includeBuggyFields": includeBuggyFields]
+    return ["id": id, "type": type]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -74,7 +88,7 @@ public final class LikeMutation: GraphQLMutation {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLTypeCase(
-            variants: ["ListActivity": AsListActivity.selections, "TextActivity": AsTextActivity.selections],
+            variants: ["ListActivity": AsListActivity.selections, "TextActivity": AsTextActivity.selections, "MessageActivity": AsMessageActivity.selections, "ActivityReply": AsActivityReply.selections, "Thread": AsThread.selections, "ThreadComment": AsThreadComment.selections],
             default: [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             ]
@@ -88,20 +102,28 @@ public final class LikeMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public static func makeMessageActivity() -> ToggleLikeV2 {
-        return ToggleLikeV2(unsafeResultMap: ["__typename": "MessageActivity"])
+      public static func makeListActivity(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "ListActivity", "isLiked": isLiked, "likeCount": likeCount])
       }
 
-      public static func makeActivityReply() -> ToggleLikeV2 {
-        return ToggleLikeV2(unsafeResultMap: ["__typename": "ActivityReply"])
+      public static func makeTextActivity(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "TextActivity", "isLiked": isLiked, "likeCount": likeCount])
       }
 
-      public static func makeThread() -> ToggleLikeV2 {
-        return ToggleLikeV2(unsafeResultMap: ["__typename": "Thread"])
+      public static func makeMessageActivity(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "MessageActivity", "isLiked": isLiked, "likeCount": likeCount])
       }
 
-      public static func makeThreadComment() -> ToggleLikeV2 {
-        return ToggleLikeV2(unsafeResultMap: ["__typename": "ThreadComment"])
+      public static func makeActivityReply(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "ActivityReply", "isLiked": isLiked, "likeCount": likeCount])
+      }
+
+      public static func makeThread(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "Thread", "isLiked": isLiked, "likeCount": likeCount])
+      }
+
+      public static func makeThreadComment(isLiked: Bool? = nil, likeCount: Int) -> ToggleLikeV2 {
+        return ToggleLikeV2(unsafeResultMap: ["__typename": "ThreadComment", "isLiked": isLiked, "likeCount": likeCount])
       }
 
       public var __typename: String {
@@ -130,7 +152,8 @@ public final class LikeMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(ListActivityFragment.self),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
           ]
         }
 
@@ -138,6 +161,10 @@ public final class LikeMutation: GraphQLMutation {
 
         public init(unsafeResultMap: ResultMap) {
           self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "ListActivity", "isLiked": isLiked, "likeCount": likeCount])
         }
 
         public var __typename: String {
@@ -149,29 +176,23 @@ public final class LikeMutation: GraphQLMutation {
           }
         }
 
-        public var fragments: Fragments {
+        /// If the currently authenticated user liked the activity
+        public var isLiked: Bool? {
           get {
-            return Fragments(unsafeResultMap: resultMap)
+            return resultMap["isLiked"] as? Bool
           }
           set {
-            resultMap += newValue.resultMap
+            resultMap.updateValue(newValue, forKey: "isLiked")
           }
         }
 
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
+        /// The amount of likes the activity has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
           }
-
-          public var listActivityFragment: ListActivityFragment {
-            get {
-              return ListActivityFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
           }
         }
       }
@@ -193,7 +214,8 @@ public final class LikeMutation: GraphQLMutation {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLFragmentSpread(TextActivityFragment.self),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
           ]
         }
 
@@ -201,6 +223,10 @@ public final class LikeMutation: GraphQLMutation {
 
         public init(unsafeResultMap: ResultMap) {
           self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "TextActivity", "isLiked": isLiked, "likeCount": likeCount])
         }
 
         public var __typename: String {
@@ -212,29 +238,271 @@ public final class LikeMutation: GraphQLMutation {
           }
         }
 
-        public var fragments: Fragments {
+        /// If the currently authenticated user liked the activity
+        public var isLiked: Bool? {
           get {
-            return Fragments(unsafeResultMap: resultMap)
+            return resultMap["isLiked"] as? Bool
           }
           set {
-            resultMap += newValue.resultMap
+            resultMap.updateValue(newValue, forKey: "isLiked")
           }
         }
 
-        public struct Fragments {
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
+        /// The amount of likes the activity has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
           }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
+          }
+        }
+      }
 
-          public var textActivityFragment: TextActivityFragment {
-            get {
-              return TextActivityFragment(unsafeResultMap: resultMap)
-            }
-            set {
-              resultMap += newValue.resultMap
-            }
+      public var asMessageActivity: AsMessageActivity? {
+        get {
+          if !AsMessageActivity.possibleTypes.contains(__typename) { return nil }
+          return AsMessageActivity(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsMessageActivity: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["MessageActivity"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "MessageActivity", "isLiked": isLiked, "likeCount": likeCount])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// If the currently authenticated user liked the activity
+        public var isLiked: Bool? {
+          get {
+            return resultMap["isLiked"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "isLiked")
+          }
+        }
+
+        /// The amount of likes the activity has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
+          }
+        }
+      }
+
+      public var asActivityReply: AsActivityReply? {
+        get {
+          if !AsActivityReply.possibleTypes.contains(__typename) { return nil }
+          return AsActivityReply(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsActivityReply: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ActivityReply"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "ActivityReply", "isLiked": isLiked, "likeCount": likeCount])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// If the currently authenticated user liked the reply
+        public var isLiked: Bool? {
+          get {
+            return resultMap["isLiked"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "isLiked")
+          }
+        }
+
+        /// The amount of likes the reply has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
+          }
+        }
+      }
+
+      public var asThread: AsThread? {
+        get {
+          if !AsThread.possibleTypes.contains(__typename) { return nil }
+          return AsThread(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsThread: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Thread"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "Thread", "isLiked": isLiked, "likeCount": likeCount])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// If the currently authenticated user liked the thread
+        public var isLiked: Bool? {
+          get {
+            return resultMap["isLiked"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "isLiked")
+          }
+        }
+
+        /// The amount of likes the thread has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
+          }
+        }
+      }
+
+      public var asThreadComment: AsThreadComment? {
+        get {
+          if !AsThreadComment.possibleTypes.contains(__typename) { return nil }
+          return AsThreadComment(unsafeResultMap: resultMap)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          resultMap = newValue.resultMap
+        }
+      }
+
+      public struct AsThreadComment: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ThreadComment"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isLiked", type: .scalar(Bool.self)),
+            GraphQLField("likeCount", type: .nonNull(.scalar(Int.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(isLiked: Bool? = nil, likeCount: Int) {
+          self.init(unsafeResultMap: ["__typename": "ThreadComment", "isLiked": isLiked, "likeCount": likeCount])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// If the currently authenticated user liked the comment
+        public var isLiked: Bool? {
+          get {
+            return resultMap["isLiked"] as? Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "isLiked")
+          }
+        }
+
+        /// The amount of likes the comment has
+        public var likeCount: Int {
+          get {
+            return resultMap["likeCount"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "likeCount")
           }
         }
       }

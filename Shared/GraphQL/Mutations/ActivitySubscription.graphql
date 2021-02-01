@@ -1,13 +1,13 @@
-mutation ActivitySubscription($id: Int!, $subscribe: Boolean!, $includeBuggyFields: Boolean!) {
+mutation ActivitySubscription($id: Int!, $subscribe: Boolean!) {
   ToggleActivitySubscription(activityId: $id, subscribe: $subscribe) {
-    ... on TextActivity {
-      ...textActivityFragment
+    ...on ListActivity {
+      isSubscribed
     }
-    ... on ListActivity {
-      ...listActivityFragment
+    ...on TextActivity {
+      isSubscribed
     }
-    ... on MessageActivity {
-      id
+    ...on MessageActivity {
+      isSubscribed
     }
   }
 }
