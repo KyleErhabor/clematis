@@ -26,7 +26,7 @@ struct MediaHeaderView: View {
 
             WebImage(url: URL(string: bannerImage))
                 .resizable()
-                .placeholder { placeholderColor.colorMultiply(.gray) }
+                .placeholder { placeholderColor }
                 .scaledToFill()
                 .frame(width: geo.size.width, height: 220)
                 .clipped()

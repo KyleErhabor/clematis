@@ -17,11 +17,7 @@ struct TabNavigationView: View {
             }.tabItem {
                 Label("Home", systemImage: "house")
             }
-            
-            // NOTE: https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/
-            // > Don’t hide a tab bar when people navigate to different areas in your app.
-            //
-            // We're doing this for now since it's not important.
+
             NavigationView {
                 if let user = currentUser.users.first {
                     UserView(viewModel: UserViewModel(id: user.id))
@@ -30,6 +26,12 @@ struct TabNavigationView: View {
                 }
             }.tabItem {
                 Label("Profile", systemImage: "person.crop.circle")
+            }
+
+            NavigationView {
+                ForumsView()
+            }.tabItem {
+                Label("Forums", systemImage: "text.bubble")
             }
         }
     }

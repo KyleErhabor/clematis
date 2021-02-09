@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ActivityReplyListView: View {
+    @EnvironmentObject private var currentUser: CurrentUser
     @StateObject var viewModel: ActivityReplyListViewModel
     @State private var isPresenting = false
     
@@ -28,6 +29,7 @@ struct ActivityReplyListView: View {
             }
         }.sheet(isPresented: $isPresenting) {
             ActivityReplyEditorView()
+                .environmentObject(currentUser)
         }.environmentObject(viewModel)
         .onAppear {
             viewModel.load()

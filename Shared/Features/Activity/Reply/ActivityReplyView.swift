@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ActivityReplyView: View {
     @EnvironmentObject private var viewModel: ActivityReplyListViewModel
+    @EnvironmentObject private var currentUser: CurrentUser
     @State private var sheet: ActivityReplySheet?
     private(set) var reply: ActivityReplyFragment
 
@@ -59,8 +60,11 @@ struct ActivityReplyView: View {
             ActivityReplyContextView(sheet: $sheet, reply: reply)
         }.sheet(item: $sheet) { sheet in
             switch sheet {
-                case .likes: ActivityReplyLikeListView(likes: reply.likes?.compactMap { $0 } ?? [])
-                case .editor: ActivityReplyEditorView(reply: reply)
+                case .likes:
+                    ActivityReplyLikeListView(likes: reply.likes?.compactMap { $0 } ?? [])
+                case .editor:
+                    ActivityReplyEditorView(reply: reply)
+                        .environmentObject(currentUser)
             }
         }
     }

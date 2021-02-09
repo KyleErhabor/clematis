@@ -12,7 +12,7 @@ enum AniList {
         string: "https://anilist.co/api/v2/oauth/authorize?client_id=1652&response_type=token"
     )!
 
-    enum primaryTypes {
+    enum primaryTypes { // Not going to need this soon
         case anime
         case manga
         case character
@@ -75,6 +75,7 @@ enum AniList {
                 switch type {
                     case .anime: return "Watching"
                     case .manga: return "Reading"
+                        
                     case .__unknown: return "Current"
                 }
             case .repeating:

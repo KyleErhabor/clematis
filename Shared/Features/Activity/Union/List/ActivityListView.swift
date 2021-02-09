@@ -11,13 +11,13 @@ import SwiftUI
 struct ActivityListView: View {
     @EnvironmentObject private var currentUser: CurrentUser
     @StateObject var viewModel: ActivityListViewModel
-    @State private var isPresentingLikeList = false
-    @State private var isPresentingListEditor = false
+    @State private var presentedSheet: ActivityListViewSheet?
+    @State private var presentedAlert: ActivityListViewAlert?
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack {
             if let media = viewModel.activity.media {
-                NavigationLink(destination: MediaView(viewModel: MediaViewModel(id: media.id))) {
+                NavigationLink(destination: MediaView(viewModel: .init(id: media.id))) {
                     WebImage(url: URL(string: "\(media.coverImage?.extraLarge ?? "")"))
                         .resizable()
                         .placeholder {
@@ -36,10 +36,10 @@ struct ActivityListView: View {
 
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
-                    let creationDate = Date(timeIntervalSince1970: TimeInterval(viewModel.activity.createdAt))
+                    let creationDate = Date(timeIntervalSince1970: .init(viewModel.activity.createdAt))
 
                     if let media = viewModel.activity.media {
-                        NavigationLink(destination: MediaView(viewModel: MediaViewModel(id: media.id))) {
+                        NavigationLink(destination: MediaView(viewModel: .init(id: media.id))) {
                             Text("\(viewModel.activity.media?.title?.userPreferred ?? "")")
                                 .font(.headline)
                         }.buttonStyle(PlainButtonStyle())
@@ -47,7 +47,7 @@ struct ActivityListView: View {
 
                     Spacer()
 
-                    Text(creationDate, formatter: RelativeDateTimeFormatter())
+                    Text("\(creationDate, formatter: RelativeDateTimeFormatter())")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -60,59 +60,92 @@ struct ActivityListView: View {
                     }
                 }
 
-                if let user = viewModel.activity.user {
-                    HStack {
-                        // The user avatar and name are separate navigation links to make the slight spacing in
-                        // between not navigatable.
-                        NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
-                            WebImage(url: URL(string: "\(user.avatar?.large ?? "")"))
-                                .resizable()
-                                .placeholder { Color.accentColor }
-                                .scaledToFill()
-                                .frame(width: 32, height: 32, alignment: .top)
-                                .clipped()
-                                .cornerRadius(4)
-                        }.animation(.default)
-
-                        NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
-                            Text("\(user.name)")
-                                .fontWeight(.medium)
-                        }.buttonStyle(PlainButtonStyle())
-                    }
+                if let user = viewModel.activity.user?.fragments.userPreviewFragment {
+                    UserPreviewView(user: user)
                 }
 
                 Spacer()
 
                 HStack {
-                    let repliesViewModel = ActivityReplyListViewModel(id: viewModel.activity.id)
-
-                    Text("") // The spacer causes the cell to look squashed without some view to push it back.
+                    // NOTE: `Spacer(minLength:)` does not respect the spacing between views for
+                    // `VStack(alignment:spacing:content:)`. Placing a `Text(_:)` before the spacer allows the spacer
+                    // to allocate some space to prevent the spacer from getting too close to the media cover image.
+                    Text("")
 
                     Spacer()
 
                     Button {
                         viewModel.like()
                     } label: {
-                        Label("\(viewModel.activity.likeCount)",
-                              systemImage: viewModel.activity.isLiked == true ? "heart.fill" : "heart")
-                    }.disabled(currentUser.users.isEmpty)
+                        let isLiked = viewModel.activity.isLiked == true
 
-                    NavigationLink(destination: ActivityReplyListView(viewModel: repliesViewModel)) {
+                        Label("\(viewModel.activity.likeCount)", systemImage: isLiked ? "heart.fill" : "heart")
+                    }
+
+                    NavigationLink(destination: ActivityReplyListView(viewModel: .init(id: viewModel.activity.id))) {
                         Label("\(viewModel.activity.replyCount)", systemImage: "bubble.left")
-                    }.disabled(viewModel.activity.isLocked ?? true) // If nil, don't bother.
+                    }
                 }
             }
         }.frame(height: 138)
         .contextMenu {
-            ActivityListContextView(
-                isPresentingLikeList: $isPresentingLikeList,
-                isPresentingListEditor: $isPresentingListEditor
-            )
-        }.sheet(isPresented: $isPresentingLikeList) {
-            ActivityListLikesView(activity: viewModel.activity)
-        }.sheet(isPresented: $isPresentingListEditor) {
-            if let id = viewModel.activity.media?.id {
-                MediaEditorView(viewModel: MediaEditorViewModel(id: id))
+            ActivityListContextView(presentedSheet: $presentedSheet, presentedAlert: $presentedAlert)
+        }.alert(item: $presentedAlert) { alert in
+            switch alert {
+                case .deleteConfirmation:
+                    return Alert(
+                        title: Text("Are you sure you want to delete this activity?"),
+                        message: Text("This action cannot be undone."),
+                        primaryButton: .destructive(Text("Delete")) {
+                            viewModel.delete()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                case .errorAccountListEditor:
+                    return Alert(
+                        title: Text("Account Required"),
+                        message: Text("You must sign in to add or modify this anime/manga on your list."),
+                        primaryButton: .default(Text("Sign In")) {
+                            logger.info("Signing in...")
+                        },
+                        secondaryButton: .cancel()
+                    )
+                case .errorAccountReply:
+                    return Alert(
+                        title: Text("Account Required"),
+                        message: Text("You must sign in to add a reply to an activity."),
+                        primaryButton: .default(Text("Sign In")) {
+                            logger.info("Signing in...")
+                        },
+                        secondaryButton: .cancel()
+                    )
+                case .errorMediaLocked:
+                    return Alert(
+                        title: Text("Anime/Manga Locked"),
+                        message: Text("This anime/manga is locked and cannot be added to lists."),
+                        dismissButton: .cancel()
+                    )
+                case .errorReplyLocked:
+                    return Alert(
+                        title: Text("Activity Locked"),
+                        message: Text("This activity is locked and cannot receive new replies."),
+                        dismissButton: .cancel()
+                    )
+            }
+        }.sheet(item: $presentedSheet) { sheet in
+            switch sheet {
+                case .likes:
+                    let users = viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? []
+
+                    LikeNavigationView(users: users)
+                        .environmentObject(currentUser)
+                case .listEditor:
+                    if let id = viewModel.activity.media?.id {
+                        MediaEditorView(viewModel: .init(id: id))
+                            .environmentObject(currentUser)
+                    }
+                case .reply:
+                    ActivityReplyEditorView()
             }
         }.environmentObject(viewModel)
     }
@@ -121,49 +154,53 @@ struct ActivityListView: View {
 fileprivate struct ActivityListContextView: View {
     @EnvironmentObject private var viewModel: ActivityListViewModel
     @EnvironmentObject private var currentUser: CurrentUser
-    @Binding private(set) var isPresentingLikeList: Bool
-    @Binding private(set) var isPresentingListEditor: Bool
+    @Binding var presentedSheet: ActivityListViewSheet?
+    @Binding var presentedAlert: ActivityListViewAlert?
 
     var body: some View {
-        if viewModel.activity.likes?.isEmpty == false {
-            let isLiked = viewModel.activity.isLiked == true
+        Button {
+            if currentUser.users.first == nil {
+                presentedAlert = .errorAccountReply
+            } else if viewModel.activity.isLocked == true {
+                presentedAlert = .errorReplyLocked
+            } else {
+                presentedSheet = .reply
+            }
+        } label: {
+            Label("Reply", systemImage: "arrowshape.turn.up.left")
+        }
 
+        Button {
+            if currentUser.users.first == nil {
+                presentedAlert = .errorAccountListEditor
+            } else if viewModel.activity.media?.isLocked == true {
+                presentedAlert = .errorMediaLocked
+            } else {
+                presentedSheet = .listEditor
+            }
+        } label: {
+            Label("Open List Editor", systemImage: "pencil")
+        }
+
+        if (viewModel.activity.likes?.count ?? 0) > 0 {
             Button {
-                isPresentingLikeList = true
+                presentedSheet = .likes
             } label: {
                 Label("See Likes", systemImage: "list.bullet")
             }
-
-            Button {
-                isPresentingListEditor = true
-            } label: {
-                Label("Open List Editor", systemImage: "pencil")
-            }
-
-            Button {
-                viewModel.like()
-            } label: {
-                Label(isLiked ? "Unlike" : "Like", systemImage: isLiked ? "heart.fill" : "heart")
-            }
         }
 
-        if !currentUser.users.isEmpty {
-            Button {
-                viewModel.subscribe()
-            } label: {
-                let isSubscribed = viewModel.activity.isSubscribed == true
+        Button {
+            viewModel.subscribe()
+        } label: {
+            let isSubscribed = viewModel.activity.isSubscribed == true
 
-                Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
-            }
+            Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
         }
 
-        if viewModel.activity.user?.id == currentUser.users.first?.id {
-            Menu {
-                Button {
-                    viewModel.delete()
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                }
+        if currentUser.users.first?.id == viewModel.activity.user?.fragments.userPreviewFragment.id {
+            Button {
+                presentedAlert = .deleteConfirmation
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -171,45 +208,39 @@ fileprivate struct ActivityListContextView: View {
     }
 }
 
-fileprivate struct ActivityListLikesView: View {
-    private(set) var activity: ListActivityFragment
+fileprivate enum ActivityListViewAlert: Int, Identifiable {
+    case deleteConfirmation
+    case errorAccountListEditor
+    case errorAccountReply
+    case errorMediaLocked
+    case errorReplyLocked
 
-    var body: some View {
-        NavigationView {
-            List(activity.likes?.compactMap { $0 } ?? [], id: \.id) { user in
-                NavigationLink(destination: UserView(viewModel: UserViewModel(id: user.id))) {
-                    WebImage(url: URL(string: "\(user.avatar?.large ?? "")"))
-                        .resizable()
-                        .placeholder { Color.accentColor }
-                        .scaledToFill()
-                        .frame(width: 32, height: 32, alignment: .top)
-                        .clipped()
-                        .cornerRadius(4)
-
-                    Text("\(user.name)")
-                        .font(.headline)
-                }.animation(.default)
-            }.navigationTitle("Likes")
-            .navigationBarTitleDisplayMode(.large)
-        }
-    }
+    var id: Int { rawValue }
 }
 
-struct ActivityListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityListView(viewModel: ActivityListViewModel(activity: ListActivityFragment(
-            id: -1,
-            status: "read chapter",
-            isLiked: false,
-            isLocked: false,
-            progress: "6 - 11",
-            createdAt: Int(Date().timeIntervalSince1970),
-            likeCount: 1,
-            replyCount: 1,
-            isSubscribed: true,
-            likes: [.init(id: 764252, name: "SongSangwoo")],
-            user: .init(id: 164560, name: "LiteLT"),
-            media: .init(id: 72001, title: .init(userPreferred: "Song of the Long March"))
-        )))
-    }
+fileprivate enum ActivityListViewSheet: Int, Identifiable {
+    case likes
+    case listEditor
+    case reply
+
+    var id: Int { rawValue }
 }
+
+//struct ActivityListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ActivityListView(viewModel: ActivityListViewModel(activity: ListActivityFragment(
+//            id: -1,
+//            status: "read chapter",
+//            isLiked: false,
+//            isLocked: false,
+//            progress: "6 - 11",
+//            createdAt: Int(Date().timeIntervalSince1970),
+//            likeCount: 1,
+//            replyCount: 1,
+//            isSubscribed: true,
+//            likes: [.init(id: 764252, name: "SongSangwoo")],
+//            user: .init(id: 164560, name: "LiteLT"),
+//            media: .init(id: 72001, title: .init(userPreferred: "Song of the Long March"))
+//        )))
+//    }
+//}

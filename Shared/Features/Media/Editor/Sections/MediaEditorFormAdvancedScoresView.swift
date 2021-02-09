@@ -39,18 +39,22 @@ fileprivate struct MediaEditorFormAdvancedScoresRowView: View {
     var body: some View {
         let isPoint100 = currentUser.users[0].mediaListOptions!.scoreFormat! == .point_100
 
-        let scoreBinding = Binding {
-            (viewModel.media!.mediaListEntry?.advancedScores?[name] as? Double) ?? 0
+        let scoreBinding: Binding<Double> = Binding {
+            if case let .dictionary(scores) = viewModel.media!.mediaListEntry?.advancedScores {
+                return scores[name] as? Double ?? 0
+            }
+
+            return 0
         } set: { score in
             let score = isPoint100 ? floor(score) : round(score * 10) / 10
 
             if viewModel.media!.mediaListEntry == nil {
-                viewModel.media!.mediaListEntry = .init(id: -1, advancedScores: [name: score])
+                viewModel.media!.mediaListEntry = .init(id: -1, advancedScores: .dictionary([name: score]))
             } else {
                 if viewModel.media!.mediaListEntry!.advancedScores == nil {
-                    viewModel.media!.mediaListEntry!.advancedScores = [name: score]
+                    viewModel.media!.mediaListEntry!.advancedScores = .dictionary([name: score])
                 } else {
-                    viewModel.media!.mediaListEntry!.advancedScores![name] = score
+                    viewModel.media!.mediaListEntry!.advancedScores!.replace(key: name, with: score)
                 }
             }
         }

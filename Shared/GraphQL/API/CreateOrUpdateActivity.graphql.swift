@@ -18,7 +18,11 @@ public final class CreateOrUpdateActivityMutation: GraphQLMutation {
 
   public let operationName: String = "CreateOrUpdateActivity"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ActivityReplyFragment.fragmentDefinition) }
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ActivityReplyFragment.fragmentDefinition)
+    return document
+  }
 
   public var id: Int?
   public var activityId: Int?

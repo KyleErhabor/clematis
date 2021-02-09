@@ -35,7 +35,13 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
   public let operationName: String = "ActivityFeed"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ListActivityFragment.fragmentDefinition).appending("\n" + TextActivityFragment.fragmentDefinition) }
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ListActivityFragment.fragmentDefinition)
+    document.append("\n" + UserPreviewFragment.fragmentDefinition)
+    document.append("\n" + TextActivityFragment.fragmentDefinition)
+    return document
+  }
 
   public var page: Int?
   public var isFollowing: Bool
@@ -192,10 +198,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
           return Activity(unsafeResultMap: ["__typename": "MessageActivity"])
         }
 
-        public static func makeTextActivity(id: Int) -> Activity {
-          return Activity(unsafeResultMap: ["__typename": "TextActivity", "id": id])
-        }
-
         public var __typename: String {
           get {
             return resultMap["__typename"]! as! String
@@ -293,10 +295,6 @@ public final class ActivityFeedQuery: GraphQLQuery {
 
           public init(unsafeResultMap: ResultMap) {
             self.resultMap = unsafeResultMap
-          }
-
-          public init(id: Int) {
-            self.init(unsafeResultMap: ["__typename": "TextActivity", "id": id])
           }
 
           public var __typename: String {

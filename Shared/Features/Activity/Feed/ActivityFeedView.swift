@@ -25,16 +25,10 @@ struct ActivityFeedView: View {
         // It's unknown whether this structure will work to solve this problem, but it should be fixed before
         // production. Although it's probably not uncommon to not see an activity after liking and scrolling up/down,
         // it may confuse the user.
-        List(Array(viewModel.activities.enumerated()), id: \.element.id) { (index, activity) in
+        List(viewModel.activities) { activity in
             ScrollView {
-                ActivityFeedSelectionView(activity: activity)
+                ActivityFeedUnionView(activity: activity)
                     .padding(8)
-                    .onAppear {
-                        if index == viewModel.activities.count - 1 && viewModel.pageInfo?.hasNextPage == true {
-                            page += 1
-                            viewModel.next(page: page, isFollowing: tab == .following)
-                        }
-                    }
             }
         }.listStyle(PlainListStyle())
         .navigationTitle("Activity Feed")
@@ -53,18 +47,6 @@ struct ActivityFeedView: View {
             ActivityFeedFilterView(tab: $tab)
         }.onAppear {
             viewModel.load(isFollowing: tab == .following)
-        }
-    }
-}
-
-fileprivate struct ActivityFeedSelectionView: View {
-    private(set) var activity: ActivityFeedQuery.Data.Page.Activity
-
-    var body: some View {
-        if let list = activity.asListActivity?.fragments.listActivityFragment {
-            ActivityListView(viewModel: ActivityListViewModel(activity: list))
-        } else if activity.asTextActivity?.fragments.textActivityFragment != nil {
-            ActivityTextView()
         }
     }
 }

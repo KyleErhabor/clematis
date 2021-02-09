@@ -8,22 +8,16 @@ fragment listActivityFragment on ListActivity {
   likeCount
   replyCount
   isSubscribed
-  likes {
-    id
-    name
-    avatar {
-      large
-    }
-  }
   user {
-    id
-    name
-    avatar {
-      large
-    }
+    ...userPreviewFragment
+  }
+  likes {
+    ...userPreviewFragment
   }
   media {
     id
+    type
+    isLocked
     title {
       userPreferred
     }
@@ -36,6 +30,18 @@ fragment listActivityFragment on ListActivity {
 
 fragment textActivityFragment on TextActivity {
   id
+  isLiked
+  createdAt
+  likeCount
+  replyCount
+  isSubscribed
+  text(asHtml: true)
+  user {
+    ...userPreviewFragment
+  }
+  likes {
+    ...userPreviewFragment
+  }
 }
 
 fragment messageActivityFragment on MessageActivity {

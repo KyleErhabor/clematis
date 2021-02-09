@@ -36,16 +36,20 @@ fileprivate struct MediaEditorFormCustomListRowView: View {
     private(set) var name: String
 
     var body: some View {
-        let listBinding = Binding {
-            (viewModel.media!.mediaListEntry?.customLists?[name] as? Bool) ?? false
+        let listBinding: Binding<Bool> = Binding {
+            if case let .dictionary(customLists) = viewModel.media!.mediaListEntry?.customLists {
+                return customLists["name"] as? Bool ?? false
+            }
+
+            return false
         } set: { enabled in
             if viewModel.media!.mediaListEntry == nil {
-                viewModel.media!.mediaListEntry = .init(id: -1, customLists: [name: enabled])
+                viewModel.media!.mediaListEntry = .init(id: -1, customLists: .dictionary([name: enabled]))
             } else {
                 if viewModel.media!.mediaListEntry!.customLists == nil {
-                    viewModel.media!.mediaListEntry!.customLists = [name: enabled]
+                    viewModel.media!.mediaListEntry!.customLists = .dictionary([name: enabled])
                 } else {
-                    viewModel.media!.mediaListEntry!.customLists![name] = enabled
+                    viewModel.media!.mediaListEntry!.customLists!.replace(key: name, with: enabled)
                 }
             }
         }

@@ -35,7 +35,11 @@ public final class ActivityRepliesQuery: GraphQLQuery {
 
   public let operationName: String = "ActivityReplies"
 
-  public var queryDocument: String { return operationDefinition.appending("\n" + ActivityReplyFragment.fragmentDefinition) }
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + ActivityReplyFragment.fragmentDefinition)
+    return document
+  }
 
   public var id: Int
 

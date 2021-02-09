@@ -66,9 +66,3 @@ struct ActivityReplyEditorView: View {
         }
     }
 }
-
-struct ActivityReplyEditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityReplyEditorView()
-    }
-}
