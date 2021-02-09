@@ -1,0 +1,41 @@
+query Forums {
+  Page {
+    threads(sort: [IS_STICKY, REPLIED_AT_DESC]) {
+      id
+      title
+      isLiked
+      isLocked
+      isSticky
+      likeCount
+      repliedAt
+      viewCount
+      replyCount
+      isSubscribed
+      body(asHtml: true)
+      categories {
+        id
+        name
+      }
+      mediaCategories {
+        id
+        title {
+          userPreferred
+        }
+      }
+      likes {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+      replyUser {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+    }
+  }
+}

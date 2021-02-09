@@ -1,0 +1,7 @@
+fragment userPreviewFragment on User {
+  id
+  name
+  avatar {
+    large
+  }
+}
