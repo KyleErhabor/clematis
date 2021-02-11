@@ -17,7 +17,7 @@ struct ActivityReplyEditorView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Text"), footer: NavigationLink("Please read the site guidelines before posting", destination: Text("?"))) {
+                Section(header: Text("Text"), footer: RulesNoticeView()) {
                     TextEditor(text: $text)
                 }
 

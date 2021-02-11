@@ -5,21 +5,25 @@
 //  Created by Kyle Erhabor on 9/4/20.
 //
 
+import KeychainAccess
 import Logging
 import SwiftUI
 
-let logger = Logger(label: Bundle.main.bundleIdentifier ?? "app")
+let keychain = Keychain(service: Constants.appIdentifier)
+let logger = Logger(label: Constants.appIdentifier)
 
 @main
 struct AmincappApp: App {
-    @StateObject var currentUser = CurrentUser()
+    @StateObject private var userStore = CurrentUserStore()
+    @StateObject var currentUser = CurrentUser() // TO DELETE AND REPLACE
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(currentUser)
+                .environmentObject(userStore)
                 .onAppear {
-                    currentUser.fetchUsers()
+                    userStore.load()
                 }.onOpenURL { url in
                     currentUser.handleIncomingURL(url: url)
                 }

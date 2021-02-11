@@ -9,9 +9,6 @@ import SwiftUI
 
 /// A view for displaying a text activity (`TextActivityFragment`).
 struct ActivityTextView: View {
-    /// The model object representing the list of authenticated users in the app.
-    @EnvironmentObject private var currentUser: CurrentUser
-
     /// The view model for the text activity.
     @StateObject var viewModel: ActivityTextViewModel
 

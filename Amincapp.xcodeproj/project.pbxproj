@@ -37,6 +37,7 @@
 		004C68D725C12C5D003FFD2D /* UserFavoritesStaffListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68D625C12C5D003FFD2D /* UserFavoritesStaffListView.swift */; };
 		004C68DA25C12D6E003FFD2D /* UserFavoritesStudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */; };
 		004C68DE25C12F30003FFD2D /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68DD25C12F30003FFD2D /* StudioView.swift */; };
+		0068782C25D4CBAE00FBC7FE /* RulesNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */; };
 		006ECC8725B360F80016956A /* MediaCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ECC8625B360F80016956A /* MediaCharacterView.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
 		0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071E89E258337D600173A16 /* MediaEditorViewModel.swift */; };
@@ -90,6 +91,8 @@
 		008597A825CFB06500C0FFDB /* ActivityFeedUnionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597A725CFB06500C0FFDB /* ActivityFeedUnionView.swift */; };
 		008597AC25CFB91200C0FFDB /* ActivityTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597AB25CFB91200C0FFDB /* ActivityTextViewModel.swift */; };
 		008597B125D2051600C0FFDB /* CurrentUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597B025D2051500C0FFDB /* CurrentUserStore.swift */; };
+		008597BA25D21ACE00C0FFDB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597B925D21ACE00C0FFDB /* Constants.swift */; };
+		008597C125D24B5400C0FFDB /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 008597C025D24B5400C0FFDB /* KeychainAccess */; };
 		00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* AmincappApp.swift */; };
 		00869F382502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
 		00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00869F0F2502A75300D2DB6F /* Assets.xcassets */; };
@@ -219,6 +222,7 @@
 		004C68D625C12C5D003FFD2D /* UserFavoritesStaffListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesStaffListView.swift; sourceTree = "<group>"; };
 		004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesStudioListView.swift; sourceTree = "<group>"; };
 		004C68DD25C12F30003FFD2D /* StudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
+		0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesNoticeView.swift; sourceTree = "<group>"; };
 		006AADA8258D51DD00674767 /* CreateMediaListEntry.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateMediaListEntry.graphql; sourceTree = "<group>"; };
 		006C7847258C635600F80070 /* UpdateMediaListEntry.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateMediaListEntry.graphql; sourceTree = "<group>"; };
 		006ECC8625B360F80016956A /* MediaCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCharacterView.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		008597A725CFB06500C0FFDB /* ActivityFeedUnionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedUnionView.swift; sourceTree = "<group>"; };
 		008597AB25CFB91200C0FFDB /* ActivityTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTextViewModel.swift; sourceTree = "<group>"; };
 		008597B025D2051500C0FFDB /* CurrentUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserStore.swift; sourceTree = "<group>"; };
+		008597B925D21ACE00C0FFDB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00869F0D2502A75100D2DB6F /* AmincappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmincappApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00869F0F2502A75300D2DB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -390,6 +395,7 @@
 				007A20952570B05A00FB0713 /* Logging in Frameworks */,
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
+				008597C125D24B5400C0FFDB /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +672,7 @@
 				00869F0D2502A75100D2DB6F /* AmincappApp.swift */,
 				00869F0E2502A75100D2DB6F /* ContentView.swift */,
 				00C520B025C758730035AD71 /* AuthenticationView.swift */,
-				008597B025D2051500C0FFDB /* CurrentUserStore.swift */,
+				0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */,
 				0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */,
 				00869F0F2502A75300D2DB6F /* Assets.xcassets */,
 				00986BD4256878D40008D80C /* Environments */,
@@ -796,6 +802,8 @@
 		00986BD4256878D40008D80C /* Environments */ = {
 			isa = PBXGroup;
 			children = (
+				008597B925D21ACE00C0FFDB /* Constants.swift */,
+				008597B025D2051500C0FFDB /* CurrentUserStore.swift */,
 				00836395256782CA002A16B4 /* AniList.swift */,
 				00986BC9256878C90008D80C /* CurrentUser.swift */,
 			);
@@ -1069,6 +1077,7 @@
 				00869F4E2502B2D600D2DB6F /* Apollo */,
 				007A20942570B05A00FB0713 /* Logging */,
 				001522FB25CB49C800E0DF25 /* Algorithms */,
+				008597C025D24B5400C0FFDB /* KeychainAccess */,
 			);
 			productName = "Anime Catalog (iOS)";
 			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
@@ -1102,6 +1111,7 @@
 				00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */,
 				001522FA25CB49C700E0DF25 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				008597BF25D24B5300C0FFDB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 00869F152502A75300D2DB6F /* Products */;
 			projectDirPath = "";
@@ -1161,6 +1171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C5208025C6828A0035AD71 /* ActivityListView.swift in Sources */,
+				0068782C25D4CBAE00FBC7FE /* RulesNoticeView.swift in Sources */,
 				0072CD4B25BA183B0061E70F /* MediaSummaryPropertyStartDateView.swift in Sources */,
 				0080C13D25B6260A004624C9 /* MediaPropertyVolumesView.swift in Sources */,
 				0080C11525B5EF0D004624C9 /* MediaPropertyIDView.swift in Sources */,
@@ -1295,6 +1306,7 @@
 				0031AC0A25B73BCE0079DE28 /* MediaStatsView.swift in Sources */,
 				007DDDA125C0990D00CDA046 /* UserToolbarAccountSheetView.swift in Sources */,
 				00C5206E25C6776F0035AD71 /* Media.graphql.swift in Sources */,
+				008597BA25D21ACE00C0FFDB /* Constants.swift in Sources */,
 				00C5209F25C6884B0035AD71 /* ActivityFeed.graphql.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				0095D84625B5491400B03D39 /* StaffView.swift in Sources */,
@@ -1533,6 +1545,14 @@
 				minimumVersion = 1.4.0;
 			};
 		};
+		008597BF25D24B5300C0FFDB /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 4.2.1;
+			};
+		};
 		00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1561,6 +1581,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */;
 			productName = Logging;
+		};
+		008597C025D24B5400C0FFDB /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 008597BF25D24B5300C0FFDB /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

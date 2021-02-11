@@ -15,10 +15,8 @@ class AuthorizationHeaderAddingInterceptor: ApolloInterceptor {
         response: HTTPResponse<Operation>?,
         completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
     ) {
-        if let tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens), !tokens.isEmpty {
-            let accountIndex = UserDefaults.standard.integer(forKey: SettingsKeys.accountIndex)
-
-            request.addHeader(name: "Authorization", value: "Bearer \(tokens[accountIndex])")
+        if let token = keychain["user"] {
+            request.addHeader(name: "Authorization", value: "Bearer \(token)")
         }
 
         chain.proceedAsync(request: request, response: response, completion: completion)

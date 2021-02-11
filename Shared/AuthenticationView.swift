@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    @EnvironmentObject private var userStore: CurrentUserStore
+
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Button {
+                userStore.login()
+            } label: {
+                Text("Sign in with AniList")
+                    .padding()
+                    .padding(.horizontal, 64)
+                    .background(Color.accentColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(32)
+            }
+        }
     }
 }
 

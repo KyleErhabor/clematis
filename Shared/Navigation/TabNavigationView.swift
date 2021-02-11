@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabNavigationView: View {
-    @EnvironmentObject private var currentUser: CurrentUser
+    @EnvironmentObject private var userStore: CurrentUserStore
 
     var body: some View {
         TabView {
@@ -18,9 +18,11 @@ struct TabNavigationView: View {
                 Label("Home", systemImage: "house")
             }
 
-            NavigationView {
-                if let user = currentUser.users.first {
-                    UserView(viewModel: UserViewModel(id: user.id))
+            Group {
+                if let user = userStore.users.first {
+                    NavigationView {
+                        UserView(viewModel: .init(id: user.id))
+                    }
                 } else {
                     AuthenticationView()
                 }

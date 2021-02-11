@@ -8,11 +8,19 @@
 import SDWebImageSwiftUI
 import SwiftUI
 
+/// A view for displaying a list activity (`ListActivityFragment`)
 struct ActivityListView: View {
-    @EnvironmentObject private var currentUser: CurrentUser
+    /// The global environment object for user accounts logged in.
+    @EnvironmentObject private var userStore: CurrentUserStore
+
+    /// The view model for this list activity.
     @StateObject var viewModel: ActivityListViewModel
-    @State private var presentedSheet: ActivityListViewSheet?
-    @State private var presentedAlert: ActivityListViewAlert?
+
+    /// A state detailing what sheet to present.
+    @State private var sheet: ActivityListViewSheet?
+
+    /// A state detailing what alert to present.
+    @State private var alert: ActivityListViewAlert?
 
     var body: some View {
         HStack {
@@ -89,10 +97,10 @@ struct ActivityListView: View {
             }
         }.frame(height: 138)
         .contextMenu {
-            ActivityListContextView(presentedSheet: $presentedSheet, presentedAlert: $presentedAlert)
-        }.alert(item: $presentedAlert) { alert in
+            ActivityListContextView(sheet: $sheet, alert: $alert)
+        }.alert(item: $alert) { alert in
             switch alert {
-                case .deleteConfirmation:
+                case .activityDeletion:
                     return Alert(
                         title: Text("Are you sure you want to delete this activity?"),
                         message: Text("This action cannot be undone."),
@@ -101,48 +109,30 @@ struct ActivityListView: View {
                         },
                         secondaryButton: .cancel()
                     )
-                case .errorAccountListEditor:
-                    return Alert(
-                        title: Text("Account Required"),
-                        message: Text("You must sign in to add or modify this anime/manga on your list."),
-                        primaryButton: .default(Text("Sign In")) {
-                            logger.info("Signing in...")
-                        },
-                        secondaryButton: .cancel()
-                    )
-                case .errorAccountReply:
-                    return Alert(
-                        title: Text("Account Required"),
-                        message: Text("You must sign in to add a reply to an activity."),
-                        primaryButton: .default(Text("Sign In")) {
-                            logger.info("Signing in...")
-                        },
-                        secondaryButton: .cancel()
-                    )
-                case .errorMediaLocked:
-                    return Alert(
-                        title: Text("Anime/Manga Locked"),
-                        message: Text("This anime/manga is locked and cannot be added to lists."),
-                        dismissButton: .cancel()
-                    )
-                case .errorReplyLocked:
+                case .activityLocked:
                     return Alert(
                         title: Text("Activity Locked"),
                         message: Text("This activity is locked and cannot receive new replies."),
-                        dismissButton: .cancel()
+                        dismissButton: .default(Text("OK"))
+                    )
+                case .mediaLocked:
+                    return Alert(
+                        title: Text("Anime/Manga Locked"),
+                        message: Text("This anime/manga is locked and cannot be added to lists."),
+                        dismissButton: .default(Text("OK"))
                     )
             }
-        }.sheet(item: $presentedSheet) { sheet in
+        }.sheet(item: $sheet) { sheet in
             switch sheet {
                 case .likes:
                     let users = viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? []
 
                     LikeNavigationView(users: users)
-                        .environmentObject(currentUser)
+                        .environmentObject(userStore)
                 case .listEditor:
                     if let id = viewModel.activity.media?.id {
                         MediaEditorView(viewModel: .init(id: id))
-                            .environmentObject(currentUser)
+                            .environmentObject(userStore)
                     }
                 case .reply:
                     ActivityReplyEditorView()
@@ -151,56 +141,64 @@ struct ActivityListView: View {
     }
 }
 
+/// The context menu controls for the `ActivityListView` view.
 fileprivate struct ActivityListContextView: View {
+    /// The view model from the parent `ActivityListView` view.
     @EnvironmentObject private var viewModel: ActivityListViewModel
-    @EnvironmentObject private var currentUser: CurrentUser
-    @Binding var presentedSheet: ActivityListViewSheet?
-    @Binding var presentedAlert: ActivityListViewAlert?
+
+    /// The global environment object for user accounts logged in.
+    @EnvironmentObject private var userStore: CurrentUserStore
+
+    /// A binding detailing what sheet to present.
+    @Binding var sheet: ActivityListViewSheet?
+
+    /// A binding detailing what alert to present.
+    @Binding var alert: ActivityListViewAlert?
 
     var body: some View {
-        Button {
-            if currentUser.users.first == nil {
-                presentedAlert = .errorAccountReply
-            } else if viewModel.activity.isLocked == true {
-                presentedAlert = .errorReplyLocked
-            } else {
-                presentedSheet = .reply
-            }
-        } label: {
-            Label("Reply", systemImage: "arrowshape.turn.up.left")
-        }
-
-        Button {
-            if currentUser.users.first == nil {
-                presentedAlert = .errorAccountListEditor
-            } else if viewModel.activity.media?.isLocked == true {
-                presentedAlert = .errorMediaLocked
-            } else {
-                presentedSheet = .listEditor
-            }
-        } label: {
-            Label("Open List Editor", systemImage: "pencil")
-        }
-
-        if (viewModel.activity.likes?.count ?? 0) > 0 {
+        if userStore.isSignedIn {
             Button {
-                presentedSheet = .likes
+                if viewModel.activity.isLocked == true {
+                    alert = .activityLocked
+                } else {
+                    sheet = .reply
+                }
+            } label: {
+                Label("Reply", systemImage: "arrowshape.turn.up.left")
+            }
+
+            Button {
+                if viewModel.activity.media?.isLocked == true {
+                    alert = .mediaLocked
+                } else {
+                    sheet = .listEditor
+                }
+            } label: {
+                Label("Open List Editor", systemImage: "pencil")
+            }
+        }
+
+        if viewModel.activity.likes?.count != 0 {
+            Button {
+                sheet = .likes
             } label: {
                 Label("See Likes", systemImage: "list.bullet")
             }
         }
 
-        Button {
-            viewModel.subscribe()
-        } label: {
-            let isSubscribed = viewModel.activity.isSubscribed == true
+        if userStore.isSignedIn {
+            Button {
+                viewModel.subscribe()
+            } label: {
+                let isSubscribed = viewModel.activity.isSubscribed == true
 
-            Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
+                Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
+            }
         }
 
-        if currentUser.users.first?.id == viewModel.activity.user?.fragments.userPreviewFragment.id {
+        if userStore.users.first?.id == viewModel.activity.user?.fragments.userPreviewFragment.id {
             Button {
-                presentedAlert = .deleteConfirmation
+                alert = .activityDeletion
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -208,39 +206,57 @@ fileprivate struct ActivityListContextView: View {
     }
 }
 
+/// An enum for what kind of alert to present.
 fileprivate enum ActivityListViewAlert: Int, Identifiable {
-    case deleteConfirmation
-    case errorAccountListEditor
-    case errorAccountReply
-    case errorMediaLocked
-    case errorReplyLocked
+    /// Prompt the user to confirm if they wish to delete the activity.
+    case activityDeletion
+
+    /// Deny the user permission to write a reply on this activity due to it being locked.
+    case activityLocked
+
+    /// Deny the user permission to add this anime/manga to their list due to it being locked and pending deletion.
+    case mediaLocked
 
     var id: Int { rawValue }
 }
 
+/// An enum for what kind of sheet to present.
 fileprivate enum ActivityListViewSheet: Int, Identifiable {
+    /// A sheet detailing all the users who liked the activity.
     case likes
+
+    /// A sheet for the user to add, modify, or delete the anime/manga this activity references on/from their list.
     case listEditor
+
+    /// A sheet for the user to add a reply for this activity.
     case reply
 
     var id: Int { rawValue }
 }
 
-//struct ActivityListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ActivityListView(viewModel: ActivityListViewModel(activity: ListActivityFragment(
-//            id: -1,
-//            status: "read chapter",
-//            isLiked: false,
-//            isLocked: false,
-//            progress: "6 - 11",
-//            createdAt: Int(Date().timeIntervalSince1970),
-//            likeCount: 1,
-//            replyCount: 1,
-//            isSubscribed: true,
-//            likes: [.init(id: 764252, name: "SongSangwoo")],
-//            user: .init(id: 164560, name: "LiteLT"),
-//            media: .init(id: 72001, title: .init(userPreferred: "Song of the Long March"))
-//        )))
-//    }
-//}
+struct ActivityListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ActivityListView(viewModel: .init(activity: .init(
+            id: 172596430,
+            status: "watched episode",
+            isLiked: false,
+            isLocked: false,
+            progress: "5 - 10",
+            createdAt: Int(Date().timeIntervalSince1970),
+            likeCount: 41,
+            replyCount: 1,
+            isSubscribed: false,
+            user: .init(unsafeResultMap: UserPreviewFragment(
+                id: 120834,
+                name: "oyushi"
+            ).resultMap),
+            likes: [],
+            media: .init(
+                id: 101,
+                type: .anime,
+                isLocked: false,
+                title: .init(userPreferred: "Air")
+            )
+        )))
+    }
+}
