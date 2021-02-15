@@ -13,6 +13,12 @@ struct TabNavigationView: View {
     var body: some View {
         TabView {
             NavigationView {
+                CharacterView(viewModel: .init(id: 4835))
+            }.tabItem {
+                Label("Character", systemImage: "figure.walk")
+            }
+
+            NavigationView {
                 ActivityFeedView()
             }.tabItem {
                 Label("Home", systemImage: "house")

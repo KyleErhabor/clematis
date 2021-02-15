@@ -8,10 +8,9 @@ public final class CharacterQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query Character($id: Int!, $mediaPage: Int) {
+    query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
       Character(id: $id) {
         __typename
-        id
         favourites
         isFavourite
         description(asHtml: true)
@@ -25,11 +24,12 @@ public final class CharacterQuery: GraphQLQuery {
           native
           alternative
         }
-        media(page: $mediaPage) {
+        media(sort: $mediaSort, page: $mediaPage) {
           __typename
           pageInfo {
             __typename
             total
+            currentPage
             hasNextPage
           }
           edges {
@@ -77,15 +77,17 @@ public final class CharacterQuery: GraphQLQuery {
   public let operationName: String = "Character"
 
   public var id: Int
-  public var mediaPage: Int?
+  public var mediaPage: Int
+  public var mediaSort: [MediaSort?]?
 
-  public init(id: Int, mediaPage: Int? = nil) {
+  public init(id: Int, mediaPage: Int, mediaSort: [MediaSort?]? = nil) {
     self.id = id
     self.mediaPage = mediaPage
+    self.mediaSort = mediaSort
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "mediaPage": mediaPage]
+    return ["id": id, "mediaPage": mediaPage, "mediaSort": mediaSort]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -123,13 +125,12 @@ public final class CharacterQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .nonNull(.scalar(Int.self))),
           GraphQLField("favourites", type: .scalar(Int.self)),
           GraphQLField("isFavourite", type: .nonNull(.scalar(Bool.self))),
           GraphQLField("description", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("image", type: .object(Image.selections)),
           GraphQLField("name", type: .object(Name.selections)),
-          GraphQLField("media", arguments: ["page": GraphQLVariable("mediaPage")], type: .object(Medium.selections)),
+          GraphQLField("media", arguments: ["sort": GraphQLVariable("mediaSort"), "page": GraphQLVariable("mediaPage")], type: .object(Medium.selections)),
         ]
       }
 
@@ -139,8 +140,8 @@ public final class CharacterQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, favourites: Int? = nil, isFavourite: Bool, description: String? = nil, image: Image? = nil, name: Name? = nil, media: Medium? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Character", "id": id, "favourites": favourites, "isFavourite": isFavourite, "description": description, "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "name": name.flatMap { (value: Name) -> ResultMap in value.resultMap }, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
+      public init(favourites: Int? = nil, isFavourite: Bool, description: String? = nil, image: Image? = nil, name: Name? = nil, media: Medium? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Character", "favourites": favourites, "isFavourite": isFavourite, "description": description, "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "name": name.flatMap { (value: Name) -> ResultMap in value.resultMap }, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -149,16 +150,6 @@ public final class CharacterQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      /// The id of the character
-      public var id: Int {
-        get {
-          return resultMap["id"]! as! Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
@@ -380,6 +371,7 @@ public final class CharacterQuery: GraphQLQuery {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("total", type: .scalar(Int.self)),
+              GraphQLField("currentPage", type: .scalar(Int.self)),
               GraphQLField("hasNextPage", type: .scalar(Bool.self)),
             ]
           }
@@ -390,8 +382,8 @@ public final class CharacterQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(total: Int? = nil, hasNextPage: Bool? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total, "hasNextPage": hasNextPage])
+          public init(total: Int? = nil, currentPage: Int? = nil, hasNextPage: Bool? = nil) {
+            self.init(unsafeResultMap: ["__typename": "PageInfo", "total": total, "currentPage": currentPage, "hasNextPage": hasNextPage])
           }
 
           public var __typename: String {
@@ -410,6 +402,16 @@ public final class CharacterQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "total")
+            }
+          }
+
+          /// The current page
+          public var currentPage: Int? {
+            get {
+              return resultMap["currentPage"] as? Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "currentPage")
             }
           }
 

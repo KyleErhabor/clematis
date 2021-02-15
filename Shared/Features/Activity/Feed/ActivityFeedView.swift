@@ -7,31 +7,32 @@
 
 import SwiftUI
 
+/// A view for displaying the activity feed.
 struct ActivityFeedView: View {
+    /// The view model for the activity feed.
     @StateObject private var viewModel = ActivityFeedViewModel()
-    @State private var tab = ActivityFeedTab.global
+
+    /// A state for if the feed's filter sheet should be presented.
     @State private var isPresenting = false
-    @State private var page = 1
 
     var body: some View {
-        // FIXME: An action that would mutate the activity instance is not saved upon the list being rerendered. This
-        // is due to Swift's pass-by-value nature with function parameters. If attempted, it would require a lot of
-        // uses of `inout` to propogate it up the view stack to a non-view closure.
-        //
-        // It would be easy to create a `like` method on `ActivityFeedViewModel`, but an activity list, text, or
-        // message may have different features and requirements. The view (`Activity<T>View`) is also constructable
-        // outside the activity feed (for example, a user's activity feed) to avoid rewriting the look.
-        //
-        // It's unknown whether this structure will work to solve this problem, but it should be fixed before
-        // production. Although it's probably not uncommon to not see an activity after liking and scrolling up/down,
-        // it may confuse the user.
-        List(viewModel.activities) { activity in
-            ScrollView {
-                ActivityFeedUnionView(activity: activity)
-                    .padding(8)
+        // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/5
+        List {
+            ForEach(viewModel.activities, id: \.id) { activity in
+                ScrollView {
+                    ActivityFeedUnionView(activity: activity)
+                        .padding(8)
+                }
             }
-        }.listStyle(PlainListStyle())
-        .navigationTitle("Activity Feed")
+
+            if viewModel.pageInfo?.hasNextPage == true {
+                ProgressView()
+                    .frame(maxWidth: .infinity)
+                    .onAppear {
+                        viewModel.next()
+                    }
+            }
+        }.navigationTitle("Activity Feed")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -42,11 +43,14 @@ struct ActivityFeedView: View {
                 }
             }
         }.sheet(isPresented: $isPresenting) {
-            viewModel.load(isFollowing: tab == .following)
+            // The activity list should be reloaded in case any filter options have been changed. Dismissing the
+            // presentation does not call `.onAppear(perform:)`.
+            viewModel.load()
         } content: {
-            ActivityFeedFilterView(tab: $tab)
+            ActivityFeedFilterView()
+                .environmentObject(viewModel)
         }.onAppear {
-            viewModel.load(isFollowing: tab == .following)
+            viewModel.load()
         }
     }
 }

@@ -19,6 +19,12 @@
 		001522F325CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001522F225CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift */; };
 		001522F725CB1F7900E0DF25 /* ThreadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001522F625CB1F7900E0DF25 /* ThreadHeaderView.swift */; };
 		001522FC25CB49C800E0DF25 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 001522FB25CB49C800E0DF25 /* Algorithms */; };
+		001DAB8825D5F1F600403DA2 /* MarkdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DAB8725D5F1F600403DA2 /* MarkdownEditorView.swift */; };
+		001DAB8C25D5F66300403DA2 /* MarkdownEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DAB8B25D5F66300403DA2 /* MarkdownEditorViewModel.swift */; };
+		001DAB9225D6110100403DA2 /* SaveTextActivity.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 001DAB9125D6110100403DA2 /* SaveTextActivity.graphql */; };
+		001DAB9625D6112500403DA2 /* SaveTextActivity.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DAB9525D6112500403DA2 /* SaveTextActivity.graphql.swift */; };
+		00224D5425DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */; };
+		00224D5725DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */; };
 		0023345425ABE9E500E48267 /* Int+Abbreviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023345325ABE9E400E48267 /* Int+Abbreviation.swift */; };
 		002D814B2583090E00866A31 /* MediaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D814A2583090E00866A31 /* MediaEditorView.swift */; };
 		0031AC0525B716FE0079DE28 /* MediaPropertyStudiosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC0425B716FD0079DE28 /* MediaPropertyStudiosView.swift */; };
@@ -38,6 +44,7 @@
 		004C68DA25C12D6E003FFD2D /* UserFavoritesStudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */; };
 		004C68DE25C12F30003FFD2D /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68DD25C12F30003FFD2D /* StudioView.swift */; };
 		0068782C25D4CBAE00FBC7FE /* RulesNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */; };
+		0068782F25D4E99600FBC7FE /* GraphQLError+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */; };
 		006ECC8725B360F80016956A /* MediaCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ECC8625B360F80016956A /* MediaCharacterView.swift */; };
 		006ED0E52517C9F6004992F7 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ED0E42517C9F6004992F7 /* Color+Hex.swift */; };
 		0071E89F258337D600173A16 /* MediaEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071E89E258337D600173A16 /* MediaEditorViewModel.swift */; };
@@ -59,6 +66,7 @@
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00767DC5259001EC009AD3BE /* MediaViewModel.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
+		007B682125D9AAC60072587D /* GraphQLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007B682025D9AAC60072587D /* GraphQLViewModel.swift */; };
 		007DDD9425C06FEA00CDA046 /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DDD9325C06FEA00CDA046 /* UserHeaderView.swift */; };
 		007DDD9725C07F4800CDA046 /* UserAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DDD9625C07F4800CDA046 /* UserAboutView.swift */; };
 		007DDD9A25C0826F00CDA046 /* UserToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DDD9925C0826F00CDA046 /* UserToolbarView.swift */; };
@@ -199,6 +207,12 @@
 		001522DE25CA1A8500E0DF25 /* ThreadReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadReplyView.swift; sourceTree = "<group>"; };
 		001522F225CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadQuery+Identifiable.swift"; sourceTree = "<group>"; };
 		001522F625CB1F7900E0DF25 /* ThreadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHeaderView.swift; sourceTree = "<group>"; };
+		001DAB8725D5F1F600403DA2 /* MarkdownEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownEditorView.swift; sourceTree = "<group>"; };
+		001DAB8B25D5F66300403DA2 /* MarkdownEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownEditorViewModel.swift; sourceTree = "<group>"; };
+		001DAB9125D6110100403DA2 /* SaveTextActivity.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SaveTextActivity.graphql; sourceTree = "<group>"; };
+		001DAB9525D6112500403DA2 /* SaveTextActivity.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTextActivity.graphql.swift; sourceTree = "<group>"; };
+		00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaListExpandedView.swift; sourceTree = "<group>"; };
+		00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaListExpandedFilterView.swift; sourceTree = "<group>"; };
 		0023345325ABE9E400E48267 /* Int+Abbreviation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviation.swift"; sourceTree = "<group>"; };
 		002D814A2583090E00866A31 /* MediaEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorView.swift; sourceTree = "<group>"; };
 		0031AC0425B716FD0079DE28 /* MediaPropertyStudiosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPropertyStudiosView.swift; sourceTree = "<group>"; };
@@ -223,6 +237,7 @@
 		004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesStudioListView.swift; sourceTree = "<group>"; };
 		004C68DD25C12F30003FFD2D /* StudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
 		0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesNoticeView.swift; sourceTree = "<group>"; };
+		0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLError+Identifiable.swift"; sourceTree = "<group>"; };
 		006AADA8258D51DD00674767 /* CreateMediaListEntry.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateMediaListEntry.graphql; sourceTree = "<group>"; };
 		006C7847258C635600F80070 /* UpdateMediaListEntry.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateMediaListEntry.graphql; sourceTree = "<group>"; };
 		006ECC8625B360F80016956A /* MediaCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCharacterView.swift; sourceTree = "<group>"; };
@@ -247,6 +262,7 @@
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		00767DC5259001EC009AD3BE /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		00767DCC25900770009AD3BE /* Media.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Media.graphql; sourceTree = "<group>"; };
+		007B682025D9AAC60072587D /* GraphQLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLViewModel.swift; sourceTree = "<group>"; };
 		007DDD9325C06FEA00CDA046 /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
 		007DDD9625C07F4800CDA046 /* UserAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAboutView.swift; sourceTree = "<group>"; };
 		007DDD9925C0826F00CDA046 /* UserToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToolbarView.swift; sourceTree = "<group>"; };
@@ -453,6 +469,32 @@
 			path = Toolbar;
 			sourceTree = "<group>";
 		};
+		001DAB8525D5F12500403DA2 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				007B681F25D9AAA00072587D /* ViewModel */,
+				001DAB8625D5F16B00403DA2 /* Editor */,
+			);
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		001DAB8625D5F16B00403DA2 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				001DAB8725D5F1F600403DA2 /* MarkdownEditorView.swift */,
+				001DAB8B25D5F66300403DA2 /* MarkdownEditorViewModel.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		001DAB9025D6108300403DA2 /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				001DAB9125D6110100403DA2 /* SaveTextActivity.graphql */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
 		002D81282582F35700866A31 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +525,7 @@
 				00AF6F0E25C8E2A90061F73A /* ThreadSubscription.graphql */,
 				004C68B725C0EC10003FFD2D /* ToggleFollow.graphql */,
 				006C7847258C635600F80070 /* UpdateMediaListEntry.graphql */,
+				001DAB9025D6108300403DA2 /* Save */,
 			);
 			path = Mutations;
 			sourceTree = "<group>";
@@ -583,6 +626,14 @@
 				0072CD6225BA18D90061E70F /* MediaSummaryPropertyFavoritesView.swift */,
 			);
 			path = Props;
+			sourceTree = "<group>";
+		};
+		007B681F25D9AAA00072587D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				007B682025D9AAC60072587D /* GraphQLViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		007DDD9225C06FCE00CDA046 /* Sections */ = {
@@ -742,6 +793,7 @@
 			children = (
 				0031AC1625B76CFF0079DE28 /* Array+Distinct.swift */,
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
+				0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */,
 				0023345325ABE9E400E48267 /* Int+Abbreviation.swift */,
 				00FA0C4F2584F4D200A08117 /* String+Capitalize.swift */,
 				008AA07625CDC9380033CA59 /* GraphQL */,
@@ -756,7 +808,7 @@
 				00930D1025B09DC300067284 /* CharacterView.swift */,
 				00A8598425BB885400EDC7E2 /* CharacterViewModel.swift */,
 				00A8598825BBB28800EDC7E2 /* CharacterSummaryView.swift */,
-				00A8599025BBBAE400EDC7E2 /* Media */,
+				00A8599025BBBAE400EDC7E2 /* MediaList */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -827,13 +879,15 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		00A8599025BBBAE400EDC7E2 /* Media */ = {
+		00A8599025BBBAE400EDC7E2 /* MediaList */ = {
 			isa = PBXGroup;
 			children = (
-				00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */,
 				00A8599225BBBAFA00EDC7E2 /* CharacterMediaView.swift */,
+				00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */,
+				00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */,
+				00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */,
 			);
-			path = Media;
+			path = MediaList;
 			sourceTree = "<group>";
 		};
 		00AF6EEF25C8AE570061F73A /* Forums */ = {
@@ -887,6 +941,7 @@
 				00C5206725C6776F0035AD71 /* Markdown.graphql.swift */,
 				00C5206225C6776F0035AD71 /* Media.graphql.swift */,
 				00C5206125C6776F0035AD71 /* MediaEditor.graphql.swift */,
+				001DAB9525D6112500403DA2 /* SaveTextActivity.graphql.swift */,
 				001522C525C9E02700E0DF25 /* Thread.graphql.swift */,
 				00AF6F1125C8E2C60061F73A /* ThreadSubscription.graphql.swift */,
 				00C5206625C6776F0035AD71 /* ToggleFollow.graphql.swift */,
@@ -1021,6 +1076,7 @@
 				004C68DC25C12F23003FFD2D /* Studio */,
 				00AF6EFE25C8BA1E0061F73A /* Thread */,
 				0037153F256C140000F68734 /* User */,
+				001DAB8525D5F12500403DA2 /* Miscellaneous */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -1129,6 +1185,7 @@
 			files = (
 				00C520F025C7F7840035AD71 /* CreateOrUpdateActivity.graphql in Resources */,
 				00AF6F0F25C8E2A90061F73A /* ThreadSubscription.graphql in Resources */,
+				001DAB9225D6110100403DA2 /* SaveTextActivity.graphql in Resources */,
 				00C520CA25C7AF5F0035AD71 /* DeleteActivity.graphql in Resources */,
 				00C5209725C684D30035AD71 /* ActivityUnion.graphql in Resources */,
 				00C5209B25C6881C0035AD71 /* ActivityFeed.graphql in Resources */,
@@ -1173,6 +1230,7 @@
 				00C5208025C6828A0035AD71 /* ActivityListView.swift in Sources */,
 				0068782C25D4CBAE00FBC7FE /* RulesNoticeView.swift in Sources */,
 				0072CD4B25BA183B0061E70F /* MediaSummaryPropertyStartDateView.swift in Sources */,
+				001DAB9625D6112500403DA2 /* SaveTextActivity.graphql.swift in Sources */,
 				0080C13D25B6260A004624C9 /* MediaPropertyVolumesView.swift in Sources */,
 				0080C11525B5EF0D004624C9 /* MediaPropertyIDView.swift in Sources */,
 				0013191C25AAD59C00571CF3 /* MediaSummaryView.swift in Sources */,
@@ -1190,6 +1248,7 @@
 				0072CD3B25BA16560061E70F /* MediaSummaryPropertyAiringView.swift in Sources */,
 				008597B125D2051600C0FFDB /* CurrentUserStore.swift in Sources */,
 				00A8599325BBBAFA00EDC7E2 /* CharacterMediaView.swift in Sources */,
+				001DAB8C25D5F66300403DA2 /* MarkdownEditorViewModel.swift in Sources */,
 				0072CD5425BA187E0061E70F /* MediaSummaryPropertyEpisodesView.swift in Sources */,
 				00CC35B525C63A3F003523D7 /* UserNotificationListViewModel.swift in Sources */,
 				00C520F325C7F7A40035AD71 /* CreateOrUpdateActivity.graphql.swift in Sources */,
@@ -1204,6 +1263,7 @@
 				0095D82F25B4D31500B03D39 /* AuthorizationHeaderAddingInterceptor.swift in Sources */,
 				0080C14025B626DD004624C9 /* MediaPropertyCountryOfOriginView.swift in Sources */,
 				0080C14F25B63A49004624C9 /* MediaPropertyTwitterLinkView.swift in Sources */,
+				007B682125D9AAC60072587D /* GraphQLViewModel.swift in Sources */,
 				00C520C725C7A5BC0035AD71 /* ActivitySubscription.graphql.swift in Sources */,
 				007DDD9725C07F4800CDA046 /* UserAboutView.swift in Sources */,
 				004C68D725C12C5D003FFD2D /* UserFavoritesStaffListView.swift in Sources */,
@@ -1256,12 +1316,14 @@
 				00CC35BC25C63DC3003523D7 /* UserNotificationAiringView.swift in Sources */,
 				001522F725CB1F7900E0DF25 /* ThreadHeaderView.swift in Sources */,
 				00FA0C502584F4D200A08117 /* String+Capitalize.swift in Sources */,
+				00224D5425DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift in Sources */,
 				0072CD5D25BA18B60061E70F /* MediaSummaryPropertySourceView.swift in Sources */,
 				00AF6EFC25C8B5A10061F73A /* ForumsViewModel.swift in Sources */,
 				00C5207725C6776F0035AD71 /* Character.graphql.swift in Sources */,
 				0007F71025AE263D00C7E885 /* MediaRelationsView.swift in Sources */,
 				00C5208425C682980035AD71 /* ActivityTextView.swift in Sources */,
 				00C520E325C7CC200035AD71 /* ActivityReplyView.swift in Sources */,
+				0068782F25D4E99600FBC7FE /* GraphQLError+Identifiable.swift in Sources */,
 				00C520DD25C7BC590035AD71 /* ActivityReply.graphql.swift in Sources */,
 				00C5209325C684260035AD71 /* ActivityFeedViewModel.swift in Sources */,
 				00AF6EF125C8AE890061F73A /* ForumsView.swift in Sources */,
@@ -1276,6 +1338,7 @@
 				00C520A525C6898B0035AD71 /* ActivityFeed+Identifiable.swift in Sources */,
 				00C5206F25C6776F0035AD71 /* CurrentUser.graphql.swift in Sources */,
 				0080C12425B61171004624C9 /* MediaPropertyFormatView.swift in Sources */,
+				001DAB8825D5F1F600403DA2 /* MarkdownEditorView.swift in Sources */,
 				0080C16225B68864004624C9 /* MediaPropertySynonymsView.swift in Sources */,
 				0007F70A25AD506C00C7E885 /* MediaSummaryPropertiesView.swift in Sources */,
 				00C8C3A52587ED3000443135 /* MediaEditorFormCustomListView.swift in Sources */,
@@ -1316,6 +1379,7 @@
 				0080C13325B6183A004624C9 /* MediaPropertyEpisodesView.swift in Sources */,
 				004C68C025C10199003FFD2D /* UserFavoritesView.swift in Sources */,
 				007DDD9425C06FEA00CDA046 /* UserHeaderView.swift in Sources */,
+				00224D5725DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift in Sources */,
 				00C520B125C758730035AD71 /* AuthenticationView.swift in Sources */,
 				0095D83625B4D3BF00B03D39 /* NilAwareRequestBodyCreator.swift in Sources */,
 				00AF6F0025C8BA2C0061F73A /* ThreadView.swift in Sources */,

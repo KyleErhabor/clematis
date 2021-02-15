@@ -70,9 +70,8 @@ class CurrentUserStore: NSObject, ObservableObject {
     /// Prompts the user to sign in.
     ///
     /// When this method is called, the user will be prompted to sign in with their AniList account. This utilizes the `AuthenticationServices` framework to
-    /// make authentication seamless and quick for users who may already be signed in.
-    ///
-    /// The authorization flow is strictly enforced to prevent vendors from mimicking a sign in attempt.
+    /// make authentication seamless and quick for users who may already be signed in. The authorization flow is strictly enforced to prevent vendors from
+    /// mimicking a sign in attempt.
     ///
     /// 1. The app must have a bundle identifier.
     ///
@@ -100,7 +99,6 @@ class CurrentUserStore: NSObject, ObservableObject {
         }
 
         var components = URLComponents()
-
         components.scheme = "https"
         components.host = "anilist.co"
         components.path = "/api/v2/oauth/authorize"
@@ -118,10 +116,6 @@ class CurrentUserStore: NSObject, ObservableObject {
                 url: url,
                 callbackURLScheme: scheme
             ) { url, err in
-                // TODO: Handle the case where AniList may reject access.
-
-                // All of the error messages are likely going to be cryptic to the user (including our own), so it's
-                // best for implementers to use the `error` property as a boolean rather than its value.
                 if let err = err {
                     promise(.failure(err))
 

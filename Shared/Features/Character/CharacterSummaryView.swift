@@ -8,46 +8,46 @@
 import SDWebImageSwiftUI
 import SwiftUI
 
+/// A view for displaying a summary of a character (image, name, alternative names, description).
 struct CharacterSummaryView: View {
+    /// The view model from the `CharacterView`.
     @EnvironmentObject private var viewModel: CharacterViewModel
 
     var body: some View {
-        HStack(alignment: .top) {
-            WebImage(url: URL(string: viewModel.character?.image?.large ?? ""))
-                .resizable()
-                .placeholder { Color.accentColor }
-                .scaledToFill()
-                .frame(width: 160)
-                .clipped()
-                .cornerRadius(4)
+        VStack(alignment: .leading) {
+            HStack(alignment: .top) {
+                VStack {
+                    WebImage(url: URL(string: viewModel.character?.image?.large ?? ""))
+                        .resizable()
+                        .placeholder { Color.accentColor }
+                        .scaledToFill()
+                        .frame(width: 160, height: 240)
+                        .clipped()
+                        .cornerRadius(4)
 
-            VStack(alignment: .leading) {
-                Text("\(viewModel.character?.name?.native ?? "")")
-                    .font(.title)
-                    .bold()
-
-                ForEach(viewModel.character?.name?.alternative?.compactMap { $0 } ?? [], id: \.self) { name in
-                    Text(name)
-                        .font(.system(.headline, design: .rounded))
-                        .foregroundColor(.secondary)
                 }
+
+                VStack(alignment: .leading) {
+                    Text("\(viewModel.character?.name?.native ?? "")")
+                        .font(.title)
+                        .bold()
+
+                    // FIXME: The divider above the description cuts under the character image if there are no
+                    // alternative names.
+                    ForEach(viewModel.character?.name?.alternative?.compactMap { $0 } ?? [], id: \.self) { name in
+                        Text(name)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                Spacer()
             }
 
-            Spacer()
-        }.animation(.default)
-        .frame(height: 240)
-        .padding(.bottom)
+            Divider()
 
-        Divider()
+            Text("\(viewModel.character?.description ?? "")")
 
-        Text("\(viewModel.character?.description ?? "")")
-
-        Divider()
-    }
-}
-
-struct CharacterSummaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterSummaryView()
+            Divider()
+        }
     }
 }

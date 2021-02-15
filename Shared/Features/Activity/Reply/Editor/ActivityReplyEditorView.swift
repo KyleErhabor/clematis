@@ -10,7 +10,7 @@ import SwiftUI
 struct ActivityReplyEditorView: View {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var viewModel: ActivityReplyListViewModel
-    @EnvironmentObject private var currentUser: CurrentUser
+    @EnvironmentObject private var userStore: CurrentUserStore
     @State private var text = ""
     private(set) var reply: ActivityReplyFragment?
 
@@ -23,7 +23,7 @@ struct ActivityReplyEditorView: View {
 
                 if text != "" {
                     let user: ActivityReplyFragment.User? = {
-                        if let user = currentUser.users.first {
+                        if let user = userStore.users.first {
                             return .init(id: user.id, name: user.name, avatar: .init(large: user.avatar?.large))
                         }
 

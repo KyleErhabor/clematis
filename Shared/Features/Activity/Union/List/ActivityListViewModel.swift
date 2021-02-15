@@ -5,13 +5,14 @@
 //  Created by Kyle Erhabor on 1/31/21.
 //
 
-import Foundation
+import Apollo
+import Combine
 
 /// A view model representing a list activity.
 ///
 /// A list activity (`ListActivityFragment`) represents an activity update from the user's anime & manga list. By default, all anime & manga list updates are
 /// posted to a flowing activity feed. However, the results are filtered to only include activities that have at least one reply.
-class ActivityListViewModel: ObservableObject {
+class ActivityListViewModel: GraphQLViewModel, ObservableObject {
     /// The list activity this view model belongs to.
     @Published private(set) var activity: ListActivityFragment
 
@@ -28,16 +29,24 @@ class ActivityListViewModel: ObservableObject {
     ///
     /// - Important: The current user must own this text activity to delete it.
     func delete() {
-        GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: activity.id)) { result in
-            switch result {
-                case let .success(query):
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+        Future<Void, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: self.activity.id)) { result in
+                switch result {
+                    case let .success(query):
+                        if query.data?.deleteActivity?.deleted == true {
+                            promise(.success(()))
+                        }
+
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) {
+            // TODO: https://github.com/LiteLT/Amincapp-Apple/issues/5
+        }.store(in: &cancellables)
     }
 
     /// Toggle the like state for this activity.
@@ -47,21 +56,25 @@ class ActivityListViewModel: ObservableObject {
     ///
     /// - Warning: `activity.likes` is not updated due to the API always returning `nil` in the query fields.
     func like() {
-        GraphQLNetwork.shared.perform(mutation: LikeMutation(id: activity.id, type: .activity)) { result in
-            switch result {
-                case let .success(query):
-                    if let like = query.data?.toggleLikeV2?.asTextActivity {
-                        self.activity.isLiked = like.isLiked
-                        self.activity.likeCount = like.likeCount
-                    }
+        Future<LikeMutation.Data.ToggleLikeV2.AsListActivity, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: LikeMutation(id: self.activity.id, type: .activity)) { result in
+                switch result {
+                    case let .success(query):
+                        if let like = query.data?.toggleLikeV2?.asListActivity {
+                            promise(.success(like))
+                        }
 
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) { like in
+            self.activity.isLiked = like.isLiked
+            self.activity.likeCount = like.likeCount
+        }.store(in: &cancellables)
     }
 
     /// Toggle the subscription state for this activity.
@@ -69,22 +82,26 @@ class ActivityListViewModel: ObservableObject {
     /// A user can subscribe to notifications from an activity for updates (such as when a new reply is posted). If the user's subscription state is `nil`, this
     /// method will try to subscribe to new notifications.
     func subscribe() {
-        GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
-            id: self.activity.id,
-            subscribe: !(self.activity.isSubscribed ?? false)
-        )) { result in
-            switch result {
-                case let .success(query):
-                    if let isSubscribed = query.data?.toggleActivitySubscription?.asTextActivity?.isSubscribed {
-                        self.activity.isSubscribed = isSubscribed
-                    }
+        Future<Bool, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
+                id: self.activity.id,
+                subscribe: !(self.activity.isSubscribed ?? false)
+            )) { result in
+                switch result {
+                    case let .success(query):
+                        if let isSubscribed = query.data?.toggleActivitySubscription?.asListActivity?.isSubscribed {
+                            promise(.success(isSubscribed))
+                        }
 
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) { isSubscribed in
+            self.activity.isSubscribed = isSubscribed
+        }.store(in: &cancellables)
     }
 }

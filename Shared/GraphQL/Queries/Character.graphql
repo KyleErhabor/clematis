@@ -1,6 +1,5 @@
-query Character($id: Int!, $mediaPage: Int) {
+query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
   Character(id: $id) {
-    id
     favourites
     isFavourite
     description(asHtml: true)
@@ -12,9 +11,10 @@ query Character($id: Int!, $mediaPage: Int) {
       native
       alternative
     }
-    media(page: $mediaPage) {
+    media(sort: $mediaSort, page: $mediaPage) {
       pageInfo {
         total
+        currentPage
         hasNextPage
       }
       edges {

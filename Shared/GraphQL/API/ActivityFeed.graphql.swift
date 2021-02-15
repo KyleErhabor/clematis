@@ -8,11 +8,12 @@ public final class ActivityFeedQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query ActivityFeed($page: Int, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
+    query ActivityFeed($page: Int!, $isFollowing: Boolean!, $hasRepliesOrTypeText: Boolean!) {
       Page(page: $page) {
         __typename
         pageInfo {
           __typename
+          currentPage
           hasNextPage
         }
         activities(
@@ -43,11 +44,11 @@ public final class ActivityFeedQuery: GraphQLQuery {
     return document
   }
 
-  public var page: Int?
+  public var page: Int
   public var isFollowing: Bool
   public var hasRepliesOrTypeText: Bool
 
-  public init(page: Int? = nil, isFollowing: Bool, hasRepliesOrTypeText: Bool) {
+  public init(page: Int, isFollowing: Bool, hasRepliesOrTypeText: Bool) {
     self.page = page
     self.isFollowing = isFollowing
     self.hasRepliesOrTypeText = hasRepliesOrTypeText
@@ -140,6 +141,7 @@ public final class ActivityFeedQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("currentPage", type: .scalar(Int.self)),
             GraphQLField("hasNextPage", type: .scalar(Bool.self)),
           ]
         }
@@ -150,8 +152,8 @@ public final class ActivityFeedQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(hasNextPage: Bool? = nil) {
-          self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage])
+        public init(currentPage: Int? = nil, hasNextPage: Bool? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PageInfo", "currentPage": currentPage, "hasNextPage": hasNextPage])
         }
 
         public var __typename: String {
@@ -160,6 +162,16 @@ public final class ActivityFeedQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        /// The current page
+        public var currentPage: Int? {
+          get {
+            return resultMap["currentPage"] as? Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "currentPage")
           }
         }
 

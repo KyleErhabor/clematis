@@ -40,6 +40,13 @@ struct ActivityListView: View {
                         .clipped()
                         .cornerRadius(4)
                 }.animation(.default)
+                .alert(item: $viewModel.error) { err in
+                    Alert(
+                        title: Text("Error"),
+                        message: Text("\(err.message ?? "An unknown error has occurred.")"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
             }
 
             VStack(alignment: .leading) {
@@ -94,48 +101,39 @@ struct ActivityListView: View {
                         Label("\(viewModel.activity.replyCount)", systemImage: "bubble.left")
                     }
                 }
+            }.alert(item: $alert) { alert in
+                switch alert {
+                    case .activityDeletion:
+                        return Alert(
+                            title: Text("Are you sure you want to delete this activity?"),
+                            message: Text("This action cannot be undone."),
+                            primaryButton: .destructive(Text("Delete")) {
+                                viewModel.delete()
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    case .mediaLocked:
+                        return Alert(
+                            title: Text("Anime/Manga Locked"),
+                            message: Text("This anime/manga is locked and cannot be added to lists."),
+                            dismissButton: .default(Text("OK"))
+                        )
+                }
             }
         }.frame(height: 138)
         .contextMenu {
             ActivityListContextView(sheet: $sheet, alert: $alert)
-        }.alert(item: $alert) { alert in
-            switch alert {
-                case .activityDeletion:
-                    return Alert(
-                        title: Text("Are you sure you want to delete this activity?"),
-                        message: Text("This action cannot be undone."),
-                        primaryButton: .destructive(Text("Delete")) {
-                            viewModel.delete()
-                        },
-                        secondaryButton: .cancel()
-                    )
-                case .activityLocked:
-                    return Alert(
-                        title: Text("Activity Locked"),
-                        message: Text("This activity is locked and cannot receive new replies."),
-                        dismissButton: .default(Text("OK"))
-                    )
-                case .mediaLocked:
-                    return Alert(
-                        title: Text("Anime/Manga Locked"),
-                        message: Text("This anime/manga is locked and cannot be added to lists."),
-                        dismissButton: .default(Text("OK"))
-                    )
-            }
         }.sheet(item: $sheet) { sheet in
             switch sheet {
                 case .likes:
                     let users = viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? []
 
                     LikeNavigationView(users: users)
-                        .environmentObject(userStore)
                 case .listEditor:
                     if let id = viewModel.activity.media?.id {
                         MediaEditorView(viewModel: .init(id: id))
                             .environmentObject(userStore)
                     }
-                case .reply:
-                    ActivityReplyEditorView()
             }
         }.environmentObject(viewModel)
     }
@@ -156,17 +154,9 @@ fileprivate struct ActivityListContextView: View {
     @Binding var alert: ActivityListViewAlert?
 
     var body: some View {
+        // FIXME: We can't use a button that presents an sheet for creating or editing a reply because it always causes
+        // the app to crash.
         if userStore.isSignedIn {
-            Button {
-                if viewModel.activity.isLocked == true {
-                    alert = .activityLocked
-                } else {
-                    sheet = .reply
-                }
-            } label: {
-                Label("Reply", systemImage: "arrowshape.turn.up.left")
-            }
-
             Button {
                 if viewModel.activity.media?.isLocked == true {
                     alert = .mediaLocked
@@ -178,7 +168,7 @@ fileprivate struct ActivityListContextView: View {
             }
         }
 
-        if viewModel.activity.likes?.count != 0 {
+        if viewModel.activity.likes?.isEmpty == false {
             Button {
                 sheet = .likes
             } label: {
@@ -211,9 +201,6 @@ fileprivate enum ActivityListViewAlert: Int, Identifiable {
     /// Prompt the user to confirm if they wish to delete the activity.
     case activityDeletion
 
-    /// Deny the user permission to write a reply on this activity due to it being locked.
-    case activityLocked
-
     /// Deny the user permission to add this anime/manga to their list due to it being locked and pending deletion.
     case mediaLocked
 
@@ -227,9 +214,6 @@ fileprivate enum ActivityListViewSheet: Int, Identifiable {
 
     /// A sheet for the user to add, modify, or delete the anime/manga this activity references on/from their list.
     case listEditor
-
-    /// A sheet for the user to add a reply for this activity.
-    case reply
 
     var id: Int { rawValue }
 }

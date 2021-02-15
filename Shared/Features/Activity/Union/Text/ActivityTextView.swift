@@ -12,16 +12,18 @@ struct ActivityTextView: View {
     /// The view model for the text activity.
     @StateObject var viewModel: ActivityTextViewModel
 
-    /// A state detailing whether to present an alert confirming if the user wants to delete this activity.
+    /// A state indicating whether to present an alert confirming if the user wants to delete this activity.
     @State private var isPresentingAlert = false
 
-    /// A state detailing whether to present the list of users who liked this activity.
-    @State private var isPresentingSheet = false
+    /// A state indicating whether to present the list of users who liked this activity.
+    @State private var sheet: ActivityTextViewSheet?
 
+    /// A state indicating whether to show all the contents of the message. When `false`, only 8 lines are shown.
+    @State private var isExpanded = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 let creationDate = Date(timeIntervalSince1970: TimeInterval(viewModel.activity.createdAt))
 
                 if let user = viewModel.activity.user?.fragments.userPreviewFragment {
@@ -33,12 +35,29 @@ struct ActivityTextView: View {
                 Text("\(creationDate, formatter: RelativeDateTimeFormatter())")
                     .font(.caption)
                     .foregroundColor(.secondary)
+            }.alert(isPresented: $isPresentingAlert) {
+                Alert(
+                    title: Text("Are you sure you want to delete this activity?"),
+                    message: Text("This action cannot be undone."),
+                    primaryButton: .destructive(Text("Delete")) {
+                        viewModel.delete()
+                    },
+                    secondaryButton: .cancel()
+                )
             }
 
             Text("\(viewModel.activity.text ?? "")")
+                .lineLimit(isExpanded ? nil : 8)
                 .fixedSize(horizontal: false, vertical: true)
+                .id(UUID())
 
             HStack {
+                Button(isExpanded ? "Read Less" : "Read More") {
+                    withAnimation {
+                        isExpanded.toggle()
+                    }
+                }
+
                 Spacer()
 
                 Button {
@@ -53,19 +72,24 @@ struct ActivityTextView: View {
                     Label("\(viewModel.activity.replyCount)", systemImage: "bubble.left")
                 }
             }.padding(.top, 2)
+            .alert(item: $viewModel.error) { err in
+                Alert(
+                    title: Text("Error"),
+                    message: Text("\(err.message ?? "An unknown error has occurred.")"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }.contextMenu {
-            ActivityTextContextView(isPresentingAlert: $isPresentingAlert, isPresentingSheet: $isPresentingSheet)
-        }.alert(isPresented: $isPresentingAlert) {
-            Alert(
-                title: Text("Are you sure you want to delete this activity?"),
-                message: Text("This action cannot be undone."),
-                primaryButton: .destructive(Text("Delete")) {
-                    viewModel.delete()
-                },
-                secondaryButton: .cancel()
-            )
-        }.sheet(isPresented: $isPresentingSheet) {
-            LikeNavigationView(users: viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? [])
+            ActivityTextContextView(isPresentingAlert: $isPresentingAlert, sheet: $sheet)
+        }.sheet(item: $sheet) { sheet in
+            switch sheet {
+                case .editor:
+                    MarkdownEditorView(viewModel: viewModel, text: viewModel.activity.text ?? "")
+                case .likes:
+                    let users = viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? []
+
+                    LikeNavigationView(users: users)
+            }
         }.environmentObject(viewModel)
     }
 }
@@ -75,47 +99,64 @@ fileprivate struct ActivityTextContextView: View {
     /// The view model from the parent `ActivityTextView` view.
     @EnvironmentObject private var viewModel: ActivityTextViewModel
 
-    /// The model object representing the list of authenticated users in the app.
-    @EnvironmentObject private var currentUser: CurrentUser
+    /// The global environment object for user accounts logged in.
+    @EnvironmentObject private var userStore: CurrentUserStore
 
     /// A binding detailing whether to present an alert confirming if the user wants to delete this activity.
     @Binding var isPresentingAlert: Bool
 
     /// A binding detailing whether to present the list of users who liked this activity.
-    @Binding var isPresentingSheet: Bool
+    @Binding var sheet: ActivityTextViewSheet?
 
     var body: some View {
-        Button {
-            viewModel.like()
-        } label: {
-            let isLiked = viewModel.activity.isLiked == true
+        let isActivityOwner = userStore.users.first?.id == viewModel.activity.user?.fragments.userPreviewFragment.id
 
-            Label(isLiked ? "Unlike" : "Like", systemImage: isLiked ? "heart.fill" : "heart")
-        }
-
-        Button {
-            viewModel.subscribe()
-        } label: {
-            let isSubscribed = viewModel.activity.isSubscribed == true
-
-            Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
-        }
-
-        if (viewModel.activity.likes?.count ?? 0) > 0 {
+        if isActivityOwner {
             Button {
-                isPresentingSheet = true
+                sheet = .editor
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+        }
+
+        if viewModel.activity.likes?.isEmpty == false {
+            Button {
+                sheet = .likes
             } label: {
                 Label("See Likes", systemImage: "list.bullet")
             }
         }
 
-        if currentUser.users.first?.id == viewModel.activity.user?.fragments.userPreviewFragment.id {
+        if userStore.isSignedIn {
+            Button {
+                viewModel.subscribe()
+            } label: {
+                let isSubscribed = viewModel.activity.isSubscribed == true
+
+                Label(isSubscribed ? "Unsubscribe" : "Subscribe", systemImage: isSubscribed ? "bell.fill" : "bell")
+            }
+        }
+
+        if isActivityOwner {
             Button {
                 isPresentingAlert = true
             } label: {
                 Label("Delete", systemImage: "trash")
             }
         }
+    }
+}
+
+/// An enum to represent what kind of view to represent for the `ActivityTextView` view.
+fileprivate enum ActivityTextViewSheet: Int, Identifiable {
+    /// A sheet for editing the contents of the text activity.
+    case editor
+
+    /// A sheet for displaying the list of users who liked this activity.
+    case likes
+
+    var id: Int {
+        rawValue
     }
 }
 

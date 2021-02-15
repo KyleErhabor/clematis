@@ -5,7 +5,8 @@
 //  Created by Kyle Erhabor on 2/7/21.
 //
 
-import Foundation
+import Apollo
+import Combine
 
 /// A view model representing a text activity.
 ///
@@ -15,6 +16,12 @@ import Foundation
 class ActivityTextViewModel: ObservableObject {
     /// The text activity this view model belongs to.
     @Published private(set) var activity: TextActivityFragment
+
+    /// An error that occurred during some operation.
+    @Published var error: GraphQLError?
+
+    /// An array of pending cancellables.
+    private var cancellables = [AnyCancellable]()
 
     /// Initializes the view model.
     /// - Parameter activity: The text activity this view model belongs to.
@@ -29,16 +36,24 @@ class ActivityTextViewModel: ObservableObject {
     ///
     /// - Important: The current user must own this text activity to delete it.
     func delete() {
-        GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: activity.id)) { result in
-            switch result {
-                case let .success(query):
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+        Future<Void, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: DeleteActivityMutation(id: self.activity.id)) { result in
+                switch result {
+                    case let .success(query):
+                        if query.data?.deleteActivity?.deleted == true {
+                            promise(.success(()))
+                        }
+
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) {
+            // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/5
+        }.store(in: &cancellables)
     }
 
     /// Toggle the like state for this activity.
@@ -48,21 +63,25 @@ class ActivityTextViewModel: ObservableObject {
     ///
     /// - Warning: `activity.likes` is not updated due to the API always returning `nil` in the query fields.
     func like() {
-        GraphQLNetwork.shared.perform(mutation: LikeMutation(id: activity.id, type: .activity)) { result in
-            switch result {
-                case let .success(query):
-                    if let like = query.data?.toggleLikeV2?.asTextActivity {
-                        self.activity.isLiked = like.isLiked
-                        self.activity.likeCount = like.likeCount
-                    }
+        Future<LikeMutation.Data.ToggleLikeV2.AsTextActivity, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: LikeMutation(id: self.activity.id, type: .activity)) { result in
+                switch result {
+                    case let .success(query):
+                        if let like = query.data?.toggleLikeV2?.asTextActivity {
+                            promise(.success(like))
+                        }
 
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) { like in
+            self.activity.isLiked = like.isLiked
+            self.activity.likeCount = like.likeCount
+        }.store(in: &cancellables)
     }
 
     /// Toggle the subscription state for  this activity.
@@ -70,22 +89,68 @@ class ActivityTextViewModel: ObservableObject {
     /// A user can subscribe to notifications from an activity for updates (such as when a new reply is posted). If the user's subscription state is `nil`, this
     /// method will try to subscribe to new notifications.
     func subscribe() {
-        GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
-            id: self.activity.id,
-            subscribe: !(self.activity.isSubscribed ?? false)
-        )) { result in
-            switch result {
-                case let .success(query):
-                    if let isSubscribed = query.data?.toggleActivitySubscription?.asTextActivity?.isSubscribed {
-                        self.activity.isSubscribed = isSubscribed
-                    }
+        Future<Bool, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: ActivitySubscriptionMutation(
+                id: self.activity.id,
+                subscribe: !(self.activity.isSubscribed ?? false)
+            )) { result in
+                switch result {
+                    case let .success(query):
+                        if let isSubscribed = query.data?.toggleActivitySubscription?.asTextActivity?.isSubscribed {
+                            promise(.success(isSubscribed))
+                        }
 
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
+        }.sink(receiveCompletion: completion) { isSubscribed in
+            self.activity.isSubscribed = isSubscribed
+        }.store(in: &cancellables)
+    }
+
+    /// The completion handler for combine's `.sink(receiveCompletion:receiveValue:)` subscriber.
+    ///
+    /// The completion handler checks if the subscriber finished abnormally. If it did, the `error` property is set to the error so the view can handle the error
+    /// accordingly (often displaying the error to the user).
+    ///
+    /// - Parameter completion: The completion instance.
+    private func completion(_ completion: Subscribers.Completion<GraphQLError>) {
+        if case let .failure(err) = completion {
+            self.error = err
         }
+    }
+}
+
+extension ActivityTextViewModel: MarkdownEditorViewModel {
+    var name: String {
+        "Text"
+    }
+
+    func save(text: String) {
+        Future<TextActivityFragment, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: SaveTextActivityMutation(
+                id: self.activity.id,
+                text: text
+            )) { result in
+                switch result {
+                    case let .success(query):
+                        if let activity = query.data?.saveTextActivity?.fragments.textActivityFragment {
+                            promise(.success(activity))
+                        }
+
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
+            }
+        }.sink(receiveCompletion: completion) { activity in
+            self.activity = activity
+        }.store(in: &cancellables)
     }
 }
