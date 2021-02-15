@@ -44,8 +44,7 @@ struct CharacterMediaListView: View {
 
     /// Filters a media edge.
     ///
-    /// The filter verifies if the edge is not `nil` and, if the user hasn't opted in to displaying adult content, if the
-    /// anime/manga isn't for adults only.
+    /// The filter verifies if the edge is not `nil` and, if the user hasn't opted in to displaying adult content, if the anime/manga isn't for adults only.
     /// - Parameter edge: The edge containing the anime/manga.
     /// - Returns: The edge, if it passes the filter.
     func filterEdges(edge: CharacterMediaEdge?) -> CharacterMediaEdge? {

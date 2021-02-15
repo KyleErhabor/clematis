@@ -66,7 +66,7 @@ fileprivate struct MediaEditorFormView: View {
     var body: some View {
         Form {
             let media = viewModel.media!
-            let listOptions = currentUser.users[0].mediaListOptions!
+            let listOptions = currentUser.users.first?.mediaListOptions
 
             Section(header: Text("Overview")) {
                 MediaEditorFormOverviewView()
@@ -76,41 +76,41 @@ fileprivate struct MediaEditorFormView: View {
                 MediaEditorFormProgressView()
             }.animation(.default)
 
-            if let scoreFormat = listOptions.scoreFormat {
-                if scoreFormat == .point_10Decimal || scoreFormat == .point_100 {
-                    let animeList = listOptions.animeList!
-
-                    if media.type == .anime && animeList.advancedScoringEnabled == true
-                        && !animeList.advancedScoring!.isEmpty {
-                        Section(header: Text("Advanced Scores")) {
-                            MediaEditorFormAdvancedScoresView()
-                        }.animation(.default)
-                    }
-
-                    let mangaList = listOptions.mangaList!
-
-                    if media.type == .manga && mangaList.advancedScoringEnabled == true
-                        && !mangaList.advancedScoring!.isEmpty {
-                        Section(header: Text("Advanced Scores")) {
-                            MediaEditorFormAdvancedScoresView()
-                        }.animation(.default)
-                    }
-                }
-            }
-
-            // Using `else if` instead of a seprate `if` causes the Swift compiler to choke (type-checking in
-            // reasonable time error).
-            if media.type == .anime && !listOptions.animeList!.customLists!.isEmpty {
-                Section(header: Text("Custom Lists")) {
-                    MediaEditorFormCustomListView()
-                }.animation(.default)
-            }
-
-            if media.type == .manga && !listOptions.mangaList!.customLists!.isEmpty {
-                Section(header: Text("Custom Lists")) {
-                    MediaEditorFormCustomListView()
-                }.animation(.default)
-            }
+//            if let scoreFormat = listOptions?.scoreFormat {
+//                if scoreFormat == .point_10Decimal || scoreFormat == .point_100 {
+//                    let animeList = listOptions?.animeList!
+//
+//                    if media.type == .anime && animeList?.advancedScoringEnabled == true
+//                        && !animeList.advancedScoring!.isEmpty {
+//                        Section(header: Text("Advanced Scores")) {
+//                            MediaEditorFormAdvancedScoresView()
+//                        }.animation(.default)
+//                    }
+//
+//                    let mangaList = listOptions?.mangaList!
+//
+//                    if media.type == .manga && mangaList?.advancedScoringEnabled == true
+//                        && !mangaList?.advancedScoring!.isEmpty {
+//                        Section(header: Text("Advanced Scores")) {
+//                            MediaEditorFormAdvancedScoresView()
+//                        }.animation(.default)
+//                    }
+//                }
+//            }
+//
+//            // Using `else if` instead of a seprate `if` causes the Swift compiler to choke (type-checking in
+//            // reasonable time error).
+//            if media.type == .anime && !listOptions?.animeList!.customLists!.isEmpty {
+//                Section(header: Text("Custom Lists")) {
+//                    MediaEditorFormCustomListView()
+//                }.animation(.default)
+//            }
+//
+//            if media.type == .manga && !listOptions?.mangaList!.customLists!.isEmpty {
+//                Section(header: Text("Custom Lists")) {
+//                    MediaEditorFormCustomListView()
+//                }.animation(.default)
+//            }
 
             Section(header: Text("Notes")) {
                 MediaEditorFormNotesView()

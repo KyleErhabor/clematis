@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view for displaying an expanded `CharacterMediaListView`, showing all anime/manga and featuring pagination support.
 struct CharacterMediaListExpandedView: View {
     /// The global environment object for users.
     @EnvironmentObject private var userStore: CurrentUserStore
@@ -14,6 +15,7 @@ struct CharacterMediaListExpandedView: View {
     /// The view model from the `CharacterView`.
     @EnvironmentObject private var viewModel: CharacterViewModel
 
+    /// A state indicating whether to present the filter sheet or not.
     @State private var isPresenting = false
 
     var body: some View {
@@ -52,14 +54,16 @@ struct CharacterMediaListExpandedView: View {
                 }
             }
         }.sheet(isPresented: $isPresenting) {
+            viewModel.load()
+        } content: {
             CharacterMediaListExpandedFilterView()
+                .environmentObject(viewModel)
         }
     }
 
     /// Filters a media edge.
     ///
-    /// The filter verifies if the edge is not `nil` and, if the user hasn't opted in to displaying adult content, if the
-    /// anime/manga isn't for adults only.
+    /// The filter verifies if the edge is not `nil` and, if the user hasn't opted in to displaying adult content, if the anime/manga isn't for adults only.
     /// - Parameter edge: The edge containing the anime/manga.
     /// - Returns: The edge, if it passes the filter.
     func filterEdges(edge: CharacterMediaEdge?) -> CharacterMediaEdge? {

@@ -8,7 +8,6 @@
 import SDWebImageSwiftUI
 import SwiftUI
 
-// Used in CharacterMediaListView and CharacterMediaView.
 typealias CharacterMediaEdge = CharacterQuery.Data.Character.Medium.Edge
 
 /// A view for displaying a character.

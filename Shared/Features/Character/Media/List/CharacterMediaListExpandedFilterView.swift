@@ -22,14 +22,22 @@ struct CharacterMediaListExpandedFilterView: View {
         NavigationView {
             Form {
                 Section(header: Text("Overview")) {
+                    // Picker's `selection` argument takes a `Binding<Bool>`, but we want to work with a
+                    // `Binding<Bool?>`
+                    let onListBinding = Binding {
+                        viewModel.isOnList ?? false
+                    } set: { bool in
+                        viewModel.isOnList = bool == true ? true : nil
+                    }
+
                     Picker("Type", selection: $viewModel.mediaType) {
                         ForEach(MediaType.allCases, id: \.rawValue) { type in
                             Text("\(type.rawValue.capitalized)")
-                                .tag(type as MediaType)
+                                .tag(type as MediaType?)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
 
-                    Toggle("On My List", isOn: $viewModel.isOnList)
+                    Toggle("On My List", isOn: onListBinding)
 
                     Picker("Sort", selection: $viewModel.mediaSort) {
                         // TODO: Sort by the user's preferred title rather than just English

@@ -381,51 +381,45 @@ public enum MediaSort: RawRepresentable, Equatable, Hashable, CaseIterable, Apol
   }
 }
 
-/// The role the character plays in the media
-public enum CharacterRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+/// Media type enum, anime or manga.
+public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
-  /// A primary character role in the media
-  case main
-  /// A supporting character role in the media
-  case supporting
-  /// A background character in the media
-  case background
+  /// Japanese Anime
+  case anime
+  /// Asian comic
+  case manga
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
-      case "MAIN": self = .main
-      case "SUPPORTING": self = .supporting
-      case "BACKGROUND": self = .background
+      case "ANIME": self = .anime
+      case "MANGA": self = .manga
       default: self = .__unknown(rawValue)
     }
   }
 
   public var rawValue: RawValue {
     switch self {
-      case .main: return "MAIN"
-      case .supporting: return "SUPPORTING"
-      case .background: return "BACKGROUND"
+      case .anime: return "ANIME"
+      case .manga: return "MANGA"
       case .__unknown(let value): return value
     }
   }
 
-  public static func == (lhs: CharacterRole, rhs: CharacterRole) -> Bool {
+  public static func == (lhs: MediaType, rhs: MediaType) -> Bool {
     switch (lhs, rhs) {
-      case (.main, .main): return true
-      case (.supporting, .supporting): return true
-      case (.background, .background): return true
+      case (.anime, .anime): return true
+      case (.manga, .manga): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
   }
 
-  public static var allCases: [CharacterRole] {
+  public static var allCases: [MediaType] {
     return [
-      .main,
-      .supporting,
-      .background,
+      .anime,
+      .manga,
     ]
   }
 }
@@ -521,6 +515,55 @@ public enum StaffLanguage: RawRepresentable, Equatable, Hashable, CaseIterable, 
   }
 }
 
+/// The role the character plays in the media
+public enum CharacterRole: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// A primary character role in the media
+  case main
+  /// A supporting character role in the media
+  case supporting
+  /// A background character in the media
+  case background
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "MAIN": self = .main
+      case "SUPPORTING": self = .supporting
+      case "BACKGROUND": self = .background
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .main: return "MAIN"
+      case .supporting: return "SUPPORTING"
+      case .background: return "BACKGROUND"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: CharacterRole, rhs: CharacterRole) -> Bool {
+    switch (lhs, rhs) {
+      case (.main, .main): return true
+      case (.supporting, .supporting): return true
+      case (.background, .background): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [CharacterRole] {
+    return [
+      .main,
+      .supporting,
+      .background,
+    ]
+  }
+}
+
 /// Media list scoring type
 public enum ScoreFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
@@ -578,49 +621,6 @@ public enum ScoreFormat: RawRepresentable, Equatable, Hashable, CaseIterable, Ap
       .point_10,
       .point_5,
       .point_3,
-    ]
-  }
-}
-
-/// Media type enum, anime or manga.
-public enum MediaType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  /// Japanese Anime
-  case anime
-  /// Asian comic
-  case manga
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
-
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "ANIME": self = .anime
-      case "MANGA": self = .manga
-      default: self = .__unknown(rawValue)
-    }
-  }
-
-  public var rawValue: RawValue {
-    switch self {
-      case .anime: return "ANIME"
-      case .manga: return "MANGA"
-      case .__unknown(let value): return value
-    }
-  }
-
-  public static func == (lhs: MediaType, rhs: MediaType) -> Bool {
-    switch (lhs, rhs) {
-      case (.anime, .anime): return true
-      case (.manga, .manga): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
-    }
-  }
-
-  public static var allCases: [MediaType] {
-    return [
-      .anime,
-      .manga,
     ]
   }
 }

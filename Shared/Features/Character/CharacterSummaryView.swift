@@ -24,8 +24,7 @@ struct CharacterSummaryView: View {
                         .frame(width: 160, height: 240)
                         .clipped()
                         .cornerRadius(4)
-
-                }
+                }.animation(.default)
 
                 VStack(alignment: .leading) {
                     Text("\(viewModel.character?.name?.native ?? "")")

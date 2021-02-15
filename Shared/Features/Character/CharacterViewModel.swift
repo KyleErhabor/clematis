@@ -23,10 +23,11 @@ class CharacterViewModel: GraphQLViewModel, ObservableObject {
     /// By default, this value is `nil` (representing no filter).
     @Published var mediaType: MediaType?
 
-    /// If to filter for media on the current user's list.
+    /// If to filter anime/manga associated with the character against the current user's list.
     ///
-    /// Defaults to `nil`.
-    @Published var isOnList = false
+    /// This property is a filter for if the anime/manga is on the current user's list. `false` indicates any anime not on the user's list, while `true` indicates
+    /// anime only on the user's list. The default value is `nil`, excluding the filter.
+    @Published var isOnList: Bool?
 
     /// The voice actor's language to filter for.
     ///
@@ -52,7 +53,10 @@ class CharacterViewModel: GraphQLViewModel, ObservableObject {
             GraphQLNetwork.shared.fetch(query: CharacterQuery(
                 id: self.id,
                 mediaPage: 1,
-                mediaSort: [self.mediaSort]
+                mediaSort: [self.mediaSort],
+                mediaType: self.mediaType,
+                onList: self.isOnList,
+                staffLanguage: self.voiceActorLanguage
             )) { result in
                 switch result {
                     case let .success(query):
@@ -87,7 +91,10 @@ class CharacterViewModel: GraphQLViewModel, ObservableObject {
             GraphQLNetwork.shared.fetch(query: CharacterQuery(
                 id: self.id,
                 mediaPage: mediaPage,
-                mediaSort: [self.mediaSort]
+                mediaSort: [self.mediaSort],
+                mediaType: self.mediaType,
+                onList: self.isOnList,
+                staffLanguage: self.voiceActorLanguage
             )) { result in
                 switch result {
                     case let .success(query):
@@ -106,25 +113,6 @@ class CharacterViewModel: GraphQLViewModel, ObservableObject {
             self.character?.media?.pageInfo = media.pageInfo
             self.character?.media?.edges?.append(contentsOf: media.edges ?? [])
         }.store(in: &cancellables)
-    }
-
-    @available(*, deprecated, message: "Use `nextMedia()` instead.")
-    func fetchNextMedia(page: Int) {
-        GraphQLNetwork.shared.fetch(query: CharacterQuery(id: id, mediaPage: page)) { result in
-            switch result {
-                case let .success(query):
-                    if let media = query.data?.character?.media {
-                        self.character?.media?.pageInfo = media.pageInfo
-                        self.character?.media?.edges?.append(contentsOf: media.edges ?? [])
-                    }
-
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case let .failure(err):
-                    logger.error("\(err)")
-            }
-        }
     }
 
     /// Toggles the favorite state for this character for the current user.
@@ -148,6 +136,89 @@ class CharacterViewModel: GraphQLViewModel, ObservableObject {
             }
         }.sink(receiveCompletion: completion) { favorites in
             self.character?.isFavourite = favorites.contains(where: { $0.id == self.id })
+        }.store(in: &cancellables)
+    }
+
+    /// Toggles the favorite state for an anime/manga
+    ///
+    /// - Parameter media: The anime/manga to toggle.
+    /// - Requires: `media.type != nil`
+    func toggleFavorite(media: CharacterMediaEdge.Node) {
+        guard let type = media.type else {
+            return
+        }
+
+        Future<FavoriteMutation.Data.ToggleFavourite, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: FavoriteMutation(
+                animeId: type == .anime ? media.id : nil,
+                mangaId: type == .manga ? media.id : nil
+            )) { result in
+                switch result {
+                    case let .success(query):
+                        if let toggle = query.data?.toggleFavourite {
+                            promise(.success(toggle))
+                        }
+
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
+            }
+        }.sink(receiveCompletion: completion) { toggle in
+            switch type {
+                case .anime:
+                    if let index = self.character?.media?.edges?.firstIndex(where: { $0?.node?.id == media.id }) {
+                        let isFavorite = toggle.anime?.nodes?.contains(where: { $0?.id == media.id }) == true
+
+                        self.character?.media?.edges?[index]?.node?.isFavourite = isFavorite
+                    }
+                case .manga:
+                    if let index = self.character?.media?.edges?.firstIndex(where: { $0?.node?.id == media.id }) {
+                        let isFavorite = toggle.manga?.nodes?.contains(where: { $0?.id == media.id }) == true
+
+                        self.character?.media?.edges?[index]?.node?.isFavourite = isFavorite
+                    }
+                case let .__unknown(variant):
+                    logger.warning("Unknown MediaType enum variant: \(variant)")
+            }
+        }.store(in: &cancellables)
+    }
+
+    /// Toggles the favorite state for a voice actor for the current user.
+    ///
+    /// - Parameter staff: The voice actor to toggle the favorite state.
+    /// - Warning: The character should be loaded before calling this method. Failing to do so will result in the value being discarded.
+    func toggleFavorite(staff: CharacterMediaEdge.VoiceActor) {
+        Future<[FavoriteMutation.Data.ToggleFavourite.Staff.Node], GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: FavoriteMutation(staffId: staff.id)) { result in
+                switch result {
+                    case let .success(query):
+                        if let favorites = query.data?.toggleFavourite?.staff?.nodes?.compactMap({ $0 }) {
+                            promise(.success(favorites))
+                        }
+
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.info("\(err)")
+                }
+            }
+        }.sink(receiveCompletion: completion) { favorites in
+            let isFavorite = favorites.contains(where: { $0.id == staff.id })
+
+            // For each edge with the index
+            for (edgeIndex, edge) in (self.character?.media?.edges ?? []).enumerated() {
+                // For each voice actor with the index where the voice actor's ID is the same as the staff ID used
+                // in the GraphQL operation
+                for (actorIndex, actor) in (edge?.voiceActors ?? []).enumerated() where actor?.id == staff.id {
+                    // Safely update the voice actor at the current index for the edge and voice actor's `isFavorite`
+                    // state to if the staff member is on the current user's favorites list.
+                    self.character?.media?.edges?[edgeIndex]?.voiceActors?[actorIndex]?.isFavourite = isFavorite
+                }
+            }
         }.store(in: &cancellables)
     }
 }

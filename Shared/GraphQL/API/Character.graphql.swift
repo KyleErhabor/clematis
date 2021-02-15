@@ -8,7 +8,7 @@ public final class CharacterQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
+    query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort], $mediaType: MediaType, $onList: Boolean, $staffLanguage: StaffLanguage) {
       Character(id: $id) {
         __typename
         favourites
@@ -24,7 +24,7 @@ public final class CharacterQuery: GraphQLQuery {
           native
           alternative
         }
-        media(sort: $mediaSort, page: $mediaPage) {
+        media(sort: $mediaSort, type: $mediaType, onList: $onList, page: $mediaPage) {
           __typename
           pageInfo {
             __typename
@@ -36,10 +36,11 @@ public final class CharacterQuery: GraphQLQuery {
             __typename
             id
             characterRole
-            voiceActors(sort: LANGUAGE) {
+            voiceActors(language: $staffLanguage, sort: LANGUAGE) {
               __typename
               id
               language
+              isFavourite
               image {
                 __typename
                 large
@@ -53,7 +54,9 @@ public final class CharacterQuery: GraphQLQuery {
             node {
               __typename
               id
+              type
               isAdult
+              isFavourite
               title {
                 __typename
                 userPreferred
@@ -79,15 +82,21 @@ public final class CharacterQuery: GraphQLQuery {
   public var id: Int
   public var mediaPage: Int
   public var mediaSort: [MediaSort?]?
+  public var mediaType: MediaType?
+  public var onList: Bool?
+  public var staffLanguage: StaffLanguage?
 
-  public init(id: Int, mediaPage: Int, mediaSort: [MediaSort?]? = nil) {
+  public init(id: Int, mediaPage: Int, mediaSort: [MediaSort?]? = nil, mediaType: MediaType? = nil, onList: Bool? = nil, staffLanguage: StaffLanguage? = nil) {
     self.id = id
     self.mediaPage = mediaPage
     self.mediaSort = mediaSort
+    self.mediaType = mediaType
+    self.onList = onList
+    self.staffLanguage = staffLanguage
   }
 
   public var variables: GraphQLMap? {
-    return ["id": id, "mediaPage": mediaPage, "mediaSort": mediaSort]
+    return ["id": id, "mediaPage": mediaPage, "mediaSort": mediaSort, "mediaType": mediaType, "onList": onList, "staffLanguage": staffLanguage]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -130,7 +139,7 @@ public final class CharacterQuery: GraphQLQuery {
           GraphQLField("description", arguments: ["asHtml": true], type: .scalar(String.self)),
           GraphQLField("image", type: .object(Image.selections)),
           GraphQLField("name", type: .object(Name.selections)),
-          GraphQLField("media", arguments: ["sort": GraphQLVariable("mediaSort"), "page": GraphQLVariable("mediaPage")], type: .object(Medium.selections)),
+          GraphQLField("media", arguments: ["sort": GraphQLVariable("mediaSort"), "type": GraphQLVariable("mediaType"), "onList": GraphQLVariable("onList"), "page": GraphQLVariable("mediaPage")], type: .object(Medium.selections)),
         ]
       }
 
@@ -434,7 +443,7 @@ public final class CharacterQuery: GraphQLQuery {
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("id", type: .scalar(Int.self)),
               GraphQLField("characterRole", type: .scalar(CharacterRole.self)),
-              GraphQLField("voiceActors", arguments: ["sort": "LANGUAGE"], type: .list(.object(VoiceActor.selections))),
+              GraphQLField("voiceActors", arguments: ["language": GraphQLVariable("staffLanguage"), "sort": "LANGUAGE"], type: .list(.object(VoiceActor.selections))),
               GraphQLField("node", type: .object(Node.selections)),
             ]
           }
@@ -505,6 +514,7 @@ public final class CharacterQuery: GraphQLQuery {
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("id", type: .nonNull(.scalar(Int.self))),
                 GraphQLField("language", type: .scalar(StaffLanguage.self)),
+                GraphQLField("isFavourite", type: .nonNull(.scalar(Bool.self))),
                 GraphQLField("image", type: .object(Image.selections)),
                 GraphQLField("name", type: .object(Name.selections)),
               ]
@@ -516,8 +526,8 @@ public final class CharacterQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: Int, language: StaffLanguage? = nil, image: Image? = nil, name: Name? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Staff", "id": id, "language": language, "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "name": name.flatMap { (value: Name) -> ResultMap in value.resultMap }])
+            public init(id: Int, language: StaffLanguage? = nil, isFavourite: Bool, image: Image? = nil, name: Name? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Staff", "id": id, "language": language, "isFavourite": isFavourite, "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "name": name.flatMap { (value: Name) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
@@ -546,6 +556,16 @@ public final class CharacterQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "language")
+              }
+            }
+
+            /// If the staff member is marked as favourite by the currently authenticated user
+            public var isFavourite: Bool {
+              get {
+                return resultMap["isFavourite"]! as! Bool
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "isFavourite")
               }
             }
 
@@ -668,7 +688,9 @@ public final class CharacterQuery: GraphQLQuery {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+                GraphQLField("type", type: .scalar(MediaType.self)),
                 GraphQLField("isAdult", type: .scalar(Bool.self)),
+                GraphQLField("isFavourite", type: .nonNull(.scalar(Bool.self))),
                 GraphQLField("title", type: .object(Title.selections)),
                 GraphQLField("coverImage", type: .object(CoverImage.selections)),
                 GraphQLField("mediaListEntry", type: .object(MediaListEntry.selections)),
@@ -681,8 +703,8 @@ public final class CharacterQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: Int, isAdult: Bool? = nil, title: Title? = nil, coverImage: CoverImage? = nil, mediaListEntry: MediaListEntry? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Media", "id": id, "isAdult": isAdult, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }])
+            public init(id: Int, type: MediaType? = nil, isAdult: Bool? = nil, isFavourite: Bool, title: Title? = nil, coverImage: CoverImage? = nil, mediaListEntry: MediaListEntry? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Media", "id": id, "type": type, "isAdult": isAdult, "isFavourite": isFavourite, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "mediaListEntry": mediaListEntry.flatMap { (value: MediaListEntry) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
@@ -704,6 +726,16 @@ public final class CharacterQuery: GraphQLQuery {
               }
             }
 
+            /// The type of the media; anime or manga
+            public var type: MediaType? {
+              get {
+                return resultMap["type"] as? MediaType
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "type")
+              }
+            }
+
             /// If the media is intended only for 18+ adult audiences
             public var isAdult: Bool? {
               get {
@@ -711,6 +743,16 @@ public final class CharacterQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "isAdult")
+              }
+            }
+
+            /// If the media is marked as favourite by the current authenticated user
+            public var isFavourite: Bool {
+              get {
+                return resultMap["isFavourite"]! as! Bool
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "isFavourite")
               }
             }
 

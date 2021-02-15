@@ -137,6 +137,7 @@
 		00AF6F0B25C8D7860061F73A /* ForumsThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF6F0A25C8D7860061F73A /* ForumsThreadView.swift */; };
 		00AF6F0F25C8E2A90061F73A /* ThreadSubscription.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00AF6F0E25C8E2A90061F73A /* ThreadSubscription.graphql */; };
 		00AF6F1225C8E2C60061F73A /* ThreadSubscription.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF6F1125C8E2C60061F73A /* ThreadSubscription.graphql.swift */; };
+		00BC3F6625DB0F550036BC5D /* CharacterMediaContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3F6525DB0F550036BC5D /* CharacterMediaContextView.swift */; };
 		00C5205925C670660035AD71 /* UserNotificationActivityMentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5205825C670660035AD71 /* UserNotificationActivityMentionView.swift */; };
 		00C5206C25C6776F0035AD71 /* UserNotifications.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5206025C6776F0035AD71 /* UserNotifications.graphql.swift */; };
 		00C5206D25C6776F0035AD71 /* MediaEditor.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5206125C6776F0035AD71 /* MediaEditor.graphql.swift */; };
@@ -340,6 +341,7 @@
 		00AF6F0A25C8D7860061F73A /* ForumsThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumsThreadView.swift; sourceTree = "<group>"; };
 		00AF6F0E25C8E2A90061F73A /* ThreadSubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ThreadSubscription.graphql; sourceTree = "<group>"; };
 		00AF6F1125C8E2C60061F73A /* ThreadSubscription.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadSubscription.graphql.swift; sourceTree = "<group>"; };
+		00BC3F6525DB0F550036BC5D /* CharacterMediaContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaContextView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C5205825C670660035AD71 /* UserNotificationActivityMentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationActivityMentionView.swift; sourceTree = "<group>"; };
 		00C5206025C6776F0035AD71 /* UserNotifications.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.graphql.swift; sourceTree = "<group>"; };
@@ -808,7 +810,7 @@
 				00930D1025B09DC300067284 /* CharacterView.swift */,
 				00A8598425BB885400EDC7E2 /* CharacterViewModel.swift */,
 				00A8598825BBB28800EDC7E2 /* CharacterSummaryView.swift */,
-				00A8599025BBBAE400EDC7E2 /* MediaList */,
+				00A8599025BBBAE400EDC7E2 /* Media */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -879,15 +881,14 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		00A8599025BBBAE400EDC7E2 /* MediaList */ = {
+		00A8599025BBBAE400EDC7E2 /* Media */ = {
 			isa = PBXGroup;
 			children = (
 				00A8599225BBBAFA00EDC7E2 /* CharacterMediaView.swift */,
-				00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */,
-				00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */,
-				00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */,
+				00BC3F6525DB0F550036BC5D /* CharacterMediaContextView.swift */,
+				00BC3F6425DB0F2E0036BC5D /* List */,
 			);
-			path = MediaList;
+			path = Media;
 			sourceTree = "<group>";
 		};
 		00AF6EEF25C8AE570061F73A /* Forums */ = {
@@ -951,6 +952,16 @@
 				00C5206025C6776F0035AD71 /* UserNotifications.graphql.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		00BC3F6425DB0F2E0036BC5D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				00A8598B25BBB5B100EDC7E2 /* CharacterMediaListView.swift */,
+				00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */,
+				00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		00C5207E25C682780035AD71 /* Activity */ = {
@@ -1240,6 +1251,7 @@
 				0072CD6025BA18C60061E70F /* MediaSummaryPropertyPopularityView.swift in Sources */,
 				0072CD4E25BA18510061E70F /* MediaSummaryPropertyEndDateView.swift in Sources */,
 				00C520C225C7963A0035AD71 /* Like.graphql.swift in Sources */,
+				00BC3F6625DB0F550036BC5D /* CharacterMediaContextView.swift in Sources */,
 				0031AC0525B716FE0079DE28 /* MediaPropertyStudiosView.swift in Sources */,
 				00C520ED25C7DA440035AD71 /* ActivityReplyEditorView.swift in Sources */,
 				00C5207125C6776F0035AD71 /* CreateMediaListEntry.graphql.swift in Sources */,

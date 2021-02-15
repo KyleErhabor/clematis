@@ -1,4 +1,11 @@
-query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
+query Character(
+  $id: Int!,
+  $mediaPage: Int!,
+  $mediaSort: [MediaSort],
+  $mediaType: MediaType,
+  $onList: Boolean,
+  $staffLanguage: StaffLanguage
+) {
   Character(id: $id) {
     favourites
     isFavourite
@@ -11,7 +18,7 @@ query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
       native
       alternative
     }
-    media(sort: $mediaSort, page: $mediaPage) {
+    media(sort: $mediaSort, type: $mediaType, onList: $onList, page: $mediaPage) {
       pageInfo {
         total
         currentPage
@@ -20,9 +27,10 @@ query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
       edges {
         id
         characterRole
-        voiceActors(sort: LANGUAGE) {
+        voiceActors(language: $staffLanguage, sort: LANGUAGE) {
           id
           language
+          isFavourite
           image {
             large
           }
@@ -33,7 +41,9 @@ query Character($id: Int!, $mediaPage: Int!, $mediaSort: [MediaSort]) {
         }
         node {
           id
+          type
           isAdult
+          isFavourite
           title {
             userPreferred
           }
