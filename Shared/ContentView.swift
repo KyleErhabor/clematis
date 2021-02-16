@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // NOTE: displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an
-        // empty, disconnected UIBarButtonItem to fulfill the non-null contract.
+        // NOTE: "displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an
+        // empty, disconnected UIBarButtonItem to fulfill the non-null contract."
         //
         // This error appears unless `.navigationViewStyle(_:)` is called.
         TabNavigationView()

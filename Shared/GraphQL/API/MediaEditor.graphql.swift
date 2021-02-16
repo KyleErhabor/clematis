@@ -20,27 +20,26 @@ public final class MediaEditorQuery: GraphQLQuery {
           id
           notes
           score
-          status
           repeat
+          status
           private
           priority
           progress
-          updatedAt
           customLists
           advancedScores
           progressVolumes
           hiddenFromStatusLists
           startedAt {
             __typename
+            day
             year
             month
-            day
           }
           completedAt {
             __typename
+            day
             year
             month
-            day
           }
         }
       }
@@ -180,12 +179,11 @@ public final class MediaEditorQuery: GraphQLQuery {
             GraphQLField("id", type: .nonNull(.scalar(Int.self))),
             GraphQLField("notes", type: .scalar(String.self)),
             GraphQLField("score", type: .scalar(Double.self)),
-            GraphQLField("status", type: .scalar(MediaListStatus.self)),
             GraphQLField("repeat", type: .scalar(Int.self)),
+            GraphQLField("status", type: .scalar(MediaListStatus.self)),
             GraphQLField("private", type: .scalar(Bool.self)),
             GraphQLField("priority", type: .scalar(Int.self)),
             GraphQLField("progress", type: .scalar(Int.self)),
-            GraphQLField("updatedAt", type: .scalar(Int.self)),
             GraphQLField("customLists", type: .scalar(Json.self)),
             GraphQLField("advancedScores", type: .scalar(Json.self)),
             GraphQLField("progressVolumes", type: .scalar(Int.self)),
@@ -201,8 +199,8 @@ public final class MediaEditorQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: Int, notes: String? = nil, score: Double? = nil, status: MediaListStatus? = nil, `repeat`: Int? = nil, `private`: Bool? = nil, priority: Int? = nil, progress: Int? = nil, updatedAt: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaList", "id": id, "notes": notes, "score": score, "status": status, "repeat": `repeat`, "private": `private`, "priority": priority, "progress": progress, "updatedAt": updatedAt, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
+        public init(id: Int, notes: String? = nil, score: Double? = nil, `repeat`: Int? = nil, status: MediaListStatus? = nil, `private`: Bool? = nil, priority: Int? = nil, progress: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MediaList", "id": id, "notes": notes, "score": score, "repeat": `repeat`, "status": status, "private": `private`, "priority": priority, "progress": progress, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -244,16 +242,6 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
         }
 
-        /// The watching/reading status
-        public var status: MediaListStatus? {
-          get {
-            return resultMap["status"] as? MediaListStatus
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "status")
-          }
-        }
-
         /// The amount of times the user has rewatched/read the media
         public var `repeat`: Int? {
           get {
@@ -261,6 +249,16 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "repeat")
+          }
+        }
+
+        /// The watching/reading status
+        public var status: MediaListStatus? {
+          get {
+            return resultMap["status"] as? MediaListStatus
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "status")
           }
         }
 
@@ -291,16 +289,6 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "progress")
-          }
-        }
-
-        /// When the entry data was last updated
-        public var updatedAt: Int? {
-          get {
-            return resultMap["updatedAt"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "updatedAt")
           }
         }
 
@@ -370,9 +358,9 @@ public final class MediaEditorQuery: GraphQLQuery {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("day", type: .scalar(Int.self)),
               GraphQLField("year", type: .scalar(Int.self)),
               GraphQLField("month", type: .scalar(Int.self)),
-              GraphQLField("day", type: .scalar(Int.self)),
             ]
           }
 
@@ -382,8 +370,8 @@ public final class MediaEditorQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(year: Int? = nil, month: Int? = nil, day: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "FuzzyDate", "year": year, "month": month, "day": day])
+          public init(day: Int? = nil, year: Int? = nil, month: Int? = nil) {
+            self.init(unsafeResultMap: ["__typename": "FuzzyDate", "day": day, "year": year, "month": month])
           }
 
           public var __typename: String {
@@ -392,6 +380,16 @@ public final class MediaEditorQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// Numeric Day (24)
+          public var day: Int? {
+            get {
+              return resultMap["day"] as? Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "day")
             }
           }
 
@@ -412,16 +410,6 @@ public final class MediaEditorQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "month")
-            }
-          }
-
-          /// Numeric Day (24)
-          public var day: Int? {
-            get {
-              return resultMap["day"] as? Int
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "day")
             }
           }
         }
@@ -432,9 +420,9 @@ public final class MediaEditorQuery: GraphQLQuery {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("day", type: .scalar(Int.self)),
               GraphQLField("year", type: .scalar(Int.self)),
               GraphQLField("month", type: .scalar(Int.self)),
-              GraphQLField("day", type: .scalar(Int.self)),
             ]
           }
 
@@ -444,8 +432,8 @@ public final class MediaEditorQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(year: Int? = nil, month: Int? = nil, day: Int? = nil) {
-            self.init(unsafeResultMap: ["__typename": "FuzzyDate", "year": year, "month": month, "day": day])
+          public init(day: Int? = nil, year: Int? = nil, month: Int? = nil) {
+            self.init(unsafeResultMap: ["__typename": "FuzzyDate", "day": day, "year": year, "month": month])
           }
 
           public var __typename: String {
@@ -454,6 +442,16 @@ public final class MediaEditorQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// Numeric Day (24)
+          public var day: Int? {
+            get {
+              return resultMap["day"] as? Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "day")
             }
           }
 
@@ -474,16 +472,6 @@ public final class MediaEditorQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "month")
-            }
-          }
-
-          /// Numeric Day (24)
-          public var day: Int? {
-            get {
-              return resultMap["day"] as? Int
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "day")
             }
           }
         }

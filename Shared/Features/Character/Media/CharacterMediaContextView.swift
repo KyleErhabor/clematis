@@ -48,7 +48,7 @@ fileprivate struct CharacterMediaContextAnimeMangaView: View {
         Button {
             isPresenting = true
         } label: {
-            Label("Open List Editor", systemImage: "pencil.circle")
+            Label("Open List Editor", systemImage: "pencil")
         }
 
         Button {

@@ -8,25 +8,24 @@ query MediaEditor($id: Int!) {
       id
       notes
       score
-      status
       repeat
+      status
       private
       priority
       progress
-      updatedAt
       customLists
       advancedScores
       progressVolumes
       hiddenFromStatusLists
       startedAt {
+        day
         year
         month
-        day
       }
       completedAt {
+        day
         year
         month
-        day
       }
     }
   }

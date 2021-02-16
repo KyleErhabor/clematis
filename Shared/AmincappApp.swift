@@ -24,8 +24,6 @@ struct AmincappApp: App {
                 .environmentObject(userStore)
                 .onAppear {
                     userStore.load()
-                }.onOpenURL { url in
-                    currentUser.handleIncomingURL(url: url)
                 }
         }.commands {
             TextEditingCommands()

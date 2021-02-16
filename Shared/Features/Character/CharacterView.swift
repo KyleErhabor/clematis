@@ -39,7 +39,7 @@ struct CharacterView: View {
         }.alert(item: $viewModel.error) { err in
             Alert(
                 title: Text("Error"),
-                message: Text("\(err.message ?? "")"),
+                message: Text("\(err.message ?? "An unknown error has occurred.")"),
                 dismissButton: .default(Text("OK"))
             )
         }.environmentObject(viewModel)

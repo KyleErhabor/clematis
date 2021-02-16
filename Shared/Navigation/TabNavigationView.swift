@@ -9,13 +9,18 @@ import SwiftUI
 
 struct TabNavigationView: View {
     @EnvironmentObject private var userStore: CurrentUserStore
+    @State private var isPresenting = true
 
     var body: some View {
         TabView {
             NavigationView {
-                CharacterView(viewModel: .init(id: 4835))
+                Text("")
+                    .sheet(isPresented: $isPresenting) {
+                        MediaEditorView(viewModel: .init(id: 30009))
+                            .environmentObject(userStore)
+                    }
             }.tabItem {
-                Label("Character", systemImage: "figure.walk")
+                Label("List Editor", systemImage: "pencil.circle")
             }
 
             NavigationView {
@@ -24,11 +29,9 @@ struct TabNavigationView: View {
                 Label("Home", systemImage: "house")
             }
 
-            Group {
+            NavigationView {
                 if let user = userStore.users.first {
-                    NavigationView {
-                        UserView(viewModel: .init(id: user.id))
-                    }
+                    UserView(viewModel: .init(id: user.id))
                 } else {
                     AuthenticationView()
                 }
