@@ -15,7 +15,7 @@ struct MediaEditorProgressFooterView: View {
             if let episodes = viewModel.media?.episodes {
                 Text("There are ")
                     + Text("\(episodes)").bold()
-                    + Text(" episodes in this manga.")
+                    + Text(" episodes in this anime.")
             }
 
             if let chapters = viewModel.media?.chapters {

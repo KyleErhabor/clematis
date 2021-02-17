@@ -15,7 +15,10 @@ struct MediaEditorScore10View: View {
             ? "Score"
             : "Score: \(Int(score))"
 
-        Stepper("\(title)", value: $score, in: 1...10)
+        VStack {
+            Stepper("\(title)", value: $score, in: 0...10)
+            Slider(value: $score, in: 0...10)
+        }
     }
 }
 

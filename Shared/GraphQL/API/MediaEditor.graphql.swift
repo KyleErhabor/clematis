@@ -25,6 +25,7 @@ public final class MediaEditorQuery: GraphQLQuery {
           private
           priority
           progress
+          updatedAt
           customLists
           advancedScores
           progressVolumes
@@ -184,6 +185,7 @@ public final class MediaEditorQuery: GraphQLQuery {
             GraphQLField("private", type: .scalar(Bool.self)),
             GraphQLField("priority", type: .scalar(Int.self)),
             GraphQLField("progress", type: .scalar(Int.self)),
+            GraphQLField("updatedAt", type: .scalar(Int.self)),
             GraphQLField("customLists", type: .scalar(Json.self)),
             GraphQLField("advancedScores", type: .scalar(Json.self)),
             GraphQLField("progressVolumes", type: .scalar(Int.self)),
@@ -199,8 +201,8 @@ public final class MediaEditorQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: Int, notes: String? = nil, score: Double? = nil, `repeat`: Int? = nil, status: MediaListStatus? = nil, `private`: Bool? = nil, priority: Int? = nil, progress: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
-          self.init(unsafeResultMap: ["__typename": "MediaList", "id": id, "notes": notes, "score": score, "repeat": `repeat`, "status": status, "private": `private`, "priority": priority, "progress": progress, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
+        public init(id: Int, notes: String? = nil, score: Double? = nil, `repeat`: Int? = nil, status: MediaListStatus? = nil, `private`: Bool? = nil, priority: Int? = nil, progress: Int? = nil, updatedAt: Int? = nil, customLists: Json? = nil, advancedScores: Json? = nil, progressVolumes: Int? = nil, hiddenFromStatusLists: Bool? = nil, startedAt: StartedAt? = nil, completedAt: CompletedAt? = nil) {
+          self.init(unsafeResultMap: ["__typename": "MediaList", "id": id, "notes": notes, "score": score, "repeat": `repeat`, "status": status, "private": `private`, "priority": priority, "progress": progress, "updatedAt": updatedAt, "customLists": customLists, "advancedScores": advancedScores, "progressVolumes": progressVolumes, "hiddenFromStatusLists": hiddenFromStatusLists, "startedAt": startedAt.flatMap { (value: StartedAt) -> ResultMap in value.resultMap }, "completedAt": completedAt.flatMap { (value: CompletedAt) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -289,6 +291,16 @@ public final class MediaEditorQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "progress")
+          }
+        }
+
+        /// When the entry data was last updated
+        public var updatedAt: Int? {
+          get {
+            return resultMap["updatedAt"] as? Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "updatedAt")
           }
         }
 

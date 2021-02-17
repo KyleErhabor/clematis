@@ -17,9 +17,10 @@ struct MediaEditorProgressAnimeView: View {
             : "Episodes: \(Int(progress))"
 
         if let episodes = viewModel.media?.episodes {
-            Stepper("\(title)", value: $progress, in: 0...Double(episodes))
-
-            Slider(value: $progress, in: 0...Double(episodes))
+            VStack {
+                Stepper("\(title)", value: $progress, in: 0...Double(episodes))
+                Slider(value: $progress, in: 0...Double(episodes))
+            }
         } else {
             Stepper("\(title)", value: $progress, in: 0...Double.greatestFiniteMagnitude)
         }

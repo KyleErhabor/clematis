@@ -19,6 +19,10 @@ struct MediaEditorStatusView: View {
             } else {
                 viewModel.media?.mediaListEntry?.status = status
             }
+
+            if let status = status {
+                reaction(status: status)
+            }
         }
 
         Picker("Status", selection: binding) {
@@ -30,6 +34,19 @@ struct MediaEditorStatusView: View {
                     Text("\(status.rawValue.capitalized)")
                         .tag(status as MediaListStatus?)
                 }
+            }
+        }
+    }
+
+    func reaction(status: MediaListStatus) {
+        if case .completed = status,
+           let type = viewModel.media?.type {
+            switch type {
+                case .anime:
+                    viewModel.media?.mediaListEntry?.progress = viewModel.media?.episodes
+                default:
+                    viewModel.media?.mediaListEntry?.progress = viewModel.media?.chapters
+                    viewModel.media?.mediaListEntry?.progressVolumes = viewModel.media?.volumes
             }
         }
     }

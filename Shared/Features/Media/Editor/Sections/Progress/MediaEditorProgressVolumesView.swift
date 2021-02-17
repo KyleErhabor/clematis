@@ -28,9 +28,10 @@ struct MediaEditorProgressVolumesView: View {
                 : "Volumes: \(Int(binding.wrappedValue))"
 
             if let volumes = viewModel.media?.volumes {
-                Stepper("\(title)", value: binding, in: 0...Double(volumes))
-
-                Slider(value: binding, in: 0...Double(volumes))
+                VStack {
+                    Stepper("\(title)", value: binding, in: 0...Double(volumes))
+                    Slider(value: binding, in: 0...Double(volumes))
+                }
             } else {
                 Stepper("\(title)", value: binding, in: 0...Double.greatestFiniteMagnitude)
             }

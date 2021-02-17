@@ -177,6 +177,11 @@
 		00BC3FEB25DBB5F80036BC5D /* MediaEditorHiddenFromStatusListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FEA25DBB5F80036BC5D /* MediaEditorHiddenFromStatusListView.swift */; };
 		00BC3FEF25DBB8710036BC5D /* MediaEditorCustomListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FEE25DBB8710036BC5D /* MediaEditorCustomListsView.swift */; };
 		00BC3FF325DBC7040036BC5D /* MediaEditorAdvancedScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FF225DBC7030036BC5D /* MediaEditorAdvancedScoresView.swift */; };
+		00BC3FF725DC443A0036BC5D /* MediaEditorAdvancedScores100View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FF625DC443A0036BC5D /* MediaEditorAdvancedScores100View.swift */; };
+		00BC3FFB25DC56390036BC5D /* MediaEditorAdvancedScores10DecimalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FFA25DC56390036BC5D /* MediaEditorAdvancedScores10DecimalView.swift */; };
+		00BC3FFE25DC5ED70036BC5D /* MediaEditorStartDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC3FFD25DC5ED70036BC5D /* MediaEditorStartDateView.swift */; };
+		00BC400125DC76350036BC5D /* MediaEditorCompletedDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC400025DC76350036BC5D /* MediaEditorCompletedDateView.swift */; };
+		00BC400525DC82020036BC5D /* MediaEditorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC400425DC82020036BC5D /* MediaEditorFooterView.swift */; };
 		00C5205925C670660035AD71 /* UserNotificationActivityMentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5205825C670660035AD71 /* UserNotificationActivityMentionView.swift */; };
 		00C5208025C6828A0035AD71 /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5207F25C6828A0035AD71 /* ActivityListView.swift */; };
 		00C5208425C682980035AD71 /* ActivityTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5208325C682980035AD71 /* ActivityTextView.swift */; };
@@ -393,6 +398,11 @@
 		00BC3FEA25DBB5F80036BC5D /* MediaEditorHiddenFromStatusListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorHiddenFromStatusListView.swift; sourceTree = "<group>"; };
 		00BC3FEE25DBB8710036BC5D /* MediaEditorCustomListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorCustomListsView.swift; sourceTree = "<group>"; };
 		00BC3FF225DBC7030036BC5D /* MediaEditorAdvancedScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorAdvancedScoresView.swift; sourceTree = "<group>"; };
+		00BC3FF625DC443A0036BC5D /* MediaEditorAdvancedScores100View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorAdvancedScores100View.swift; sourceTree = "<group>"; };
+		00BC3FFA25DC56390036BC5D /* MediaEditorAdvancedScores10DecimalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorAdvancedScores10DecimalView.swift; sourceTree = "<group>"; };
+		00BC3FFD25DC5ED70036BC5D /* MediaEditorStartDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorStartDateView.swift; sourceTree = "<group>"; };
+		00BC400025DC76350036BC5D /* MediaEditorCompletedDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorCompletedDateView.swift; sourceTree = "<group>"; };
+		00BC400425DC82020036BC5D /* MediaEditorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEditorFooterView.swift; sourceTree = "<group>"; };
 		00C108972573619D00E3DCBA /* Markdown.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Markdown.graphql; sourceTree = "<group>"; };
 		00C5205825C670660035AD71 /* UserNotificationActivityMentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationActivityMentionView.swift; sourceTree = "<group>"; };
 		00C5207F25C6828A0035AD71 /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
@@ -997,6 +1007,7 @@
 				00BC3FE525DBB1DB0036BC5D /* Notes */,
 				00BC3FED25DBB84E0036BC5D /* CustomLists */,
 				00BC3FDD25DBAD670036BC5D /* ListScope */,
+				00BC400325DC81E40036BC5D /* Footer */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -1008,6 +1019,7 @@
 				00BC3FAE25DB64270036BC5D /* MediaEditorScoreView.swift */,
 				00BC3FF225DBC7030036BC5D /* MediaEditorAdvancedScoresView.swift */,
 				00BC3FB225DB6EF20036BC5D /* Score */,
+				00BC3FF525DC440E0036BC5D /* AdvancedScores */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -1031,6 +1043,8 @@
 				00BC3FD025DB85BD0036BC5D /* MediaEditorProgressVolumesView.swift */,
 				00BC3FD725DBA7C20036BC5D /* MediaEditorRepeatView.swift */,
 				00BC3FDA25DBA9190036BC5D /* MediaEditorPriorityView.swift */,
+				00BC3FFD25DC5ED70036BC5D /* MediaEditorStartDateView.swift */,
+				00BC400025DC76350036BC5D /* MediaEditorCompletedDateView.swift */,
 				00BC3FD425DB9A3A0036BC5D /* MediaEditorProgressFooterView.swift */,
 				00BC3FC825DB7AC30036BC5D /* Progress */,
 			);
@@ -1070,6 +1084,23 @@
 				00BC3FEE25DBB8710036BC5D /* MediaEditorCustomListsView.swift */,
 			);
 			path = CustomLists;
+			sourceTree = "<group>";
+		};
+		00BC3FF525DC440E0036BC5D /* AdvancedScores */ = {
+			isa = PBXGroup;
+			children = (
+				00BC3FF625DC443A0036BC5D /* MediaEditorAdvancedScores100View.swift */,
+				00BC3FFA25DC56390036BC5D /* MediaEditorAdvancedScores10DecimalView.swift */,
+			);
+			path = AdvancedScores;
+			sourceTree = "<group>";
+		};
+		00BC400325DC81E40036BC5D /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				00BC400425DC82020036BC5D /* MediaEditorFooterView.swift */,
+			);
+			path = Footer;
 			sourceTree = "<group>";
 		};
 		00C5207E25C682780035AD71 /* Activity */ = {
@@ -1377,12 +1408,14 @@
 				00C5208B25C684100035AD71 /* ActivityFeedView.swift in Sources */,
 				00BC3FCE25DB7ADD0036BC5D /* MediaEditorProgressMangaView.swift in Sources */,
 				0080C16B25B68F7F004624C9 /* MediaPropertyPopularityView.swift in Sources */,
+				00BC400125DC76350036BC5D /* MediaEditorCompletedDateView.swift in Sources */,
 				0095D84C25B54BCE00B03D39 /* MediaStaffView.swift in Sources */,
 				00CC35AD25C636CF003523D7 /* UserNotificationListView.swift in Sources */,
 				00BC3FDB25DBA9190036BC5D /* MediaEditorPriorityView.swift in Sources */,
 				0080C12725B61358004624C9 /* MediaPropertyStatusView.swift in Sources */,
 				004C68DA25C12D6E003FFD2D /* UserFavoritesStudioListView.swift in Sources */,
 				00BC3F8B25DB31B00036BC5D /* DeleteActivity.graphql.swift in Sources */,
+				00BC400525DC82020036BC5D /* MediaEditorFooterView.swift in Sources */,
 				00A8597625BB4B0200EDC7E2 /* MediaReviewView.swift in Sources */,
 				00BC3F8E25DB31B00036BC5D /* Character.graphql.swift in Sources */,
 				00BC3F9425DB31B00036BC5D /* ActivitySubscription.graphql.swift in Sources */,
@@ -1439,6 +1472,7 @@
 				00BC3F8D25DB31B00036BC5D /* MediaEditor.graphql.swift in Sources */,
 				0068782F25D4E99600FBC7FE /* GraphQLError+Identifiable.swift in Sources */,
 				00BC3FCA25DB7AD60036BC5D /* MediaEditorProgressAnimeView.swift in Sources */,
+				00BC3FFE25DC5ED70036BC5D /* MediaEditorStartDateView.swift in Sources */,
 				00BC3FE325DBAEAE0036BC5D /* MediaEditorListScopeFooterView.swift in Sources */,
 				00C5209325C684260035AD71 /* ActivityFeedViewModel.swift in Sources */,
 				00BC3FBE25DB71E20036BC5D /* MediaEditorScore5View.swift in Sources */,
@@ -1485,6 +1519,7 @@
 				007DDDA125C0990D00CDA046 /* UserToolbarAccountSheetView.swift in Sources */,
 				00BC3F9125DB31B00036BC5D /* ActivityReplies.graphql.swift in Sources */,
 				008597BA25D21ACE00C0FFDB /* Constants.swift in Sources */,
+				00BC3FFB25DC56390036BC5D /* MediaEditorAdvancedScores10DecimalView.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				0095D84625B5491400B03D39 /* StaffView.swift in Sources */,
 				004C68CB25C11028003FFD2D /* UserFavoritesAnimeListView.swift in Sources */,
@@ -1498,6 +1533,7 @@
 				00C520B125C758730035AD71 /* AuthenticationView.swift in Sources */,
 				00BC3FD525DB9A3B0036BC5D /* MediaEditorProgressFooterView.swift in Sources */,
 				0095D83625B4D3BF00B03D39 /* NilAwareRequestBodyCreator.swift in Sources */,
+				00BC3FF725DC443A0036BC5D /* MediaEditorAdvancedScores100View.swift in Sources */,
 				00BC3F9E25DB31B00036BC5D /* UserNotifications.graphql.swift in Sources */,
 				00AF6F0025C8BA2C0061F73A /* ThreadView.swift in Sources */,
 				00BC3FBB25DB71550036BC5D /* MediaEditorScore10View.swift in Sources */,

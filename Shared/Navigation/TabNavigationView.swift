@@ -9,20 +9,9 @@ import SwiftUI
 
 struct TabNavigationView: View {
     @EnvironmentObject private var userStore: CurrentUserStore
-    @State private var isPresenting = true
-
+    
     var body: some View {
         TabView {
-            NavigationView {
-                Text("")
-                    .sheet(isPresented: $isPresenting) {
-                        MediaEditorView(viewModel: .init(id: 30009))
-                            .environmentObject(userStore)
-                    }
-            }.tabItem {
-                Label("List Editor", systemImage: "pencil.circle")
-            }
-
             NavigationView {
                 ActivityFeedView()
             }.tabItem {

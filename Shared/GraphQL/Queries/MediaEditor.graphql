@@ -13,6 +13,7 @@ query MediaEditor($id: Int!) {
       private
       priority
       progress
+      updatedAt
       customLists
       advancedScores
       progressVolumes

@@ -15,7 +15,10 @@ struct MediaEditorScore10DecimalView: View {
             ? "Score"
             : "Score: \(String(format: "%.1f", score))"
 
-        Stepper("\(title)", value: $score, in: 0...10, step: 0.1)
+        VStack {
+            Stepper("\(title)", value: $score, in: 0...10, step: 0.1)
+            Slider(value: $score, in: 0...10)
+        }
     }
 }
 

@@ -17,9 +17,10 @@ struct MediaEditorProgressMangaView: View {
             : "Chapters: \(Int(progress))"
 
         if let chapters = viewModel.media?.chapters {
-            Stepper("\(title)", value: $progress, in: 0...Double(chapters))
-
-            Slider(value: $progress, in: 0...Double(chapters))
+            VStack {
+                Stepper("\(title)", value: $progress, in: 0...Double(chapters))
+                Slider(value: $progress, in: 0...Double(chapters))
+            }
         } else {
             Stepper("\(title)", value: $progress, in: 0...Double.greatestFiniteMagnitude)
         }
