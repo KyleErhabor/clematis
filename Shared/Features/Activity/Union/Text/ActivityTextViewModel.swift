@@ -1,6 +1,6 @@
 //
 //  ActivityTextViewModel.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 2/7/21.
 //
@@ -52,7 +52,7 @@ class ActivityTextViewModel: ObservableObject {
                 }
             }
         }.sink(receiveCompletion: completion) {
-            // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/5
+            // FIXME: https://github.com/LiteLT/clematis-apple/issues/5
         }.store(in: &cancellables)
     }
 

@@ -1,6 +1,6 @@
 //
 //  MediaViewModel.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 12/20/20.
 //

@@ -22,10 +22,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.github.litelt.Amincapp-Apple</string>
+			<string>com.litelt.clematis-apple</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>amincapp</string>
+				<string>clematis</string>
 			</array>
 		</dict>
 	</array>
@@ -51,6 +51,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

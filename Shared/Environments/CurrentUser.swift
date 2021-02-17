@@ -1,6 +1,6 @@
 //
 //  CurrentUser.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 9/26/20.
 //
@@ -112,8 +112,8 @@ class CurrentUser: ObservableObject {
 
     /// Handles an incoming URL from the URL scheme.
     ///
-    /// This method will be called when a match with the URL scheme (amincapp://) is triggered. The following checks have been put in place for security:
-    /// 1. The host (amincapp://host) must be `anilist`.
+    /// This method will be called when a match with the URL scheme (clematis://) is triggered. The following checks have been put in place for security:
+    /// 1. The host (clematis://host) must be `anilist`.
     /// 2. Fragments must be present and parsable to URL query items (?key=value). The fragment should not include the hashtag/pound symbol (#). The
     /// fragments will be used as the query items.
     /// 3. When iterating over the query items, value field must be present. To go along with this, one of the three keys should be present for each iteration.

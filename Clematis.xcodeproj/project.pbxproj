@@ -17,7 +17,6 @@
 		001522DF25CA1A8500E0DF25 /* ThreadReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001522DE25CA1A8500E0DF25 /* ThreadReplyView.swift */; };
 		001522F325CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001522F225CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift */; };
 		001522F725CB1F7900E0DF25 /* ThreadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001522F625CB1F7900E0DF25 /* ThreadHeaderView.swift */; };
-		001522FC25CB49C800E0DF25 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 001522FB25CB49C800E0DF25 /* Algorithms */; };
 		001DAB8825D5F1F600403DA2 /* MarkdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DAB8725D5F1F600403DA2 /* MarkdownEditorView.swift */; };
 		001DAB8C25D5F66300403DA2 /* MarkdownEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DAB8B25D5F66300403DA2 /* MarkdownEditorViewModel.swift */; };
 		001DAB9225D6110100403DA2 /* SaveTextActivity.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 001DAB9125D6110100403DA2 /* SaveTextActivity.graphql */; };
@@ -97,7 +96,7 @@
 		008597B125D2051600C0FFDB /* CurrentUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597B025D2051500C0FFDB /* CurrentUserStore.swift */; };
 		008597BA25D21ACE00C0FFDB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008597B925D21ACE00C0FFDB /* Constants.swift */; };
 		008597C125D24B5400C0FFDB /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 008597C025D24B5400C0FFDB /* KeychainAccess */; };
-		00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* AmincappApp.swift */; };
+		00869F362502A75300D2DB6F /* ClematisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0D2502A75100D2DB6F /* ClematisApp.swift */; };
 		00869F382502A75300D2DB6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00869F0E2502A75100D2DB6F /* ContentView.swift */; };
 		00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00869F0F2502A75300D2DB6F /* Assets.xcassets */; };
 		00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */; };
@@ -310,10 +309,10 @@
 		008597AB25CFB91200C0FFDB /* ActivityTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTextViewModel.swift; sourceTree = "<group>"; };
 		008597B025D2051500C0FFDB /* CurrentUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserStore.swift; sourceTree = "<group>"; };
 		008597B925D21ACE00C0FFDB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		00869F0D2502A75100D2DB6F /* AmincappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmincappApp.swift; sourceTree = "<group>"; };
+		00869F0D2502A75100D2DB6F /* ClematisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClematisApp.swift; sourceTree = "<group>"; };
 		00869F0E2502A75100D2DB6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00869F0F2502A75300D2DB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		00869F142502A75300D2DB6F /* Amincapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amincapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00869F142502A75300D2DB6F /* Clematis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clematis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00869F172502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLNetwork.swift; sourceTree = "<group>"; };
@@ -446,7 +445,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				001522FC25CB49C800E0DF25 /* Algorithms in Frameworks */,
 				007A20952570B05A00FB0713 /* Logging in Frameworks */,
 				00869F4C2502B1D200D2DB6F /* SDWebImageSwiftUI in Frameworks */,
 				00869F4F2502B2D600D2DB6F /* Apollo in Frameworks */,
@@ -758,7 +756,7 @@
 		00869F0C2502A75100D2DB6F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				00869F0D2502A75100D2DB6F /* AmincappApp.swift */,
+				00869F0D2502A75100D2DB6F /* ClematisApp.swift */,
 				00869F0E2502A75100D2DB6F /* ContentView.swift */,
 				00C520B025C758730035AD71 /* AuthenticationView.swift */,
 				0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */,
@@ -777,7 +775,7 @@
 		00869F152502A75300D2DB6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00869F142502A75300D2DB6F /* Amincapp.app */,
+				00869F142502A75300D2DB6F /* Clematis.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1251,9 +1249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00869F132502A75300D2DB6F /* Amincapp (iOS) */ = {
+		00869F132502A75300D2DB6F /* Clematis (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (iOS)" */;
+			buildConfigurationList = 00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Clematis (iOS)" */;
 			buildPhases = (
 				00869F502502B85900D2DB6F /* Generate Apollo GraphQL API */,
 				00869F102502A75300D2DB6F /* Sources */,
@@ -1264,16 +1262,15 @@
 			);
 			dependencies = (
 			);
-			name = "Amincapp (iOS)";
+			name = "Clematis (iOS)";
 			packageProductDependencies = (
 				00869F4B2502B1D200D2DB6F /* SDWebImageSwiftUI */,
 				00869F4E2502B2D600D2DB6F /* Apollo */,
 				007A20942570B05A00FB0713 /* Logging */,
-				001522FB25CB49C800E0DF25 /* Algorithms */,
 				008597C025D24B5400C0FFDB /* KeychainAccess */,
 			);
 			productName = "Anime Catalog (iOS)";
-			productReference = 00869F142502A75300D2DB6F /* Amincapp.app */;
+			productReference = 00869F142502A75300D2DB6F /* Clematis.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1290,7 +1287,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Amincapp" */;
+			buildConfigurationList = 00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Clematis" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1303,14 +1300,13 @@
 				00869F4A2502B1D200D2DB6F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				00869F4D2502B2D600D2DB6F /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */,
-				001522FA25CB49C700E0DF25 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				008597BF25D24B5300C0FFDB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 00869F152502A75300D2DB6F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00869F132502A75300D2DB6F /* Amincapp (iOS) */,
+				00869F132502A75300D2DB6F /* Clematis (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -1357,7 +1353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# GraphQL -> Swift Code\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --passthroughCustomScalars --target swift --includes './Shared/GraphQL/**/*.graphql' --localSchemaFile ./Shared/GraphQL/schema.json ./Shared/GraphQL/API\n\n# URL -> Schema file\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://graphql.anilist.co\" ./Shared/GraphQL/AniList/schema.json\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n# GraphQL -> Swift Code\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --omitDeprecatedEnumCases --passthroughCustomScalars --target swift --includes './Shared/GraphQL/**/*.graphql' --localSchemaFile ./Shared/GraphQL/schema.json ./Shared/GraphQL/API\n\n# URL -> Schema file\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint 'https://graphql.anilist.co' ./Shared/GraphQL/schema.json\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1537,7 +1533,7 @@
 				00BC3F9E25DB31B00036BC5D /* UserNotifications.graphql.swift in Sources */,
 				00AF6F0025C8BA2C0061F73A /* ThreadView.swift in Sources */,
 				00BC3FBB25DB71550036BC5D /* MediaEditorScore10View.swift in Sources */,
-				00869F362502A75300D2DB6F /* AmincappApp.swift in Sources */,
+				00869F362502A75300D2DB6F /* ClematisApp.swift in Sources */,
 				008AA07E25CDCA270033CA59 /* ConditionalViewModifiers.swift in Sources */,
 				0080C11925B603B9004624C9 /* MediaPropertyView.swift in Sources */,
 				00AF6F0425C8C2050061F73A /* ForumsStickyThreadListView.swift in Sources */,
@@ -1688,10 +1684,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
-				PRODUCT_NAME = Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litelt.clematis-apple";
+				PRODUCT_NAME = Clematis;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1715,10 +1711,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.litelt.Amincapp-Apple";
-				PRODUCT_NAME = Amincapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litelt.clematis-apple";
+				PRODUCT_NAME = Clematis;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1730,7 +1726,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Amincapp" */ = {
+		00869F0B2502A75100D2DB6F /* Build configuration list for PBXProject "Clematis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00869F3C2502A75300D2DB6F /* Debug */,
@@ -1739,7 +1735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Amincapp (iOS)" */ = {
+		00869F3E2502A75300D2DB6F /* Build configuration list for PBXNativeTarget "Clematis (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00869F3F2502A75300D2DB6F /* Debug */,
@@ -1751,14 +1747,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		001522FA25CB49C700E0DF25 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-algorithms";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.0.2;
-			};
-		};
 		007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-log";
@@ -1794,11 +1782,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		001522FB25CB49C800E0DF25 /* Algorithms */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 001522FA25CB49C700E0DF25 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
-			productName = Algorithms;
-		};
 		007A20942570B05A00FB0713 /* Logging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 007A20932570B05900FB0713 /* XCRemoteSwiftPackageReference "swift-log" */;

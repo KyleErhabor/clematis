@@ -1,6 +1,6 @@
 //
 //  AniList.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 11/19/20.
 //

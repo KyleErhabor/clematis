@@ -1,6 +1,6 @@
 //
 //  ActivityListViewModel.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 1/31/21.
 //
@@ -45,7 +45,7 @@ class ActivityListViewModel: GraphQLViewModel, ObservableObject {
                 }
             }
         }.sink(receiveCompletion: completion) {
-            // TODO: https://github.com/LiteLT/Amincapp-Apple/issues/5
+            // TODO: https://github.com/LiteLT/clematis-apple/issues/5
         }.store(in: &cancellables)
     }
 

@@ -1,6 +1,6 @@
 //
 //  ActivityFeedView.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 1/31/21.
 //
@@ -16,7 +16,7 @@ struct ActivityFeedView: View {
     @State private var isPresenting = false
 
     var body: some View {
-        // FIXME: https://github.com/LiteLT/Amincapp-Apple/issues/5
+        // FIXME: https://github.com/LiteLT/clematis-apple/issues/5
         List {
             ForEach(viewModel.activities, id: \.id) { activity in
                 ScrollView {

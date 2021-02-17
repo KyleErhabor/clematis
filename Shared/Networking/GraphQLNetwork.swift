@@ -1,6 +1,6 @@
 //
 //  GraphQLNetwork.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 9/4/20.
 //

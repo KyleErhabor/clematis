@@ -1,6 +1,6 @@
 //
 //  CharacterSummaryView.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 1/22/21.
 //

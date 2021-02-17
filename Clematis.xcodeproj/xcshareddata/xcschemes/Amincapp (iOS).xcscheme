@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00869F132502A75300D2DB6F"
-               BuildableName = "Amincapp.app"
-               BlueprintName = "Amincapp (iOS)"
-               ReferencedContainer = "container:Amincapp.xcodeproj">
+               BuildableName = "Clematis.app"
+               BlueprintName = "Clematis (iOS)"
+               ReferencedContainer = "container:Clematis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00869F132502A75300D2DB6F"
-            BuildableName = "Amincapp.app"
-            BlueprintName = "Amincapp (iOS)"
-            ReferencedContainer = "container:Amincapp.xcodeproj">
+            BuildableName = "Clematis.app"
+            BlueprintName = "Clematis (iOS)"
+            ReferencedContainer = "container:Clematis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00869F132502A75300D2DB6F"
-            BuildableName = "Amincapp.app"
-            BlueprintName = "Amincapp (iOS)"
-            ReferencedContainer = "container:Amincapp.xcodeproj">
+            BuildableName = "Clematis.app"
+            BlueprintName = "Clematis (iOS)"
+            ReferencedContainer = "container:Clematis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

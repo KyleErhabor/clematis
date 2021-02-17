@@ -2256,7 +2256,7 @@
               },
               {
                 "name": "userId",
-                "description": "Filter by media id",
+                "description": "Filter by user id",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5724,7 +5724,7 @@
               },
               {
                 "name": "userId",
-                "description": "Filter by media id",
+                "description": "Filter by user id",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -6473,6 +6473,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "timezone",
+            "description": "The user's timezone offset (Auth user only)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6688,15 +6700,15 @@
           },
           {
             "name": "useLegacyLists",
-            "description": "(Site only) If the user should be using legacy css-supporting list versions",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "No longer used"
           },
           {
             "name": "animeList",
@@ -19968,6 +19980,16 @@
                 "defaultValue": null
               },
               {
+                "name": "timezone",
+                "description": "Timezone offset format: -?HH:MM",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "animeListOptions",
                 "description": "The user's anime list options",
                 "type": {
@@ -24648,7 +24670,7 @@
               },
               {
                 "name": "userId",
-                "description": "Filter by media id",
+                "description": "Filter by user id",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",

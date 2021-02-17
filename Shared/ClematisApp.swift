@@ -1,5 +1,5 @@
 //
-//  Anime_CatalogApp.swift
+//  ClematisApp.swift
 //  Shared
 //
 //  Created by Kyle Erhabor on 9/4/20.
@@ -13,7 +13,7 @@ let keychain = Keychain(service: Constants.appIdentifier)
 let logger = Logger(label: Constants.appIdentifier)
 
 @main
-struct AmincappApp: App {
+struct ClematisApp: App {
     @StateObject private var userStore = CurrentUserStore()
     @StateObject var currentUser = CurrentUser() // TO DELETE AND REPLACE
 
@@ -30,7 +30,7 @@ struct AmincappApp: App {
 
             #if DEBUG
             CommandMenu("Debug") {
-                Button("Log User Access Token") {
+                Button("Log Access Token") {
                     if let tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens),
                        !tokens.isEmpty {
                         logger.info("\(tokens[0])")

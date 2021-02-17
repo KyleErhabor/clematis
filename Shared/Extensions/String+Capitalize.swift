@@ -1,6 +1,6 @@
 //
 //  String+Capitalize.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 9/20/20.
 //

@@ -1,6 +1,6 @@
 //
 //  MediaEditorScore3View.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 2/15/21.
 //

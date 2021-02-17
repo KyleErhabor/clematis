@@ -1,6 +1,6 @@
 //
 //  GraphQLCustomScalars.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 12/11/20.
 //

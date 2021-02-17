@@ -1,6 +1,6 @@
 //
 //  ConditionalViewModifiers.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
 //  Created by Kyle Erhabor on 2/5/21.
 //
