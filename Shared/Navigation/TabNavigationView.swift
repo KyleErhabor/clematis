@@ -29,6 +29,12 @@ struct TabNavigationView: View {
             }
 
             NavigationView {
+                SearchView()
+            }.tabItem {
+                Label("Search", systemImage: "magnifyingglass")
+            }
+
+            NavigationView {
                 ForumsView()
             }.tabItem {
                 Label("Forums", systemImage: "text.bubble")
