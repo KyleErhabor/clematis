@@ -15,7 +15,7 @@ struct MediaEditorNotesView: View {
             viewModel.media?.mediaListEntry?.notes ?? ""
         } set: { text in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, notes: text)
+                viewModel.media?.mediaListEntry = .init(id: -1, notes: text)
             } else {
                 viewModel.media?.mediaListEntry?.notes = text
             }

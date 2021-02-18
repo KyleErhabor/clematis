@@ -15,7 +15,7 @@ struct MediaEditorHiddenFromStatusListView: View {
             viewModel.media?.mediaListEntry?.hiddenFromStatusLists ?? false
         } set: { bool in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, hiddenFromStatusLists: bool)
+                viewModel.media?.mediaListEntry = .init(id: -1, hiddenFromStatusLists: bool)
             } else {
                 viewModel.media?.mediaListEntry?.hiddenFromStatusLists = bool
             }

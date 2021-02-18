@@ -20,7 +20,7 @@ struct MediaEditorCustomListsView: View {
                     customLists[name] = bool
 
                     if viewModel.media?.mediaListEntry == nil {
-                        viewModel.media?.mediaListEntry = .init(id: viewModel.id, customLists: .dictionary(customLists))
+                        viewModel.media?.mediaListEntry = .init(id: -1, customLists: .dictionary(customLists))
                     } else {
                         viewModel.media?.mediaListEntry?.customLists = .dictionary(customLists)
                     }

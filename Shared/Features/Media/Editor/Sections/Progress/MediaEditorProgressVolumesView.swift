@@ -17,7 +17,7 @@ struct MediaEditorProgressVolumesView: View {
                 Double(viewModel.media?.mediaListEntry?.progressVolumes ?? 0)
             } set: { volumes in
                 if viewModel.media?.mediaListEntry == nil {
-                    viewModel.media?.mediaListEntry = .init(id: viewModel.id, progressVolumes: Int(volumes))
+                    viewModel.media?.mediaListEntry = .init(id: -1, progressVolumes: Int(volumes))
                 } else {
                     viewModel.media?.mediaListEntry?.progressVolumes = Int(volumes)
                 }

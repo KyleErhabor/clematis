@@ -56,17 +56,12 @@ class MediaEditorViewModel: GraphQLViewModel, ObservableObject {
             return nil
         }()
 
-        let advancedScores: [Double]? = {
-            if case let .dictionary(advancedScores) = entry?.advancedScores {
-                return Array(advancedScores.values) as? [Double]
-            }
-
-            return nil
-        }()
-
         Future<Void, GraphQLError> { promise in
             GraphQLNetwork.shared.perform(mutation: CreateOrUpdateMediaListEntryMutation(
-                id: entry?.id,
+                // -1 is a placeholder used when initializing `MediaEditorQuery.Data.Medium.MediaListEntry` in several
+                // bindings. Since the value in the `.mediaListEntry` is modified, it must be initialized, but there's
+                // no ID to set it to. To fix this, we're using -1 as a placeholder, then verifying before sending.
+                id: entry?.id == -1 ? nil : entry?.id,
                 mediaId: self.id,
                 status: entry?.status,
                 score: entry?.score == 0 ? nil : entry?.score,
@@ -78,7 +73,6 @@ class MediaEditorViewModel: GraphQLViewModel, ObservableObject {
                 notes: entry?.notes,
                 hiddenFromStatusLists: entry?.hiddenFromStatusLists,
                 customLists: customLists,
-                advancedScores: advancedScores,
                 startedAt: FuzzyDateInput(
                     year: entry?.startedAt?.year,
                     month: entry?.startedAt?.month,

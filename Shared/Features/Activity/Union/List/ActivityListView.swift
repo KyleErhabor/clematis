@@ -129,6 +129,7 @@ struct ActivityListView: View {
                     let users = viewModel.activity.likes?.compactMap { $0?.fragments.userPreviewFragment } ?? []
 
                     LikeNavigationView(users: users)
+                        .environmentObject(userStore)
                 case .listEditor:
                     if let id = viewModel.activity.media?.id {
                         MediaEditorView(viewModel: .init(id: id))

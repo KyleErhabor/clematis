@@ -15,7 +15,7 @@ struct MediaEditorPrivateView: View {
             viewModel.media?.mediaListEntry?.private ?? false
         } set: { isPrivate in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, private: isPrivate)
+                viewModel.media?.mediaListEntry = .init(id: -1, private: isPrivate)
             } else {
                 viewModel.media?.mediaListEntry?.private = isPrivate
             }

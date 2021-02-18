@@ -15,7 +15,7 @@ struct MediaEditorStatusView: View {
             viewModel.media?.mediaListEntry?.status
         } set: { status in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, status: status)
+                viewModel.media?.mediaListEntry = .init(id: -1, status: status)
             } else {
                 viewModel.media?.mediaListEntry?.status = status
             }

@@ -17,7 +17,7 @@ struct MediaEditorProgressView: View {
                 Double(viewModel.media?.mediaListEntry?.progress ?? 0)
             } set: { progress in
                 if viewModel.media?.mediaListEntry == nil {
-                    viewModel.media?.mediaListEntry = .init(id: viewModel.id, progress: Int(progress))
+                    viewModel.media?.mediaListEntry = .init(id: -1, progress: Int(progress))
                 } else {
                     viewModel.media?.mediaListEntry?.progress = Int(progress)
                 }

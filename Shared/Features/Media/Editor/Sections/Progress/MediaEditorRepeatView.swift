@@ -15,7 +15,7 @@ struct MediaEditorRepeatView: View {
             viewModel.media?.mediaListEntry?.repeat ?? 0
         } set: { repeats in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, repeat: repeats)
+                viewModel.media?.mediaListEntry = .init(id: -1, repeat: repeats)
             } else {
                 viewModel.media?.mediaListEntry?.repeat = repeats
             }

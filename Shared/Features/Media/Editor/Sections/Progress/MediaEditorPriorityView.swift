@@ -15,7 +15,7 @@ struct MediaEditorPriorityView: View {
             viewModel.media?.mediaListEntry?.priority ?? 0
         } set: { priority in
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, priority: priority)
+                viewModel.media?.mediaListEntry = .init(id: -1, priority: priority)
             } else {
                 viewModel.media?.mediaListEntry?.priority = priority
             }

@@ -18,7 +18,7 @@ struct MediaEditorScoreView: View {
                 viewModel.media?.mediaListEntry?.score ?? 0
             } set: { score in
                 if viewModel.media?.mediaListEntry == nil {
-                    viewModel.media?.mediaListEntry = .init(id: viewModel.id, score: score)
+                    viewModel.media?.mediaListEntry = .init(id: -1, score: score)
                 } else {
                     viewModel.media?.mediaListEntry?.score = score
                 }
