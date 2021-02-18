@@ -316,7 +316,7 @@
 		00869F172502A75300D2DB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00869F542502C0EE00D2DB6F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00869F632502CAE600D2DB6F /* GraphQLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLNetwork.swift; sourceTree = "<group>"; };
-		00869F662502D68C00D2DB6F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		00869F662502D68C00D2DB6F /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		00869F672502D79300D2DB6F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		00869F682502D7E500D2DB6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		008AA06725CDBB5B0033CA59 /* User.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
@@ -744,7 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				00869F672502D79300D2DB6F /* .gitignore */,
-				00869F662502D68C00D2DB6F /* LICENSE */,
+				00869F662502D68C00D2DB6F /* LICENSE.txt */,
 				00869F682502D7E500D2DB6F /* README.md */,
 				00869F0C2502A75100D2DB6F /* Shared */,
 				00869F162502A75300D2DB6F /* iOS */,
