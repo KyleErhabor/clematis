@@ -1,115 +1,104 @@
 //
 //  MediaEditorViewModel.swift
-//  Amincapp
+//  Clematis (iOS)
 //
-//  Created by Kyle Erhabor on 12/11/20.
+//  Created by Kyle Erhabor on 2/15/21.
 //
 
+import Apollo
 import Combine
 
-class MediaEditorViewModel: ObservableObject {
+class MediaEditorViewModel: GraphQLViewModel, ObservableObject {
     @Published var media: MediaEditorQuery.Data.Medium?
+    @Published private(set) var didSave = false
 
-    private let id: Int
+    let id: Int
 
     init(id: Int) {
         self.id = id
     }
 
-    func fetchMedia() {
-        GraphQLNetwork.shared.anilist.fetch(query: MediaEditorQuery(id: id)) { result in
-            switch result {
-                case .success(let query):
-                    if let media = query.data?.media {
-                        self.media = media
-                    }
+    func load() {
+        Future<MediaEditorQuery.Data.Medium, GraphQLError> { promise in
+            GraphQLNetwork.shared.fetch(query: MediaEditorQuery(id: self.id)) { result in
+                switch result {
+                    case let .success(query):
+                        if let mediaList = query.data?.media {
+                            promise(.success(mediaList))
+                        }
 
-                    if let errors = query.errors {
-                        logger.error("\(errors)")
-                    }
-                case .failure(let err):
-                    logger.error("\(err)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
+                        }
+                    case let .failure(err):
+                        logger.error("\(err)")
+                }
             }
-        }
+        }.sink(receiveCompletion: completion) { mediaList in
+            self.media = mediaList
+        }.store(in: &cancellables)
     }
 
-    func saveEntry() {
-        let customLists = media?.mediaListEntry?.customLists == nil
-            ? []
-            : Array(media!.mediaListEntry!.customLists!.keys)
+    /// Saves all edits from the media editor.
+    ///
+    /// This method saves any modifications made to the `media`'s list entry data. Most fields are sent as `nil` to represent no change. Some fields may have
+    /// non-nil data that represents the absense of a value (such as 0).
+    ///
+    /// - Score: `MediaEditorScoreView` uses a `Stepper` to increment and decrement the value. A `Stepper` cannot have a `nil` value, so the
+    /// default value is `0`.
+    func save() {
+        let entry = media?.mediaListEntry
+        let customLists: [String]? = {
+            if case let .array(customLists) = entry?.customLists {
+                return customLists as? [String]
+            }
 
-        let advancedScores = media?.mediaListEntry?.advancedScores == nil
-            ? []
-            : Array(media!.mediaListEntry!.advancedScores!.values) as! [Double]
+            return nil
+        }()
 
-        let startedAt = FuzzyDateInput(
-            year: media?.mediaListEntry?.startedAt?.year,
-            month: media?.mediaListEntry?.startedAt?.month,
-            day: media?.mediaListEntry?.startedAt?.day
-        )
-
-        let completedAt = FuzzyDateInput(
-            year: media?.mediaListEntry?.completedAt?.year,
-            month: media?.mediaListEntry?.completedAt?.month,
-            day: media?.mediaListEntry?.completedAt?.day
-        )
-
-        if let id = media?.mediaListEntry?.id, id != -1 {
-            GraphQLNetwork.shared.anilist.perform(mutation: UpdateMediaListEntryMutation(
-                id: id,
-                status: media?.mediaListEntry?.status,
-                score: media?.mediaListEntry?.score,
-                progress: media?.mediaListEntry?.progress,
-                progressVolumes: media?.mediaListEntry?.progressVolumes,
-                repeat: media?.mediaListEntry?.repeat,
-                priority: media?.mediaListEntry?.priority,
-                private: media?.mediaListEntry?.private,
-                notes: media?.mediaListEntry?.notes,
-                hiddenFromStatusLists: media?.mediaListEntry?.hiddenFromStatusLists,
+        Future<Void, GraphQLError> { promise in
+            GraphQLNetwork.shared.perform(mutation: CreateOrUpdateMediaListEntryMutation(
+                // -1 is a placeholder used when initializing `MediaEditorQuery.Data.Medium.MediaListEntry` in several
+                // bindings. Since the value in the `.mediaListEntry` is modified, it must be initialized, but there's
+                // no ID to set it to. To fix this, we're using -1 as a placeholder, then verifying before sending.
+                id: entry?.id == -1 ? nil : entry?.id,
+                mediaId: self.id,
+                status: entry?.status,
+                score: entry?.score == 0 ? nil : entry?.score,
+                progress: entry?.progress == 0 ? nil : entry?.progress,
+                progressVolumes: entry?.progressVolumes == 0 ? nil : entry?.progressVolumes,
+                repeat: entry?.repeat,
+                priority: entry?.priority,
+                private: entry?.private,
+                notes: entry?.notes,
+                hiddenFromStatusLists: entry?.hiddenFromStatusLists,
                 customLists: customLists,
-                advancedScores: advancedScores,
-                startedAt: startedAt,
-                completedAt: completedAt
+                startedAt: FuzzyDateInput(
+                    year: entry?.startedAt?.year,
+                    month: entry?.startedAt?.month,
+                    day: entry?.startedAt?.day
+                ),
+                completedAt: FuzzyDateInput(
+                    year: entry?.completedAt?.year,
+                    month: entry?.completedAt?.month,
+                    day: entry?.completedAt?.day
+                )
             )) { result in
                 switch result {
-                    case .success(let query):
-                        if let extensions = query.extensions {
-                            logger.info("\(extensions)")
+                    case let .success(query):
+                        if query.data?.saveMediaListEntry?.id != nil {
+                            promise(.success(()))
                         }
 
-                        if let errors = query.errors {
-                            logger.error("\(errors)")
+                        if let err = query.errors?.first {
+                            promise(.failure(err))
                         }
-                    case .failure(let err):
-                        logger.error("\(err)")
+                    case let .failure(err):
+                        logger.info("\(err)")
                 }
             }
-        } else {
-            GraphQLNetwork.shared.anilist.perform(mutation: CreateMediaListEntryMutation(
-                mediaId: id,
-                status: media?.mediaListEntry?.status ?? .planning,
-                score: media?.mediaListEntry?.score ?? 0,
-                progress: media?.mediaListEntry?.progress ?? 0,
-                progressVolumes: media?.mediaListEntry?.progressVolumes ?? 0,
-                repeat: media?.mediaListEntry?.repeat ?? 0,
-                priority: media?.mediaListEntry?.priority ?? 0,
-                private: media?.mediaListEntry?.private ?? false,
-                notes: media?.mediaListEntry?.notes ?? "",
-                hiddenFromStatusLists: media?.mediaListEntry?.hiddenFromStatusLists ?? false,
-                customLists: customLists,
-                advancedScores: advancedScores,
-                startedAt: startedAt,
-                completedAt: completedAt
-            )) { result in
-                switch result {
-                    case .success(let query):
-                        if let errors = query.errors {
-                            logger.error("\(errors)")
-                        }
-                    case .failure(let err):
-                        logger.error("\(err)")
-                }
-            }
-        }
+        }.sink(receiveCompletion: completion) {
+            self.didSave = true
+        }.store(in: &cancellables)
     }
 }

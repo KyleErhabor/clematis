@@ -1,0 +1,49 @@
+fragment listActivityFragment on ListActivity {
+  id
+  status
+  isLiked
+  isLocked
+  progress
+  createdAt
+  likeCount
+  replyCount
+  isSubscribed
+  user {
+    ...userPreviewFragment
+  }
+  likes {
+    ...userPreviewFragment
+  }
+  media {
+    id
+    type
+    isLocked
+    title {
+      userPreferred
+    }
+    coverImage {
+      color
+      extraLarge
+    }
+  }
+}
+
+fragment textActivityFragment on TextActivity {
+  id
+  isLiked
+  createdAt
+  likeCount
+  replyCount
+  isSubscribed
+  text(asHtml: true)
+  user {
+    ...userPreviewFragment
+  }
+  likes {
+    ...userPreviewFragment
+  }
+}
+
+fragment messageActivityFragment on MessageActivity {
+  id
+}

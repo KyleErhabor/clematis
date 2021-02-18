@@ -1,0 +1,61 @@
+query Character(
+  $id: Int!,
+  $mediaPage: Int!,
+  $mediaSort: [MediaSort],
+  $mediaType: MediaType,
+  $onList: Boolean,
+  $staffLanguage: StaffLanguage
+) {
+  Character(id: $id) {
+    favourites
+    isFavourite
+    description(asHtml: true)
+    image {
+      large
+    }
+    name {
+      full
+      native
+      alternative
+    }
+    media(sort: $mediaSort, type: $mediaType, onList: $onList, page: $mediaPage) {
+      pageInfo {
+        total
+        currentPage
+        hasNextPage
+      }
+      edges {
+        id
+        characterRole
+        voiceActors(language: $staffLanguage, sort: LANGUAGE) {
+          id
+          language
+          isFavourite
+          image {
+            large
+          }
+          name {
+            full
+            native
+          }
+        }
+        node {
+          id
+          type
+          isAdult
+          isFavourite
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+          mediaListEntry {
+            id
+          }
+        }
+      }
+    }
+  }
+}

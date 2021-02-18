@@ -1,0 +1,25 @@
+query ActivityFeed(
+  $page: Int!,
+  $isFollowing: Boolean!,
+  $hasRepliesOrTypeText: Boolean!
+) {
+  Page(page: $page) {
+    pageInfo {
+      currentPage
+      hasNextPage
+    }
+    activities(
+      isFollowing: $isFollowing,
+      hasRepliesOrTypeText: $hasRepliesOrTypeText,
+      type_in: [TEXT, ANIME_LIST, MANGA_LIST]
+      sort: [ID_DESC]
+    ) {
+      ...on ListActivity {
+        ...listActivityFragment
+      }
+      ...on TextActivity {
+        ...textActivityFragment
+      }
+    }
+  }
+}

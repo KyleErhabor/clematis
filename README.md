@@ -1,4 +1,7 @@
-#  Amincapp
-A native iOS & macOS app for managing your anime & manga list.
+#  Clematis
 
-This project is currently in development. There are no stability guarantees.
+A native iOS app for managing your anime & manga list.
+
+## License
+
+Clematis is licensed under the [Apache License, Version 2.0](LICENSE.txt).

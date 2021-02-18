@@ -1,0 +1,25 @@
+query CurrentUser {
+  Viewer {
+    id
+    name
+    avatar {
+      large
+    }
+    options {
+      displayAdultContent
+    }
+    mediaListOptions {
+      scoreFormat
+      animeList {
+        customLists
+        advancedScoring
+        advancedScoringEnabled
+      }
+      mangaList {
+        customLists
+        advancedScoring
+        advancedScoringEnabled
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 //
 //  CurrentUser.swift
-//  Amincapp
+//  Clematis
 //
 //  Created by Kyle Erhabor on 9/26/20.
 //
@@ -62,7 +62,7 @@ class CurrentUser: ObservableObject {
                     // been cleared So it keeps adding the Authorization header when it shouldn't be. I don't know
                     // why this is happening (maybe threading issues?), but this issue should be resolved before
                     // production.
-                    GraphQLNetwork.shared.anilist.fetch(query: CurrentUserQuery()) { result in
+                    GraphQLNetwork.shared.fetch(query: CurrentUserQuery()) { result in
                         UserDefaults.standard.set((index + 1) % tokens.count, forKey: SettingsKeys.accountIndex)
 
                         switch result {
@@ -100,20 +100,20 @@ class CurrentUser: ObservableObject {
         users.swapAt(index, 0)
     }
 
-    /// Removes a user from the user's default database.
-    /// - Parameter index: The user in the `users` array by index.
-    func removeUser(at index: Int) {
+    /// Removes all users at the specified offsets.
+    /// - Parameter offsets: The offset indexes representing each user from the `users` array.
+    func removeUsers(at offsets: IndexSet) {
         var tokens = UserDefaults.standard.stringArray(forKey: SettingsKeys.accessTokens)!
-        tokens.remove(at: index)
+        tokens.remove(atOffsets: offsets)
 
         UserDefaults.standard.set(tokens, forKey: SettingsKeys.accessTokens)
-        users.remove(at: index)
+        users.remove(atOffsets: offsets)
     }
 
     /// Handles an incoming URL from the URL scheme.
     ///
-    /// This method will be called when a match with the URL scheme (amincapp://) is triggered. The following checks have been put in place for security:
-    /// 1. The host (amincapp://host) must be `anilist`.
+    /// This method will be called when a match with the URL scheme (clematis://) is triggered. The following checks have been put in place for security:
+    /// 1. The host (clematis://host) must be `anilist`.
     /// 2. Fragments must be present and parsable to URL query items (?key=value). The fragment should not include the hashtag/pound symbol (#). The
     /// fragments will be used as the query items.
     /// 3. When iterating over the query items, value field must be present. To go along with this, one of the three keys should be present for each iteration.

@@ -1,0 +1,89 @@
+query User($id: Int!) {
+  User(id: $id) {
+    name
+    isBlocked
+    updatedAt
+    isFollower
+    bannerImage
+    donatorTier
+    isFollowing
+    donatorBadge
+    moderatorStatus
+    about(asHtml: true)
+    avatar {
+      large
+    }
+    options {
+      profileColor
+    }
+    favourites {
+      anime {
+        pageInfo {
+          total
+        }
+        nodes {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+      manga {
+        pageInfo {
+          total
+        }
+        nodes {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+      characters {
+        pageInfo {
+          total
+        }
+        nodes {
+          id
+          name {
+            full
+          }
+          image {
+            large
+          }
+        }
+      }
+      staff {
+        pageInfo {
+          total
+        }
+        nodes {
+          id
+          name {
+            full
+          }
+          image {
+            large
+          }
+        }
+      }
+      studios {
+        pageInfo {
+          total
+        }
+        nodes {
+          id
+          name
+        }
+      }
+    }
+  }
+}

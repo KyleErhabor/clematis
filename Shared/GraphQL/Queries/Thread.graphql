@@ -1,0 +1,41 @@
+query Thread($id: Int!, $page: Int!) {
+  Thread(id: $id) {
+    id
+    title
+    isLiked
+    isLocked
+    isSticky
+    createdAt
+    likeCount
+    viewCount
+    replyCount
+    isSubscribed
+    body(asHtml: true)
+    likes {
+      ...userPreviewFragment
+    }
+    user {
+      ...userPreviewFragment
+    }
+  }
+  Page(page: $page) {
+    pageInfo {
+      hasNextPage
+    }
+    threadComments(threadId: $id) {
+      id
+      isLiked
+      createdAt
+      likeCount
+      comment(asHtml: true)
+      user {
+        ...userPreviewFragment
+      }
+      likes {
+        ...userPreviewFragment
+      }
+      # childComments must be at the bottom to get all the fields.
+      childComments
+    }
+  }
+}

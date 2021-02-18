@@ -1,49 +1,57 @@
 //
 //  ActivityFeedView.swift
-//  Amincapp (iOS)
+//  Clematis (iOS)
 //
-//  Created by Kyle Erhabor on 12/5/20.
+//  Created by Kyle Erhabor on 1/31/21.
 //
 
-import Combine
 import SwiftUI
 
+/// A view for displaying the activity feed.
 struct ActivityFeedView: View {
-    @StateObject var viewModel = ActivityFeedViewModel()
+    /// The view model for the activity feed.
+    @StateObject private var viewModel = ActivityFeedViewModel()
+
+    /// A state for if the feed's filter sheet should be presented.
+    @State private var isPresenting = false
 
     var body: some View {
-        List(viewModel.activities) { activity in
-            // In order to make certain views in the list cell navigatable (`NavigationView(...) {...}`), we're
-            // wrapping our main view in a `ScrollView`.
-            ScrollView {
-                // NOTE: "The compiler is unable to type-check this expression in reasonable time; try breaking up
-                // the expression into distinct sub-expressions"
-                // Do not remove this sub-view until this issue has been resolved.
-                ActivityFeedSelectorView(activity: activity)
-                    .padding(8)
-            }.animation(.default)
-        }.currentUser()
-        .navigationTitle("Activity Feed")
-        .environmentObject(viewModel)
-        .onAppear {
-            viewModel.fetchActivities()
+        // FIXME: https://github.com/LiteLT/clematis-apple/issues/5
+        List {
+            ForEach(viewModel.activities, id: \.id) { activity in
+                ScrollView {
+                    ActivityFeedUnionView(activity: activity)
+                        .padding(8)
+                }
+            }
+
+            if viewModel.pageInfo?.hasNextPage == true {
+                ProgressView()
+                    .frame(maxWidth: .infinity)
+                    .onAppear {
+                        viewModel.next()
+                    }
+            }
+        }.navigationTitle("Activity Feed")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    isPresenting = true
+                } label: {
+                    Image(systemName: "line.horizontal.3.decrease.circle")
+                }
+            }
+        }.sheet(isPresented: $isPresenting) {
+            // The activity list should be reloaded in case any filter options have been changed. Dismissing the
+            // presentation does not call `.onAppear(perform:)`.
+            viewModel.load()
+        } content: {
+            ActivityFeedFilterView()
+                .environmentObject(viewModel)
+        }.onAppear {
+            viewModel.load()
         }
-    }
-}
-
-struct ActivityFeedSelectorView: View {
-    private let activity: ActivityFeedQuery.Data.Page.Activity
-
-    var body: some View {
-        if let listActivity = activity.asListActivity?.fragments.listActivityFragment {
-            ActivityListKindView(activity: listActivity)
-        } else if let textActivity = activity.asTextActivity?.fragments.textActivityFragment {
-            ActivityTextKindView(activity: textActivity)
-        }
-    }
-
-    init(activity: ActivityFeedQuery.Data.Page.Activity) {
-        self.activity = activity
     }
 }
 

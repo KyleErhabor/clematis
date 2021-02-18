@@ -1,0 +1,84 @@
+query UserNotifications {
+  Page {
+    notifications(resetNotificationCount: true) {
+      ...on AiringNotification {
+        id
+        episode
+        createdAt
+        media {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+      ...on FollowingNotification {
+        id
+        createdAt
+        user {
+          id
+          name
+          avatar {
+            large
+          }
+        }
+      }
+      ...on ActivityMessageNotification {
+        id
+        createdAt
+        user {
+          id
+          name
+          avatar {
+            large
+          }
+        }
+      }
+      ...on ActivityMentionNotification {
+        id
+        createdAt
+        user {
+          id
+          name
+          avatar {
+            large
+          }
+        }
+      }
+      ...on ActivityReplyNotification {
+        id
+      }
+      ...on ActivityReplySubscribedNotification {
+        id
+      }
+      ...on ActivityLikeNotification {
+        id
+      }
+      ...on ActivityReplyLikeNotification {
+        id
+      }
+      ...on ThreadCommentMentionNotification {
+        id
+      }
+      ...on ThreadCommentReplyNotification {
+        id
+      }
+      ...on ThreadCommentSubscribedNotification {
+        id
+      }
+      ...on ThreadCommentLikeNotification {
+        id
+      }
+      ...on ThreadLikeNotification {
+        id
+      }
+      ...on RelatedMediaAdditionNotification {
+        id
+      }
+    }
+  }
+}

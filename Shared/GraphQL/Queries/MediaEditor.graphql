@@ -1,0 +1,32 @@
+query MediaEditor($id: Int!) {
+  Media(id: $id) {
+    type
+    volumes
+    chapters
+    episodes
+    mediaListEntry {
+      id
+      notes
+      score
+      repeat
+      status
+      private
+      priority
+      progress
+      updatedAt
+      customLists
+      progressVolumes
+      hiddenFromStatusLists
+      startedAt {
+        day
+        year
+        month
+      }
+      completedAt {
+        day
+        year
+        month
+      }
+    }
+  }
+}

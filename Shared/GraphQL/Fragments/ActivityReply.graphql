@@ -1,0 +1,21 @@
+fragment activityReplyFragment on ActivityReply {
+  id
+  isLiked
+  createdAt
+  likeCount
+  text(asHtml: true)
+  user {
+    id
+    name
+    avatar {
+      large
+    }
+  }
+  likes {
+    id
+    name
+    avatar {
+      large
+    }
+  }
+}

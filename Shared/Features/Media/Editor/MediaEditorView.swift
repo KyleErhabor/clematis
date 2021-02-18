@@ -1,139 +1,89 @@
 //
 //  MediaEditorView.swift
-//  Amincapp
+//  Clematis (iOS)
 //
-//  Created by Kyle Erhabor on 12/10/20.
+//  Created by Kyle Erhabor on 2/15/21.
 //
 
-import SDWebImageSwiftUI
 import SwiftUI
 
 struct MediaEditorView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @EnvironmentObject private var currentUser: CurrentUser
+    @EnvironmentObject private var userStore: CurrentUserStore
     @StateObject var viewModel: MediaEditorViewModel
 
     var body: some View {
-        VStack {
-            if viewModel.media != nil {
-                NavigationView {
-                    MediaEditorFormView()
-                        .navigationTitle("List Editor")
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Dismiss") {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
+        NavigationView {
+            Form {
+                // TODO: Add advanced scores support.
+                Section(header: Text("Overview")) {
+                    MediaEditorStatusView()
 
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button("Save") {
-                                    viewModel.saveEntry()
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
+                    // FIXME: This class may not be visible to the user sometimes. The view must be reloaded for it to
+                    // be visible, but it should always be visible. This is not caused by the conditional statements
+                    // within the view.
+                    MediaEditorScoreView()
                 }
-            } else {
-                NavigationView {
-                    ProgressView()
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Dismiss") {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
+
+                Section(header: Text("Progress"), footer: MediaEditorProgressFooterView()) {
+                    MediaEditorProgressView()
+                    MediaEditorProgressVolumesView()
+                    MediaEditorRepeatView()
+                    MediaEditorPriorityView()
+                    MediaEditorStartDateView()
+                    MediaEditorCompletedDateView()
+                }
+
+                Section(header: Text("Notes")) {
+                    MediaEditorNotesView()
+                }
+
+                if case let .dictionary(lists) = viewModel.media?.mediaListEntry?.customLists, !lists.isEmpty {
+                    Section(header: Text("Custom Lists")) {
+                        MediaEditorCustomListsView()
+                    }
+                }
+
+                Section(header: Text("List Scope"), footer: MediaEditorListScopeFooterView()) {
+                    MediaEditorPrivateView()
+                    MediaEditorHiddenFromStatusListView()
+                }
+
+                Section(footer: MediaEditorFooterView()) {}
+            }.navigationTitle("List Editor")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        viewModel.save()
+                    }
                 }
             }
+        }.alert(item: $viewModel.error) { err in
+            Alert(
+                title: Text("Error"),
+                message: Text("\(err.message ?? "An unknown error has occurred.")"),
+                dismissButton: .default(Text("OK"))
+            )
         }.environmentObject(viewModel)
-        .onAppear {
-            viewModel.fetchMedia()
-        }
-    }
-}
-
-fileprivate struct MediaEditorFormView: View {
-    @EnvironmentObject private var viewModel: MediaEditorViewModel
-    @EnvironmentObject private var currentUser: CurrentUser
-
-    private let dateFormatter: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-
-        return formatter
-    }()
-
-    var body: some View {
-        Form {
-            let media = viewModel.media!
-            let listOptions = currentUser.users[0].mediaListOptions!
-
-            Section(header: Text("Overview")) {
-                MediaEditorFormOverviewView()
-            }.animation(.default)
-
-            Section(header: Text("Progress")) {
-                MediaEditorFormProgressView()
-            }.animation(.default)
-
-            if let scoreFormat = listOptions.scoreFormat {
-                if scoreFormat == .point_10Decimal || scoreFormat == .point_100 {
-                    let animeList = listOptions.animeList!
-
-                    if media.type == .anime && animeList.advancedScoringEnabled == true
-                        && !animeList.advancedScoring!.isEmpty {
-                        Section(header: Text("Advanced Scores")) {
-                            MediaEditorFormAdvancedScoresView()
-                        }.animation(.default)
-                    }
-
-                    let mangaList = listOptions.mangaList!
-
-                    if media.type == .manga && mangaList.advancedScoringEnabled == true
-                        && !mangaList.advancedScoring!.isEmpty {
-                        Section(header: Text("Advanced Scores")) {
-                            MediaEditorFormAdvancedScoresView()
-                        }.animation(.default)
-                    }
-                }
+        .onChange(of: viewModel.didSave) { didSave in
+            if didSave {
+                presentationMode.wrappedValue.dismiss()
             }
-
-            // Using `else if` instead of a seprate `if` causes the Swift compiler to choke (type-checking in
-            // reasonable time error).
-            if media.type == .anime && !listOptions.animeList!.customLists!.isEmpty {
-                Section(header: Text("Custom Lists")) {
-                    MediaEditorFormCustomListView()
-                }.animation(.default)
-            }
-
-            if media.type == .manga && !listOptions.mangaList!.customLists!.isEmpty {
-                Section(header: Text("Custom Lists")) {
-                    MediaEditorFormCustomListView()
-                }.animation(.default)
-            }
-
-            Section(header: Text("Notes")) {
-                MediaEditorFormNotesView()
-            }.animation(.default)
-
-            Section(header: Text("List Settings"), footer: HStack {
-                if let lastUpdate = media.mediaListEntry?.updatedAt {
-                    let lastUpdateDate = Date(timeIntervalSince1970: TimeInterval(lastUpdate))
-                    let relativeTime = dateFormatter.localizedString(for: lastUpdateDate, relativeTo: Date())
-
-                    Spacer()
-                    Text("Last Updated: ").bold() + Text(relativeTime)
-                }
-            }.padding()) {
-                MediaEditorFormListSettingsView()
-            }.animation(.default)
+        }.onAppear {
+            viewModel.load()
         }
     }
 }
 
 struct MediaEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaEditorView(viewModel: MediaEditorViewModel(id: 30009))
+        MediaEditorView(viewModel: .init(id: 302))
     }
 }
