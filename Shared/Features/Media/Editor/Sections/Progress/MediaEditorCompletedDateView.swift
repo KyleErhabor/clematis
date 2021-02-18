@@ -36,7 +36,7 @@ struct MediaEditorCompletedDateView: View {
             )
 
             if viewModel.media?.mediaListEntry == nil {
-                viewModel.media?.mediaListEntry = .init(id: viewModel.id, completedAt: completedAt)
+                viewModel.media?.mediaListEntry = .init(id: -1, completedAt: completedAt)
             } else {
                 viewModel.media?.mediaListEntry?.completedAt = completedAt
             }
