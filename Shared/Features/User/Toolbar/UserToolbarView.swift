@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct UserToolbarView: View {
-    @EnvironmentObject private var currentUser: CurrentUser
+    @EnvironmentObject private var userStore: CurrentUserStore
     @EnvironmentObject private var viewModel: UserViewModel
     @State private var isPresenting = false
 
     var body: some View {
-        let isCurrentUser = currentUser.users.first?.id == viewModel.id
+        let isCurrentUser = userStore.users.first?.id == viewModel.id
 
-        if currentUser.users.contains(where: { $0.id == viewModel.id }) {
+        if userStore.users.contains(where: { $0.id == viewModel.id }) {
             Button {
                 isPresenting = true
             } label: {
