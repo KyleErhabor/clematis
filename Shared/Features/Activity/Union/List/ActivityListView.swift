@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A view for displaying a list activity (`ListActivityFragment`)
 struct ActivityListView: View {
-    /// The global environment object for user accounts logged in.
+    /// The global environment object for users.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     /// The view model for this list activity.
@@ -145,7 +145,7 @@ fileprivate struct ActivityListContextView: View {
     /// The view model from the parent `ActivityListView` view.
     @EnvironmentObject private var viewModel: ActivityListViewModel
 
-    /// The global environment object for user accounts logged in.
+    /// The global environment object for user accounts.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     /// A binding detailing what sheet to present.

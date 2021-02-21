@@ -1,0 +1,29 @@
+query UserList($id: Int!, $type: MediaType!, $chunk: Int!) {
+	MediaListCollection(userId: $id, type: $type, chunk: $chunk) {
+    hasNextChunk
+    lists {
+      name
+      entries {
+        id
+        progress
+        progressVolumes
+        user {
+          id
+        }
+        media {
+          id
+          volumes
+          chapters
+          episodes
+          title {
+            userPreferred
+          }
+          coverImage {
+            color
+            extraLarge
+          }
+        }
+      }
+    }
+  }
+}

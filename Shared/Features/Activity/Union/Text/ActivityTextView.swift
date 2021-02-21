@@ -99,7 +99,7 @@ fileprivate struct ActivityTextContextView: View {
     /// The view model from the parent `ActivityTextView` view.
     @EnvironmentObject private var viewModel: ActivityTextViewModel
 
-    /// The global environment object for user accounts logged in.
+    /// The global environment object for user accounts.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     /// A binding detailing whether to present an alert confirming if the user wants to delete this activity.

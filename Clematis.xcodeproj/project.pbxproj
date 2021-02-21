@@ -23,10 +23,17 @@
 		00224D5425DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */; };
 		00224D5725DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */; };
 		0022F82A25DE0DED006005C2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F82925DE0DED006005C2 /* SearchView.swift */; };
+		0022F82E25DE0FC7006005C2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F82D25DE0FC7006005C2 /* SearchViewModel.swift */; };
+		0022F83125DE14BF006005C2 /* Search.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 0022F83025DE14BF006005C2 /* Search.graphql */; };
+		0022F83525DE14DC006005C2 /* Search.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F83425DE14DC006005C2 /* Search.graphql.swift */; };
+		0022F84025DE3FD4006005C2 /* SearchBrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F83F25DE3FD4006005C2 /* SearchBrowseView.swift */; };
+		0022F84525DE400C006005C2 /* SearchQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F84425DE400B006005C2 /* SearchQueryView.swift */; };
+		0022F84A25DE43BB006005C2 /* SearchQueryAnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F84925DE43BB006005C2 /* SearchQueryAnimeListView.swift */; };
+		0022F85225DE4BFF006005C2 /* SearchQueryAnimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022F85125DE4BFF006005C2 /* SearchQueryAnimeView.swift */; };
 		0023345425ABE9E500E48267 /* Int+Abbreviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023345325ABE9E400E48267 /* Int+Abbreviation.swift */; };
 		0031AC0525B716FE0079DE28 /* MediaPropertyStudiosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC0425B716FD0079DE28 /* MediaPropertyStudiosView.swift */; };
 		0031AC0A25B73BCE0079DE28 /* MediaStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC0925B73BCE0079DE28 /* MediaStatsView.swift */; };
-		0031AC1725B76CFF0079DE28 /* Array+Distinct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1625B76CFF0079DE28 /* Array+Distinct.swift */; };
+		0031AC1725B76CFF0079DE28 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1625B76CFF0079DE28 /* Array+Extensions.swift */; };
 		0031AC1B25B795D80079DE28 /* MediaStatsRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0031AC1A25B795D80079DE28 /* MediaStatsRankingView.swift */; };
 		00371531256BF39B00F68734 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371530256BF39B00F68734 /* MediaView.swift */; };
 		00371541256C141100F68734 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371540256C141100F68734 /* UserView.swift */; };
@@ -40,6 +47,9 @@
 		004C68D725C12C5D003FFD2D /* UserFavoritesStaffListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68D625C12C5D003FFD2D /* UserFavoritesStaffListView.swift */; };
 		004C68DA25C12D6E003FFD2D /* UserFavoritesStudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */; };
 		004C68DE25C12F30003FFD2D /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C68DD25C12F30003FFD2D /* StudioView.swift */; };
+		00651AA625E2183E00B246E4 /* DeleteMediaListEntry.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00651AA525E2183E00B246E4 /* DeleteMediaListEntry.graphql */; };
+		00651AA925E2185700B246E4 /* DeleteMediaListEntry.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00651AA825E2185700B246E4 /* DeleteMediaListEntry.graphql.swift */; };
+		00651AAC25E2258A00B246E4 /* UserListContentProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00651AAB25E2258A00B246E4 /* UserListContentProgressView.swift */; };
 		0068782C25D4CBAE00FBC7FE /* RulesNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */; };
 		0068782F25D4E99600FBC7FE /* GraphQLError+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */; };
 		006ECC8725B360F80016956A /* MediaCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006ECC8625B360F80016956A /* MediaCharacterView.swift */; };
@@ -61,6 +71,13 @@
 		0073113125A0F4600070776A /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073113025A0F4600070776A /* TabNavigationView.swift */; };
 		0073DB80251EEE48000C1FA1 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */; };
 		00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00767DC5259001EC009AD3BE /* MediaViewModel.swift */; };
+		0079ECD525E1735E00C4EB27 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECD425E1735E00C4EB27 /* UserListView.swift */; };
+		0079ECD825E173A600C4EB27 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECD725E173A600C4EB27 /* UserListViewModel.swift */; };
+		0079ECDB25E181A800C4EB27 /* UserList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 0079ECDA25E181A800C4EB27 /* UserList.graphql */; };
+		0079ECDF25E181CC00C4EB27 /* UserList.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECDE25E181CC00C4EB27 /* UserList.graphql.swift */; };
+		0079ECE825E1CA7300C4EB27 /* UserListToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECE725E1CA7300C4EB27 /* UserListToolbarView.swift */; };
+		0079ECF725E1D2FC00C4EB27 /* UserListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECF625E1D2FC00C4EB27 /* UserListContentView.swift */; };
+		0079ECFE25E2042300C4EB27 /* UserListContentContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079ECFD25E2042300C4EB27 /* UserListContentContextView.swift */; };
 		007A20952570B05A00FB0713 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 007A20942570B05A00FB0713 /* Logging */; };
 		007B682125D9AAC60072587D /* GraphQLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007B682025D9AAC60072587D /* GraphQLViewModel.swift */; };
 		007DDD9425C06FEA00CDA046 /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DDD9325C06FEA00CDA046 /* UserHeaderView.swift */; };
@@ -230,15 +247,20 @@
 		00224D5325DA0E00005EF5C5 /* CharacterMediaListExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaListExpandedView.swift; sourceTree = "<group>"; };
 		00224D5625DA165B005EF5C5 /* CharacterMediaListExpandedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMediaListExpandedFilterView.swift; sourceTree = "<group>"; };
 		0022F82925DE0DED006005C2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0022F82D25DE0FC7006005C2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		0022F83025DE14BF006005C2 /* Search.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Search.graphql; sourceTree = "<group>"; };
+		0022F83425DE14DC006005C2 /* Search.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.graphql.swift; sourceTree = "<group>"; };
+		0022F83F25DE3FD4006005C2 /* SearchBrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBrowseView.swift; sourceTree = "<group>"; };
+		0022F84425DE400B006005C2 /* SearchQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueryView.swift; sourceTree = "<group>"; };
+		0022F84925DE43BB006005C2 /* SearchQueryAnimeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueryAnimeListView.swift; sourceTree = "<group>"; };
+		0022F85125DE4BFF006005C2 /* SearchQueryAnimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueryAnimeView.swift; sourceTree = "<group>"; };
 		0023345325ABE9E400E48267 /* Int+Abbreviation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviation.swift"; sourceTree = "<group>"; };
 		0031AC0425B716FD0079DE28 /* MediaPropertyStudiosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPropertyStudiosView.swift; sourceTree = "<group>"; };
 		0031AC0925B73BCE0079DE28 /* MediaStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatsView.swift; sourceTree = "<group>"; };
 		0031AC1025B767EA0079DE28 /* IMG_0245.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0245.png; sourceTree = "<group>"; };
-		0031AC1125B767EA0079DE28 /* IMG_0242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0242.png; sourceTree = "<group>"; };
 		0031AC1225B767EA0079DE28 /* IMG_0247.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0247.png; sourceTree = "<group>"; };
-		0031AC1325B767EA0079DE28 /* IMG_0241.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0241.png; sourceTree = "<group>"; };
 		0031AC1425B767EA0079DE28 /* IMG_0243.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0243.png; sourceTree = "<group>"; };
-		0031AC1625B76CFF0079DE28 /* Array+Distinct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Distinct.swift"; sourceTree = "<group>"; };
+		0031AC1625B76CFF0079DE28 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		0031AC1A25B795D80079DE28 /* MediaStatsRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatsRankingView.swift; sourceTree = "<group>"; };
 		00371530256BF39B00F68734 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		00371540256C141100F68734 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
@@ -252,6 +274,23 @@
 		004C68D625C12C5D003FFD2D /* UserFavoritesStaffListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesStaffListView.swift; sourceTree = "<group>"; };
 		004C68D925C12D6E003FFD2D /* UserFavoritesStudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesStudioListView.swift; sourceTree = "<group>"; };
 		004C68DD25C12F30003FFD2D /* StudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
+		00651AA525E2183E00B246E4 /* DeleteMediaListEntry.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteMediaListEntry.graphql; sourceTree = "<group>"; };
+		00651AA825E2185700B246E4 /* DeleteMediaListEntry.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteMediaListEntry.graphql.swift; sourceTree = "<group>"; };
+		00651AAB25E2258A00B246E4 /* UserListContentProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListContentProgressView.swift; sourceTree = "<group>"; };
+		00651AB025E2325D00B246E4 /* A882A6EC-D8BC-4D59-84CC-31B9EC046A34_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "A882A6EC-D8BC-4D59-84CC-31B9EC046A34_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651AB125E2325D00B246E4 /* 52F2E87D-ED1A-4C66-B8C5-14A6902921FD_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "52F2E87D-ED1A-4C66-B8C5-14A6902921FD_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651AB225E2325D00B246E4 /* 5992E8E8-49E7-4A71-9730-CE4E8D05CF26_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "5992E8E8-49E7-4A71-9730-CE4E8D05CF26_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651AB325E2325D00B246E4 /* 2C0A8AA8-56CF-4F3F-BF23-815CA25B4436.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2C0A8AA8-56CF-4F3F-BF23-815CA25B4436.png"; sourceTree = "<group>"; };
+		00651AB425E2325D00B246E4 /* 890BBE96-93E5-4FE1-845D-355F097DEF72_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "890BBE96-93E5-4FE1-845D-355F097DEF72_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651AB525E2325D00B246E4 /* F3DBF68D-28FF-4DFE-B564-16D26DA9B015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F3DBF68D-28FF-4DFE-B564-16D26DA9B015.png"; sourceTree = "<group>"; };
+		00651AB625E2325D00B246E4 /* 9F42194F-6572-4052-896D-C034F2A9A112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "9F42194F-6572-4052-896D-C034F2A9A112.png"; sourceTree = "<group>"; };
+		00651AB725E2325E00B246E4 /* BE69A2CD-22F9-455A-970E-C8EFD01F0063_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BE69A2CD-22F9-455A-970E-C8EFD01F0063_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651AB825E2325E00B246E4 /* C4F50780-4EB3-4239-A40C-B12E32206D1B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C4F50780-4EB3-4239-A40C-B12E32206D1B.png"; sourceTree = "<group>"; };
+		00651AB925E2325E00B246E4 /* FF72DE7D-BA4A-4561-A1A8-27050B5D0F1A_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "FF72DE7D-BA4A-4561-A1A8-27050B5D0F1A_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651ABA25E2325E00B246E4 /* B1700CCE-DFED-4078-BF30-421F536DA1E3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "B1700CCE-DFED-4078-BF30-421F536DA1E3.png"; sourceTree = "<group>"; };
+		00651ABB25E2325E00B246E4 /* 2A851555-FD26-4B3E-9595-185B85AC059B_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2A851555-FD26-4B3E-9595-185B85AC059B_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651ABC25E2325E00B246E4 /* 194B9D08-E8C5-4569-BDC4-5C9B1928075E_1_102_o.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "194B9D08-E8C5-4569-BDC4-5C9B1928075E_1_102_o.jpeg"; sourceTree = "<group>"; };
+		00651ABD25E2325E00B246E4 /* 168B361F-105F-4AAF-8A36-7DC463E6A060.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "168B361F-105F-4AAF-8A36-7DC463E6A060.png"; sourceTree = "<group>"; };
 		0068782B25D4CBAE00FBC7FE /* RulesNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesNoticeView.swift; sourceTree = "<group>"; };
 		0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLError+Identifiable.swift"; sourceTree = "<group>"; };
 		006ECC8625B360F80016956A /* MediaCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCharacterView.swift; sourceTree = "<group>"; };
@@ -274,6 +313,13 @@
 		0073DB7F251EEE48000C1FA1 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		00767DC5259001EC009AD3BE /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		00767DCC25900770009AD3BE /* Media.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Media.graphql; sourceTree = "<group>"; };
+		0079ECD425E1735E00C4EB27 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
+		0079ECD725E173A600C4EB27 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		0079ECDA25E181A800C4EB27 /* UserList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserList.graphql; sourceTree = "<group>"; };
+		0079ECDE25E181CC00C4EB27 /* UserList.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList.graphql.swift; sourceTree = "<group>"; };
+		0079ECE725E1CA7300C4EB27 /* UserListToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListToolbarView.swift; sourceTree = "<group>"; };
+		0079ECF625E1D2FC00C4EB27 /* UserListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListContentView.swift; sourceTree = "<group>"; };
+		0079ECFD25E2042300C4EB27 /* UserListContentContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListContentContextView.swift; sourceTree = "<group>"; };
 		007B682025D9AAC60072587D /* GraphQLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLViewModel.swift; sourceTree = "<group>"; };
 		007DDD9325C06FEA00CDA046 /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
 		007DDD9625C07F4800CDA046 /* UserAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAboutView.swift; sourceTree = "<group>"; };
@@ -532,8 +578,37 @@
 			isa = PBXGroup;
 			children = (
 				0022F82925DE0DED006005C2 /* SearchView.swift */,
+				0022F82D25DE0FC7006005C2 /* SearchViewModel.swift */,
+				0022F83E25DE3F04006005C2 /* Browse */,
+				0022F84325DE3FE4006005C2 /* Query */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		0022F83E25DE3F04006005C2 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				0022F83F25DE3FD4006005C2 /* SearchBrowseView.swift */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		0022F84325DE3FE4006005C2 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				0022F84425DE400B006005C2 /* SearchQueryView.swift */,
+				0022F84825DE4390006005C2 /* Anime */,
+			);
+			path = Query;
+			sourceTree = "<group>";
+		};
+		0022F84825DE4390006005C2 /* Anime */ = {
+			isa = PBXGroup;
+			children = (
+				0022F85125DE4BFF006005C2 /* SearchQueryAnimeView.swift */,
+				0022F84925DE43BB006005C2 /* SearchQueryAnimeListView.swift */,
+			);
+			path = Anime;
 			sourceTree = "<group>";
 		};
 		002D81282582F35700866A31 /* Queries */ = {
@@ -547,8 +622,10 @@
 				00C108972573619D00E3DCBA /* Markdown.graphql */,
 				00767DCC25900770009AD3BE /* Media.graphql */,
 				00BC3F7025DB317D0036BC5D /* MediaEditor.graphql */,
+				0022F83025DE14BF006005C2 /* Search.graphql */,
 				001522C325C9DFB800E0DF25 /* Thread.graphql */,
 				00F39AF825BFD00000824B8C /* User.graphql */,
+				0079ECDA25E181A800C4EB27 /* UserList.graphql */,
 				00CC35AF25C639C2003523D7 /* UserNotifications.graphql */,
 			);
 			path = Queries;
@@ -561,6 +638,7 @@
 				00C520EF25C7F7840035AD71 /* CreateOrUpdateActivity.graphql */,
 				00BC3FA125DB3C880036BC5D /* CreateOrUpdateMediaListEntry.graphql */,
 				00C520C925C7AF5E0035AD71 /* DeleteActivity.graphql */,
+				00651AA525E2183E00B246E4 /* DeleteMediaListEntry.graphql */,
 				009BB1B6259573C00041BF8C /* Favorite.graphql */,
 				00C520BE25C795960035AD71 /* Like.graphql */,
 				00AF6F0E25C8E2A90061F73A /* ThreadSubscription.graphql */,
@@ -592,12 +670,24 @@
 		0031AC0D25B7422F0079DE28 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				0031AC1325B767EA0079DE28 /* IMG_0241.png */,
-				0031AC1125B767EA0079DE28 /* IMG_0242.png */,
 				0031AC1425B767EA0079DE28 /* IMG_0243.png */,
 				0031AC1025B767EA0079DE28 /* IMG_0245.png */,
 				0031AC1225B767EA0079DE28 /* IMG_0247.png */,
 				004C68D325C12BFF003FFD2D /* IMG_18C7B297B371-1.jpeg */,
+				00651ABB25E2325E00B246E4 /* 2A851555-FD26-4B3E-9595-185B85AC059B_1_102_o.jpeg */,
+				00651AB325E2325D00B246E4 /* 2C0A8AA8-56CF-4F3F-BF23-815CA25B4436.png */,
+				00651AB625E2325D00B246E4 /* 9F42194F-6572-4052-896D-C034F2A9A112.png */,
+				00651AB125E2325D00B246E4 /* 52F2E87D-ED1A-4C66-B8C5-14A6902921FD_1_102_o.jpeg */,
+				00651ABD25E2325E00B246E4 /* 168B361F-105F-4AAF-8A36-7DC463E6A060.png */,
+				00651ABC25E2325E00B246E4 /* 194B9D08-E8C5-4569-BDC4-5C9B1928075E_1_102_o.jpeg */,
+				00651AB425E2325D00B246E4 /* 890BBE96-93E5-4FE1-845D-355F097DEF72_1_102_o.jpeg */,
+				00651AB225E2325D00B246E4 /* 5992E8E8-49E7-4A71-9730-CE4E8D05CF26_1_102_o.jpeg */,
+				00651AB025E2325D00B246E4 /* A882A6EC-D8BC-4D59-84CC-31B9EC046A34_1_102_o.jpeg */,
+				00651ABA25E2325E00B246E4 /* B1700CCE-DFED-4078-BF30-421F536DA1E3.png */,
+				00651AB725E2325E00B246E4 /* BE69A2CD-22F9-455A-970E-C8EFD01F0063_1_102_o.jpeg */,
+				00651AB825E2325E00B246E4 /* C4F50780-4EB3-4239-A40C-B12E32206D1B.png */,
+				00651AB525E2325D00B246E4 /* F3DBF68D-28FF-4DFE-B564-16D26DA9B015.png */,
+				00651AB925E2325E00B246E4 /* FF72DE7D-BA4A-4561-A1A8-27050B5D0F1A_1_102_o.jpeg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -618,10 +708,11 @@
 			children = (
 				00371540256C141100F68734 /* UserView.swift */,
 				00F39AF525BFCF0E00824B8C /* UserViewModel.swift */,
-				007DDD9225C06FCE00CDA046 /* Sections */,
+				0079ECD325E1732D00C4EB27 /* List */,
 				00CC35AA25C633FB003523D7 /* Notifications */,
-				007DDD9D25C0970100CDA046 /* Toolbar */,
 				008AA06925CDBDB40033CA59 /* Preview */,
+				007DDD9225C06FCE00CDA046 /* Sections */,
+				007DDD9D25C0970100CDA046 /* Toolbar */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -666,6 +757,35 @@
 				0072CD6225BA18D90061E70F /* MediaSummaryPropertyFavoritesView.swift */,
 			);
 			path = Props;
+			sourceTree = "<group>";
+		};
+		0079ECD325E1732D00C4EB27 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				0079ECD425E1735E00C4EB27 /* UserListView.swift */,
+				0079ECD725E173A600C4EB27 /* UserListViewModel.swift */,
+				0079ECE725E1CA7300C4EB27 /* UserListToolbarView.swift */,
+				0079ECE525E1CA3500C4EB27 /* Sections */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		0079ECE525E1CA3500C4EB27 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				0079ECF525E1D2F200C4EB27 /* Content */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		0079ECF525E1D2F200C4EB27 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				0079ECF625E1D2FC00C4EB27 /* UserListContentView.swift */,
+				00651AAB25E2258A00B246E4 /* UserListContentProgressView.swift */,
+				0079ECFD25E2042300C4EB27 /* UserListContentContextView.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		007B681F25D9AAA00072587D /* ViewModel */ = {
@@ -831,7 +951,7 @@
 		008CDBF025169A8B00B948D4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0031AC1625B76CFF0079DE28 /* Array+Distinct.swift */,
+				0031AC1625B76CFF0079DE28 /* Array+Extensions.swift */,
 				006ED0E42517C9F6004992F7 /* Color+Hex.swift */,
 				0068782E25D4E99600FBC7FE /* GraphQLError+Identifiable.swift */,
 				0023345325ABE9E400E48267 /* Int+Abbreviation.swift */,
@@ -974,6 +1094,7 @@
 				00B8582D25DDFBA200A1DD3F /* CreateOrUpdateMediaListEntry.graphql.swift */,
 				00B8582925DDFBA200A1DD3F /* CurrentUser.graphql.swift */,
 				00B8583725DDFBA200A1DD3F /* DeleteActivity.graphql.swift */,
+				00651AA825E2185700B246E4 /* DeleteMediaListEntry.graphql.swift */,
 				00B8583525DDFBA200A1DD3F /* Favorite.graphql.swift */,
 				00B8582A25DDFBA200A1DD3F /* Forums.graphql.swift */,
 				00B8583825DDFBA200A1DD3F /* Like.graphql.swift */,
@@ -981,11 +1102,13 @@
 				00B8583425DDFBA200A1DD3F /* Media.graphql.swift */,
 				00B8582E25DDFBA200A1DD3F /* MediaEditor.graphql.swift */,
 				00B8583325DDFBA200A1DD3F /* SaveTextActivity.graphql.swift */,
+				0022F83425DE14DC006005C2 /* Search.graphql.swift */,
 				00B8583A25DDFBA200A1DD3F /* Thread.graphql.swift */,
 				00B8583925DDFBA200A1DD3F /* ThreadSubscription.graphql.swift */,
 				00B8582C25DDFBA200A1DD3F /* ToggleFollow.graphql.swift */,
 				00B8583225DDFBA200A1DD3F /* Types.graphql.swift */,
 				00B8582F25DDFBA200A1DD3F /* User.graphql.swift */,
+				0079ECDE25E181CC00C4EB27 /* UserList.graphql.swift */,
 				00B8583B25DDFBA200A1DD3F /* UserNotifications.graphql.swift */,
 			);
 			path = API;
@@ -1311,16 +1434,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C520F025C7F7840035AD71 /* CreateOrUpdateActivity.graphql in Resources */,
+				0022F83125DE14BF006005C2 /* Search.graphql in Resources */,
 				00AF6F0F25C8E2A90061F73A /* ThreadSubscription.graphql in Resources */,
 				001DAB9225D6110100403DA2 /* SaveTextActivity.graphql in Resources */,
 				00C520CA25C7AF5F0035AD71 /* DeleteActivity.graphql in Resources */,
 				00C5209725C684D30035AD71 /* ActivityUnion.graphql in Resources */,
 				00C5209B25C6881C0035AD71 /* ActivityFeed.graphql in Resources */,
 				004C68D425C12BFF003FFD2D /* IMG_18C7B297B371-1.jpeg in Resources */,
+				0079ECDB25E181A800C4EB27 /* UserList.graphql in Resources */,
 				00BC3FA225DB3C880036BC5D /* CreateOrUpdateMediaListEntry.graphql in Resources */,
 				00869F3A2502A75300D2DB6F /* Assets.xcassets in Resources */,
 				00BC3F7125DB317D0036BC5D /* MediaEditor.graphql in Resources */,
 				00C520D425C7BBBC0035AD71 /* ActivityReplies.graphql in Resources */,
+				00651AA625E2183E00B246E4 /* DeleteMediaListEntry.graphql in Resources */,
 				00C520BF25C795960035AD71 /* Like.graphql in Resources */,
 				00C520D825C7BC360035AD71 /* ActivityReply.graphql in Resources */,
 				004C68B825C0EC10003FFD2D /* ToggleFollow.graphql in Resources */,
@@ -1380,11 +1506,13 @@
 				008597B125D2051600C0FFDB /* CurrentUserStore.swift in Sources */,
 				00A8599325BBBAFA00EDC7E2 /* CharacterMediaView.swift in Sources */,
 				001DAB8C25D5F66300403DA2 /* MarkdownEditorViewModel.swift in Sources */,
+				0022F82E25DE0FC7006005C2 /* SearchViewModel.swift in Sources */,
 				0072CD5425BA187E0061E70F /* MediaSummaryPropertyEpisodesView.swift in Sources */,
 				00CC35B525C63A3F003523D7 /* UserNotificationListViewModel.swift in Sources */,
 				0080C15E25B674A6004624C9 /* MediaPropertyGenresView.swift in Sources */,
 				0072CD5A25BA18A30061E70F /* MediaSummaryPropertyVolumesView.swift in Sources */,
 				0072CD4525BA18110061E70F /* MediaSummaryPropertyFormatView.swift in Sources */,
+				0079ECFE25E2042300C4EB27 /* UserListContentContextView.swift in Sources */,
 				00B8584B25DDFBA200A1DD3F /* Media.graphql.swift in Sources */,
 				00B8584025DDFBA200A1DD3F /* CurrentUser.graphql.swift in Sources */,
 				00A8598C25BBB5B100EDC7E2 /* CharacterMediaListView.swift in Sources */,
@@ -1405,6 +1533,7 @@
 				00BC400125DC76350036BC5D /* MediaEditorCompletedDateView.swift in Sources */,
 				0095D84C25B54BCE00B03D39 /* MediaStaffView.swift in Sources */,
 				00CC35AD25C636CF003523D7 /* UserNotificationListView.swift in Sources */,
+				0022F83525DE14DC006005C2 /* Search.graphql.swift in Sources */,
 				00BC3FDB25DBA9190036BC5D /* MediaEditorPriorityView.swift in Sources */,
 				0080C12725B61358004624C9 /* MediaPropertyStatusView.swift in Sources */,
 				004C68DA25C12D6E003FFD2D /* UserFavoritesStudioListView.swift in Sources */,
@@ -1421,6 +1550,7 @@
 				0080C13025B61668004624C9 /* MediaPropertySeasonView.swift in Sources */,
 				00FA0C4725845B3A00A08117 /* GraphQLCustomScalars.swift in Sources */,
 				00B8585225DDFBA200A1DD3F /* UserNotifications.graphql.swift in Sources */,
+				0079ECD525E1735E00C4EB27 /* UserListView.swift in Sources */,
 				001522F325CB1BB200E0DF25 /* ThreadQuery+Identifiable.swift in Sources */,
 				00BC3FDF25DBAD7A0036BC5D /* MediaEditorPrivateView.swift in Sources */,
 				0080C12A25B61445004624C9 /* MediaPropertyStartDateView.swift in Sources */,
@@ -1431,6 +1561,8 @@
 				00AF6F0B25C8D7860061F73A /* ForumsThreadView.swift in Sources */,
 				00CC35BF25C64CB9003523D7 /* UserNotificationFollowingView.swift in Sources */,
 				0007F70525AD092C00C7E885 /* MediaSummaryHeaderView.swift in Sources */,
+				00651AA925E2185700B246E4 /* DeleteMediaListEntry.graphql.swift in Sources */,
+				00651AAC25E2258A00B246E4 /* UserListContentProgressView.swift in Sources */,
 				00DC20B225AE9E0D00C5DCCB /* MediaCharactersView.swift in Sources */,
 				0080C14625B62D29004624C9 /* MediaPropertyExternalLinksView.swift in Sources */,
 				0023345425ABE9E500E48267 /* Int+Abbreviation.swift in Sources */,
@@ -1439,12 +1571,14 @@
 				008597A825CFB06500C0FFDB /* ActivityFeedUnionView.swift in Sources */,
 				0080C16525B68E33004624C9 /* MediaPropertyAverageScoreView.swift in Sources */,
 				00A8598925BBB28900EDC7E2 /* CharacterSummaryView.swift in Sources */,
+				0079ECF725E1D2FC00C4EB27 /* UserListContentView.swift in Sources */,
 				00C520D125C7B8980035AD71 /* ActivityReplyListViewModel.swift in Sources */,
 				00767DC6259001EC009AD3BE /* MediaViewModel.swift in Sources */,
 				001522DF25CA1A8500E0DF25 /* ThreadReplyView.swift in Sources */,
 				00B8584525DDFBA200A1DD3F /* MediaEditor.graphql.swift in Sources */,
 				00BC3FD825DBA7C30036BC5D /* MediaEditorRepeatView.swift in Sources */,
 				00CC35C225C651D3003523D7 /* UserNotificationActivityMessageView.swift in Sources */,
+				0022F84525DE400C006005C2 /* SearchQueryView.swift in Sources */,
 				00BC3FC125DB737D0036BC5D /* MediaEditorScore3View.swift in Sources */,
 				0072CD5725BA18940061E70F /* MediaSummaryPropertyChaptersView.swift in Sources */,
 				0072CD3F25BA17980061E70F /* MediaSummaryPropertyIDView.swift in Sources */,
@@ -1460,6 +1594,7 @@
 				0072CD5D25BA18B60061E70F /* MediaSummaryPropertySourceView.swift in Sources */,
 				00AF6EFC25C8B5A10061F73A /* ForumsViewModel.swift in Sources */,
 				0007F71025AE263D00C7E885 /* MediaRelationsView.swift in Sources */,
+				0079ECE825E1CA7300C4EB27 /* UserListToolbarView.swift in Sources */,
 				00C5208425C682980035AD71 /* ActivityTextView.swift in Sources */,
 				00C520E325C7CC200035AD71 /* ActivityReplyView.swift in Sources */,
 				0068782F25D4E99600FBC7FE /* GraphQLError+Identifiable.swift in Sources */,
@@ -1473,6 +1608,7 @@
 				00C5208725C682A20035AD71 /* ActivityMessageView.swift in Sources */,
 				00A8598525BB885400EDC7E2 /* CharacterViewModel.swift in Sources */,
 				00F39AF625BFCF0E00824B8C /* UserViewModel.swift in Sources */,
+				0022F85225DE4BFF006005C2 /* SearchQueryAnimeView.swift in Sources */,
 				0080C14325B62886004624C9 /* MediaPropertySourceView.swift in Sources */,
 				00B8583D25DDFBA200A1DD3F /* ActivityReply.graphql.swift in Sources */,
 				0013191925AAD48900571CF3 /* MediaHeaderView.swift in Sources */,
@@ -1492,6 +1628,7 @@
 				004C68D125C11EC5003FFD2D /* UserFavoritesCharacterListView.swift in Sources */,
 				00930D1125B09DC300067284 /* CharacterView.swift in Sources */,
 				0072CD4825BA18280061E70F /* MediaSummaryPropertyStatusView.swift in Sources */,
+				0079ECD825E173A600C4EB27 /* UserListViewModel.swift in Sources */,
 				007DDD9A25C0826F00CDA046 /* UserToolbarView.swift in Sources */,
 				0072CD6325BA18D90061E70F /* MediaSummaryPropertyFavoritesView.swift in Sources */,
 				0080C16825B68EBB004624C9 /* MediaPropertyMeanScoreView.swift in Sources */,
@@ -1510,10 +1647,11 @@
 				0031AC0A25B73BCE0079DE28 /* MediaStatsView.swift in Sources */,
 				007DDDA125C0990D00CDA046 /* UserToolbarAccountSheetView.swift in Sources */,
 				008597BA25D21ACE00C0FFDB /* Constants.swift in Sources */,
+				0022F84025DE3FD4006005C2 /* SearchBrowseView.swift in Sources */,
 				00869F382502A75300D2DB6F /* ContentView.swift in Sources */,
 				0095D84625B5491400B03D39 /* StaffView.swift in Sources */,
 				004C68CB25C11028003FFD2D /* UserFavoritesAnimeListView.swift in Sources */,
-				0031AC1725B76CFF0079DE28 /* Array+Distinct.swift in Sources */,
+				0031AC1725B76CFF0079DE28 /* Array+Extensions.swift in Sources */,
 				0095D83325B4D36600B03D39 /* ResponseValidationInterceptor.swift in Sources */,
 				0080C13325B6183A004624C9 /* MediaPropertyEpisodesView.swift in Sources */,
 				004C68C025C10199003FFD2D /* UserFavoritesView.swift in Sources */,
@@ -1526,11 +1664,13 @@
 				0095D83625B4D3BF00B03D39 /* NilAwareRequestBodyCreator.swift in Sources */,
 				00B8584725DDFBA200A1DD3F /* Character.graphql.swift in Sources */,
 				00AF6F0025C8BA2C0061F73A /* ThreadView.swift in Sources */,
+				0022F84A25DE43BB006005C2 /* SearchQueryAnimeListView.swift in Sources */,
 				00BC3FBB25DB71550036BC5D /* MediaEditorScore10View.swift in Sources */,
 				00B8585125DDFBA200A1DD3F /* Thread.graphql.swift in Sources */,
 				00869F362502A75300D2DB6F /* ClematisApp.swift in Sources */,
 				008AA07E25CDCA270033CA59 /* ConditionalViewModifiers.swift in Sources */,
 				0080C11925B603B9004624C9 /* MediaPropertyView.swift in Sources */,
+				0079ECDF25E181CC00C4EB27 /* UserList.graphql.swift in Sources */,
 				00AF6F0425C8C2050061F73A /* ForumsStickyThreadListView.swift in Sources */,
 				006ECC8725B360F80016956A /* MediaCharacterView.swift in Sources */,
 				00AF6F0825C8CF570061F73A /* ForumsActiveThreadListView.swift in Sources */,

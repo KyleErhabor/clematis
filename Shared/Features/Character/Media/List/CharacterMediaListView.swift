@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A view for displaying a list of anime/manga associated with a character.
 struct CharacterMediaListView: View {
-    /// The global environment object for users.
+    /// The global environment object for user accounts.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     /// The view model from the `CharacterView`.

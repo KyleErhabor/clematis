@@ -1,0 +1,28 @@
+query Search($search: String!) {
+  anime: Page {
+    media(search: $search, type: ANIME) {
+      id
+      format
+      genres
+      season
+      episodes
+      seasonYear
+      status(version: 2)
+      title {
+        userPreferred
+      }
+      coverImage {
+        color
+        extraLarge
+      }
+    }
+  }
+  manga: Page {
+    media(search: $search, type: MANGA) {
+      id
+      title {
+        userPreferred
+      }
+    }
+  }
+}

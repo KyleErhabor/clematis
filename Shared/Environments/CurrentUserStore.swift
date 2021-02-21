@@ -13,7 +13,7 @@ import Combine
 /// The `CurrentUserStore` class allows you to sign in, sign out, load, and access AniList accounts linked to this app. A person can add an unlimited number of
 /// accounts and context-switch as they choose.
 ///
-/// - Attention: At the mooment, this class is limited to one user. In the future, more users will be supported.
+/// - Attention: At the moment, this class is limited to one user. In the future, more users will be supported.
 class CurrentUserStore: NSObject, ObservableObject {
     /// An array of users currently logged in.
     ///

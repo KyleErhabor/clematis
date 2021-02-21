@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A view for displaying an expanded `CharacterMediaListView`, showing all anime/manga and featuring pagination support.
 struct CharacterMediaListExpandedView: View {
-    /// The global environment object for users.
+    /// The global environment object for user accounts.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     /// The view model from the `CharacterView`.

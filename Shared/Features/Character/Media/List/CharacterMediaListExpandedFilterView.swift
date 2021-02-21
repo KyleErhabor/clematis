@@ -15,7 +15,7 @@ struct CharacterMediaListExpandedFilterView: View {
     /// The view model from the `CharacterView`.
     @EnvironmentObject private var viewModel: CharacterViewModel
 
-    /// The global environment object for users.
+    /// The global environment object for user accounts.
     @EnvironmentObject private var userStore: CurrentUserStore
 
     var body: some View {

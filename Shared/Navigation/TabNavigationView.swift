@@ -15,29 +15,39 @@ struct TabNavigationView: View {
             NavigationView {
                 ActivityFeedView()
             }.tabItem {
-                Label("Home", systemImage: "house")
+                Label("Home", systemImage: "house.fill")
             }
 
             NavigationView {
                 if let user = userStore.users.first {
-                    UserView(viewModel: .init(id: user.id))
+                    UserView(viewModel: UserViewModel(id: user.id))
                 } else {
                     AuthenticationView()
                 }
             }.tabItem {
-                Label("Profile", systemImage: "person.crop.circle")
+                Label("Profile", systemImage: "person.crop.circle.fill")
+            }
+
+            NavigationView {
+                if let user = userStore.users.first {
+                    UserListView(viewModel: UserListViewModel(id: user.id))
+                } else {
+                    AuthenticationView()
+                }
+            }.tabItem {
+                Label("Library", systemImage: "books.vertical.fill")
+            }
+
+            NavigationView {
+                ForumsView()
+            }.tabItem {
+                Label("Forums", systemImage: "text.bubble.fill")
             }
 
             NavigationView {
                 SearchView()
             }.tabItem {
                 Label("Search", systemImage: "magnifyingglass")
-            }
-
-            NavigationView {
-                ForumsView()
-            }.tabItem {
-                Label("Forums", systemImage: "text.bubble")
             }
         }
     }
