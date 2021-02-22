@@ -20,6 +20,7 @@ struct UserFavoritesView: View {
             Spacer()
         }
 
+        // FIXME: Some users may have duplicate favorites (e.g. https://anilist.co/user/Nunmuch/ ).
         UserFavoritesAnimeListView()
         UserFavoritesMangaListView()
         UserFavoritesCharacterListView()

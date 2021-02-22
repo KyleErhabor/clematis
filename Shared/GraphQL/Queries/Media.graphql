@@ -1,19 +1,15 @@
-query Media($id: Int!, $staffPage: Int, $characterPage: Int) {
+query Media($id: Int!) {
   Media(id: $id) {
     type
     format
-    genres
     season
-    hashtag
-    siteUrl
+    source
     volumes
     chapters
     duration
     episodes
     isLocked
-    synonyms
-    meanScore
-    updatedAt
+    trending
     favourites
     isLicensed
     popularity
@@ -21,12 +17,12 @@ query Media($id: Int!, $staffPage: Int, $characterPage: Int) {
     bannerImage
     isFavourite
     averageScore
-    countryOfOrigin
-    source(version: 2)
     status(version: 2)
-    description(asHtml: true)
     mediaListEntry {
       status
+    }
+    title {
+      userPreferred
     }
     coverImage {
       color
@@ -45,151 +41,6 @@ query Media($id: Int!, $staffPage: Int, $characterPage: Int) {
       day
       year
       month
-    }
-    trailer {
-      id
-      site
-      thumbnail
-    }
-    externalLinks {
-      id
-      url
-      site
-    }
-    title {
-      native
-      romaji
-      english
-      userPreferred
-    }
-    tags {
-      id
-      name
-      rank
-      isAdult
-      description
-      isMediaSpoiler
-    }
-    rankings {
-      id
-      rank
-      type
-      year
-      format
-      season
-      allTime
-      context
-    }
-    reviews(sort: RATING_DESC) {
-      pageInfo {
-        total
-        hasNextPage
-      }
-      nodes {
-        id
-        rating
-        private
-        summary
-        createdAt
-        userRating
-        ratingAmount
-        user {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-      }
-    }
-    studios {
-      edges {
-        id
-        isMain
-        node {
-          id
-          name
-          isFavourite
-        }
-      }
-    }
-    staff(page: $staffPage) {
-      pageInfo {
-        total
-        hasNextPage
-      }
-      edges {
-        id
-        role
-        node {
-          id
-          isFavourite
-          image {
-            large
-          }
-          name {
-            full
-            native
-          }
-        }
-      }
-    }
-    relations {
-      pageInfo {
-        total
-      }
-      edges {
-        id
-        relationType(version: 2)
-        node {
-          id
-          type
-          format
-          season
-          status
-          seasonYear
-          title {
-            userPreferred
-          }
-          coverImage {
-            color
-            extraLarge
-          }
-        }
-      }
-    }
-    characters(page: $characterPage, sort: [ROLE, ID]) {
-      pageInfo {
-        total
-        hasNextPage
-      }
-      edges {
-        id
-        role
-        node {
-          id
-          isFavourite
-          image {
-            large
-          }
-          name {
-            full
-            native
-          }
-        }
-        voiceActors(sort: LANGUAGE) {
-          id
-          language
-          isFavourite
-          image {
-            large
-          }
-          name {
-            full
-            native
-          }
-        }
-      }
     }
   }
 }
