@@ -13,6 +13,12 @@ struct TabNavigationView: View {
     var body: some View {
         TabView {
             NavigationView {
+                MediaView(viewModel: MediaViewModel(id: 1491))
+            }.tabItem {
+                Label("Media", systemImage: "tv.and.mediabox")
+            }
+
+            NavigationView {
                 ActivityFeedView()
             }.tabItem {
                 Label("Home", systemImage: "house.fill")
